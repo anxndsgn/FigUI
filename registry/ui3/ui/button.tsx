@@ -25,7 +25,7 @@ const buttonVariants = cva(
         linkDanger:
           'text-(--figma-color-text-danger) hover:bg-(--figma-color-bg-danger-tertiary) disabled:text-(--figma-color-text-disabled) focus-visible:border-(--figma-color-border-danger)',
         ghost:
-          'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 disabled:bg-(--figma-color-bg-disabled)',
+          'hover:bg-(--figma-color-bg-transparent-hover) active:bg-(--figma-color-bg-transparent-pressed) disabled:text-(--figma-color-text-disabled) focus-visible:border-(--figma-color-border-selected) focus-visible:border-[1.5px]',
       },
       size: {
         default:
