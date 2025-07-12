@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-(--figma-color-bg-brand) text-(--figma-color-text-onbrand) active:bg-(--figma-color-bg-brand-pressed) active:outline active:outline-(--figma-color-border-selected-strong) active:outline-offset-0 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figma-color-bg-disabled)',
+          'bg-(--figma-color-bg-brand) text-(--figma-color-text-onbrand) active:bg-(--figma-color-bg-brand-pressed) active:outline active:outline-(--figma-color-border-selected-strong) active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figma-color-bg-disabled)',
         secondary:
           'text-(--figma-color-text) border border-(--figma-color-border) hover:bg-(--figma-color-bg-secondary-hover) hover:border-(--figma-color-bordertranslucent) disabled:border-(--figma-color-border-disabled) disabled:text-(--figma-color-text-disabled)',
         destructive:
