@@ -5,31 +5,31 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-(--figma-spacer-1) whitespace-nowrap rounded-(--figma-radius-medium) figma-typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-(--figma-color-border-selected) focus-visible:border-[1.5px] outline-offset-0 outline-transparent",
+  "inline-flex items-center justify-center gap-(--figui-spacer-1) whitespace-nowrap rounded-(--figui-radius-medium) figma-typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-(--figui-color-border-selected) focus-visible:border-[1.5px] outline-offset-0 outline-transparent",
   {
     variants: {
       variant: {
         primary:
-          'bg-(--figma-color-bg-brand) text-(--figma-color-text-onbrand) active:bg-(--figma-color-bg-brand-pressed) active:outline active:outline-(--figma-color-border-selected-strong) active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figma-color-bg-disabled)',
+          'bg-(--figui-color-bg-brand) text-(--figui-color-text-onbrand) active:bg-(--figui-color-bg-brand-pressed) active:outline active:outline-(--figui-color-border-selected-strong) active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figui-color-bg-disabled)',
         secondary:
-          'text-(--figma-color-text) border border-(--figma-color-border) hover:bg-(--figma-color-bg-secondary-hover) hover:border-(--figma-color-bordertranslucent) disabled:border-(--figma-color-border-disabled) disabled:text-(--figma-color-text-disabled)',
+          'text-(--figui-color-text) border border-(--figui-color-border) hover:bg-(--figui-color-bg-secondary-hover) hover:border-(--figui-color-bordertranslucent) disabled:border-(--figui-color-border-disabled) disabled:text-(--figui-color-text-disabled)',
         destructive:
-          'bg-(--figma-color-bg-danger) text-(--figma-color-text-ondanger) hover:bg-(--figma-color-bg-danger-hover) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figma-color-bg-disabled)',
+          'bg-(--figui-color-bg-danger) text-(--figui-color-text-ondanger) hover:bg-(--figui-color-bg-danger-hover) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figui-color-bg-disabled)',
         secondaryDestruct:
-          'border border-(--figma-color-border-danger) text-(--figma-color-text-danger) disabled:border-(--figma-color-border-disabled) disabled:text-(--figma-color-text-disabled)',
+          'border border-(--figui-color-border-danger) text-(--figui-color-text-danger) disabled:border-(--figui-color-border-disabled) disabled:text-(--figui-color-text-disabled)',
         inverse:
-          'bg-(--figma-color-bg-inverse) text-(--figma-color-text-oninverse) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figma-color-bg-disabled)',
+          'bg-(--figui-color-bg-inverse) text-(--figui-color-text-oninverse) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figui-color-bg-disabled)',
         success:
-          'bg-(--figma-color-bg-success) hover:bg-(--figma-color-bg-success-hover) text-(--figma-color-text-onsuccess) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figma-color-bg-disabled)',
-        link: 'text-(--figma-color-text-brand) hover:bg-(--figma-color-bg-brand-tertiary) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:text-(--figma-color-text-disabled)',
+          'bg-(--figui-color-bg-success) hover:bg-(--figui-color-bg-success-hover) text-(--figui-color-text-onsuccess) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--figui-color-bg-disabled)',
+        link: 'text-(--figui-color-text-brand) hover:bg-(--figui-color-bg-brand-tertiary) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:text-(--figui-color-text-disabled)',
         linkDanger:
-          'text-(--figma-color-text-danger) hover:bg-(--figma-color-bg-danger-tertiary) disabled:text-(--figma-color-text-disabled) focus-visible:border-(--figma-color-border-danger)',
+          'text-(--figui-color-text-danger) hover:bg-(--figui-color-bg-danger-tertiary) disabled:text-(--figui-color-text-disabled) focus-visible:border-(--figui-color-border-danger)',
         ghost:
-          'hover:bg-(--figma-color-bg-transparent-hover) active:bg-(--figma-color-bg-transparent-pressed) disabled:text-(--figma-color-text-disabled) focus-visible:border-(--figma-color-border-selected) focus-visible:border-[1.5px]',
+          'hover:bg-(--figui-color-bg-transparent-hover) active:bg-(--figui-color-bg-transparent-pressed) disabled:text-(--figui-color-text-disabled) focus-visible:border-(--figui-color-border-selected) focus-visible:border-[1.5px]',
       },
       size: {
-        default: 'h-6 px-(--figma-spacer-2) has-[>svg]:px-3',
-        large: 'h-8 px-(--figma-spacer-2-5) has-[>svg]:px-4',
+        default: 'h-6 px-(--figui-spacer-2) has-[>svg]:px-3',
+        large: 'h-8 px-(--figui-spacer-2-5) has-[>svg]:px-4',
         icon: 'size-6',
       },
     },

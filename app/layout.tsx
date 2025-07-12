@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`font-(--figma-font-family-default) antialiased`}>
+      <body className={`font-(--figui-font-family-default) antialiased`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

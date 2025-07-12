@@ -9,8 +9,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--figma-font-family-default);
-  --font-mono: var(--figma-font-family-mono);
+  --font-sans: var(--figui-font-family-default);
+  --font-mono: var(--figui-font-family-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -47,19 +47,19 @@
 }
 @layer components {
   .figma-typography-body-medium {
-    font-family: var(--figma-font-family-default);
-    font-size: var(--figma-text-body-medium-font-size);
-    font-weight: var(--figma-font-weight-medium);
-    line-height: var(--figma-text-body-medium-line-height);
-    letter-spacing: var(--figma-text-body-medium-letter-spacing);
+    font-family: var(--figui-font-family-default);
+    font-size: var(--figui-text-body-medium-font-size);
+    font-weight: var(--figui-font-weight-medium);
+    line-height: var(--figui-text-body-medium-line-height);
+    letter-spacing: var(--figui-text-body-medium-letter-spacing);
   }
 
   .figma-typography-body-large {
-    font-family: var(--figma-font-family-default);
-    font-size: var(--figma-text-body-large-font-size);
-    font-weight: var(--figma-font-weight-medium);
-    line-height: var(--figma-text-body-large-line-height);
-    letter-spacing: var(--figma-text-body-large-letter-spacing);
+    font-family: var(--figui-font-family-default);
+    font-size: var(--figui-text-body-large-font-size);
+    font-weight: var(--figui-font-weight-medium);
+    line-height: var(--figui-text-body-large-line-height);
+    letter-spacing: var(--figui-text-body-large-letter-spacing);
   }
 }
 
@@ -137,6 +137,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-(--figma-color-bg-default) text-(--figma-color-text-default);
+    @apply bg-(--figui-color-bg-default) text-(--figui-color-text-default);
   }
 }
