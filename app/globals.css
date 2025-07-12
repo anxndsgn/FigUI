@@ -40,6 +40,6 @@
 
 @layer base {
   body {
-    @apply bg-(--color-bg-default) text-(--color-text-default);
+    @apply bg-(--color-bg) text-(--color-text);
   }
 }
