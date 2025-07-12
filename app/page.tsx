@@ -2,7 +2,6 @@
 
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/registry/ui3/ui/button';
-import { useState } from 'react';
 
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
