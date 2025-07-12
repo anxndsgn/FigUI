@@ -2,7 +2,7 @@
 
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/registry/ui3/ui/button';
-import { PlusIcon } from 'lucide-react';
+import { GithubIcon, PlusIcon } from 'lucide-react';
 
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
@@ -12,13 +12,20 @@ export default function Home() {
     <div className='max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8'>
       <header className='flex flex-col gap-2'>
         <div className='flex items-center justify-between'>
-          <h1 className='text-3xl font-bold tracking-tight'>FigUI</h1>
-          <ThemeToggle />
+          <h1 className='text-3xl font-bold tracking-tight'>FigUI (WIP)</h1>
         </div>
         <p className='text-muted-foreground'>
-          Open Sourced Figma UI3 Components
+          Open Source Figma UI3 Components
         </p>
       </header>
+      <div className='flex items-center gap-2'>
+        <ThemeToggle />
+        <Button variant='ghost' size='icon'>
+          <a href='https://github.com/anxndsgn/figui' target='_blank'>
+            <GithubIcon />
+          </a>
+        </Button>
+      </div>
       <main className='flex flex-col flex-1 gap-8'>
         <div className='flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative'>
           <div className='flex items-center justify-between'>
