@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-(--figma-spacer-1) whitespace-nowrap rounded-(--figma-radius-medium) figma-typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 focus-visible:border-(--figma-color-border-selected) focus-visible:border-[1.5px] outline-offset-0 outline-transparent",
+  "inline-flex items-center justify-center gap-(--figma-spacer-1) whitespace-nowrap rounded-(--figma-radius-medium) figma-typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-(--figma-color-border-selected) focus-visible:border-[1.5px] outline-offset-0 outline-transparent",
   {
     variants: {
       variant: {
@@ -28,10 +28,9 @@ const buttonVariants = cva(
           'hover:bg-(--figma-color-bg-transparent-hover) active:bg-(--figma-color-bg-transparent-pressed) disabled:text-(--figma-color-text-disabled) focus-visible:border-(--figma-color-border-selected) focus-visible:border-[1.5px]',
       },
       size: {
-        default:
-          'h-6 px-(--figma-spacer-2) py-(--figma-spacer-1) has-[>svg]:px-3',
+        default: 'h-6 px-(--figma-spacer-2) has-[>svg]:px-3',
         large: 'h-8 px-(--figma-spacer-2-5) has-[>svg]:px-4',
-        icon: 'size-9',
+        icon: 'size-6',
       },
     },
     defaultVariants: {
