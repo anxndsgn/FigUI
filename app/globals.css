@@ -3,6 +3,8 @@
 @import './figma-styles/figma-sizing.css';
 @import './figma-styles/figma-colors.css';
 @import './figma-styles/figma-typography.css';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
 
 @custom-variant dark (&:is(.dark *));
 
