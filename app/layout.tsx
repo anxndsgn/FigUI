@@ -14,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`font-(--font-family-default) antialiased`}>
+      <body
+        className={`font-(--font-family-default) antialiased`}
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
