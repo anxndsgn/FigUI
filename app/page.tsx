@@ -27,7 +27,7 @@ export default function Home() {
         </Button>
       </div>
       <main className='flex flex-col flex-1 gap-8'>
-        <div className='flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative'>
+        <div className='flex flex-col gap-4 border border-(--figui-color-border) rounded-lg p-4 min-h-[450px] relative'>
           <div className='flex items-center justify-between'>
             <h2 className='text-sm text-muted-foreground sm:pl-3'>Button</h2>
             <span className='font-mono text-xs'>
