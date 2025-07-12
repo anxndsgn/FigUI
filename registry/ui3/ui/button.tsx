@@ -11,18 +11,18 @@ const buttonVariants = cva(
         primary:
           'bg-(--color-bg-brand) text-(--color-text-onbrand) active:bg-(--color-bg-brand-pressed) active:outline active:outline-(--color-border-selected-strong) active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
         secondary:
-          'text-(--color-text) border border-(--color-border) hover:bg-(--color-bg-secondary-hover) hover:border-(--color-bordertranslucent) disabled:border-(--color-border-disabled) disabled:text-(--color-text-disabled)',
+          'text-(--color-text) border border-(--color-border) active:bg-(--color-bg-secondary-hover) active:border-(--color-bordertranslucent) disabled:border-(--color-border-disabled) disabled:text-(--color-text-disabled)',
         destructive:
-          'bg-(--color-bg-danger) text-(--color-text-ondanger) hover:bg-(--color-bg-danger-hover) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
+          'bg-(--color-bg-danger) text-(--color-text-ondanger) active:bg-(--color-bg-danger-hover) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
         secondaryDestruct:
-          'border border-(--color-border-danger) text-(--color-text-danger) disabled:border-(--color-border-disabled) disabled:text-(--color-text-disabled)',
+          'border border-(--color-border-danger) text-(--color-text-danger) active:bg-(--color-bg-pressed) disabled:border-(--color-border-disabled) disabled:text-(--color-text-disabled)',
         inverse:
           'bg-(--color-bg-inverse) text-(--color-text-oninverse) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
         success:
-          'bg-(--color-bg-success) hover:bg-(--color-bg-success-hover) text-(--color-text-onsuccess) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
-        link: 'text-(--color-text-brand) hover:bg-(--color-bg-brand-tertiary) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:text-(--color-text-disabled)',
+          'bg-(--color-bg-success) active:bg-(--color-bg-success-hover) text-(--color-text-onsuccess) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
+        link: 'text-(--color-text-brand) active:bg-(--color-bg-brand-tertiary) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:text-(--color-text-disabled)',
         linkDanger:
-          'text-(--color-text-danger) hover:bg-(--color-bg-danger-tertiary) disabled:text-(--color-text-disabled) focus-visible:border-(--color-border-danger)',
+          'text-(--color-text-danger) active:bg-(--color-bg-danger-tertiary) disabled:text-(--color-text-disabled) focus-visible:border-(--color-border-danger)',
         ghost:
           'hover:bg-(--color-bg-transparent-hover) active:bg-(--color-bg-transparent-pressed) disabled:text-(--color-text-disabled) focus-visible:border-(--color-border-selected) focus-visible:border-[1.5px]',
       },
