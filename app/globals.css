@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import './figma-styles/figma-sizing.css';
+@import './figma-styles/figma-colors.css';
+@import './figma-styles/figma-typography.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -41,6 +44,23 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+@layer components {
+  .figma-typography-body-medium {
+    font-family: var(--figma-font-family-default);
+    font-size: var(--figma-text-body-medium-font-size);
+    font-weight: var(--figma-font-weight-medium);
+    line-height: var(--figma-text-body-medium-line-height);
+    letter-spacing: var(--figma-text-body-medium-letter-spacing);
+  }
+
+  .figma-typography-body-large {
+    font-family: var(--figma-font-family-default);
+    font-size: var(--figma-text-body-large-font-size);
+    font-weight: var(--figma-font-weight-medium);
+    line-height: var(--figma-text-body-large-line-height);
+    letter-spacing: var(--figma-text-body-large-letter-spacing);
+  }
 }
 
 :root {
