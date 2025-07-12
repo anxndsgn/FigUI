@@ -7,28 +7,28 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-full: var(--figui-radius-full);
-  --radius-large: var(--figui-radius-large);
-  --radius-medium: var(--figui-radius-medium);
-  --radius-small: var(--figui-radius-small);
-  --radius-none: var(--figui-radius-none);
+  --radius-full: var(--radius-full);
+  --radius-large: var(--radius-large);
+  --radius-medium: var(--radius-medium);
+  --radius-small: var(--radius-small);
+  --radius-none: var(--radius-none);
 }
 
 @layer components {
   .figma-typography-body-medium {
-    font-family: var(--figui-font-family-default);
-    font-size: var(--figui-text-body-medium-font-size);
-    font-weight: var(--figui-font-weight-medium);
-    line-height: var(--figui-text-body-medium-line-height);
-    letter-spacing: var(--figui-text-body-medium-letter-spacing);
+    font-family: var(--font-family-default);
+    font-size: var(--text-body-medium-font-size);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-body-medium-line-height);
+    letter-spacing: var(--text-body-medium-letter-spacing);
   }
 
   .figma-typography-body-large {
-    font-family: var(--figui-font-family-default);
-    font-size: var(--figui-text-body-large-font-size);
-    font-weight: var(--figui-font-weight-medium);
-    line-height: var(--figui-text-body-large-line-height);
-    letter-spacing: var(--figui-text-body-large-letter-spacing);
+    font-family: var(--font-family-default);
+    font-size: var(--text-body-large-font-size);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-body-large-line-height);
+    letter-spacing: var(--text-body-large-letter-spacing);
   }
 }
 
@@ -40,6 +40,6 @@
 
 @layer base {
   body {
-    @apply bg-(--figui-color-bg-default) text-(--figui-color-text-default);
+    @apply bg-(--color-bg-default) text-(--color-text-default);
   }
 }
