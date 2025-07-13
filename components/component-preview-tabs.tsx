@@ -49,7 +49,7 @@ export function ComponentPreviewTabs({
           )}
         </div>
       </Tabs>
-      <div data-tab={tab} className='relative rounded-large border md:-mx-1'>
+      <div data-tab={tab} className='relative md:-mx-1'>
         <div
           data-slot='preview'
           data-active={tab === 'preview'}
@@ -58,7 +58,7 @@ export function ComponentPreviewTabs({
           <div
             data-align={align}
             className={cn(
-              'preview flex h-[450px] w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
+              'preview flex h-[450px] rounded-large border  w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
             )}
           >
             {component}

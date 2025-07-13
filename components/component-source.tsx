@@ -3,7 +3,7 @@ import path from 'node:path';
 import * as React from 'react';
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 
-import { cn } from '@/lib/utils';
+import { cn, fixImport } from '@/lib/utils';
 import { CodeCollapsibleWrapper } from '@/components/code-collapsible-wrapper';
 
 export async function ComponentSource({
@@ -24,6 +24,8 @@ export async function ComponentSource({
 
   const code = await fs.readFile(path.join(process.cwd(), src), 'utf-8');
 
+  const fixedCode = fixImport(code);
+
   if (!code) {
     return null;
   }
@@ -33,14 +35,14 @@ export async function ComponentSource({
   if (!collapsible) {
     return (
       <div className={cn('relative', className)}>
-        <DynamicCodeBlock lang={lang} code={code} />
+        <DynamicCodeBlock lang={lang} code={fixedCode} />
       </div>
     );
   }
 
   return (
     <CodeCollapsibleWrapper className={className}>
-      <DynamicCodeBlock lang={lang} code={code} />
+      <DynamicCodeBlock lang={lang} code={fixedCode} />
     </CodeCollapsibleWrapper>
   );
 }
