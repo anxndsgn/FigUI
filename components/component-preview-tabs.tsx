@@ -53,12 +53,12 @@ export function ComponentPreviewTabs({
         <div
           data-slot='preview'
           data-active={tab === 'preview'}
-          className='invisible data-[active=true]:visible'
+          className='hidden data-[active=true]:block'
         >
           <div
             data-align={align}
             className={cn(
-              'preview flex h-[450px] rounded-large border  w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
+              'preview flex rounded-large border w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
             )}
           >
             {component}
@@ -67,7 +67,7 @@ export function ComponentPreviewTabs({
         <div
           data-slot='code'
           data-active={tab === 'code'}
-          className='absolute inset-0 hidden data-[active=true]:block **:[figure]:!m-0'
+          className='hidden data-[active=true]:block **:[figure]:!m-0'
         >
           {source}
         </div>
