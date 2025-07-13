@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { RootProvider } from 'fumadocs-ui/provider';
 
 export const metadata: Metadata = {
   title: 'FigUI',
@@ -24,7 +25,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className='root'>{children}</div>
+          <RootProvider>
+            <div className='root'>{children}</div>
+          </RootProvider>
         </ThemeProvider>
       </body>
     </html>
