@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { RootProvider } from 'fumadocs-ui/provider';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: 'FigUI',
@@ -15,6 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <Analytics />
       <body
         className={`font-(--font-family-default) antialiased`}
         suppressHydrationWarning
