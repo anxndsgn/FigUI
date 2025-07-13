@@ -9,7 +9,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/collapsible';
-import { Separator } from '@/components/separator';
 
 export function CodeCollapsibleWrapper({
   className,
@@ -33,7 +32,6 @@ export function CodeCollapsibleWrapper({
           >
             {isOpened ? 'Collapse' : 'Expand'}
           </Button>
-          <Separator orientation='vertical' className='mx-1.5 !h-4' />
         </div>
       </CollapsibleTrigger>
       <CollapsibleContent
