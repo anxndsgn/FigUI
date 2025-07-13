@@ -49,7 +49,7 @@ export function ComponentPreviewTabs({
           )}
         </div>
       </Tabs>
-      <div data-tab={tab} className='relative rounded-lg border md:-mx-1'>
+      <div data-tab={tab} className='relative rounded-large border md:-mx-1'>
         <div
           data-slot='preview'
           data-active={tab === 'preview'}
@@ -67,7 +67,7 @@ export function ComponentPreviewTabs({
         <div
           data-slot='code'
           data-active={tab === 'code'}
-          className='absolute inset-0 hidden overflow-hidden data-[active=true]:block **:[figure]:!m-0 **:[pre]:h-[450px]'
+          className='absolute inset-0 hidden data-[active=true]:block **:[figure]:!m-0'
         >
           {source}
         </div>
