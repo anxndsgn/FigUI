@@ -45,3 +45,12 @@
     @apply bg-(--color-bg) text-(--color-text);
   }
 }
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
