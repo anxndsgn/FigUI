@@ -24,10 +24,7 @@ export async function ComponentSource({
     return null;
   }
 
-  let code: string | undefined;
-
-  const file = await fs.readFile(path.join(process.cwd(), src), 'utf-8');
-  code = file;
+  const code = await fs.readFile(path.join(process.cwd(), src), 'utf-8');
 
   if (!code) {
     return null;
