@@ -10,6 +10,10 @@
     "registry:build": "node ~/code/shadcn/ui/packages/shadcn/dist/index.js build",
     "postinstall": "fumadocs-mdx"
   },
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true
+  },
   "dependencies": {
     "@base-ui-components/react": "1.0.0-beta.1",
     "@radix-ui/react-collapsible": "^1.1.11",
