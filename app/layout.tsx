@@ -6,7 +6,7 @@ import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: 'FigUI',
-  description: 'Open Sourced Figma UI3 Components',
+  description: 'Open Source Figma UI3 Components',
 };
 
 export default function RootLayout({
