@@ -35,13 +35,13 @@ export function ComponentPreviewTabs({
             <TabsList className='justify-start gap-4 rounded-none bg-transparent px-2 md:px-0'>
               <TabsTrigger
                 value='preview'
-                className='text-muted-foreground data-[state=active]:text-foreground px-0 text-base data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
+                className='text-(--color-text-secondary) data-[state=active]:text-(--color-text) px-0 text-base data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
               >
                 Preview
               </TabsTrigger>
               <TabsTrigger
                 value='code'
-                className='text-muted-foreground data-[state=active]:text-foreground px-0 text-base data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
+                className='text-(--color-text-secondary) data-[state=active]:text-(--color-text) px-0 text-base data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
               >
                 Code
               </TabsTrigger>
@@ -49,10 +49,7 @@ export function ComponentPreviewTabs({
           )}
         </div>
       </Tabs>
-      <div
-        data-tab={tab}
-        className='data-[tab=code]:border-code relative rounded-lg border md:-mx-1'
-      >
+      <div data-tab={tab} className='relative rounded-lg border md:-mx-1'>
         <div
           data-slot='preview'
           data-active={tab === 'preview'}
