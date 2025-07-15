@@ -1,8 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import './figma-styles/figma-sizing.css';
-@import './figma-styles/figma-colors.css';
-@import './figma-styles/figma-typography.css';
+@import './figma-styles/figui-theme.css';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
@@ -14,24 +12,6 @@
   --radius-medium: var(--radius-medium);
   --radius-small: var(--radius-small);
   --radius-none: var(--radius-none);
-}
-
-@layer components {
-  .figma-typography-body-medium {
-    font-family: var(--font-family-default);
-    font-size: var(--text-body-medium-font-size);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--text-body-medium-line-height);
-    letter-spacing: var(--text-body-medium-letter-spacing);
-  }
-
-  .figma-typography-body-large {
-    font-family: var(--font-family-default);
-    font-size: var(--text-body-large-font-size);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--text-body-large-line-height);
-    letter-spacing: var(--text-body-large-letter-spacing);
-  }
 }
 
 :root {
