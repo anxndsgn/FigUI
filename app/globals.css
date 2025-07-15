@@ -6,14 +6,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --radius-full: var(--radius-full);
-  --radius-large: var(--radius-large);
-  --radius-medium: var(--radius-medium);
-  --radius-small: var(--radius-small);
-  --radius-none: var(--radius-none);
-}
-
 :root {
   .root {
     isolation: isolate;
