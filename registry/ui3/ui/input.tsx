@@ -19,7 +19,7 @@ const inputVariants = cva(
       variant: {
         singleline: 'flex-row items-center',
         multiline:
-          'py-(--spacer-1) max-w-64 resize-none [field-sizing:content] min-h-12',
+          'py-(--spacer-1) min-h-6 max-w-64 resize-none [field-sizing:content]',
       },
       size: {
         default: 'h-6',
