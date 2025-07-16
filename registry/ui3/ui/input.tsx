@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Input } from '@base-ui-components/react';
+import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const inputVariants = cva(
@@ -80,7 +81,7 @@ function TextInput({
     return (
       <textarea
         ref={ref as React.Ref<HTMLTextAreaElement>}
-        className={baseClassName}
+        className={cn(baseClassName, className)}
         {...(props as React.ComponentProps<'textarea'>)}
       />
     );
@@ -93,7 +94,7 @@ function TextInput({
         <Icon className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-(--color-text-tertiary) pointer-events-none' />
         <Input
           ref={ref as React.Ref<HTMLInputElement>}
-          className={baseClassName}
+          className={cn(baseClassName, className)}
           {...(props as React.ComponentProps<'input'>)}
         />
       </div>
@@ -103,7 +104,7 @@ function TextInput({
   return (
     <Input
       ref={ref as React.Ref<HTMLInputElement>}
-      className={baseClassName}
+      className={cn(baseClassName, className)}
       {...(props as React.ComponentProps<'input'>)}
     />
   );
