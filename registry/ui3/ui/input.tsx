@@ -1,20 +1,114 @@
 import * as React from 'react';
 import { Input } from '@base-ui-components/react';
-import { cn } from '@/lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-function TextInput({ className, ...props }: React.ComponentProps<'input'>) {
+const inputVariants = cva(
+  [
+    'placeholder:text-(--color-text-tertiary)',
+    'border border-transparent selection:bg-(--color-bg-selected)',
+    'text-(--color-text) flex w-full min-w-0',
+    'rounded-(--radius-medium) bg-(--color-bg-secondary)',
+    'px-(--spacer-2) typography-body-medium outline-none',
+    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
+    'hover:border-(--color-border) focus-visible:border-(--color-border-selected)',
+    'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
+  ],
+  {
+    variants: {
+      variant: {
+        singleline: 'flex-row items-center',
+        multiline:
+          'py-(--spacer-1) max-w-64 resize-none [field-sizing:content] min-h-12',
+      },
+      size: {
+        default: 'h-6',
+        large: 'h-8',
+      },
+      withIcon: {
+        true: 'pl-10',
+        false: '',
+      },
+    },
+    compoundVariants: [
+      {
+        variant: 'multiline',
+        size: ['default', 'large'],
+        class: 'h-auto', // Override height for multiline
+      },
+    ],
+    defaultVariants: {
+      variant: 'singleline',
+      size: 'default',
+      withIcon: false,
+    },
+  }
+);
+
+interface BaseTextInputProps extends VariantProps<typeof inputVariants> {
+  Icon?: React.ComponentType<{ className?: string }>;
+}
+
+type SinglelineProps = BaseTextInputProps &
+  Omit<React.ComponentProps<'input'>, 'size'> & {
+    variant?: 'singleline';
+  };
+
+type MultilineProps = BaseTextInputProps &
+  Omit<React.ComponentProps<'textarea'>, 'size'> & {
+    variant: 'multiline';
+    Icon?: never; // Multiline doesn't support icons
+  };
+
+type TextInputProps = SinglelineProps | MultilineProps;
+
+function TextInput({
+  className,
+  variant = 'singleline',
+  size,
+  Icon,
+  ref,
+  ...props
+}: TextInputProps) {
+  const baseClassName = inputVariants({
+    variant,
+    size,
+    withIcon: !!Icon,
+    className,
+  });
+
+  if (variant === 'multiline') {
+    return (
+      <textarea
+        ref={ref as React.Ref<HTMLTextAreaElement>}
+        className={baseClassName}
+        {...(props as React.ComponentProps<'textarea'>)}
+      />
+    );
+  }
+
+  // Singleline variant
+  if (Icon) {
+    return (
+      <div className='relative'>
+        <Icon className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-(--color-text-tertiary) pointer-events-none' />
+        <Input
+          ref={ref as React.Ref<HTMLInputElement>}
+          className={baseClassName}
+          {...(props as React.ComponentProps<'input'>)}
+        />
+      </div>
+    );
+  }
+
   return (
     <Input
-      className={cn(
-        'file:text-foreground placeholder:text-(--color-text-tertiary) border border-transparent selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-lg bg-(--color-bg-secondary) px-3 py-1 text-base outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
-        'hover:border-(--color-border)',
-        'focus-visible:border-(--color-border-selected)',
-        'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
-        className
-      )}
-      {...props}
+      ref={ref as React.Ref<HTMLInputElement>}
+      className={baseClassName}
+      {...(props as React.ComponentProps<'input'>)}
     />
   );
 }
 
-export { TextInput };
+TextInput.displayName = 'TextInput';
+
+export { TextInput, inputVariants };
