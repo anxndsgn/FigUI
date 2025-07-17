@@ -4,31 +4,31 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-(--spacer-1) whitespace-nowrap rounded-(--radius-medium) typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-(--color-border-selected) focus-visible:border-[1.5px] outline-offset-0 outline-transparent",
+  "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-medium typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-[1.5px] outline-offset-0 outline-transparent",
   {
     variants: {
       variant: {
         primary:
-          'bg-(--color-bg-brand) text-(--color-text-onbrand) active:bg-(--color-bg-brand-pressed) active:outline active:outline-(--color-border-selected-strong) active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
+          'bg-blue-500 text-white-1000 active:bg-blue-600 active:outline dark:active:outline-blue-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
         secondary:
-          'text-(--color-text) border border-(--color-border) active:bg-(--color-bg-secondary-hover) active:border-(--color-bordertranslucent) disabled:border-(--color-border-disabled) disabled:text-(--color-text-disabled)',
+          'text-black-800 border border-grey-200 active:bg-grey-200 active:border-grey-300 disabled:border-grey-300 disabled:text-grey-500 dark:text-white-1000 dark:border-grey-600 dark:active:bg-grey-600 dark:active:border-grey-700 dark:disabled:border-grey-700 dark:disabled:text-grey-400',
         destructive:
-          'bg-(--color-bg-danger) text-(--color-text-ondanger) active:bg-(--color-bg-danger-hover) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
+          'bg-red-500 text-white-1000 active:bg-red-600 active:outline dark:active:outline-red-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
         secondaryDestruct:
-          'border border-(--color-border-danger) text-(--color-text-danger) active:bg-(--color-bg-pressed) disabled:border-(--color-border-disabled) disabled:text-(--color-text-disabled)',
+          'border border-red-500 text-red-500 active:bg-red-100 active:border-red-600 disabled:border-red-600 disabled:text-red-400',
         inverse:
-          'bg-(--color-bg-inverse) text-(--color-text-oninverse) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
+          'bg-white-1000 text-black-800 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
         success:
-          'bg-(--color-bg-success) active:bg-(--color-bg-success-hover) text-(--color-text-onsuccess) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-(--color-bg-disabled)',
-        link: 'text-(--color-text-brand) active:bg-(--color-bg-brand-tertiary) focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:text-(--color-text-disabled)',
+          'bg-green-500 text-white-1000 active:bg-green-600 active:outline dark:active:outline-green-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
+        link: 'text-blue-600 active:bg-blue-100 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:text-grey-500',
         linkDanger:
-          'text-(--color-text-danger) active:bg-(--color-bg-danger-tertiary) disabled:text-(--color-text-disabled) focus-visible:border-(--color-border-danger)',
+          'text-red-500 active:bg-red-100 disabled:text-red-400 focus-visible:border-red-500',
         ghost:
-          'hover:bg-(--color-bg-transparent-hover) active:bg-(--color-bg-transparent-pressed) disabled:text-(--color-text-disabled) focus-visible:border-(--color-border-selected) focus-visible:border-[1.5px]',
+          'hover:bg-grey-100 active:bg-grey-200 disabled:text-grey-500 focus-visible:border-grey-200 focus-visible:border-[1.5px]',
       },
       size: {
-        default: 'h-6 px-(--spacer-2) has-[>svg]:px-3',
-        large: 'h-8 px-(--spacer-2-5) has-[>svg]:px-4',
+        default: 'h-6 px-2 has-[>svg]:px-3',
+        large: 'h-8 px-3 has-[>svg]:px-4',
         icon: 'size-6',
       },
     },
@@ -48,7 +48,6 @@ function Button({
 }: React.ComponentProps<'button'> & VariantProps<typeof buttonVariants> & {}) {
   return (
     <button
-      data-slot='button'
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
