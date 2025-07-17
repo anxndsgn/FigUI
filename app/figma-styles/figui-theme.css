@@ -2016,21 +2016,21 @@
 }
 
 @layer components {
-  .figma-typography-body-small {
+  .typography-body-small {
     font-family: var(--text-body-small-font-family);
     font-size: var(--text-body-small-font-size);
     font-weight: var(--text-body-small-font-weight);
     line-height: var(--text-body-small-line-height);
     letter-spacing: var(--text-body-small-letter-spacing);
   }
-  .figma-typography-body-medium {
+  .typography-body-medium {
     font-family: var(--text-body-medium-font-family);
     font-size: var(--text-body-medium-font-size);
     font-weight: var(--text-body-medium-font-weight);
     line-height: var(--text-body-medium-line-height);
     letter-spacing: var(--text-body-medium-letter-spacing);
   }
-  .figma-typography-body-large {
+  .typography-body-large {
     font-family: var(--text-body-large-font-family);
     font-size: var(--text-body-large-font-size);
     font-weight: var(--text-body-large-font-weight);
@@ -2038,7 +2038,7 @@
     letter-spacing: var(--text-body-large-letter-spacing);
   }
 
-  .figma-typography-body-small-strong {
+  .typography-body-small-strong {
     font-family: var(--text-body-small-strong-font-family);
     font-size: var(--text-body-small-strong-font-size);
     font-weight: var(--text-body-small-strong-font-weight);
@@ -2046,7 +2046,7 @@
     letter-spacing: var(--text-body-small-strong-letter-spacing);
   }
 
-  .figma-typography-body-medium-strong {
+  .typography-body-medium-strong {
     font-family: var(--text-body-medium-strong-font-family);
     font-size: var(--text-body-medium-strong-font-size);
     font-weight: var(--text-body-medium-strong-font-weight);
@@ -2054,7 +2054,7 @@
     letter-spacing: var(--text-body-medium-strong-letter-spacing);
   }
 
-  .figma-typography-body-large-strong {
+  .typography-body-large-strong {
     font-family: var(--text-body-large-strong-font-family);
     font-size: var(--text-body-large-strong-font-size);
     font-weight: var(--text-body-large-strong-font-weight);
@@ -2062,14 +2062,14 @@
     letter-spacing: var(--text-body-large-strong-letter-spacing);
   }
 
-  .figma-typography-heading-small {
+  .typography-heading-small {
     font-family: var(--text-heading-small-font-family);
     font-size: var(--text-heading-small-font-size);
     font-weight: var(--text-heading-small-font-weight);
     line-height: var(--text-heading-small-line-height);
     letter-spacing: var(--text-heading-small-letter-spacing);
   }
-  .figma-typography-heading-medium {
+  .typography-heading-medium {
     font-family: var(--text-heading-medium-font-family);
     font-size: var(--text-heading-medium-font-size);
     font-weight: var(--text-heading-medium-font-weight);
@@ -2077,7 +2077,7 @@
     letter-spacing: var(--text-heading-medium-letter-spacing);
   }
 
-  .figma-typography-heading-large {
+  .typography-heading-large {
     font-family: var(--text-heading-large-font-family);
     font-size: var(--text-heading-large-font-size);
     font-weight: var(--text-heading-large-font-weight);
@@ -2085,7 +2085,7 @@
     letter-spacing: var(--text-heading-large-letter-spacing);
   }
 
-  .figma-typography-display {
+  .typography-display {
     font-family: var(--text-display-font-family);
     font-size: var(--text-display-font-size);
     font-weight: var(--text-display-font-weight);
