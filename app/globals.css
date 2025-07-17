@@ -14,7 +14,7 @@
 
 @layer base {
   body {
-    @apply bg-white-1000 text-black-800 dark:bg-grey-800 dark:text-white-1000;
+    @apply bg-white-1000 text-black-800 dark:bg-grey-800 dark:text-white-1000 border-grey-200 dark:border-grey-600;
   }
 }
 
