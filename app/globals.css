@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import './figma-styles/figui-theme.css';
+@import './figma-styles/theme.css';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
@@ -14,7 +14,7 @@
 
 @layer base {
   body {
-    @apply bg-(--color-bg) text-(--color-text);
+    @apply bg-white-1000 text-black-800 dark:bg-grey-800 dark:text-white-1000;
   }
 }
 
