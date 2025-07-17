@@ -4,14 +4,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-medium typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-[1.5px] outline-offset-0 outline-transparent",
+  "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-medium typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-[1.5px] focus-visible:border-blue-500 outline-offset-0 outline-transparent",
   {
     variants: {
       variant: {
         primary:
-          'bg-blue-500 text-white-1000 active:bg-blue-600 active:outline dark:active:outline-blue-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
+          'bg-blue-500 text-white-1000 active:bg-blue-600 active:outline dark:active:outline-blue-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500 ',
         secondary:
-          'text-black-800 border border-grey-200 active:bg-grey-200 active:border-grey-300 disabled:border-grey-300 disabled:text-grey-500 dark:text-white-1000 dark:border-grey-600 dark:active:bg-grey-600 dark:active:border-grey-700 dark:disabled:border-grey-700 dark:disabled:text-grey-400',
+          'text-black-800 border border-grey-200 active:bg-grey-100 active:border-grey-300 disabled:border-grey-300 disabled:text-grey-500 dark:text-white-1000 dark:border-grey-600 dark:active:bg-grey-600 dark:active:border-grey-700 dark:disabled:border-grey-700 dark:disabled:text-grey-400',
         destructive:
           'bg-red-500 text-white-1000 active:bg-red-600 active:outline dark:active:outline-red-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
         secondaryDestruct:
