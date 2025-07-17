@@ -4,27 +4,27 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-medium typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:border-[1.5px] focus-visible:border-blue-500 outline-offset-0 outline-transparent",
+  "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-medium typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 outline-none border border-transparent",
   {
     variants: {
       variant: {
         primary:
-          'bg-blue-500 text-white-1000 active:bg-blue-600 active:outline dark:active:outline-blue-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500 ',
+          'bg-blue-500 text-white-1000 active:bg-blue-600 dark:active:border-blue-500 focus-visible:inset-ring focus-visible:inset-ring-white-1000 disabled:bg-grey-500 focus-visible:border-blue-500',
         secondary:
-          'text-black-800 border border-grey-200 active:bg-grey-100 active:border-grey-300 disabled:border-grey-300 disabled:text-grey-500 dark:text-white-1000 dark:border-grey-600 dark:active:bg-grey-600 dark:active:border-grey-700 dark:disabled:border-grey-700 dark:disabled:text-grey-400',
+          'text-black-800 border border-grey-200 active:bg-grey-100 active:border-grey-300 disabled:border-grey-300 disabled:text-grey-500 dark:text-white-1000 dark:border-grey-600 dark:active:bg-grey-700 dark:active:border-grey-600 dark:disabled:border-grey-700 dark:disabled:text-grey-400 focus-visible:inset-ring focus-visible:inset-ring-blue-500 focus-visible:border-none',
         destructive:
-          'bg-red-500 text-white-1000 active:bg-red-600 active:outline dark:active:outline-red-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
+          'bg-red-500 text-white-1000 active:bg-red-600 active:outline dark:active:outline-red-500 active:-outline-offset-1 focus-visible:inset-ring focus-visible:inset-ring-white-1000 disabled:bg-grey-500 focus-visible:border-blue-500',
         secondaryDestruct:
-          'border border-red-500 text-red-500 active:bg-red-100 active:border-red-600 disabled:border-red-600 disabled:text-red-400',
+          'border border-red-300 text-red-500 active:bg-grey-100  disabled:border-red-600 disabled:text-red-400 dark:border-red-700 dark:active:border-red-600 dark:text-red-300 dark:active:bg-grey-700 focus-visible:inset-ring focus-visible:inset-ring-blue-500 focus-visible:border-none',
         inverse:
           'bg-white-1000 text-black-800 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
         success:
           'bg-green-500 text-white-1000 active:bg-green-600 active:outline dark:active:outline-green-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
-        link: 'text-blue-600 active:bg-blue-100 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:text-grey-500',
+        link: 'text-blue-600 active:bg-blue-100 focus-visible:inset-ring-[2px] focus-visible:inset-ring-blue-500 disabled:text-grey-500',
         linkDanger:
-          'text-red-500 active:bg-red-100 disabled:text-red-400 focus-visible:border-red-500',
+          'text-red-500 active:bg-red-100 disabled:text-red-400 focus-visible:inset-ring-[2px] focus-visible:inset-ring-red-500',
         ghost:
-          'hover:bg-grey-100 active:bg-grey-200 disabled:text-grey-500 focus-visible:border-grey-200 focus-visible:border-[1.5px]',
+          'hover:bg-grey-100 active:bg-grey-200 disabled:text-grey-500 focus-visible:inset-ring-[2px] focus-visible:inset-ring-grey-300 dark:focus-visible:inset-ring-grey-600',
       },
       size: {
         default: 'h-6 px-2 has-[>svg]:px-3',
