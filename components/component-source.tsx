@@ -4,19 +4,16 @@ import * as React from 'react';
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 
 import { cn, fixImport } from '@/lib/utils';
-import { CodeCollapsibleWrapper } from '@/components/code-collapsible-wrapper';
 
 export async function ComponentSource({
   src,
   title,
   language,
-  collapsible = true,
   className,
 }: React.ComponentProps<'div'> & {
   src: string;
   title?: string;
   language?: string;
-  collapsible?: boolean;
 }) {
   if (!src) {
     return null;
@@ -32,17 +29,9 @@ export async function ComponentSource({
 
   const lang = language ?? title?.split('.').pop() ?? 'tsx';
 
-  if (!collapsible) {
-    return (
-      <div className={cn('relative', className)}>
-        <DynamicCodeBlock lang={lang} code={fixedCode} />
-      </div>
-    );
-  }
-
   return (
-    <CodeCollapsibleWrapper className={className}>
+    <div className={cn('relative', className)}>
       <DynamicCodeBlock lang={lang} code={fixedCode} />
-    </CodeCollapsibleWrapper>
+    </div>
   );
 }

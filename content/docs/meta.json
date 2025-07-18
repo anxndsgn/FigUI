@@ -1,4 +1,4 @@
 {
-  "pages": ["index", "theme", "button", "input"],
+  "pages": ["index", "get-started", "button", "input"],
   "root": true
 }
