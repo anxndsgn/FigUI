@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
@@ -17,14 +16,14 @@ const buttonVariants = cva(
         secondaryDestruct:
           'border border-red-300 text-red-500 active:bg-grey-100  disabled:border-red-600 disabled:text-red-400 dark:border-red-700 dark:active:border-red-600 dark:text-red-300 dark:active:bg-grey-700 focus-visible:inset-ring focus-visible:inset-ring-blue-500 focus-visible:border-none',
         inverse:
-          'bg-white-1000 text-black-800 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
+          'bg-black-1000 text-white-1000 focus-visible:inset-ring focus-visible:inset-ring-white disabled:bg-grey-500 focus-visible:border-blue-500 dark:bg-white-1000 dark:text-black-1000',
         success:
-          'bg-green-500 text-white-1000 active:bg-green-600 active:outline dark:active:outline-green-500 active:-outline-offset-1 focus-visible:inset-ring-[2px] focus-visible:inset-ring-white disabled:bg-grey-500',
-        link: 'text-blue-600 active:bg-blue-100 focus-visible:inset-ring-[2px] focus-visible:inset-ring-blue-500 disabled:text-grey-500',
+          'bg-green-500 text-white-1000 active:bg-green-600 active:outline dark:active:outline-green-500 active:-outline-offset-1 focus-visible:inset-ring focus-visible:inset-ring-white-1000 disabled:bg-grey-500 focus-visible:border-blue-500',
+        link: 'text-blue-600 active:bg-blue-200 dark:active:bg-pale-blue-800 dark:text-blue-400 focus-visible:inset-ring focus-visible:inset-ring-blue-500 disabled:text-grey-500',
         linkDanger:
-          'text-red-500 active:bg-red-100 disabled:text-red-400 focus-visible:inset-ring-[2px] focus-visible:inset-ring-red-500',
+          'text-red-600 active:bg-red-200 disabled:text-red-400 focus-visible:inset-ring focus-visible:inset-ring-red-300 dark:text-red-400 dark:active:bg-pale-red-800 dark:focus-visible:inset-ring-red-700',
         ghost:
-          'hover:bg-grey-100 active:bg-grey-200 disabled:text-grey-500 focus-visible:inset-ring-[2px] focus-visible:inset-ring-grey-300 dark:focus-visible:inset-ring-grey-600',
+          'hover:bg-black-200 active:bg-black-1000/15 disabled:text-grey-500 focus-visible:inset-ring focus-visible:inset-ring-blue-500 ',
       },
       size: {
         default: 'h-6 px-2 has-[>svg]:px-3',
