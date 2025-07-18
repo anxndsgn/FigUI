@@ -1,20 +1,20 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import './figma-styles/theme.css';
+@import './theme.css';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-  .root {
-    isolation: isolate;
-  }
-}
-
 @layer base {
   body {
     @apply bg-white-1000 text-black-800 dark:bg-grey-800 dark:text-white-1000 border-grey-200 dark:border-grey-600;
+  }
+
+  :root {
+    .root {
+      isolation: isolate;
+    }
   }
 }
 
