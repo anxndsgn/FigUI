@@ -37,7 +37,7 @@ export function ComponentPreview({
       align={align}
       hideCode={hideCode}
       component={Component}
-      source={src ? <ComponentSource src={src} collapsible={false} /> : null}
+      source={src ? <ComponentSource src={src} /> : null}
       {...props}
     />
   );
