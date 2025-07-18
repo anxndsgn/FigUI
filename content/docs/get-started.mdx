@@ -1,0 +1,32 @@
+---
+title: Get Started
+---
+
+import { ComponentSource } from '@/components/component-source';
+
+## Installation
+
+First, you need to install base-ui and tailwindcss.
+
+```bash
+npm install @base-ui-components/ui3
+```
+
+Second, add cn helper function following the shadcn/ui [documentation](https://ui.shadcn.com/docs/installation/manual).
+
+```bash
+pnpm add class-variance-authority clsx tailwind-merge lucide-react tw-animate-css
+```
+
+```tsx
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+Third, add css to your project, you can paste the following code to your `globals.css` file or create a new one and import it in your `globals.css` file.
+
+<ComponentSource src='app/theme.css' title='Globals.css' language='css' />
