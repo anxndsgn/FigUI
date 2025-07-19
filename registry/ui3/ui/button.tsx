@@ -6,7 +6,7 @@ const solidFocusRing =
   'focus-visible:inset-ring-2 focus-visible:inset-ring-white-1000 focus-visible:border-blue-500';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-medium typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 outline-none border border-transparent",
+  "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md typography-body-medium disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:size-4 [&_svg]:shrink-0 outline-none border border-transparent",
   {
     variants: {
       variant: {
