@@ -41,6 +41,19 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:component",
+      "title": "Checkbox",
+      "description": "A checkbox component",
+      "registryDependencies": ["checkbox"],
+      "files": [
+        {
+          "path": "registry/ui3/ui/checkbox.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
