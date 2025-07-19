@@ -22,7 +22,7 @@ function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        'flex border border-grey-300 rounded-md items-center justify-between cursor-default outline-none focus-visible:border-blue-500',
+        'group flex border border-grey-300 rounded-md items-center justify-between cursor-default outline-none focus-visible:border-blue-500',
         'dark:border-grey-700 dark:focus-visible:border-blue-500',
         iconLeading ? '' : 'pl-2',
         size === 'large' ? 'h-8' : 'h-6',
@@ -36,7 +36,7 @@ function SelectTrigger({
         </span>
       )}
       {children}
-      <BaseSelect.Icon className='size-6 flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 dark:[&_svg]:text-white-800'>
+      <BaseSelect.Icon className='size-6 flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 dark:[&_svg]:text-white-800 group-data-[disabled]:[&_svg]:text-black-400 dark:group-data-[disabled]:[&_svg]:text-white-400'>
         <ChevronDown />
       </BaseSelect.Icon>
     </BaseSelect.Trigger>
@@ -74,7 +74,8 @@ function SelectValue({
   return (
     <BaseSelect.Value
       className={cn(
-        'typography-body-medium flex-1 truncate dark:text-white-1000 text-black-1000',
+        'typography-body-medium flex-1 truncate text-black-1000 dark:text-white-1000',
+        'group-data-[disabled]:text-black-400 dark:group-data-[disabled]:text-white-400',
         className
       )}
       {...props}
