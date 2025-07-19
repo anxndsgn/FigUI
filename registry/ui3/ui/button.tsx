@@ -11,7 +11,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: cn(
-          'bg-blue-500 text-white-1000 active:bg-blue-600 dark:active:inset-ring dark:active:inset-ring-blue-500 disabled:bg-grey-500',
+          'bg-blue-500 text-white-1000 active:bg-blue-600 dark:active:border-blue-500 disabled:bg-grey-500',
           solidFocusRing
         ),
         secondary:
