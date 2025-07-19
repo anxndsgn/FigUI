@@ -52,7 +52,7 @@ function SelectContent({
     <BaseSelect.Portal>
       <BaseSelect.Positioner
         className={cn(
-          'bg-grey-900 rounded-lg shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100',
+          'bg-grey-900 rounded-lg shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100 overflow-hidden',
           className
         )}
         {...props}
@@ -90,7 +90,7 @@ function SelectItem({
   return (
     <BaseSelect.Item
       className={cn(
-        'typography-body-medium grid grid-cols-[0.75rem_1fr] gap-2 text-white-1000 cursor-default px-2 py-1 rounded-md min-w-(--anchor-width) hover:bg-grey-100 data-[highlighted]:bg-blue-500',
+        'typography-body-medium grid grid-cols-[0.75rem_1fr] gap-2 text-white-1000 cursor-default px-2 py-1 rounded-md min-w-(--anchor-width) data-[highlighted]:bg-blue-500',
         className
       )}
       {...props}
@@ -143,11 +143,11 @@ function SelectScrollUpArrow({
     <BaseSelect.ScrollUpArrow
       {...props}
       className={cn(
-        'flex cursor-default items-center justify-center py-1',
+        'flex z-10 h-4 w-full cursor-default items-center justify-center rounded-lg bg-grey-900 py-1',
         className
       )}
     >
-      <ChevronUp />
+      <ChevronUp className='size-3' />
     </BaseSelect.ScrollUpArrow>
   );
 }
@@ -160,11 +160,11 @@ function SelectScrollDownArrow({
     <BaseSelect.ScrollDownArrow
       {...props}
       className={cn(
-        'flex cursor-default items-center justify-center py-1',
+        'flex z-10 h-4 w-full cursor-default items-center justify-center rounded-lg bg-grey-900 py-1',
         className
       )}
     >
-      <ChevronDown />
+      <ChevronDown className='size-3' />
     </BaseSelect.ScrollDownArrow>
   );
 }
