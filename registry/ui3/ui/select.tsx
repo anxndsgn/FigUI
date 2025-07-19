@@ -1,7 +1,5 @@
-'use client';
-
 import { Select as BaseSelect } from '@base-ui-components/react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { CheckIcon, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import * as React from 'react';
 
@@ -53,18 +51,11 @@ function SelectContent({
   return (
     <BaseSelect.Portal>
       <BaseSelect.Positioner
-        className={cn(
-          'bg-black-1000 rounded-lg shadow-lg min-w-(--anchor-width)',
-          className
-        )}
+        className={cn('bg-black-1000 rounded-lg shadow-lg', className)}
         {...props}
       >
         <SelectScrollUpArrow />
-        <BaseSelect.Popup
-          className={
-            'group max-h-(--available-height) origin-(--transform-origin) p-2'
-          }
-        >
+        <BaseSelect.Popup className={'group max-h-(--available-height)] p-2'}>
           {children}
         </BaseSelect.Popup>
         <SelectScrollDownArrow />
@@ -75,14 +66,13 @@ function SelectContent({
 
 function SelectValue({
   className,
-  placeholder,
-}: React.ComponentProps<typeof BaseSelect.Value> & {
-  placeholder?: string;
-}) {
+  ...props
+}: React.ComponentProps<typeof BaseSelect.Value>) {
   return (
     <BaseSelect.Value
       className={cn('typography-body-medium flex-1', className)}
-    ></BaseSelect.Value>
+      {...props}
+    />
   );
 }
 
@@ -94,12 +84,17 @@ function SelectItem({
   return (
     <BaseSelect.Item
       className={cn(
-        'typography-body-medium text-white-1000 cursor-default px-2 py-1 rounded-md hover:bg-grey-100 data-[highlighted]:bg-blue-500',
+        'typography-body-medium grid grid-cols-[0.75rem_1fr] gap-2 text-white-1000 cursor-default px-2 py-1 rounded-md min-w-(--anchor-width) hover:bg-grey-100 data-[highlighted]:bg-blue-500',
         className
       )}
       {...props}
     >
-      <BaseSelect.ItemText>{children}</BaseSelect.ItemText>
+      <BaseSelect.ItemIndicator className='col-start-1 flex items-center justify-center'>
+        <CheckIcon className='size-3' />
+      </BaseSelect.ItemIndicator>
+      <BaseSelect.ItemText className='col-start-2'>
+        {children}
+      </BaseSelect.ItemText>
     </BaseSelect.Item>
   );
 }
