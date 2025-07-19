@@ -1,6 +1,7 @@
 import { Select as BaseSelect } from '@base-ui-components/react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import * as React from 'react';
 
 function SelectRoot({
   ...props
@@ -11,17 +12,26 @@ function SelectRoot({
 function SelectTrigger({
   className,
   children,
+  iconLeading,
   ...props
-}: React.ComponentProps<typeof BaseSelect.Trigger>) {
+}: React.ComponentProps<typeof BaseSelect.Trigger> & {
+  iconLeading?: React.ReactNode;
+}) {
   return (
     <BaseSelect.Trigger
       className={cn(
-        'flex border border-grey-300 rounded-md pl-2 h-6 items-center justify-between cursor-default outline-none focus-visible:border-blue-500',
+        'flex border border-grey-300 rounded-md h-6 items-center justify-between cursor-default outline-none focus-visible:border-blue-500',
         'dark:border-grey-700 dark:focus-visible:border-blue-500',
+        iconLeading ? '' : 'pl-2',
         className
       )}
       {...props}
     >
+      {iconLeading && (
+        <span className='size-6 flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-500'>
+          {iconLeading}
+        </span>
+      )}
       {children}
       <BaseSelect.Icon className='size-6 flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 dark:[&_svg]:text-white-800'>
         <ChevronDown />
