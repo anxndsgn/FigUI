@@ -21,14 +21,16 @@ export default function Home() {
       </header>
       <div className='flex items-center gap-2'>
         <ThemeToggle />
-        <Button variant='ghost' size='icon'>
-          <a href='https://github.com/anxndsgn/figui' target='_blank'>
-            <GithubIcon />
-          </a>
-        </Button>
-        <Button>
-          <Link href='/docs'>Docs</Link>
-        </Button>
+        <Button
+          variant='ghost'
+          size='icon'
+          render={
+            <a href='https://github.com/anxndsgn/figui' target='_blank'>
+              <GithubIcon />
+            </a>
+          }
+        />
+        <Button render={<Link href='/docs'>Docs</Link>} />
       </div>
       <main className='flex flex-col flex-1 gap-8'>
         <div className='flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative'>
