@@ -12,27 +12,38 @@ function SelectRoot({
 function SelectTrigger({
   className,
   children,
+  size,
+  placeholder,
   iconLeading,
   ...props
 }: React.ComponentProps<typeof BaseSelect.Trigger> & {
   iconLeading?: React.ReactNode;
+  size?: 'default' | 'large';
+  placeholder?: string;
 }) {
   return (
     <BaseSelect.Trigger
       className={cn(
-        'flex border border-grey-300 rounded-md h-6 items-center justify-between cursor-default outline-none focus-visible:border-blue-500',
+        'flex border border-grey-300 rounded-md items-center justify-between cursor-default outline-none focus-visible:border-blue-500',
         'dark:border-grey-700 dark:focus-visible:border-blue-500',
         iconLeading ? '' : 'pl-2',
+        size === 'large' ? 'h-8' : 'h-6',
         className
       )}
       {...props}
     >
       {iconLeading && (
-        <span className='size-6 flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-500'>
+        <span className='aspect-square h-full flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-500'>
           {iconLeading}
         </span>
       )}
-      {children}
+      {placeholder ? (
+        <span className='text-grey-500 typography-body-medium truncate flex-1'>
+          {placeholder}
+        </span>
+      ) : (
+        <SelectValue className={'flex-1'} />
+      )}
       <BaseSelect.Icon className='size-6 flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 dark:[&_svg]:text-white-800'>
         <ChevronDown />
       </BaseSelect.Icon>
