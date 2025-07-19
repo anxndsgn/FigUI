@@ -51,7 +51,10 @@ function SelectContent({
   return (
     <BaseSelect.Portal>
       <BaseSelect.Positioner
-        className={cn('bg-black-1000 rounded-lg shadow-lg', className)}
+        className={cn(
+          'bg-grey-900 rounded-lg shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100',
+          className
+        )}
         {...props}
       >
         <SelectScrollUpArrow />
