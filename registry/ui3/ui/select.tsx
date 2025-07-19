@@ -70,7 +70,7 @@ function SelectValue({
 }: React.ComponentProps<typeof BaseSelect.Value>) {
   return (
     <BaseSelect.Value
-      className={cn('typography-body-medium flex-1', className)}
+      className={cn('typography-body-medium flex-1 truncate', className)}
       {...props}
     />
   );
