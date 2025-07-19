@@ -9,14 +9,13 @@ import {
 export function SelectDemo() {
   return (
     <SelectRoot>
-      <SelectTrigger className='w-[180px]'>
+      <SelectTrigger className='w-32'>
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value=''>Select an option</SelectItem>
-        <SelectItem value='option1'>Option 1</SelectItem>
-        <SelectItem value='option2'>Option 2</SelectItem>
-        <SelectItem value='option3'>Option 3</SelectItem>
+        <SelectItem value='1'>Option 1</SelectItem>
+        <SelectItem value='2'>Option 2</SelectItem>
+        <SelectItem value='3'>Option 3</SelectItem>
       </SelectContent>
     </SelectRoot>
   );
