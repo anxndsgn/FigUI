@@ -94,7 +94,7 @@ function SelectItem({
   return (
     <BaseSelect.Item
       className={cn(
-        'typography-body-medium text-white-1000 cursor-default px-2 py-1 rounded-md hover:bg-grey-100 dark:hover:bg-grey-800 data-[highlighted]:bg-blue-500',
+        'typography-body-medium text-white-1000 cursor-default px-2 py-1 rounded-md hover:bg-grey-100 data-[highlighted]:bg-blue-500',
         className
       )}
       {...props}
