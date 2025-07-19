@@ -10,9 +10,9 @@ function Checkbox({
   return (
     <BaseCheckbox.Root
       className={cn(
-        'border-grey-200 bg-grey-100 data-[checked]:bg-blue-500 data-[checked]:text-white-1000 data-[checked]:border-blue-600 size-4 shrink-0 rounded-md border outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed',
+        'border-grey-200 bg-grey-100 data-[checked]:text-white-1000 size-4 shrink-0 rounded-md border outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed data-[checked]:border-blue-600 data-[checked]:bg-blue-500',
         'dark:border-grey-600 dark:bg-grey-700 dark:data-[checked]:border-blue-400 dark:data-[checked]:bg-blue-500',
-        className
+        className,
       )}
       {...props}
     >

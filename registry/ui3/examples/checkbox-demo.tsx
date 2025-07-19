@@ -7,7 +7,7 @@ export function CheckboxDemo() {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className='flex flex-col gap-4 items-center justify-center'>
+    <div className='flex flex-col items-center justify-center gap-4'>
       <label htmlFor='checkbox' className='flex items-center gap-2'>
         <Checkbox
           id='checkbox'
