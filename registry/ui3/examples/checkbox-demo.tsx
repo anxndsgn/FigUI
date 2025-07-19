@@ -14,10 +14,10 @@ export function CheckboxDemo() {
           checked={checked}
           onCheckedChange={setChecked}
         />
-        <span className='text-sm font-medium'>Checkbox</span>
+        <span className='typography-body-medium'>Checkbox</span>
       </label>
       <div className='flex flex-col gap-2'>
-        <p className='text-sm text-grey-500'>
+        <p className='typography-body-medium'>
           Checkbox is {checked ? 'checked' : 'unchecked'}
         </p>
       </div>
