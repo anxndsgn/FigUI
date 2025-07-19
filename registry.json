@@ -15,6 +15,32 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "select",
+      "type": "registry:component",
+      "title": "Select",
+      "description": "A select component",
+      "registryDependencies": ["select"],
+      "files": [
+        {
+          "path": "registry/ui3/ui/select.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:component",
+      "title": "Input",
+      "description": "A input component",
+      "registryDependencies": ["input"],
+      "files": [
+        {
+          "path": "registry/ui3/ui/input.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
