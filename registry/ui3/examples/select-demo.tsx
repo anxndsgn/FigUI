@@ -9,18 +9,24 @@ import {
 import { RulerIcon } from 'lucide-react';
 
 export function SelectDemo() {
+  const fonts = [
+    { label: 'Sans-serif', value: 'sans' },
+    { label: 'Serif', value: 'serif' },
+    { label: 'Monospace', value: 'mono' },
+    { label: 'Cursive', value: 'cursive' },
+  ];
   return (
     <div className='flex items-center justify-center'>
-      <SelectRoot>
-        <SelectTrigger
-          className='w-40'
-          iconLeading={<RulerIcon />}
-          placeholder='Select an option'
-        />
+      <SelectRoot items={fonts}>
+        <SelectTrigger className='w-40' iconLeading={<RulerIcon />}>
+          <SelectValue placeholder='Select font' />
+        </SelectTrigger>
         <SelectContent>
-          <SelectItem value='1'>Option 1</SelectItem>
-          <SelectItem value='2'>Option 2</SelectItem>
-          <SelectItem value='3'>Option 3</SelectItem>
+          {fonts.map((font) => (
+            <SelectItem key={font.value} value={font.value}>
+              {font.label}
+            </SelectItem>
+          ))}
         </SelectContent>
       </SelectRoot>
     </div>
