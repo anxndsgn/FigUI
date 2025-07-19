@@ -58,7 +58,7 @@ export function ComponentPreviewTabs({
           <div
             data-align={align}
             className={cn(
-              'preview flex rounded-large border w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
+              'preview flex rounded-lg border w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
             )}
           >
             {component}
