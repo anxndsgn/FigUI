@@ -1,23 +1,16 @@
-# registry-template
+# FigUI
 
-You can use the `shadcn` CLI to run your own component registry. Running your own
-component registry allows you to distribute your custom components, hooks, pages, and
-other files to any React project.
+FigUI is a Figma UI3 like component library. It can be used to build figma plugin user interfaces, providing a familiar and consistent look and feel for applications.
 
-> [!IMPORTANT]  
-> This template uses Tailwind v4. For Tailwind v3, see [registry-template](https://github.com/shadcn-ui/registry-template).
+FigUI is currently in development and only supports a limited set of components.
 
-## Getting Started
+- Button
+- Input
+- Select
 
-This is a template for creating a custom registry using Next.js.
+# Acknowledgements
 
-- The template uses a `registry.json` file to define components and their files.
-- The `shadcn build` command is used to build the registry.
-- The registry items are served as static files under `public/r/[name].json`.
-- The template also includes a route handler for serving registry items.
-- Every registry item are compatible with the `shadcn` CLI.
-- We have also added v0 integration using the `Open in v0` api.
-
-## Documentation
-
-Visit the [shadcn documentation](https://ui.shadcn.com/docs/registry) to view the full documentation.
+- Figma's design system
+- shadcn/ui
+- base-ui
+- tailwindcss
