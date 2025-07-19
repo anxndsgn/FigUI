@@ -55,6 +55,7 @@ function SelectContent({
           'bg-grey-900 rounded-lg shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100 overflow-hidden',
           className
         )}
+        sideOffset={4}
         {...props}
       >
         <SelectScrollUpArrow />
