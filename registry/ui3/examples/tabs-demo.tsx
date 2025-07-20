@@ -6,7 +6,7 @@ export default function TabsDemo() {
   return (
     <Tabs
       defaultValue='tab1'
-      className={cn('w-full max-w-md rounded-lg border')}
+      className={cn('w-full max-w-64 rounded-lg border')}
     >
       <TabsList className='p-2'>
         <Tab value='tab1'>Tab 1</Tab>
