@@ -1,10 +1,7 @@
-@import 'tailwindcss';
 @import 'tw-animate-css';
-@import './theme.css';
+@import './global.css';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
-
-@custom-variant dark (&:is(.dark *));
 
 @layer base {
   body {

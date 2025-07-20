@@ -9,7 +9,7 @@ import { ComponentSource } from '@/components/component-source';
 First, you need to install [base-ui](https://base-ui.com/react/overview/quick-start) and [tailwindcss](https://tailwindcss.com/docs/installation).
 
 ```bash
-pnpm install @base-ui-components/ui3
+pnpm install @base-ui-components/react
 ```
 
 Second, add cn helper function following the shadcn/ui [documentation](https://ui.shadcn.com/docs/installation/manual).
@@ -29,4 +29,6 @@ export function cn(...inputs: ClassValue[]) {
 
 Third, add css to your project, you can paste the following code to your `globals.css` file or create a new one and import it in your `globals.css` file.
 
-<ComponentSource src='app/theme.css' title='Globals.css' language='css' />
+Note that if you are using in the figma plugin, you need to change the `@custom-variant dark (&:is(.dark *));` to `@custom-variant dark (&:is(.figma-dark *));` in your `globals.css` file.
+
+<ComponentSource src='app/global.css' title='Globals.css' language='css' />

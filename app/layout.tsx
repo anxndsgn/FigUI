@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import './index.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { RootProvider } from 'fumadocs-ui/provider';
 import { Analytics } from '@vercel/analytics/next';
