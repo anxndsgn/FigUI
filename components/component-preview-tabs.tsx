@@ -3,19 +3,17 @@
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
-import { Tabs, Tab, TabsList, TabsPanel } from '@/registry/ui3/ui/tabs';
+import { Tabs, Tab, TabsList } from '@/registry/ui3/ui/tabs';
 import { Separator } from '@/registry/ui3/ui/separator';
 
 export function ComponentPreviewTabs({
   className,
   align = 'center',
-  hideCode = false,
   component,
   source,
   ...props
 }: React.ComponentProps<'div'> & {
   align?: 'center' | 'start' | 'end';
-  hideCode?: boolean;
   component: React.ReactNode;
   source: React.ReactNode;
 }) {
