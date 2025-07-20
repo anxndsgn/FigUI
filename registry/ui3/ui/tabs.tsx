@@ -5,15 +5,7 @@ function Tabs({
   className,
   ...props
 }: React.ComponentProps<typeof BaseTabs.Root>) {
-  return (
-    <BaseTabs.Root
-      {...props}
-      className={cn(
-        'dark:bg-grey-800 border-grey-200 dark:border-grey-700 rounded-lg border bg-white shadow-sm',
-        className,
-      )}
-    />
-  );
+  return <BaseTabs.Root {...props} className={cn('outline-none', className)} />;
 }
 
 function TabsList({
@@ -23,10 +15,7 @@ function TabsList({
   return (
     <BaseTabs.List
       {...props}
-      className={cn(
-        'dark:bg-grey-800 flex items-center justify-between rounded-t-lg border-b bg-white p-1',
-        className,
-      )}
+      className={cn('flex gap-1 outline-none', className)}
     />
   );
 }
@@ -39,7 +28,7 @@ function Tab({
     <BaseTabs.Tab
       {...props}
       className={cn(
-        'data-[state=inactive]:text-grey-600 inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none data-[state=active]:bg-blue-500 data-[state=active]:text-white',
+        'typography-body-medium text-black-500 data-[selected]:text-black-1000 dark:data-[selected]:text-white-1000 dark:text-white-500 data-[selected]:typography-body-medium-strong data-[selected]:bg-grey-100 dark:data-[selected]:bg-grey-700 hover:bg-grey-100 dark:hover:bg-grey-700 dark:focus-visible:ring-white-1000 h-6 rounded-md px-2 outline-none focus-visible:ring focus-visible:ring-blue-500',
         className,
       )}
     />
@@ -50,7 +39,9 @@ function TabsPanel({
   className,
   ...props
 }: React.ComponentProps<typeof BaseTabs.Panel>) {
-  return <BaseTabs.Panel {...props} className={cn('p-4', className)} />;
+  return (
+    <BaseTabs.Panel {...props} className={cn('outline-none', className)} />
+  );
 }
 
 export { Tabs, TabsList, Tab, TabsPanel };
