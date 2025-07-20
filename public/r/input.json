@@ -4,6 +4,10 @@
   "type": "registry:component",
   "title": "Input",
   "description": "A input component",
+  "dependencies": [
+    "@base-ui-components/react",
+    "class-variance-authority"
+  ],
   "files": [
     {
       "path": "registry/ui3/ui/input.tsx",

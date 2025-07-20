@@ -1,0 +1,55 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "figui",
+  "homepage": "https://figui.dev",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "A simple button component",
+      "files": [
+        {
+          "path": "registry/ui3/ui/button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:component",
+      "title": "Select",
+      "description": "A select component",
+      "files": [
+        {
+          "path": "registry/ui3/ui/select.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:component",
+      "title": "Input",
+      "description": "A input component",
+      "files": [
+        {
+          "path": "registry/ui3/ui/input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:component",
+      "title": "Checkbox",
+      "description": "A checkbox component",
+      "files": [
+        {
+          "path": "registry/ui3/ui/checkbox.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

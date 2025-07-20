@@ -4,6 +4,10 @@
   "type": "registry:component",
   "title": "Select",
   "description": "A select component",
+  "dependencies": [
+    "@base-ui-components/react",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "registry/ui3/ui/select.tsx",

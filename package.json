@@ -1,5 +1,5 @@
 {
-  "name": "registry",
+  "name": "figui",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "node ~/code/shadcn/ui/packages/shadcn/dist/index.js build",
+    "registry:build": "npx shadcn@latest registry:build",
     "postinstall": "fumadocs-mdx"
   },
   "prettier": {
