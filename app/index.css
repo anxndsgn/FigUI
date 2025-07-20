@@ -43,21 +43,22 @@
     }
   }
   [data-rehype-pretty-code-figure] {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text);
-    border-radius: var(--radius-lg);
-    border-width: 0px;
-    border-color: var(--color-border);
     margin-top: calc(var(--spacing) * 6);
     overflow: hidden;
-    font-size: var(--text-body-small-font-size);
+    font-size: 11px;
+    line-height: 1.5;
     outline: none;
     position: relative;
+    color: var(--color-black-800);
     @apply md:-mx-1;
 
     &:has([data-rehype-pretty-code-title]) [data-slot='copy-button'] {
       top: calc(var(--spacing) * 1.5) !important;
     }
+  }
+
+  .dark [data-rehype-pretty-code-figure] {
+    color: var(--color-white-900);
   }
 
   [data-rehype-pretty-code-title] {
@@ -83,22 +84,23 @@
   }
 
   [data-line-numbers] [data-line]::before {
-    font-size: var(--text-sm);
+    font-size: 11px;
     counter-increment: line;
     content: counter(line);
     display: inline-block;
     width: calc(var(--spacing) * 16);
     padding-right: calc(var(--spacing) * 6);
     text-align: right;
-    color: var(--color-text);
-    background-color: var(--color-bg-secondary);
+    color: var(--color-black-800);
     position: sticky;
     left: 0;
   }
 
-  [data-line-numbers] [data-highlighted-line][data-line]::before {
-    background-color: var(--color-bg-secondary);
+  .dark [data-line-numbers] [data-line]::before {
+    color: var(--color-white-800);
   }
+
+  /* Background removed for custom styling */
 
   [data-line] {
     padding-top: calc(var(--spacing) * 0.5);
@@ -109,12 +111,15 @@
   }
 
   [data-line] span {
-    color: var(--color-text);
-
-    @variant dark {
-      color: var(--color-text) !important;
-    }
+    /* Let Shiki themes handle the colors */
   }
+
+  /* Apply Shiki dark theme colors in dark mode */
+  .dark [data-rehype-pretty-code-figure] span[style] {
+    color: var(--shiki-dark, var(--shiki-light)) !important;
+  }
+
+  /* Code and pre backgrounds removed for custom styling */
 
   [data-highlighted-line],
   [data-highlighted-chars] {
@@ -135,7 +140,7 @@
   }
 
   [data-highlighted-chars] {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-small);
     padding-inline: 0.3rem;
     padding-block: 0.1rem;
     font-family: var(--font-mono);
