@@ -22,7 +22,10 @@ export function ComponentPreviewTabs({
 
   return (
     <div
-      className={cn('group relative mt-4 mb-12 flex flex-col gap-2', className)}
+      className={cn(
+        'group not-prose relative mt-4 mb-12 flex flex-col gap-2',
+        className,
+      )}
       {...props}
     >
       <Tabs
@@ -35,13 +38,13 @@ export function ComponentPreviewTabs({
             <TabsList className='justify-start gap-4 rounded-none bg-transparent px-2 md:px-0'>
               <TabsTrigger
                 value='preview'
-                className='text-(--color-text-secondary) data-[state=active]:text-(--color-text) px-0 text-base data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
+                className='px-0 text-base text-(--color-text-secondary) data-[state=active]:text-(--color-text) data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
               >
                 Preview
               </TabsTrigger>
               <TabsTrigger
                 value='code'
-                className='text-(--color-text-secondary) data-[state=active]:text-(--color-text) px-0 text-base data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
+                className='px-0 text-base text-(--color-text-secondary) data-[state=active]:text-(--color-text) data-[state=active]:shadow-none dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent'
               >
                 Code
               </TabsTrigger>
@@ -58,7 +61,7 @@ export function ComponentPreviewTabs({
           <div
             data-align={align}
             className={cn(
-              'preview flex rounded-lg border w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
+              'preview flex w-full justify-center rounded-lg border p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start',
             )}
           >
             {component}
