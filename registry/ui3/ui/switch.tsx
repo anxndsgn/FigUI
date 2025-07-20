@@ -1,0 +1,20 @@
+import { Switch as BaseSwitch } from '@base-ui-components/react';
+import React from 'react';
+import { cn } from '@/lib/utils';
+
+export function Switch({
+  className,
+  ...props
+}: React.ComponentProps<typeof BaseSwitch.Root>) {
+  return (
+    <BaseSwitch.Root
+      {...props}
+      className={cn(
+        'bg-grey-200 relative inline-flex h-4 w-8 items-center rounded-full p-[1px] transition-colors duration-200 ease-in-out data-[checked]:bg-blue-500',
+        className,
+      )}
+    >
+      <BaseSwitch.Thumb className='bg-white-1000 size-3.5 rounded-full transition-transform duration-150 data-[checked]:translate-x-4' />
+    </BaseSwitch.Root>
+  );
+}
