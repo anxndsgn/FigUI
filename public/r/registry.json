@@ -50,6 +50,42 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:component",
+      "title": "Switch",
+      "description": "A switch component",
+      "files": [
+        {
+          "path": "registry/ui3/ui/switch.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:component",
+      "title": "Tabs",
+      "description": "A tabs component",
+      "files": [
+        {
+          "path": "registry/ui3/ui/tabs.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:component",
+      "title": "Separator",
+      "description": "A separator component",
+      "files": [
+        {
+          "path": "registry/ui3/ui/separator.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

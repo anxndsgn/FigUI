@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:component",
+  "title": "Tabs",
+  "description": "A tabs component",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "files": [
+    {
+      "path": "registry/ui3/ui/tabs.tsx",
+      "content": "import { Tabs as BaseTabs } from '@base-ui-components/react/tabs';\nimport { cn } from '@/lib/utils';\n\nfunction Tabs({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseTabs.Root>) {\n  return (\n    <BaseTabs.Root\n      {...props}\n      className={cn('overflow-hidden outline-none', className)}\n    />\n  );\n}\n\nfunction TabsList({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseTabs.List>) {\n  return (\n    <div\n      className={cn(\n        'relative',\n        'before:from-white-1000 dark:before:from-grey-800 before:pointer-events-none before:absolute before:top-0 before:left-0 before:z-10 before:h-full before:w-2 before:bg-gradient-to-r before:to-transparent before:content-[\"\"]',\n        'after:from-white-1000 dark:after:from-grey-800 after:pointer-events-none after:absolute after:top-0 after:right-0 after:z-10 after:h-full after:w-2 after:bg-gradient-to-l after:to-transparent after:content-[\"\"]',\n      )}\n    >\n      <BaseTabs.List\n        {...props}\n        className={cn(\n          'no-scrollbar flex gap-1 overflow-x-auto outline-none',\n          className,\n        )}\n      >\n        {props.children}\n      </BaseTabs.List>\n    </div>\n  );\n}\n\nfunction Tab({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseTabs.Tab>) {\n  return (\n    <BaseTabs.Tab\n      {...props}\n      className={cn(\n        'typography-body-medium text-black-500 data-[selected]:text-black-1000 dark:data-[selected]:text-white-1000 dark:text-white-500 data-[selected]:typography-body-medium-strong data-[selected]:bg-grey-100 dark:data-[selected]:bg-grey-700 hover:bg-grey-100 dark:hover:bg-grey-700 h-6 shrink-0 rounded-md px-2 outline-none focus-visible:inset-ring focus-visible:inset-ring-blue-500',\n        className,\n      )}\n    />\n  );\n}\n\nfunction TabsPanel({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseTabs.Panel>) {\n  return (\n    <BaseTabs.Panel {...props} className={cn('outline-none', className)} />\n  );\n}\n\nexport { Tabs, TabsList, Tab, TabsPanel };\n",
+      "type": "registry:component"
+    }
+  ]
+}

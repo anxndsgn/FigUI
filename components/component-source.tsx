@@ -5,7 +5,7 @@ import * as React from 'react';
 import { cn, fixImport } from '@/lib/utils';
 import { CopyButton } from './copy-button';
 import { highlightCode } from '@/lib/highlight-code';
-import { Separator } from '@/registry/ui3/ui/seprator';
+import { Separator } from '@/registry/ui3/ui/separator';
 
 export async function CodeSource({
   src,

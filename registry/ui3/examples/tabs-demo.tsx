@@ -1,5 +1,5 @@
 import { Tabs, Tab, TabsList, TabsPanel } from '../ui/tabs';
-import { Separator } from '../ui/seprator';
+import { Separator } from '../ui/separator';
 import { cn } from '@/lib/utils';
 
 export default function TabsDemo() {

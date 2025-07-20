@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 import { Tabs, Tab, TabsList, TabsPanel } from '@/registry/ui3/ui/tabs';
-import { Separator } from '@/registry/ui3/ui/seprator';
+import { Separator } from '@/registry/ui3/ui/separator';
 
 export function ComponentPreviewTabs({
   className,

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "type": "registry:component",
+  "title": "Switch",
+  "description": "A switch component",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "files": [
+    {
+      "path": "registry/ui3/ui/switch.tsx",
+      "content": "import { Switch as BaseSwitch } from '@base-ui-components/react';\nimport React from 'react';\nimport { cn } from '@/lib/utils';\n\nexport function Switch({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseSwitch.Root>) {\n  return (\n    <BaseSwitch.Root\n      {...props}\n      className={cn(\n        'bg-grey-200 dark:bg-grey-600 data-[disabled]:bg-grey-300 dark:data-[disabled]:bg-grey-500 focus-visible:inset-ring-white-1000 relative inline-flex h-4 w-8 items-center rounded-full p-[1px] transition-colors duration-200 ease-in-out outline-none focus-visible:ring focus-visible:inset-ring-2 focus-visible:ring-blue-500 data-[checked]:bg-blue-500 dark:focus-visible:ring-blue-400',\n        className,\n      )}\n    >\n      <BaseSwitch.Thumb className='bg-white-1000 data-[disabled]:bg-white-1000 dark:data-[disabled]:bg-grey-800 size-3.5 rounded-full transition-transform duration-150 data-[checked]:translate-x-4' />\n    </BaseSwitch.Root>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}
