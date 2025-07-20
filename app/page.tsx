@@ -97,6 +97,8 @@ export default function Home() {
             <Input id='input' placeholder='Input' className='max-w-32' />
           </div>
         </div>
+
+        <Button render={<Link href='/docs'>Find More</Link>} size={'large'} />
       </main>
     </div>
   );
