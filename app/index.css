@@ -43,7 +43,6 @@
     }
   }
   [data-rehype-pretty-code-figure] {
-    margin-top: calc(var(--spacing) * 6);
     overflow: hidden;
     font-size: 11px;
     line-height: 1.5;

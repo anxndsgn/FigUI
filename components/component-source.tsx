@@ -1,11 +1,46 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import * as React from 'react';
-import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 
 import { cn, fixImport } from '@/lib/utils';
 import { CopyButton } from './copy-button';
 import { highlightCode } from '@/lib/highlight-code';
+import { Separator } from '@/registry/ui3/ui/seprator';
+
+export async function CodeSource({
+  src,
+  title,
+  language,
+}: React.ComponentProps<'div'> & {
+  src: string;
+  title?: string;
+  language?: string;
+}) {
+  const code = await fs.readFile(path.join(process.cwd(), src), 'utf-8');
+
+  const fixedCode = fixImport(code);
+
+  if (!code) {
+    return null;
+  }
+
+  const lang = language ?? title?.split('.').pop() ?? 'tsx';
+  const highlightedCode = await highlightCode(fixedCode, lang);
+
+  if (!highlightedCode) {
+    return null;
+  }
+
+  return (
+    <figure
+      data-rehype-pretty-code-figure=''
+      className='not-prose dark:bg-black-800'
+    >
+      <CopyButton value={code} />
+      <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+    </figure>
+  );
+}
 
 export async function ComponentSource({
   src,
@@ -21,20 +56,9 @@ export async function ComponentSource({
     return null;
   }
 
-  const code = await fs.readFile(path.join(process.cwd(), src), 'utf-8');
-
-  const fixedCode = fixImport(code);
-
-  if (!code) {
-    return null;
-  }
-
-  const lang = language ?? title?.split('.').pop() ?? 'tsx';
-  const highlightedCode = await highlightCode(fixedCode, lang);
-
   return (
     <div className={cn('relative', className)}>
-      <figure data-rehype-pretty-code-figure='' className='[&>pre]:max-h-96'>
+      <div className='not-prose overflow-hidden rounded-lg border [&>pre]:max-h-96'>
         {title && (
           <figcaption
             data-rehype-pretty-code-title=''
@@ -44,9 +68,9 @@ export async function ComponentSource({
             {title}
           </figcaption>
         )}
-        <CopyButton value={code} />
-        <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
-      </figure>
+        <Separator />
+        <CodeSource src={src} title={title} language={language} />
+      </div>
     </div>
   );
 }
