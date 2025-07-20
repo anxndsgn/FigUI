@@ -4,9 +4,6 @@
   "type": "registry:component",
   "title": "Select",
   "description": "A select component",
-  "registryDependencies": [
-    "select"
-  ],
   "files": [
     {
       "path": "registry/ui3/ui/select.tsx",

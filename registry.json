@@ -8,7 +8,6 @@
       "type": "registry:component",
       "title": "Button",
       "description": "A simple button component",
-      "registryDependencies": ["button"],
       "files": [
         {
           "path": "registry/ui3/ui/button.tsx",
@@ -21,7 +20,6 @@
       "type": "registry:component",
       "title": "Select",
       "description": "A select component",
-      "registryDependencies": ["select"],
       "files": [
         {
           "path": "registry/ui3/ui/select.tsx",
@@ -34,7 +32,6 @@
       "type": "registry:component",
       "title": "Input",
       "description": "A input component",
-      "registryDependencies": ["input"],
       "files": [
         {
           "path": "registry/ui3/ui/input.tsx",
@@ -47,7 +44,6 @@
       "type": "registry:component",
       "title": "Checkbox",
       "description": "A checkbox component",
-      "registryDependencies": ["checkbox"],
       "files": [
         {
           "path": "registry/ui3/ui/checkbox.tsx",

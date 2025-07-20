@@ -4,13 +4,10 @@
   "type": "registry:component",
   "title": "Checkbox",
   "description": "A checkbox component",
-  "registryDependencies": [
-    "checkbox"
-  ],
   "files": [
     {
       "path": "registry/ui3/ui/checkbox.tsx",
-      "content": "import { Checkbox as BaseCheckbox } from '@base-ui-components/react';\nimport * as React from 'react';\nimport { cn } from '@/lib/utils';\nimport { CheckIcon } from 'lucide-react';\n\nfunction Checkbox({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseCheckbox.Root>) {\n  return (\n    <BaseCheckbox.Root\n      className={cn(\n        'border-grey-200 bg-grey-100 data-[checked]:bg-blue-500 data-[checked]:text-white-1000 data-[checked]:border-blue-600 size-4 shrink-0 rounded-md border outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed',\n        'dark:border-grey-600 dark:bg-grey-700 dark:data-[checked]:border-blue-400 dark:data-[checked]:bg-blue-500',\n        className\n      )}\n      {...props}\n    >\n      <BaseCheckbox.Indicator className='flex items-center justify-center text-current transition-none'>\n        <CheckIcon className='size-4 pb-0.5' />\n      </BaseCheckbox.Indicator>\n    </BaseCheckbox.Root>\n  );\n}\n\nexport { Checkbox };\n",
+      "content": "import { Checkbox as BaseCheckbox } from '@base-ui-components/react';\nimport * as React from 'react';\nimport { cn } from '@/lib/utils';\nimport { CheckIcon } from 'lucide-react';\n\nfunction Checkbox({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseCheckbox.Root>) {\n  return (\n    <BaseCheckbox.Root\n      className={cn(\n        'group border-grey-200 bg-grey-100 data-[checked]:text-white-1000 dark:border-grey-600 dark:bg-grey-700 data-[disabled]:bg-grey-300 dark:data-[disabled]:bg-grey-500 data-[checked]:focus-visible:inset-ring-white-1000 size-4 shrink-0 rounded-md border outline-none focus-visible:border-blue-500 disabled:cursor-not-allowed data-[checked]:border-blue-600 data-[checked]:bg-blue-500 data-[checked]:focus-visible:inset-ring data-[disabled]:border-none dark:focus-visible:border-blue-400 dark:data-[checked]:border-blue-400 dark:data-[checked]:bg-blue-500',\n        className,\n      )}\n      {...props}\n    >\n      <BaseCheckbox.Indicator className='group-data-[disabled]:text-white-1000 dark:group-data-[disabled]:text-grey-800 flex items-center justify-center text-current transition-none'>\n        <CheckIcon className='size-4 pb-[1px]' />\n      </BaseCheckbox.Indicator>\n    </BaseCheckbox.Root>\n  );\n}\n\nexport { Checkbox };\n",
       "type": "registry:component"
     }
   ]
