@@ -35,7 +35,7 @@ const buttonVariants = cva(
         linkDanger:
           'text-red-600 active:bg-red-200 disabled:text-red-400 focus-visible:inset-ring focus-visible:inset-ring-red-300 dark:text-red-400 dark:active:bg-pale-red-800 dark:focus-visible:inset-ring-red-700',
         ghost:
-          'hover:bg-black-200 active:bg-black-1000/15 disabled:text-grey-500 focus-visible:inset-ring focus-visible:inset-ring-blue-500 ',
+          'border-none hover:bg-black-200 active:bg-black-1000/15 disabled:text-grey-500 focus-visible:inset-ring focus-visible:inset-ring-blue-500 ',
       },
       size: {
         default: 'h-6 px-2 has-[>svg]:px-3',
