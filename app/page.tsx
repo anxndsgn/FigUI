@@ -34,8 +34,8 @@ export default function Home() {
         />
         <Button render={<Link href='/docs'>Docs</Link>} />
       </div>
-      <main className='flex flex-1 flex-col gap-8'>
-        <div className='relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4'>
+      <main className='grid flex-1 grid-cols-2 gap-8'>
+        <div className='relative col-span-1 row-span-2 flex min-h-[450px] flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-muted-foreground text-sm sm:pl-3'>Button</h2>
             <Button
@@ -62,7 +62,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className='relative flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-muted-foreground text-sm sm:pl-3'>Checkbox</h2>
             <Button
@@ -81,7 +81,7 @@ export default function Home() {
             </label>
           </div>
         </div>
-        <div className='relative flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-muted-foreground text-sm sm:pl-3'>Input</h2>
             <Button
@@ -98,7 +98,11 @@ export default function Home() {
           </div>
         </div>
 
-        <Button render={<Link href='/docs'>Find More</Link>} size={'large'} />
+        <Button
+          render={<Link href='/docs'>Find More</Link>}
+          size={'large'}
+          className='col-span-2'
+        />
       </main>
     </div>
   );
