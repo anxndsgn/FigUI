@@ -2,6 +2,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  /* disable all tailwind default colors */
+  --color-*: initial;
+}
+
 :root {
   /* Sizing */
   --radius-full: 9999px;
