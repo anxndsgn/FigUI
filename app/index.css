@@ -57,6 +57,7 @@
     }
   }
 
+  /* Dark mode support for code blocks */
   .dark [data-rehype-pretty-code-figure] {
     color: var(--color-white-900);
   }
@@ -83,24 +84,25 @@
     box-decoration-break: clone;
   }
 
+  /* Line numbers styling */
   [data-line-numbers] [data-line]::before {
     font-size: 11px;
     counter-increment: line;
     content: counter(line);
     display: inline-block;
-    width: calc(var(--spacing) * 16);
+    width: calc(var(--spacing) * 14);
     padding-right: calc(var(--spacing) * 6);
     text-align: right;
     color: var(--color-black-800);
     position: sticky;
     left: 0;
+    /* No background - ready for custom styling */
   }
 
+  /* Dark mode line numbers */
   .dark [data-line-numbers] [data-line]::before {
     color: var(--color-white-800);
   }
-
-  /* Background removed for custom styling */
 
   [data-line] {
     padding-top: calc(var(--spacing) * 0.5);
@@ -115,16 +117,44 @@
   }
 
   /* Apply Shiki dark theme colors in dark mode */
+  .dark [data-rehype-pretty-code-figure] span[style*='--shiki-dark'] {
+    color: var(--shiki-dark) !important;
+  }
+
   .dark [data-rehype-pretty-code-figure] span[style] {
     color: var(--shiki-dark, var(--shiki-light)) !important;
   }
 
-  /* Code and pre backgrounds removed for custom styling */
+  /* Ensure all syntax highlighting works in dark mode */
+  .dark [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-dark, var(--shiki-light)) !important;
+  }
 
+  /* Force Shiki to use dark theme in dark mode */
+  .dark [data-rehype-pretty-code-figure] * {
+    color: var(--shiki-dark, var(--shiki-light, inherit)) !important;
+  }
+
+  /* Remove any potential background interference */
+  [data-rehype-pretty-code-figure] pre {
+    background: transparent !important;
+  }
+
+  [data-rehype-pretty-code-figure] code {
+    background: transparent !important;
+  }
+
+  /* Highlighted lines and characters */
   [data-highlighted-line],
   [data-highlighted-chars] {
     position: relative;
     background-color: var(--color-bg-secondary);
+  }
+
+  /* Dark mode highlighted elements */
+  .dark [data-highlighted-line],
+  .dark [data-highlighted-chars] {
+    background-color: var(--color-grey-700);
   }
 
   [data-highlighted-line] {
@@ -136,6 +166,13 @@
       height: 100%;
       content: '';
       background-color: color-mix(in oklab, var(--color-text) 50%, transparent);
+    }
+  }
+
+  /* Dark mode highlighted line border */
+  .dark [data-highlighted-line] {
+    &:after {
+      background-color: var(--color-blue-400);
     }
   }
 

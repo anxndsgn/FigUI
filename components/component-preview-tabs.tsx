@@ -57,7 +57,7 @@ export function ComponentPreviewTabs({
           <div
             data-slot='code'
             data-active={tab === 'code'}
-            className='hidden p-2 data-[active=true]:block **:[figure]:!m-0'
+            className='dark:bg-black-800 hidden data-[active=true]:block **:[figure]:!m-0'
           >
             {source}
           </div>
