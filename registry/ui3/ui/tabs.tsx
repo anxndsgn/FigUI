@@ -28,7 +28,7 @@ function Tab({
     <BaseTabs.Tab
       {...props}
       className={cn(
-        'typography-body-medium text-black-500 data-[selected]:text-black-1000 dark:data-[selected]:text-white-1000 dark:text-white-500 data-[selected]:typography-body-medium-strong data-[selected]:bg-grey-100 dark:data-[selected]:bg-grey-700 hover:bg-grey-100 dark:hover:bg-grey-700 dark:focus-visible:ring-white-1000 h-6 rounded-md px-2 outline-none focus-visible:ring focus-visible:ring-blue-500',
+        'typography-body-medium text-black-500 data-[selected]:text-black-1000 dark:data-[selected]:text-white-1000 dark:text-white-500 data-[selected]:typography-body-medium-strong data-[selected]:bg-grey-100 dark:data-[selected]:bg-grey-700 hover:bg-grey-100 dark:hover:bg-grey-700 h-6 rounded-md px-2 outline-none focus-visible:inset-ring focus-visible:inset-ring-blue-500',
         className,
       )}
     />
