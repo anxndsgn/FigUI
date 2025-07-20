@@ -34,7 +34,7 @@ export default function Home() {
         />
         <Button render={<Link href='/docs'>Docs</Link>} />
       </div>
-      <main className='grid flex-1 grid-cols-2 gap-8'>
+      <main className='grid flex-1 grid-cols-1 gap-8 md:grid-cols-2'>
         <div className='relative col-span-1 row-span-2 flex min-h-[450px] flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-muted-foreground text-sm sm:pl-3'>Button</h2>
@@ -101,7 +101,7 @@ export default function Home() {
         <Button
           render={<Link href='/docs'>Find More</Link>}
           size={'large'}
-          className='col-span-2'
+          className='col-span-full'
         />
       </main>
     </div>
