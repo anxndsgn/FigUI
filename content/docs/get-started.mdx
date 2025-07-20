@@ -15,7 +15,7 @@ pnpm install @base-ui-components/react
 Second, add cn helper function following the shadcn/ui [documentation](https://ui.shadcn.com/docs/installation/manual).
 
 ```bash
-pnpm add class-variance-authority clsx tailwind-merge lucide-react tw-animate-css
+pnpm add class-variance-authority clsx tailwind-merge lucide-react
 ```
 
 ```tsx
@@ -29,6 +29,6 @@ export function cn(...inputs: ClassValue[]) {
 
 Third, add css to your project, you can paste the following code to your `globals.css` file or create a new one and import it in your `globals.css` file.
 
-Note that if you are using in the figma plugin, you need to change the `@custom-variant dark (&:is(.dark *));` to `@custom-variant dark (&:is(.figma-dark *));` in your `globals.css` file.
+Note that if you are using figui in the figma plugin, you need to change the `@custom-variant dark (&:is(.dark *));` to `@custom-variant dark (&:is(.figma-dark *));` in your `globals.css` file for dark mode to work properly.
 
 <ComponentSource src='app/global.css' title='Globals.css' language='css' />
