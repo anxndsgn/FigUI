@@ -2,7 +2,9 @@
 
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/registry/ui3/ui/button';
-import { GithubIcon, PlusIcon } from 'lucide-react';
+import { Checkbox } from '@/registry/ui3/ui/checkbox';
+import { Input } from '@/registry/ui3/ui/input';
+import { GithubIcon, PlusIcon, ArrowUpRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
 // This page displays items from the custom registry.
@@ -10,12 +12,12 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className='max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8'>
+    <div className='mx-auto flex min-h-svh max-w-3xl flex-col gap-8 px-4 py-12'>
       <header className='flex flex-col gap-2'>
         <div className='flex items-center justify-between'>
-          <h1 className='typography-heading-large'>FigUI (WIP)</h1>
+          <h1 className='typography-display'>FigUI (WIP)</h1>
         </div>
-        <p className='typography-body-large'>
+        <p className='typography-heading-medium'>
           Open Source Figma UI3 Components
         </p>
       </header>
@@ -32,12 +34,20 @@ export default function Home() {
         />
         <Button render={<Link href='/docs'>Docs</Link>} />
       </div>
-      <main className='flex flex-col flex-1 gap-8'>
-        <div className='flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative'>
+      <main className='flex flex-1 flex-col gap-8'>
+        <div className='relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
-            <h2 className='text-sm text-muted-foreground sm:pl-3'>Button</h2>
+            <h2 className='text-muted-foreground text-sm sm:pl-3'>Button</h2>
+            <Button
+              render={
+                <Link href='/docs/components/button'>
+                  Docs <ArrowUpRightIcon />
+                </Link>
+              }
+              variant='secondary'
+            />
           </div>
-          <div className='flex flex-col gap-4 items-center justify-center min-h-[400px] relative '>
+          <div className='relative flex min-h-[400px] flex-col items-center justify-center gap-4'>
             <Button variant='primary'>Button</Button>
             <Button variant='secondary'>Button</Button>
             <Button variant='destructive'>Button</Button>
@@ -50,6 +60,41 @@ export default function Home() {
             <Button variant='ghost' size='icon'>
               <PlusIcon />
             </Button>
+          </div>
+        </div>
+        <div className='relative flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
+          <div className='flex items-center justify-between'>
+            <h2 className='text-muted-foreground text-sm sm:pl-3'>Checkbox</h2>
+            <Button
+              render={
+                <Link href='/docs/components/checkbox'>
+                  Docs <ArrowUpRightIcon />
+                </Link>
+              }
+              variant='secondary'
+            />
+          </div>
+          <div className='relative flex min-h-24 flex-col items-center justify-center gap-4'>
+            <label htmlFor='checkbox' className='flex items-center gap-2'>
+              <Checkbox id='checkbox' />
+              <span className='typography-body-medium'>Checkbox</span>
+            </label>
+          </div>
+        </div>
+        <div className='relative flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
+          <div className='flex items-center justify-between'>
+            <h2 className='text-muted-foreground text-sm sm:pl-3'>Input</h2>
+            <Button
+              render={
+                <Link href='/docs/components/input'>
+                  Docs <ArrowUpRightIcon />
+                </Link>
+              }
+              variant='secondary'
+            />
+          </div>
+          <div className='relative flex min-h-24 flex-col items-center justify-center gap-4'>
+            <Input id='input' placeholder='Input' className='max-w-32' />
           </div>
         </div>
       </main>
