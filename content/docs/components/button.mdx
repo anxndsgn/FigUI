@@ -13,10 +13,14 @@ import { ComponentSource } from '@/components/component-source';
   description='A primary button'
 />
 
-## CLI Installation
+## Render a Link Button
 
-```bash
-npx shadcn@latest add https://figui.dev/r/button.json
+use the `render` prop to render a link button:
+
+```tsx
+import { Button } from '@/components/ui/button';
+
+<Button render={<a href='/'>Home</a>} />;
 ```
 
 ## Manual Installation
