@@ -34,7 +34,7 @@ export async function CodeSource({
   return (
     <figure
       data-rehype-pretty-code-figure=''
-      className='not-prose dark:bg-black-800'
+      className='not-prose max-h-96 overflow-auto'
     >
       <CopyButton value={code} />
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
