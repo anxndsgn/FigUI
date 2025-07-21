@@ -87,6 +87,7 @@
     content: counter(line);
     display: inline-block;
     width: calc(var(--spacing) * 14);
+    background-color: var(--color-white-1000);
     padding-right: calc(var(--spacing) * 6);
     text-align: right;
     color: var(--color-black-800);
@@ -98,6 +99,7 @@
   /* Dark mode line numbers */
   .dark [data-line-numbers] [data-line]::before {
     color: var(--color-white-800);
+    background-color: var(--color-grey-800);
   }
 
   [data-line] {
