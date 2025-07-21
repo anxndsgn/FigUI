@@ -7,6 +7,11 @@ FigUI is currently in development and only supports a limited set of components.
 - Button
 - Input
 - Select
+- Tabs
+- Radio
+- Separator
+- Checkbox
+- Switch
 
 # Acknowledgements
 

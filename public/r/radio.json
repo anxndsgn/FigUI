@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio",
+  "type": "registry:component",
+  "title": "Radio",
+  "description": "A radio component",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "files": [
+    {
+      "path": "registry/ui3/ui/radio.tsx",
+      "content": "import { RadioGroup, Radio as BaseRadio } from '@base-ui-components/react';\nimport React from 'react';\nimport { cn } from '@/lib/utils';\n\nfunction Radio({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseRadio.Root>) {\n  return (\n    <BaseRadio.Root\n      className={cn(\n        'bg-white-1000 border-black-800 dark:border-white-1000 dark:bg-grey-800 data-[disabled]:border-grey-300 data-[disabled]:bg-grey-100 dark:data-[disabled]:border-grey-600 dark:data-[disabled]:bg-grey-700 size-4 shrink-0 rounded-full border outline-none focus-visible:border-blue-500 dark:focus-visible:border-blue-400',\n        className,\n      )}\n      {...props}\n    >\n      <BaseRadio.Indicator className='flex items-center justify-center'>\n        <div className='bg-black-800 dark:bg-white-1000 size-2 rounded-full' />\n      </BaseRadio.Indicator>\n    </BaseRadio.Root>\n  );\n}\n\nexport { Radio, RadioGroup };\n",
+      "type": "registry:component"
+    }
+  ]
+}
