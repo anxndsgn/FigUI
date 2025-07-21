@@ -11,13 +11,13 @@ export default function RadioDemo() {
       value={value}
       onValueChange={(value) => setValue(value as string)}
     >
-      <label htmlFor='1' className='flex items-center gap-2'>
+      <label className='flex items-center gap-2'>
         <Radio value='1' />
-        <span>Option 1</span>
+        Option 1
       </label>
-      <label htmlFor='2' className='flex items-center gap-2'>
+      <label className='flex items-center gap-2'>
         <Radio value='2' />
-        <span>Option 2</span>
+        Option 2
       </label>
       <span>Selected: {value}</span>
     </RadioGroup>
