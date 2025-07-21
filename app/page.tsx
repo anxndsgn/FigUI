@@ -48,15 +48,15 @@ export default function Home() {
             />
           </div>
           <div className='relative flex min-h-[400px] flex-col items-center justify-center gap-4'>
-            <Button variant='primary'>Button</Button>
-            <Button variant='secondary'>Button</Button>
-            <Button variant='destructive'>Button</Button>
-            <Button variant='secondaryDestruct'>Button</Button>
-            <Button variant='inverse'>Button</Button>
-            <Button variant='success'>Button</Button>
-            <Button variant='link'>Button</Button>
-            <Button variant='linkDanger'>Button</Button>
-            <Button variant='ghost'>Button</Button>
+            <Button variant='primary'>Primary</Button>
+            <Button variant='secondary'>Secondary</Button>
+            <Button variant='destructive'>Destructive</Button>
+            <Button variant='secondaryDestruct'>SecondaryDestruct</Button>
+            <Button variant='inverse'>Inverse</Button>
+            <Button variant='success'>Success</Button>
+            <Button variant='link'>Link</Button>
+            <Button variant='linkDanger'>LinkDanger</Button>
+            <Button variant='ghost'>Ghost</Button>
             <Button variant='ghost' size='icon'>
               <PlusIcon />
             </Button>
