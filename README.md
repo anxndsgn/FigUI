@@ -12,6 +12,7 @@ FigUI is currently in development and only supports a limited set of components.
 - Separator
 - Checkbox
 - Switch
+- Segmented Control
 
 # Acknowledgements
 
