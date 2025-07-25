@@ -9,7 +9,7 @@ function Radio({
   return (
     <BaseRadio.Root
       className={cn(
-        'bg-white-1000 border-black-800 dark:border-white-1000 dark:bg-grey-800 data-[disabled]:border-grey-300 data-[disabled]:bg-grey-100 dark:data-[disabled]:border-grey-600 dark:data-[disabled]:bg-grey-700 size-4 shrink-0 rounded-full border outline-none focus-visible:border-blue-500 dark:focus-visible:border-blue-400',
+        'bg-white-1000 border-black-800 dark:border-white-1000 dark:bg-grey-800 data-disabled:border-grey-300 data-disabled:bg-grey-100 dark:data-disabled:border-grey-600 dark:data-disabled:bg-grey-700 size-4 shrink-0 rounded-full border outline-none focus-visible:border-blue-500 dark:focus-visible:border-blue-400',
         className,
       )}
       {...props}

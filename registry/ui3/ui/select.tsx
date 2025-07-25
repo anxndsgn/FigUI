@@ -22,21 +22,21 @@ function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        'group flex border border-grey-300 rounded-md items-center justify-between cursor-default outline-none focus-visible:border-blue-500',
+        'group border-grey-300 flex cursor-default items-center justify-between rounded-md border outline-none focus-visible:border-blue-500',
         'dark:border-grey-700 dark:focus-visible:border-blue-500',
         iconLeading ? '' : 'pl-2',
         size === 'large' ? 'h-8' : 'h-6',
-        className
+        className,
       )}
       {...props}
     >
       {iconLeading && (
-        <span className='aspect-square h-full flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-500 dark:[&_svg]:text-white-500'>
+        <span className='[&_svg]:text-black-500 dark:[&_svg]:text-white-500 flex aspect-square h-full items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0'>
           {iconLeading}
         </span>
       )}
       {children}
-      <BaseSelect.Icon className='size-6 flex items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 dark:[&_svg]:text-white-800 group-data-[disabled]:[&_svg]:text-black-400 dark:group-data-[disabled]:[&_svg]:text-white-400'>
+      <BaseSelect.Icon className='[&_svg]:text-black-800 dark:[&_svg]:text-white-800 group-data-disabled:[&_svg]:text-black-400 dark:group-data-disabled:[&_svg]:text-white-400 flex size-6 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0'>
         <ChevronDown />
       </BaseSelect.Icon>
     </BaseSelect.Trigger>
@@ -52,8 +52,8 @@ function SelectContent({
     <BaseSelect.Portal>
       <BaseSelect.Positioner
         className={cn(
-          'bg-grey-900 rounded-lg shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100 overflow-hidden',
-          className
+          'bg-grey-900 shadow-400 dark:inset-shadow-white-100 overflow-hidden rounded-lg dark:inset-shadow-2xs',
+          className,
         )}
         sideOffset={4}
         {...props}
@@ -75,9 +75,9 @@ function SelectValue({
   return (
     <BaseSelect.Value
       className={cn(
-        'typography-body-medium flex-1 truncate text-black-1000 dark:text-white-1000',
-        'group-data-[disabled]:text-black-400 dark:group-data-[disabled]:text-white-400',
-        className
+        'typography-body-medium text-black-1000 dark:text-white-1000 flex-1 truncate',
+        'group-data-disabled:text-black-400 dark:group-data-disabled:text-white-400',
+        className,
       )}
       {...props}
     />
@@ -92,8 +92,8 @@ function SelectItem({
   return (
     <BaseSelect.Item
       className={cn(
-        'typography-body-medium grid grid-cols-[0.75rem_1fr] gap-2 text-white-1000 cursor-default px-2 py-1 rounded-md min-w-(--anchor-width) data-[highlighted]:bg-blue-500',
-        className
+        'typography-body-medium text-white-1000 grid min-w-(--anchor-width) cursor-default grid-cols-[0.75rem_1fr] gap-2 rounded-md px-2 py-1 data-highlighted:bg-blue-500',
+        className,
       )}
       {...props}
     >
@@ -145,8 +145,8 @@ function SelectScrollUpArrow({
     <BaseSelect.ScrollUpArrow
       {...props}
       className={cn(
-        'flex z-10 h-4 w-full cursor-default items-center justify-center rounded-lg bg-grey-900 py-1',
-        className
+        'bg-grey-900 z-10 flex h-4 w-full cursor-default items-center justify-center rounded-lg py-1',
+        className,
       )}
     >
       <ChevronUp className='size-3' />
@@ -162,8 +162,8 @@ function SelectScrollDownArrow({
     <BaseSelect.ScrollDownArrow
       {...props}
       className={cn(
-        'flex z-10 h-4 w-full cursor-default items-center justify-center rounded-lg bg-grey-900 py-1',
-        className
+        'bg-grey-900 z-10 flex h-4 w-full cursor-default items-center justify-center rounded-lg py-1',
+        className,
       )}
     >
       <ChevronDown className='size-3' />
