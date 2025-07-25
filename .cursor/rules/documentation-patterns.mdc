@@ -1,0 +1,89 @@
+---
+globs: content/docs/**/*.mdx,app/docs/**/*.tsx
+description: Documentation writing and structure patterns for figui
+---
+
+# Documentation Patterns
+
+## MDX Documentation Structure
+
+All documentation in **[content/docs/](mdc:content/docs/)** should follow consistent patterns:
+
+### Component Documentation Template
+
+````mdx
+---
+title: Component Name
+description: Brief description of what the component does
+---
+
+import { ComponentDemo } from '@/registry/ui3/examples/component-demo';
+import { ComponentPreview } from '@/components/component-preview';
+
+# Component Name
+
+Brief description and use cases for the component.
+
+## Installation
+
+Install the component via the registry:
+
+```bash
+npx figui@latest add component-name
+```
+````
+
+## Usage
+
+<ComponentPreview>
+  <ComponentDemo />
+</ComponentPreview>
+
+### Basic Example
+
+```tsx
+import { Component } from '@/components/ui/component';
+
+export default function Example() {
+  return <Component>Content</Component>;
+}
+```
+
+### Props
+
+| Prop    | Type                     | Default   | Description           |
+| ------- | ------------------------ | --------- | --------------------- |
+| variant | 'default' \| 'secondary' | 'default' | Visual style variant  |
+| size    | 'sm' \| 'md' \| 'lg'     | 'md'      | Size of the component |
+
+## Examples
+
+Show various use cases and configurations.
+
+## Accessibility
+
+Document keyboard navigation, ARIA attributes, and screen reader support.
+
+```
+
+### Navigation Structure
+
+- Update **[content/docs/meta.json](mdc:content/docs/meta.json)** for navigation
+- Organize components by category (Form, Layout, Feedback, etc.)
+- Use consistent naming: kebab-case for files, Title Case for display
+
+### Code Examples
+
+- Use **[ComponentPreview](mdc:components/component-preview.tsx)** for interactive demos
+- Include both basic and advanced usage examples
+- Show proper TypeScript types and imports
+- Reference actual demo components from **[registry/ui3/examples/](mdc:registry/ui3/examples/)**
+
+### Writing Guidelines
+
+- Start with a clear, concise description
+- Include installation instructions for each component
+- Document all props with types and descriptions
+- Provide accessibility information
+- Use consistent terminology throughout
+```

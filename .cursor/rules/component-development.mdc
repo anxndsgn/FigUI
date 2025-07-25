@@ -1,0 +1,71 @@
+---
+globs: registry/ui3/ui/*.tsx,registry/ui3/examples/*.tsx
+description: Component development patterns for figui registry
+---
+
+# Component Development Guidelines
+
+## Registry Component Structure
+
+All UI components in **[registry/ui3/ui/](mdc:registry/ui3/ui/)** should follow these patterns:
+
+### Component Architecture
+
+- Use **@base-ui-components/react** for unstyled primitives when available
+- Follow compound component patterns for complex components
+- Use `forwardRef` for components that need DOM refs
+- Export component with proper TypeScript interfaces
+
+### Example Component Pattern
+
+```tsx
+import * as React from 'react';
+import { BaseComponent } from '@base-ui-components/react/BaseComponent';
+import { cn } from '@/lib/utils';
+
+interface ComponentProps extends React.ComponentProps<typeof BaseComponent> {
+  variant?: 'default' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const Component = React.forwardRef<
+  React.ElementRef<typeof BaseComponent>,
+  ComponentProps
+>(({ className, variant = 'default', size = 'md', ...props }, ref) => {
+  return (
+    <BaseComponent
+      ref={ref}
+      className={cn(
+        'base-styles',
+        variantStyles[variant],
+        sizeStyles[size],
+        className,
+      )}
+      {...props}
+    />
+  );
+});
+
+Component.displayName = 'Component';
+export { Component };
+```
+
+### Demo Components
+
+- Demo components in **[registry/ui3/examples/](mdc:registry/ui3/examples/)** should showcase all variants
+- Include proper TypeScript examples
+- Use realistic data and use cases
+- Export as default function named `ComponentDemo`
+
+### Styling Guidelines
+
+- Use Tailwind CSS classes exclusively
+- Follow the existing design tokens and spacing scale
+- Ensure dark mode compatibility with theme-aware classes
+- Use `cn()` utility from **[lib/utils.ts](mdc:lib/utils.ts)** for conditional styling
+
+### Registry Integration
+
+- Each component needs a corresponding JSON file in **[public/r/](mdc:public/r/)**
+- Update **[registry.json](mdc:registry.json)** with component metadata
+- Ensure component is importable via the registry system

@@ -1,0 +1,53 @@
+---
+description: Overview of all available cursor rules for figui development
+---
+
+# Figui Cursor Rules Overview
+
+This project has several cursor rules to help with development:
+
+## Always Applied Rules
+
+### [Project Structure](mdc:.cursor/rules/project-structure.mdc)
+
+- **Always Active** - Provides comprehensive overview of the figui project
+- Explains directory structure, tech stack, and key files
+- Helps understand the Next.js + component library architecture
+
+## File-Specific Rules
+
+### [Component Development](mdc:.cursor/rules/component-development.mdc)
+
+- **Applies to**: `registry/ui3/ui/*.tsx`, `registry/ui3/examples/*.tsx`
+- Guidelines for creating UI components and demos
+- Component architecture patterns using Base UI
+- Registry integration requirements
+
+### [Documentation Patterns](mdc:.cursor/rules/documentation-patterns.mdc)
+
+- **Applies to**: `content/docs/**/*.mdx`, `app/docs/**/*.tsx`
+- MDX documentation structure and templates
+- Component documentation standards
+- Navigation and code example patterns
+
+### [Code Style](mdc:.cursor/rules/code-style.mdc)
+
+- **Applies to**: `*.ts`, `*.tsx`, `*.js`, `*.jsx`
+- TypeScript and React best practices
+- Prettier configuration and formatting rules
+- Tailwind CSS usage guidelines
+
+## Manual Rules
+
+### [Registry System](mdc:.cursor/rules/registry-system.mdc)
+
+- **Manual activation** - Deep dive into the component registry
+- Component installation workflow
+- Registry file formats and configuration
+- Step-by-step guide for adding new components
+
+## Usage
+
+- Rules are automatically applied based on file patterns
+- Use `/docs` or describe your task to trigger relevant rule activation
+- The project structure rule is always active for context

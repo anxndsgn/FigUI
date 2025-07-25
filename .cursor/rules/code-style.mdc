@@ -1,0 +1,109 @@
+---
+globs: '*.ts,*.tsx,*.js,*.jsx'
+description: Code style and formatting guidelines for figui
+---
+
+# Code Style Guidelines
+
+## Formatting Rules
+
+The project uses **[Prettier](mdc:package.json)** with custom configuration:
+
+- **Single quotes** for strings and JSX attributes
+- **Tailwind CSS plugin** for automatic class sorting
+- Follow existing **[prettier config](mdc:package.json)** in package.json
+
+## TypeScript Guidelines
+
+### Type Definitions
+
+- Use `interface` for object shapes that might be extended
+- Use `type` for unions, primitives, and computed types
+- Export types and interfaces from component files when needed
+
+### Component Props
+
+```tsx
+// Preferred: Extend existing component props
+interface ButtonProps extends React.ComponentProps<'button'> {
+  variant?: 'default' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+// For Base UI components
+interface ComponentProps extends React.ComponentProps<typeof BaseUIComponent> {
+  // additional props
+}
+```
+
+### Imports Organization
+
+```tsx
+// 1. React imports
+import * as React from 'react';
+
+// 2. Third-party imports
+import { BaseComponent } from '@base-ui-components/react/BaseComponent';
+
+// 3. Internal imports
+import { cn } from '@/lib/utils';
+import { type ComponentProps } from './types';
+```
+
+## React Patterns
+
+### Component Definition
+
+- Set `displayName` for better debugging
+- Use destructuring with defaults for props
+
+### Event Handlers
+
+```tsx
+// Preferred: Inline for simple handlers
+<button onClick={() => setOpen(!open)} />;
+
+// For complex logic: separate functions
+const handleSubmit = React.useCallback(
+  (event: React.FormEvent) => {
+    event.preventDefault();
+    // logic here
+  },
+  [dependencies],
+);
+```
+
+## Styling Guidelines
+
+### Tailwind CSS
+
+- Use **Tailwind CSS 4** classes exclusively
+- Leverage the `cn()` utility from **[lib/utils.ts](mdc:lib/utils.ts)** for conditional classes
+- Follow mobile-first responsive design
+- Use semantic color names and design tokens
+
+### Class Organization
+
+```tsx
+// Group related classes logically
+className={cn(
+  // Layout
+  'flex items-center justify-center',
+  // Spacing
+  'px-4 py-2 gap-2',
+  // Typography
+  'text-sm font-medium',
+  // Colors & States
+  'bg-blue-500 text-white hover:bg-blue-600',
+  // Conditional classes
+  variant === 'secondary' && 'bg-gray-100 text-gray-900',
+  className
+)}
+```
+
+### Component Architecture
+
+- Keep components focused and single-purpose
+- Use composition over inheritance
+- Prefer compound components for complex UI patterns
+- Export individual pieces when useful for customization

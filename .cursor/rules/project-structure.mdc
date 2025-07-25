@@ -1,0 +1,46 @@
+---
+alwaysApply: true
+description: Figui project structure and organization
+---
+
+# Figui Project Structure
+
+This is a Next.js-based UI component library with documentation, similar to shadcn/ui.
+
+## Key Directories
+
+- **[app/](mdc:app/)** - Next.js App Router pages and layouts
+  - **[app/docs/](mdc:app/docs/)** - Documentation pages using fumadocs
+  - **[app/layout.tsx](mdc:app/layout.tsx)** - Root layout with theme provider
+- **[components/](mdc:components/)** - Shared React components for the documentation site
+  - **[components/component-preview.tsx](mdc:components/component-preview.tsx)** - Preview component for docs
+  - **[components/theme-provider.tsx](mdc:components/theme-provider.tsx)** - Theme context provider
+
+- **[registry/ui3/](mdc:registry/ui3/)** - Component registry (like shadcn/ui)
+  - **[registry/ui3/ui/](mdc:registry/ui3/ui/)** - Actual UI components
+  - **[registry/ui3/examples/](mdc:registry/ui3/examples/)** - Component demo examples
+- **[content/docs/](mdc:content/docs/)** - MDX documentation content
+  - **[content/docs/components/](mdc:content/docs/components/)** - Component documentation
+  - **[content/docs/meta.json](mdc:content/docs/meta.json)** - Navigation metadata
+
+- **[public/r/](mdc:public/r/)** - Registry JSON files for component installation
+- **[lib/](mdc:lib/)** - Utility functions and shared logic
+
+## Tech Stack
+
+- **Next.js 15** with App Router and React 19
+- **TypeScript** for type safety
+- **Tailwind CSS 4** for styling
+- **Fumadocs** for documentation
+- **Base UI Components** (@base-ui-components/react) for unstyled primitives
+- **MDX** for documentation content
+- **Prettier** with Tailwind plugin for formatting
+
+## Key Files
+
+- **[package.json](mdc:package.json)** - Dependencies and scripts
+- **[registry.json](mdc:registry.json)** - Component registry configuration
+- **[source.config.ts](mdc:source.config.ts)** - Fumadocs source configuration
+- **[components.json](mdc:components.json)** - Component installation configuration
+
+---
