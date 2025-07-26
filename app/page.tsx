@@ -4,6 +4,15 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/registry/ui3/ui/button';
 import { Checkbox } from '@/registry/ui3/ui/checkbox';
 import { Input } from '@/registry/ui3/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectItemText,
+  SelectTrigger,
+  SelectValue,
+} from '@/registry/ui3/ui/select';
+import { Slider } from '@/registry/ui3/ui/slider';
 import { GithubIcon, PlusIcon, ArrowUpRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
@@ -37,7 +46,7 @@ export default function Home() {
       <main className='grid flex-1 grid-cols-1 gap-8 md:grid-cols-2'>
         <div className='relative col-span-1 row-span-2 flex min-h-[450px] flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
-            <h2 className='text-muted-foreground text-sm sm:pl-3'>Button</h2>
+            <h2 className='typography-body-large'>Button</h2>
             <Button
               render={
                 <Link href='/docs/components/button'>
@@ -47,7 +56,7 @@ export default function Home() {
               variant='secondary'
             />
           </div>
-          <div className='relative flex min-h-[400px] flex-col items-center justify-center gap-4'>
+          <div className='relative flex min-h-24 flex-col items-center justify-center gap-4'>
             <Button variant='primary'>Primary</Button>
             <Button variant='secondary'>Secondary</Button>
             <Button variant='destructive'>Destructive</Button>
@@ -62,9 +71,9 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className='relative col-span-1 row-span-1 flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
-            <h2 className='text-muted-foreground text-sm sm:pl-3'>Checkbox</h2>
+            <h2 className='typography-body-large'>Checkbox</h2>
             <Button
               render={
                 <Link href='/docs/components/checkbox'>
@@ -81,9 +90,9 @@ export default function Home() {
             </label>
           </div>
         </div>
-        <div className='relative col-span-1 row-span-1 flex min-h-32 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
           <div className='flex items-center justify-between'>
-            <h2 className='text-muted-foreground text-sm sm:pl-3'>Input</h2>
+            <h2 className='typography-body-large'>Input</h2>
             <Button
               render={
                 <Link href='/docs/components/input'>
@@ -95,6 +104,52 @@ export default function Home() {
           </div>
           <div className='relative flex min-h-24 flex-col items-center justify-center gap-4'>
             <Input id='input' placeholder='Input' className='max-w-32' />
+          </div>
+        </div>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
+          <div className='flex items-center justify-between'>
+            <h2 className='typography-body-large'>Slider</h2>
+            <Button
+              render={
+                <Link href='/docs/components/slider'>
+                  Docs <ArrowUpRightIcon />
+                </Link>
+              }
+              variant='secondary'
+            />
+          </div>
+          <div className='relative flex min-h-24 flex-col items-center justify-center gap-4'>
+            <Slider />
+          </div>
+        </div>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
+          <div className='flex items-center justify-between'>
+            <h2 className='typography-body-large'>Select</h2>
+          </div>
+          <div className='relative flex min-h-24 flex-col items-center justify-center gap-4'>
+            <Select
+              items={[
+                { label: 'Option 1', value: 'option1' },
+                { label: 'Option 2', value: 'option2' },
+                { label: 'Option 3', value: 'option3' },
+              ]}
+              defaultValue='option1'
+            >
+              <SelectTrigger className='w-32'>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='option1'>
+                  <SelectItemText>Option 1</SelectItemText>
+                </SelectItem>
+                <SelectItem value='option2'>
+                  <SelectItemText>Option 2</SelectItemText>
+                </SelectItem>
+                <SelectItem value='option3'>
+                  <SelectItemText>Option 3</SelectItemText>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
