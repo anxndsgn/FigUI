@@ -36,7 +36,7 @@ export function ComponentPreviewTabs({
         <TabsList className='p-2'>
           <Tab value='preview'>Preview</Tab>
           <Tab value='code'>Code</Tab>
-          <CopyButton value={code} className='ml-auto' />
+          {tab === 'code' && <CopyButton value={code} className='ml-auto' />}
         </TabsList>
         <Separator />
         <div data-tab={tab} className='relative md:-mx-1'>
