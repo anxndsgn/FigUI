@@ -1,11 +1,10 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import * as React from 'react';
 
-import { cn, fixImport } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { CopyButton } from './copy-button';
 import { highlightCode } from '@/lib/highlight-code';
 import { Separator } from '@/registry/ui3/ui/separator';
+import { getCode } from '@/lib/get-code';
 
 export async function CodeSource({
   src,
@@ -16,16 +15,14 @@ export async function CodeSource({
   title?: string;
   language?: string;
 }) {
-  const code = await fs.readFile(path.join(process.cwd(), src), 'utf-8');
-
-  const fixedCode = fixImport(code);
+  const code = await getCode(src);
 
   if (!code) {
     return null;
   }
 
   const lang = language ?? title?.split('.').pop() ?? 'tsx';
-  const highlightedCode = await highlightCode(fixedCode, lang);
+  const highlightedCode = await highlightCode(code, lang);
 
   if (!highlightedCode) {
     return null;
