@@ -3,13 +3,11 @@ import { CodeBlock } from '@/components/code-block';
 import { getCode } from '@/lib/get-code';
 
 export async function ComponentPreview({
-  name,
   component: Component,
   src,
   className,
   ...props
 }: React.ComponentProps<'div'> & {
-  name: string;
   component?: React.ReactNode;
   src?: string;
   description?: string;
