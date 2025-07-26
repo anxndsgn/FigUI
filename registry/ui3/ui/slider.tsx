@@ -29,8 +29,8 @@ function Slider({
       className={cn('px-2', className)}
       {...props}
     >
-      <BaseSlider.Control className='bg-grey-100 flex touch-none items-center rounded-full px-2 select-none'>
-        <BaseSlider.Track className={cn('bg-grey-100 h-4 w-full select-none')}>
+      <BaseSlider.Control className='bg-grey-100 inset-ring-grey-200 flex touch-none items-center rounded-full px-2 inset-ring select-none'>
+        <BaseSlider.Track className={cn('h-4 w-full select-none')}>
           <BaseSlider.Indicator
             className={cn(
               'bg-blue-500 select-none',
