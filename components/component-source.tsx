@@ -3,6 +3,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Separator } from '@/registry/ui3/ui/separator';
 import { CodeBlock } from './code-block';
+import { getCode } from '@/lib/get-code';
 
 export async function ComponentSource({
   src,
@@ -15,6 +16,12 @@ export async function ComponentSource({
   language?: string;
 }) {
   if (!src) {
+    return null;
+  }
+
+  const code = await getCode(src);
+
+  if (!code) {
     return null;
   }
 
@@ -31,7 +38,7 @@ export async function ComponentSource({
           </figcaption>
         )}
         <Separator />
-        <CodeBlock src={src} title={title} language={language} />
+        <CodeBlock code={code} title={title} language={language} />
       </div>
     </div>
   );

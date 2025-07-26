@@ -4,16 +4,14 @@ import { highlightCode } from '@/lib/highlight-code';
 import { CopyButton } from './copy-button';
 
 export async function CodeBlock({
-  src,
+  code,
   title,
   language,
 }: React.ComponentProps<'div'> & {
-  src: string;
+  code: string;
   title?: string;
   language?: string;
 }) {
-  const code = await getCode(src);
-
   if (!code) {
     return null;
   }

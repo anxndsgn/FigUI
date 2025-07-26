@@ -8,12 +8,10 @@ import { Separator } from '@/registry/ui3/ui/separator';
 
 export function ComponentPreviewTabs({
   className,
-  align = 'center',
   component,
   source,
   ...props
 }: React.ComponentProps<'div'> & {
-  align?: 'center' | 'start' | 'end';
   component: React.ReactNode;
   source: React.ReactNode;
 }) {
@@ -43,12 +41,7 @@ export function ComponentPreviewTabs({
             data-active={tab === 'preview'}
             className='hidden data-[active=true]:block'
           >
-            <div
-              data-align={align}
-              className={cn(
-                'preview flex w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start',
-              )}
-            >
+            <div className={cn('preview flex w-full justify-center p-10')}>
               {component}
             </div>
           </div>
