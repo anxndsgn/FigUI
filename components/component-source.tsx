@@ -32,7 +32,7 @@ export async function ComponentSource({
         {title && (
           <figcaption
             data-rehype-pretty-code-title=''
-            className='typography-body-medium-strong flex items-center justify-between gap-2 [&_svg]:size-4 [&_svg]:opacity-70'
+            className='typography-body-large-strong flex items-center justify-between gap-2 [&_svg]:size-4 [&_svg]:opacity-70'
             data-language={language}
           >
             {title}
