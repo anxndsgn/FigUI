@@ -29,7 +29,7 @@ function Slider({
       className={cn('px-2', className)}
       {...props}
     >
-      <BaseSlider.Control className='bg-grey-100 inset-ring-grey-200 flex touch-none items-center rounded-full px-2 inset-ring select-none'>
+      <BaseSlider.Control className='bg-grey-100 dark:bg-grey-700 dark:inset-ring-grey-600 inset-ring-grey-200 flex touch-none items-center rounded-full px-2 inset-ring select-none'>
         <BaseSlider.Track className={cn('h-4 w-full select-none')}>
           <BaseSlider.Indicator
             className={cn(
@@ -41,7 +41,7 @@ function Slider({
             <BaseSlider.Thumb
               key={index}
               className={cn(
-                'shadow-300 bg-white-1000 size-4 rounded-full select-none',
+                'shadow-100 bg-white-1000 size-4 rounded-full select-none',
                 'before:border-black-100 before:absolute before:top-1/2 before:right-1/2 before:size-2 before:translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:bg-blue-500 before:content-[""]',
               )}
             />
