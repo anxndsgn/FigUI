@@ -26,10 +26,14 @@ function Slider({
       value={value}
       min={min}
       max={max}
-      className={cn('px-2', className)}
       {...props}
     >
-      <BaseSlider.Control className='bg-grey-100 dark:bg-grey-700 dark:inset-ring-grey-600 inset-ring-grey-200 flex touch-none items-center rounded-full px-2 inset-ring select-none'>
+      <BaseSlider.Control
+        className={cn(
+          'bg-grey-100 dark:bg-grey-700 dark:inset-ring-grey-600 inset-ring-grey-200 flex w-32 touch-none items-center rounded-full px-2 inset-ring select-none',
+          className,
+        )}
+      >
         <BaseSlider.Track className={cn('h-4 w-full select-none')}>
           <BaseSlider.Indicator
             className={cn(
@@ -52,4 +56,4 @@ function Slider({
   );
 }
 
-export default Slider;
+export { Slider };

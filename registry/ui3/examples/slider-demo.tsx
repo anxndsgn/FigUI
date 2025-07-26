@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Slider from '../ui/slider';
+import { Slider } from '../ui/slider';
 
 export default function SliderDemo() {
   const [value, setValue] = React.useState(0);
