@@ -1,5 +1,5 @@
 import { ComponentPreviewTabs } from '@/components/component-preview-tabs';
-import { CodeSource } from '@/components/component-source';
+import { CodeBlock } from '@/components/code-block';
 
 export function ComponentPreview({
   name,
@@ -35,7 +35,7 @@ export function ComponentPreview({
       className={className}
       align={align}
       component={Component}
-      source={src ? <CodeSource src={src} /> : null}
+      source={src ? <CodeBlock src={src} /> : null}
       {...props}
     />
   );

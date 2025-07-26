@@ -1,43 +1,8 @@
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
-import { CopyButton } from './copy-button';
-import { highlightCode } from '@/lib/highlight-code';
 import { Separator } from '@/registry/ui3/ui/separator';
-import { getCode } from '@/lib/get-code';
-
-export async function CodeSource({
-  src,
-  title,
-  language,
-}: React.ComponentProps<'div'> & {
-  src: string;
-  title?: string;
-  language?: string;
-}) {
-  const code = await getCode(src);
-
-  if (!code) {
-    return null;
-  }
-
-  const lang = language ?? title?.split('.').pop() ?? 'tsx';
-  const highlightedCode = await highlightCode(code, lang);
-
-  if (!highlightedCode) {
-    return null;
-  }
-
-  return (
-    <figure
-      data-rehype-pretty-code-figure=''
-      className='not-prose max-h-96 overflow-auto'
-    >
-      <CopyButton value={code} />
-      <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
-    </figure>
-  );
-}
+import { CodeBlock } from './code-block';
 
 export async function ComponentSource({
   src,
@@ -66,7 +31,7 @@ export async function ComponentSource({
           </figcaption>
         )}
         <Separator />
-        <CodeSource src={src} title={title} language={language} />
+        <CodeBlock src={src} title={title} language={language} />
       </div>
     </div>
   );
