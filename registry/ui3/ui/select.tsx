@@ -3,9 +3,7 @@ import { CheckIcon, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import * as React from 'react';
 
-function SelectRoot({
-  ...props
-}: React.ComponentProps<typeof BaseSelect.Root>) {
+function Select({ ...props }: React.ComponentProps<typeof BaseSelect.Root>) {
   return <BaseSelect.Root {...props} />;
 }
 
@@ -172,7 +170,7 @@ function SelectScrollDownArrow({
 }
 
 export {
-  SelectRoot,
+  Select,
   SelectTrigger,
   SelectValue,
   SelectScrollUpArrow,

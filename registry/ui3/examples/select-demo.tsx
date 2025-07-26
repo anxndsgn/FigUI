@@ -1,5 +1,5 @@
 import {
-  SelectRoot,
+  Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -20,8 +20,8 @@ export function SelectDemo() {
     { label: 'Cursive', value: 'cursive' },
   ];
   return (
-    <div className='flex flex-col gap-4 items-center justify-center'>
-      <SelectRoot items={fonts}>
+    <div className='flex flex-col items-center justify-center gap-4'>
+      <Select items={fonts}>
         <SelectTrigger
           className='w-40'
           iconLeading={<RulerIcon />}
@@ -36,9 +36,9 @@ export function SelectDemo() {
             </SelectItem>
           ))}
         </SelectContent>
-      </SelectRoot>
+      </Select>
 
-      <SelectRoot items={fonts}>
+      <Select items={fonts}>
         <SelectTrigger className='w-32'>
           <SelectValue />
         </SelectTrigger>
@@ -49,7 +49,7 @@ export function SelectDemo() {
             </SelectItem>
           ))}
         </SelectContent>
-      </SelectRoot>
+      </Select>
     </div>
   );
 }
