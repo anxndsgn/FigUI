@@ -65,8 +65,8 @@
     border-bottom: color-mix(in oklab, var(--color-border) 30%, transparent);
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    padding-block: calc(var(--spacing) * 3);
-    padding-inline: calc(var(--spacing) * 3);
+    padding-block: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 2);
   }
 
   [data-line-numbers] {

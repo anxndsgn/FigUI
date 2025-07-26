@@ -5,15 +5,18 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, Tab, TabsList } from '@/registry/ui3/ui/tabs';
 import { Separator } from '@/registry/ui3/ui/separator';
+import { CopyButton } from './copy-button';
 
 export function ComponentPreviewTabs({
   className,
   component,
-  source,
+  code,
+  sourceComponent,
   ...props
 }: React.ComponentProps<'div'> & {
   component: React.ReactNode;
-  source: React.ReactNode;
+  code: string;
+  sourceComponent: React.ReactNode;
 }) {
   const [tab, setTab] = React.useState('preview');
 
@@ -33,6 +36,7 @@ export function ComponentPreviewTabs({
         <TabsList className='p-2'>
           <Tab value='preview'>Preview</Tab>
           <Tab value='code'>Code</Tab>
+          <CopyButton value={code} className='ml-auto' />
         </TabsList>
         <Separator />
         <div data-tab={tab} className='relative md:-mx-1'>
@@ -50,7 +54,7 @@ export function ComponentPreviewTabs({
             data-active={tab === 'code'}
             className='hidden data-[active=true]:block **:[figure]:!m-0'
           >
-            {source}
+            {sourceComponent}
           </div>
         </div>
       </Tabs>

@@ -27,7 +27,6 @@ export async function CodeBlock({
       data-rehype-pretty-code-figure=''
       className='not-prose max-h-96 overflow-auto'
     >
-      <CopyButton value={code} />
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   );

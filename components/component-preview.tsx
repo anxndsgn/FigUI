@@ -30,7 +30,8 @@ export async function ComponentPreview({
     <ComponentPreviewTabs
       className={className}
       component={Component}
-      source={src ? <CodeBlock code={code} /> : null}
+      code={code}
+      sourceComponent={src ? <CodeBlock code={code} /> : null}
       {...props}
     />
   );
