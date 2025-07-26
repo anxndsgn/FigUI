@@ -1,4 +1,3 @@
-import { getCode } from '@/lib/get-code';
 import { highlightCode } from '@/lib/highlight-code';
 
 import { CopyButton } from './copy-button';

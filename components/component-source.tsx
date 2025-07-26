@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Separator } from '@/registry/ui3/ui/separator';
 import { CodeBlock } from './code-block';
 import { getCode } from '@/lib/get-code';
+import { CopyButton } from './copy-button';
 
 export async function ComponentSource({
   src,
@@ -31,10 +32,11 @@ export async function ComponentSource({
         {title && (
           <figcaption
             data-rehype-pretty-code-title=''
-            className='typography-body-medium-strong flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70'
+            className='typography-body-medium-strong flex items-center justify-between gap-2 [&_svg]:size-4 [&_svg]:opacity-70'
             data-language={language}
           >
             {title}
+            <CopyButton value={code} />
           </figcaption>
         )}
         <Separator />
