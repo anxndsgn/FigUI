@@ -3,6 +3,7 @@ import './index.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { RootProvider } from 'fumadocs-ui/provider';
 import { Analytics } from '@vercel/analytics/next';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'FigUI',
@@ -28,6 +29,11 @@ export default function RootLayout({
             <div className='root'>{children}</div>
           </RootProvider>
         </ThemeProvider>
+        <Script
+          src='https://app.rybbit.io/api/script.js'
+          data-site-id='1889'
+          defer
+        />
       </body>
     </html>
   );
