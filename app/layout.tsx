@@ -18,6 +18,11 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <Analytics />
+      <Script
+        src='https://plausiblean.zeabur.app/js/script.js'
+        data-domain='figui.dev'
+        defer
+      />
       <body className={`font-(--font-family-default) antialiased`}>
         <ThemeProvider
           attribute='class'
@@ -29,11 +34,6 @@ export default function RootLayout({
             <div className='root'>{children}</div>
           </RootProvider>
         </ThemeProvider>
-        <Script
-          src='https://plausiblean.zeabur.app/js/script.js'
-          data-domain='figui.dev'
-          defer
-        />
       </body>
     </html>
   );
