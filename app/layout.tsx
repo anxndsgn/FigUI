@@ -30,8 +30,8 @@ export default function RootLayout({
           </RootProvider>
         </ThemeProvider>
         <Script
-          src='https://app.rybbit.io/api/script.js'
-          data-site-id='1889'
+          src='https://plausiblean.zeabur.app/js/script.js'
+          data-domain='figui.dev'
           defer
         />
       </body>
