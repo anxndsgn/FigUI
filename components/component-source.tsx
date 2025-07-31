@@ -32,14 +32,13 @@ export async function ComponentSource({
         {title && (
           <figcaption
             data-rehype-pretty-code-title=''
-            className='typography-body-medium-strong flex items-center justify-between gap-2 [&_svg]:size-4 [&_svg]:opacity-70'
+            className='typography-body-medium-strong border-grey-200 dark:border-grey-700 flex items-center justify-between gap-2 border-b [&_svg]:size-4 [&_svg]:opacity-70'
             data-language={language}
           >
             <span className='px-2'>{title}</span>
             <CopyButton value={code} />
           </figcaption>
         )}
-        <Separator />
         <CodeBlock code={code} title={title} language={language} />
       </div>
     </div>
