@@ -24,10 +24,10 @@ export default function Home() {
     <div className='mx-auto flex min-h-svh max-w-3xl flex-col gap-8 px-4 py-12'>
       <header className='flex flex-col gap-2'>
         <div className='flex items-center justify-between'>
-          <h1 className='typography-display'>FigUI (WIP)</h1>
+          <h1 className='typography-display'>FigUI</h1>
         </div>
         <p className='typography-heading-medium'>
-          Open Source Figma UI3 Components
+          Figma UI3 Components for your Figma plugins
         </p>
       </header>
       <div className='flex items-center gap-2'>
