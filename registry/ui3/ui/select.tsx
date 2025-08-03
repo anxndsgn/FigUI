@@ -1,6 +1,6 @@
+import { cn } from '@/lib/utils';
 import { Select as BaseSelect } from '@base-ui-components/react';
 import { CheckIcon, ChevronDown, ChevronUp } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import * as React from 'react';
 
 function Select({ ...props }: React.ComponentProps<typeof BaseSelect.Root>) {
@@ -147,7 +147,7 @@ function SelectScrollUpArrow({
         className,
       )}
     >
-      <ChevronUp className='size-3' />
+      <ChevronUp className='text-black-1000 dark:text-white-1000 size-3' />
     </BaseSelect.ScrollUpArrow>
   );
 }
@@ -164,22 +164,22 @@ function SelectScrollDownArrow({
         className,
       )}
     >
-      <ChevronDown className='size-3' />
+      <ChevronDown className='text-black-1000 dark:text-white-1000 size-3' />
     </BaseSelect.ScrollDownArrow>
   );
 }
 
 export {
   Select,
-  SelectTrigger,
-  SelectValue,
-  SelectScrollUpArrow,
-  SelectScrollDownArrow,
-  SelectItem,
-  SelectItemText,
-  SelectItemIndicator,
-  SelectSeparator,
+  SelectContent,
   SelectGroup,
   SelectGroupLabel,
-  SelectContent,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectScrollDownArrow,
+  SelectScrollUpArrow,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
 };
