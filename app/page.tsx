@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from '@/registry/ui3/ui/select';
 import { Slider } from '@/registry/ui3/ui/slider';
-import { GithubIcon, PlusIcon, ArrowUpRightIcon } from 'lucide-react';
+import { ArrowUpRightIcon, GithubIcon, PlusIcon } from 'lucide-react';
 import Link from 'next/link';
 
 // This page displays items from the custom registry.
@@ -153,6 +153,16 @@ export default function Home() {
           </div>
         </div>
 
+        <Button
+          variant='secondary'
+          render={
+            <Link href='https://www.figma.com/community/plugin/1518650987829710592'>
+              FigUI in real
+            </Link>
+          }
+          size={'large'}
+          className='col-span-full'
+        />
         <Button
           render={<Link href='/docs'>Find More</Link>}
           size={'large'}
