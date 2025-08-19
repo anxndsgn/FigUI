@@ -4,10 +4,10 @@ import { ColorRangeSlider } from '@/registry/ui3/ui/slider';
 import { useState } from 'react';
 
 export default function ColorRangeSliderDemo() {
-  const [hue, setHue] = useState([180]);
+  const [hue, setHue] = useState(180);
 
   // Convert hue to HSL color
-  const selectedColor = `hsl(${hue[0]}, 100%, 50%)`;
+  const selectedColor = `hsl(${hue}, 100%, 50%)`;
 
   return (
     <div className='flex flex-col gap-6'>
@@ -17,9 +17,7 @@ export default function ColorRangeSliderDemo() {
         </label>
         <ColorRangeSlider
           value={hue}
-          onValueChange={(value) =>
-            setHue(Array.isArray(value) ? value : [value])
-          }
+          onValueChange={(value) => setHue(value as number)}
           className={'w-56'}
         />
       </div>
@@ -31,7 +29,7 @@ export default function ColorRangeSliderDemo() {
         />
         <div className='text-sm'>
           <div className='font-medium text-gray-900 dark:text-gray-100'>
-            Hue: {hue[0]}°
+            Hue: {hue}°
           </div>
           <div className='text-gray-500 dark:text-gray-400'>
             {selectedColor}

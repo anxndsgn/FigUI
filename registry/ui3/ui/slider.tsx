@@ -58,8 +58,8 @@ function Slider({
 
 function ColorRangeSlider({
   className,
-  value = [0],
-  defaultValue = [0],
+  value = 0,
+  defaultValue = 0,
   min = 0,
   max = 360,
   ...props
@@ -90,7 +90,7 @@ function ColorRangeSlider({
             )}
             style={
               {
-                '--thumb-color': `hsl(${Array.isArray(value) ? value[0] : value}, 100%, 50%)`,
+                '--thumb-color': `hsl(${value}, 100%, 50%)`,
               } as React.CSSProperties
             }
           />
