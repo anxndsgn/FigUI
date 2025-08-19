@@ -1,6 +1,6 @@
-import React from 'react';
-import { Slider as BaseSlider } from '@base-ui-components/react';
 import { cn } from '@/lib/utils';
+import { Slider as BaseSlider } from '@base-ui-components/react';
+import React from 'react';
 
 function Slider({
   className,
@@ -56,4 +56,48 @@ function Slider({
   );
 }
 
-export { Slider };
+function ColorRangeSlider({
+  className,
+  value = [0],
+  defaultValue = [0],
+  min = 0,
+  max = 360,
+  ...props
+}: React.ComponentProps<typeof BaseSlider.Root>) {
+  return (
+    <BaseSlider.Root
+      value={value}
+      defaultValue={defaultValue}
+      min={min}
+      max={max}
+      {...props}
+    >
+      <BaseSlider.Control
+        className={cn(
+          'inset-ring-black-100 flex w-32 touch-none items-center rounded-full px-2 inset-ring select-none',
+          '[background-image:linear-gradient(to_right,#FF0000_0%,#FFA800_13%,#FFFF00_22%,#00FF00_34%,#00FFFF_50%,#0000FF_66%,#FF00FF_82%,#FF0000_100%)]',
+          className,
+        )}
+      >
+        <BaseSlider.Track
+          className={cn('relative h-4 w-full rounded-full select-none')}
+        >
+          <BaseSlider.Thumb
+            className={cn(
+              'shadow-100 bg-white-1000 size-4 rounded-full select-none',
+              'before:border-black-100 before:absolute before:top-1/2 before:right-1/2 before:size-2 before:translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:content-[""]',
+              'before:[background-color:var(--thumb-color)]',
+            )}
+            style={
+              {
+                '--thumb-color': `hsl(${Array.isArray(value) ? value[0] : value}, 100%, 50%)`,
+              } as React.CSSProperties
+            }
+          />
+        </BaseSlider.Track>
+      </BaseSlider.Control>
+    </BaseSlider.Root>
+  );
+}
+
+export { ColorRangeSlider, Slider };
