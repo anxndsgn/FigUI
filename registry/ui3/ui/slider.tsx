@@ -56,20 +56,63 @@ function Slider({
   );
 }
 
+interface ColorRangeSliderProps
+  extends Omit<
+    React.ComponentProps<typeof BaseSlider.Root>,
+    'value' | 'defaultValue' | 'min' | 'max' | 'onValueChange' | 'children'
+  > {
+  value?: number;
+  defaultValue?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  onValueChange?: (
+    value: number,
+    event: Event,
+    activeThumbIndex: number,
+  ) => void;
+}
+
 function ColorRangeSlider({
   className,
-  value = 0,
+  value,
   defaultValue = 0,
   min = 0,
   max = 360,
+  step = 1,
+  onValueChange,
   ...props
-}: React.ComponentProps<typeof BaseSlider.Root>) {
+}: ColorRangeSliderProps) {
+  const isControlled = value !== undefined;
+  const [internalValue, setInternalValue] = React.useState<number>(
+    defaultValue ?? 0,
+  );
+
+  React.useEffect(() => {
+    if (!isControlled && defaultValue !== undefined) {
+      setInternalValue(defaultValue);
+    }
+  }, [defaultValue, isControlled]);
+
+  const handleValueChange = React.useCallback(
+    (next: number | number[], event: Event, activeThumbIndex: number) => {
+      const nextNumber = Array.isArray(next) ? (next[0] ?? 0) : next;
+      if (!isControlled) setInternalValue(nextNumber);
+      onValueChange?.(nextNumber, event, activeThumbIndex);
+    },
+    [isControlled, onValueChange],
+  );
+
+  const hue = isControlled ? (value as number) : internalValue;
+
   return (
     <BaseSlider.Root
       value={value}
       defaultValue={defaultValue}
       min={min}
       max={max}
+      step={step}
+      onValueChange={handleValueChange}
       {...props}
     >
       <BaseSlider.Control
@@ -90,7 +133,7 @@ function ColorRangeSlider({
             )}
             style={
               {
-                '--thumb-color': `hsl(${value}, 100%, 50%)`,
+                '--thumb-color': `hsl(${hue}, 100%, 50%)`,
               } as React.CSSProperties
             }
           />
