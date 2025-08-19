@@ -11,16 +11,11 @@ export default function ColorRangeSliderDemo() {
 
   return (
     <div className='flex flex-col gap-6'>
-      <div className='space-y-2'>
-        <label className='text-sm font-medium text-gray-900 dark:text-gray-100'>
-          Hue
-        </label>
-        <ColorRangeSlider
-          value={hue}
-          onValueChange={(value) => setHue(value as number)}
-          className={'w-56'}
-        />
-      </div>
+      <ColorRangeSlider
+        value={hue}
+        onValueChange={(value) => setHue(value as number)}
+        className={'w-56'}
+      />
 
       <div className='flex items-center gap-3'>
         <div
