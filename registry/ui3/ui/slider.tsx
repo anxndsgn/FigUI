@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Slider as BaseSlider } from '@base-ui-components/react';
 import React from 'react';
+import chroma from 'chroma-js';
 
 function Slider({
   className,
@@ -143,4 +144,91 @@ function ColorRangeSlider({
   );
 }
 
-export { ColorRangeSlider, Slider };
+interface OpacitySliderProps
+  extends Omit<
+    React.ComponentProps<typeof BaseSlider.Root>,
+    'value' | 'defaultValue' | 'min' | 'max' | 'onValueChange' | 'children'
+  > {
+  value?: number;
+  defaultValue?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  color?: string;
+  onValueChange?: (value: number) => void;
+}
+
+function OpacitySlider({
+  className,
+  value,
+  defaultValue = 0,
+  min = 0,
+  max = 1,
+  step = 0.01,
+  onValueChange,
+  color = 'black',
+  ...props
+}: OpacitySliderProps) {
+  const [lastValidHex, setLastValidHex] = React.useState<string>(() =>
+    chroma.valid(color) ? chroma(color).hex() : chroma('black').hex(),
+  );
+
+  React.useEffect(() => {
+    if (chroma.valid(color)) {
+      setLastValidHex(chroma(color).hex());
+    }
+  }, [color]);
+
+  const handleChange = React.useCallback(
+    (next: number | number[]) => {
+      const nextNumber = Array.isArray(next) ? (next[0] ?? 0) : next;
+      onValueChange?.(nextNumber);
+    },
+    [onValueChange],
+  );
+
+  return (
+    <BaseSlider.Root
+      value={value}
+      defaultValue={defaultValue}
+      min={min}
+      max={max}
+      step={step}
+      onValueChange={
+        handleChange as unknown as React.ComponentProps<
+          typeof BaseSlider.Root
+        >['onValueChange']
+      }
+      {...props}
+    >
+      <BaseSlider.Control
+        className={cn(
+          'inset-ring-black-100 flex w-32 touch-none items-center overflow-hidden rounded-full px-2 inset-ring select-none',
+          '[background-image:linear-gradient(to_right,transparent_0%,var(--opacity-color)_100%),conic-gradient(#d1d5db_25%,#0000_0_50%,#d1d5db_0_75%,#0000_0)]',
+          '[background-size:100%_100%,12px_12px]',
+          className,
+        )}
+        style={{ '--opacity-color': lastValidHex } as React.CSSProperties}
+      >
+        <BaseSlider.Track
+          className={cn('relative h-4 w-full rounded-full select-none')}
+        >
+          <BaseSlider.Thumb
+            className={cn(
+              'shadow-100 bg-white-1000 size-4 rounded-full select-none',
+              'before:border-black-100 before:absolute before:top-1/2 before:right-1/2 before:size-2 before:translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:content-[""]',
+              'before:[background-color:var(--opacity-color)]',
+            )}
+            style={
+              {
+                '--opacity-color': lastValidHex,
+              } as React.CSSProperties
+            }
+          />
+        </BaseSlider.Track>
+      </BaseSlider.Control>
+    </BaseSlider.Root>
+  );
+}
+
+export { ColorRangeSlider, Slider, OpacitySlider };
