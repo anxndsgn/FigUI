@@ -25,9 +25,15 @@ import { ComponentSource } from '@/components/component-source';
 
 ## Example
 
+Up to now, we have three types of sliders:
+
+- Default Slider
+- Color Range Slider
+- Opacity Slider
+
 ### Color Range Slider
 
-Color range slider is a slider that allows the user to select a color (hue value of HSL color space, more specifically) from a range of colors. The slider value is a number between 0 and 360.
+Color range slider is a slider that allows the user to select a color (hue value of HSL color space, more specifically) from a range of colors. The slider value is a number between `0` and `360`.
 
 <ComponentPreview
   name='color-range-slider'
@@ -35,6 +41,10 @@ Color range slider is a slider that allows the user to select a color (hue value
   component={<ColorRangeSliderDemo />}
   description='A color range slider component'
 />
+
+### Opacity Slider
+
+Opacity slider is a slider that allows the user to select a value between `0` and `1`. And accept a `color` string as a prop.
 
 <ComponentPreview
   name='opacity-slider'
