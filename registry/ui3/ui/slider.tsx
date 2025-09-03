@@ -96,10 +96,14 @@ function ColorRangeSlider({
   }, [defaultValue, isControlled]);
 
   const handleValueChange = React.useCallback(
-    (next: number | number[], event: Event, activeThumbIndex: number) => {
+    (
+      next: number | number[],
+      eventDetails: { event: Event },
+      activeThumbIndex: number,
+    ) => {
       const nextNumber = Array.isArray(next) ? (next[0] ?? 0) : next;
       if (!isControlled) setInternalValue(nextNumber);
-      onValueChange?.(nextNumber, event, activeThumbIndex);
+      onValueChange?.(nextNumber, eventDetails.event, activeThumbIndex);
     },
     [isControlled, onValueChange],
   );
@@ -194,11 +198,7 @@ function OpacitySlider({
       min={min}
       max={max}
       step={step}
-      onValueChange={
-        handleChange as unknown as React.ComponentProps<
-          typeof BaseSlider.Root
-        >['onValueChange']
-      }
+      onValueChange={handleChange}
       {...props}
     >
       <BaseSlider.Control
