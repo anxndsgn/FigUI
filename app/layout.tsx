@@ -23,6 +23,11 @@ export default function RootLayout({
         data-domain='figui.dev'
         defer
       />
+      <Script
+        defer
+        src='https://umami.anxndsgn.com/script.js'
+        data-website-id='2c114b7f-6888-41fe-a72f-9d97e9f3b3f2'
+      />
       <body className={`font-(--font-family-default) antialiased`}>
         <ThemeProvider
           attribute='class'
