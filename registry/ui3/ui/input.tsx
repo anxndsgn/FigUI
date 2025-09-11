@@ -49,6 +49,9 @@ function NumericInput({
   type BaseInputKeyDownEvent = Parameters<
     NonNullable<React.ComponentProps<typeof BaseInput>['onKeyDown']>
   >[0];
+  type BaseInputMouseDownEvent = Parameters<
+    NonNullable<React.ComponentProps<typeof BaseInput>['onMouseDown']>
+  >[0];
 
   const toStringValue = (v: unknown): string => {
     if (typeof v === 'number') return String(v);
@@ -76,6 +79,14 @@ function NumericInput({
   const lastValidRef = React.useRef<string>(
     isValidNumber(initial) ? initial : '',
   );
+  const [isMiddleDragging, setIsMiddleDragging] =
+    React.useState<boolean>(false);
+  const dragActiveRef = React.useRef<boolean>(false);
+  const dragStartXRef = React.useRef<number>(0);
+  const dragBaseRef = React.useRef<number>(0);
+  const dragStepRef = React.useRef<number>(Number(nudgeAmount ?? 1));
+  const dragDecimalsRef = React.useRef<number>(0);
+  const dragLastStepsRef = React.useRef<number>(0);
 
   React.useEffect(() => {
     if (value !== undefined) {
@@ -248,6 +259,71 @@ function NumericInput({
     onKeyDown?.(e);
   };
 
+  const handleMouseDown = (e: BaseInputMouseDownEvent) => {
+    // Middle button (button === 1)
+    if (e.button !== 1) return;
+    e.preventDefault();
+    const inputEl = (e.currentTarget as unknown as HTMLElement) ?? null;
+    const containsOperators = /[+\-*/()]/.test(inputValue);
+    let base: number | null = null;
+    if (containsOperators) base = evaluateExpression(inputValue);
+    if (base === null) {
+      if (isValidNumber(inputValue)) base = Number(inputValue);
+      else if (isValidNumber(lastValidRef.current))
+        base = Number(lastValidRef.current);
+      else base = 0;
+    }
+
+    dragActiveRef.current = true;
+    setIsMiddleDragging(true);
+    dragStartXRef.current = (e as unknown as MouseEvent).clientX;
+    dragBaseRef.current = base;
+    dragStepRef.current = Number(nudgeAmount ?? 1);
+    dragDecimalsRef.current = Math.max(
+      getDecimalPlaces(base),
+      getDecimalPlaces(dragStepRef.current),
+    );
+    dragLastStepsRef.current = 0;
+
+    const pixelsPerStep = 8; // horizontal pixels per increment/decrement
+
+    const onMove = (ev: MouseEvent) => {
+      if (!dragActiveRef.current) return;
+      const dx = ev.clientX - dragStartXRef.current;
+      const steps = Math.trunc(dx / pixelsPerStep);
+      if (steps === dragLastStepsRef.current) return;
+      dragLastStepsRef.current = steps;
+      const nextNumber = dragBaseRef.current + steps * dragStepRef.current;
+      const nextString = trimTrailingZeros(
+        nextNumber.toFixed(dragDecimalsRef.current),
+      );
+      setInputValue(nextString);
+      lastValidRef.current = nextString;
+    };
+
+    const endDrag = () => {
+      if (!dragActiveRef.current) return;
+      dragActiveRef.current = false;
+      setIsMiddleDragging(false);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+      document.body.style.cursor = '';
+      if (inputEl) inputEl.style.cursor = '';
+      // normalize if needed
+      commit();
+    };
+
+    const onUp = () => {
+      endDrag();
+    };
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp, { once: true });
+    // Change cursor globally while dragging
+    document.body.style.cursor = 'ew-resize';
+    if (inputEl) inputEl.style.cursor = 'ew-resize';
+  };
+
   return (
     <TextInput
       type='text'
@@ -257,7 +333,20 @@ function NumericInput({
       onChange={handleChange}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
-      className={cn(className, '')}
+      onMouseDown={handleMouseDown}
+      className={cn(
+        className,
+        isMiddleDragging && [
+          // base
+          '!border-blue-600 dark:!border-blue-400',
+          // hover override
+          'hover:!border-blue-600 dark:hover:!border-blue-400',
+          // focus-within override
+          'focus-within:!border-blue-600 dark:focus-within:!border-blue-400',
+          // hover + focus-within combo
+          'hover:focus-within:!border-blue-600 dark:hover:focus-within:!border-blue-400',
+        ],
+      )}
       placeholder={placeholder}
     />
   );
