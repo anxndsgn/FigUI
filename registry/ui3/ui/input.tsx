@@ -29,16 +29,19 @@ function TextInput({
 
 function NumericInput({
   className,
-  placeholder,
   onChange,
   onBlur,
   onKeyDown,
   value,
   defaultValue,
   nudgeAmount = 1,
+  min,
+  max,
   ...props
 }: React.ComponentProps<typeof BaseInput> & {
   nudgeAmount?: number;
+  min?: number | string;
+  max?: number | string;
 }) {
   type BaseInputChangeEvent = Parameters<
     NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
@@ -72,6 +75,25 @@ function NumericInput({
   const trimTrailingZeros = (s: string): string => {
     if (!s.includes('.')) return s;
     return s.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+  };
+
+  const clampNumber = (num: number): number => {
+    const minNum = typeof min === 'string' ? Number(min) : min;
+    const maxNum = typeof max === 'string' ? Number(max) : max;
+    let result = num;
+    if (
+      minNum !== undefined &&
+      Number.isFinite(minNum) &&
+      result < (minNum as number)
+    )
+      result = minNum as number;
+    if (
+      maxNum !== undefined &&
+      Number.isFinite(maxNum) &&
+      result > (maxNum as number)
+    )
+      result = maxNum as number;
+    return result;
   };
 
   const initial = toStringValue(value ?? defaultValue ?? '');
@@ -215,14 +237,34 @@ function NumericInput({
     if (containsOperators) {
       const result = evaluateExpression(inputValue);
       if (result !== null) {
-        const resultStr = String(result);
+        const clamped = clampNumber(result);
+        const resultStr = String(clamped);
         setInputValue(resultStr);
         lastValidRef.current = resultStr;
       } else {
-        setInputValue(lastValidRef.current);
+        if (isValidNumber(lastValidRef.current)) {
+          const clamped = clampNumber(Number(lastValidRef.current));
+          const s = String(clamped);
+          setInputValue(s);
+          lastValidRef.current = s;
+        } else {
+          setInputValue(lastValidRef.current);
+        }
       }
     } else if (!isValidNumber(inputValue)) {
-      setInputValue(lastValidRef.current);
+      if (isValidNumber(lastValidRef.current)) {
+        const clamped = clampNumber(Number(lastValidRef.current));
+        const s = String(clamped);
+        setInputValue(s);
+        lastValidRef.current = s;
+      } else {
+        setInputValue(lastValidRef.current);
+      }
+    } else {
+      const clamped = clampNumber(Number(inputValue));
+      const s = String(clamped);
+      setInputValue(s);
+      lastValidRef.current = s;
     }
   }, [inputValue, lastValidRef, setInputValue]);
 
@@ -245,8 +287,13 @@ function NumericInput({
         else base = 0;
       }
       const step = Number(nudgeAmount ?? 1);
-      const decimals = Math.max(getDecimalPlaces(base), getDecimalPlaces(step));
-      const nextNumber = base + direction * step;
+      const decimals = Math.max(
+        getDecimalPlaces(base),
+        getDecimalPlaces(step),
+        typeof min === 'number' ? getDecimalPlaces(min) : 0,
+        typeof max === 'number' ? getDecimalPlaces(max) : 0,
+      );
+      const nextNumber = clampNumber(base + direction * step);
       const nextString = trimTrailingZeros(nextNumber.toFixed(decimals));
       setInputValue(nextString);
       lastValidRef.current = nextString;
@@ -293,7 +340,9 @@ function NumericInput({
       const steps = Math.trunc(dx / pixelsPerStep);
       if (steps === dragLastStepsRef.current) return;
       dragLastStepsRef.current = steps;
-      const nextNumber = dragBaseRef.current + steps * dragStepRef.current;
+      const nextNumber = clampNumber(
+        dragBaseRef.current + steps * dragStepRef.current,
+      );
       const nextString = trimTrailingZeros(
         nextNumber.toFixed(dragDecimalsRef.current),
       );
@@ -309,8 +358,7 @@ function NumericInput({
       window.removeEventListener('mouseup', onUp);
       document.body.style.cursor = '';
       if (inputEl) inputEl.style.cursor = '';
-      // normalize if needed
-      commit();
+      // Keep the value set during drag; it's already clamped on move
     };
 
     const onUp = () => {
@@ -329,6 +377,8 @@ function NumericInput({
       type='text'
       inputMode='decimal'
       {...props}
+      min={min as any}
+      max={max as any}
       value={inputValue}
       onChange={handleChange}
       onBlur={handleBlur}
@@ -347,7 +397,6 @@ function NumericInput({
           'hover:focus-within:!border-blue-600 dark:hover:focus-within:!border-blue-400',
         ],
       )}
-      placeholder={placeholder}
     />
   );
 }
