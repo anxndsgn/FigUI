@@ -3,7 +3,7 @@
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/registry/ui3/ui/button';
 import { Checkbox } from '@/registry/ui3/ui/checkbox';
-import { Input } from '@/registry/ui3/ui/input';
+import { TextInput } from '@/registry/ui3/ui/input';
 import {
   Select,
   SelectContent,
@@ -103,7 +103,7 @@ export default function Home() {
             />
           </div>
           <div className='relative flex min-h-24 flex-col items-center justify-center gap-4'>
-            <Input id='input' placeholder='Input' className='max-w-32' />
+            <TextInput id='input' placeholder='Input' className='max-w-32' />
           </div>
         </div>
         <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>

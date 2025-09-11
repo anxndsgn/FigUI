@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from '@/registry/ui3/ui/input';
+import { TextInput, NumericInput } from '@/registry/ui3/ui/input';
 
 function SearchIcon({ className }: { className: string }) {
   return (
@@ -27,14 +27,15 @@ function SearchIcon({ className }: { className: string }) {
 export default function InputDemo() {
   return (
     <div className='flex flex-col flex-wrap items-center gap-2'>
-      <Input placeholder='Input' className='w-32' />
-      <Input placeholder='Input large' className='h-8 w-32' />
-      <Input
+      <TextInput placeholder='Input' className='w-32' />
+      <NumericInput className='w-32' placeholder={'12'} />
+      <TextInput placeholder='Input large' className='h-8 w-32' />
+      <TextInput
         placeholder='Input'
         className='w-32'
         iconLead={<SearchIcon className='size-6' />}
       />
-      <Input
+      <TextInput
         placeholder='Input'
         className='h-8 w-32'
         iconLead={<SearchIcon className='size-6' />}

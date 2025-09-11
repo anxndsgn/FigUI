@@ -8,6 +8,18 @@
 }
 
 :root {
+  /* Selection color */
+  --selection-color: #0d9aff6f;
+
+  ::selection {
+    background: var(--selection-color);
+    text-shadow: none;
+  }
+
+  ::-moz-selection {
+    background: var(--selection-color);
+    text-shadow: none;
+  }
   /* Sizing */
   --radius-full: 9999px;
   --radius-large: 0.8125rem;
@@ -314,6 +326,17 @@
 }
 
 .dark {
+  ::selection {
+    background: var(--selection-color);
+    color: var(--color-white-1000);
+    text-shadow: none;
+  }
+
+  ::-moz-selection {
+    background: var(--selection-color);
+    color: var(--color-white-1000);
+    text-shadow: none;
+  }
   --color-black-100: #0000000d;
   --color-black-200: #0000001a;
   --color-black-300: #00000033;
