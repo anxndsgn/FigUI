@@ -4,18 +4,16 @@ import { Input as BaseInput } from '@base-ui-components/react';
 import { cn } from '@/lib/utils';
 import chroma from 'chroma-js';
 
-const inputBorderStyle =
-  'hover:border-grey-200 dark:hover:border-grey-600 rounded-md border border-transparent pr-2 outline-none focus-within:border-blue-500 hover:focus-within:border-blue-500 aria-invalid:border-red-500 aria-invalid:ring-red-500/20 dark:focus-within:border-blue-500';
-
 interface BaseInputProps extends React.ComponentProps<typeof BaseInput> {
   iconLead?: React.ReactNode;
+  iconTrail?: React.ReactNode;
 }
 
 function InputWrapper({ className, children }: BaseInputProps) {
   return (
     <div
       className={cn(
-        'placeholder:text-grey-400 text-black-800 bg-grey-100 typography-body-medium dark:placeholder:text-grey-400 dark:bg-grey-700 dark:text-white-1000 flex h-6 w-full min-w-0 items-center disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
+        'placeholder:text-grey-400 text-black-800 bg-grey-100 typography-body-medium hover:border-grey-200 dark:placeholder:text-grey-400 dark:bg-grey-700 dark:text-white-1000 dark:hover:border-grey-600 flex h-6 w-full min-w-0 items-center rounded-md border border-transparent pr-2 outline-none selection:bg-blue-500 focus-within:border-blue-500 hover:focus-within:border-blue-500 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-red-500 aria-invalid:ring-red-500/20 dark:focus-within:border-blue-500',
         className,
       )}
     >
@@ -24,27 +22,43 @@ function InputWrapper({ className, children }: BaseInputProps) {
   );
 }
 
-function TextInput({ className, type, iconLead, ...props }: BaseInputProps) {
+function TextInputPrimitive({
+  className,
+  type,
+  iconLead,
+  iconTrail,
+  ...props
+}: BaseInputProps) {
   return (
-    <div
-      className={cn(
-        'placeholder:text-grey-400 text-black-800 bg-grey-100 typography-body-medium hover:border-grey-200 dark:placeholder:text-grey-400 dark:bg-grey-700 dark:text-white-1000 dark:hover:border-grey-600 flex h-6 w-full min-w-0 items-center rounded-md border border-transparent pr-2 outline-none selection:bg-blue-500 focus-within:border-blue-500 hover:focus-within:border-blue-500 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-red-500 aria-invalid:ring-red-500/20 dark:focus-within:border-blue-500',
-        iconLead ? '' : 'pl-2',
-        className,
-      )}
-    >
+    <div className='flex items-center'>
       {iconLead && (
         <div className='flex aspect-square size-6 items-center justify-center'>
           {iconLead}
         </div>
       )}
-      <BaseInput type={type} {...props} className='w-full outline-none' />
+      <BaseInput
+        type={type}
+        {...props}
+        className={cn('w-full outline-none', className)}
+      />
+      {iconTrail && (
+        <div className='flex aspect-square size-6 items-center justify-center'>
+          {iconTrail}
+        </div>
+      )}
     </div>
   );
 }
 
-function NumericInput({
-  className,
+function TextInput({ className, type, iconLead, ...props }: BaseInputProps) {
+  return (
+    <InputWrapper className={cn(iconLead ? '' : 'pl-2', className)}>
+      <TextInputPrimitive type={type} iconLead={iconLead} {...props} />
+    </InputWrapper>
+  );
+}
+
+function NumericInputPrimitive({
   onChange,
   onBlur,
   onKeyDown,
@@ -53,11 +67,14 @@ function NumericInput({
   nudgeAmount = 1,
   min,
   max,
+  className,
+  onImmediateValueChange,
   ...props
 }: BaseInputProps & {
   nudgeAmount?: number;
   min?: number | string;
   max?: number | string;
+  onImmediateValueChange?: (next: string) => void;
 }) {
   type BaseInputChangeEvent = Parameters<
     NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
@@ -140,6 +157,7 @@ function NumericInput({
     if (isValidNumber(next)) {
       lastValidRef.current = next;
     }
+    onImmediateValueChange?.(next);
     onChange?.(e);
   };
 
@@ -313,6 +331,7 @@ function NumericInput({
       const nextString = trimTrailingZeros(nextNumber.toFixed(decimals));
       setInputValue(nextString);
       lastValidRef.current = nextString;
+      onImmediateValueChange?.(nextString);
     } else if (e.key === 'Enter') {
       // Apply the same logic as blur
       commit();
@@ -364,6 +383,7 @@ function NumericInput({
       );
       setInputValue(nextString);
       lastValidRef.current = nextString;
+      onImmediateValueChange?.(nextString);
     };
 
     const endDrag = () => {
@@ -389,9 +409,10 @@ function NumericInput({
   };
 
   return (
-    <TextInput
+    <TextInputPrimitive
       type='text'
       inputMode='decimal'
+      className={className}
       {...props}
       min={min as any}
       max={max as any}
@@ -400,41 +421,62 @@ function NumericInput({
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
       onMouseDown={handleMouseDown}
-      className={cn(
-        className,
-        isMiddleDragging && [
-          // base
-          '!border-blue-600 dark:!border-blue-400',
-          // hover override
-          'hover:!border-blue-600 dark:hover:!border-blue-400',
-          // focus-within override
-          'focus-within:!border-blue-600 dark:focus-within:!border-blue-400',
-          // hover + focus-within combo
-          'hover:focus-within:!border-blue-600 dark:hover:focus-within:!border-blue-400',
-        ],
-      )}
     />
+  );
+}
+
+function NumericInput({ className, iconLead, ...props }: BaseInputProps) {
+  return (
+    <InputWrapper className={cn(iconLead ? '' : 'pl-2', className)}>
+      <NumericInputPrimitive iconLead={iconLead} {...props} />
+    </InputWrapper>
   );
 }
 
 function ColorChit({
   color,
+  solidColor,
   className,
 }: {
   color: string;
+  solidColor?: string;
   className?: string;
 }) {
   const swatch = React.useMemo(() => {
+    const normalize = (s: string): string => {
+      const t = s.trim();
+      if (/^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(t))
+        return `#${t}`;
+      return t;
+    };
     try {
-      if (chroma.valid(color)) return chroma(color).hex();
+      const norm = normalize(color);
+      if (chroma.valid(norm)) return chroma(norm).css();
     } catch {}
     return null;
   }, [color]);
   return (
     <div
-      className={cn('border-black-100 size-4 rounded-sm border', className)}
-      style={{ backgroundColor: swatch ?? 'transparent' }}
-    />
+      className={cn(
+        'inset-ring-black-200 flex size-4 shrink-0 justify-start overflow-hidden rounded-sm inset-ring',
+        className,
+      )}
+      style={{
+        backgroundImage: swatch
+          ? `linear-gradient(${swatch}, ${swatch}), conic-gradient(#eee 25%, #ccc 0 50%, #eee 0 75%, #ccc 0)`
+          : 'conic-gradient(#eee 25%, #ccc 0 50%, #eee 0 75%, #ccc 0)',
+        backgroundSize: swatch ? 'auto, 8px 8px' : '8px 8px',
+        backgroundPosition: swatch ? '0 0, 0 0' : '0 0',
+        backgroundRepeat: 'repeat',
+      }}
+    >
+      <div
+        className='w-1/2'
+        style={{
+          backgroundColor: chroma(solidColor ?? color).hex(),
+        }}
+      />
+    </div>
   );
 }
 function ColorInput({
@@ -443,8 +485,14 @@ function ColorInput({
   onKeyDown,
   value,
   defaultValue,
+  colorChit,
+  className,
+  opacity = false,
   ...props
-}: BaseInputProps) {
+}: React.ComponentProps<typeof BaseInput> & {
+  opacity?: boolean;
+  colorChit?: React.ReactNode;
+}) {
   type BaseInputChangeEvent = Parameters<
     NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
   >[0];
@@ -461,12 +509,22 @@ function ColorInput({
   };
 
   const normalizeForValidation = (s: string): string => {
-    if (/^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(s)) return `#${s}`;
+    if (/^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(s))
+      return `#${s}`;
     return s;
   };
 
   const formatHexNoHashUpper = (s: string): string => {
     return chroma(normalizeForValidation(s)).hex().slice(1).toUpperCase();
+  };
+
+  const hasExplicitAlpha = (s: string): boolean => {
+    const t = s.trim();
+    if (/^#?[0-9a-fA-F]{8}$/.test(t)) return true;
+    if (/^rgba\(/i.test(t)) return true;
+    if (/^hsla\(/i.test(t)) return true;
+    if (/^color\(/i.test(t)) return true;
+    return false;
   };
 
   const initial = toStringValue(value ?? defaultValue ?? '');
@@ -476,13 +534,29 @@ function ColorInput({
       ? formatHexNoHashUpper(initial)
       : '000000',
   );
+  const [opacityPercent, setOpacityPercent] = React.useState<number>(() => {
+    try {
+      if (chroma.valid(normalizeForValidation(initial))) {
+        const a = chroma(normalizeForValidation(initial)).alpha();
+        return Math.round(a * 100);
+      }
+    } catch {}
+    return 100;
+  });
 
   React.useEffect(() => {
     if (value !== undefined) {
       const s = toStringValue(value);
       setInputValue(s);
-      if (chroma.valid(normalizeForValidation(s)))
+      if (chroma.valid(normalizeForValidation(s))) {
         lastValidRef.current = formatHexNoHashUpper(s);
+        if (hasExplicitAlpha(s)) {
+          try {
+            const a = chroma(normalizeForValidation(s)).alpha();
+            setOpacityPercent(Math.round(a * 100));
+          } catch {}
+        }
+      }
     }
   }, [value]);
 
@@ -491,6 +565,12 @@ function ColorInput({
     setInputValue(next);
     if (chroma.valid(normalizeForValidation(next))) {
       lastValidRef.current = formatHexNoHashUpper(next);
+      if (hasExplicitAlpha(next)) {
+        try {
+          const a = chroma(normalizeForValidation(next)).alpha();
+          setOpacityPercent(Math.round(a * 100));
+        } catch {}
+      }
     }
     onChange?.(e);
   };
@@ -500,6 +580,12 @@ function ColorInput({
       const hexNoHashUpper = formatHexNoHashUpper(inputValue);
       setInputValue(hexNoHashUpper);
       lastValidRef.current = hexNoHashUpper;
+      if (hasExplicitAlpha(inputValue)) {
+        try {
+          const a = chroma(normalizeForValidation(inputValue)).alpha();
+          setOpacityPercent(Math.round(a * 100));
+        } catch {}
+      }
     } else {
       setInputValue(lastValidRef.current);
     }
@@ -518,16 +604,82 @@ function ColorInput({
     onKeyDown?.(e);
   };
 
+  const previewHex = lastValidRef.current;
+  const previewColor = React.useMemo(() => {
+    try {
+      return chroma(`#${previewHex}`)
+        .alpha((opacityPercent ?? 100) / 100)
+        .css();
+    } catch {
+      return `#${previewHex}`;
+    }
+  }, [previewHex, opacityPercent]);
+
   return (
-    <TextInput
-      type='text'
-      {...props}
-      value={inputValue}
-      iconLead={<ColorChit color={`#${lastValidRef.current}`} />}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      onKeyDown={handleKeyDown}
-    />
+    <InputWrapper
+      className={cn('w-40 pr-0', colorChit ? '' : 'pl-2', className)}
+    >
+      {colorChit && (
+        <div className='flex aspect-square size-6 shrink-0 items-center justify-center'>
+          <ColorChit color={previewColor} solidColor={previewHex} />
+        </div>
+      )}
+      <TextInputPrimitive
+        type='text'
+        {...props}
+        value={inputValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+        className='w-full min-w-16 flex-1 outline-none'
+      />
+      {opacity && (
+        <div className='flex w-full items-center justify-between'>
+          <NumericInputPrimitive
+            min={0}
+            max={100}
+            value={String(opacityPercent)}
+            onImmediateValueChange={(next) => {
+              const v = Number(next);
+              if (Number.isFinite(v)) {
+                const clamped = Math.max(0, Math.min(100, v));
+                setOpacityPercent(clamped);
+              }
+            }}
+            onChange={(e) => {
+              const v = Number((e.target as HTMLInputElement).value);
+              if (Number.isFinite(v)) {
+                const clamped = Math.max(0, Math.min(100, v));
+                setOpacityPercent(clamped);
+              }
+            }}
+            onBlur={(e) => {
+              const v = Number((e.target as HTMLInputElement).value);
+              const clamped = Number.isFinite(v)
+                ? Math.max(0, Math.min(100, v))
+                : opacityPercent;
+              setOpacityPercent(clamped);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                const el = e.currentTarget as unknown as HTMLInputElement;
+                const v = Number(el.value);
+                const clamped = Number.isFinite(v)
+                  ? Math.max(0, Math.min(100, v))
+                  : opacityPercent;
+                setOpacityPercent(clamped);
+              }
+            }}
+            className={
+              'border-white-1000 dark:border-grey-800 h-6 w-full border-l pl-2 outline-none'
+            }
+          />
+          <div className='flex aspect-square size-6 items-center justify-center'>
+            <span className='text-black-600 dark:text-white-600'>%</span>
+          </div>
+        </div>
+      )}
+    </InputWrapper>
   );
 }
 
