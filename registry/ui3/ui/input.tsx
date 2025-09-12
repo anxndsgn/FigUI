@@ -2,13 +2,29 @@
 import * as React from 'react';
 import { Input as BaseInput } from '@base-ui-components/react';
 import { cn } from '@/lib/utils';
+import chroma from 'chroma-js';
 
-function TextInput({
-  className,
-  type,
-  iconLead,
-  ...props
-}: React.ComponentProps<typeof BaseInput> & { iconLead?: React.ReactNode }) {
+const inputBorderStyle =
+  'hover:border-grey-200 dark:hover:border-grey-600 rounded-md border border-transparent pr-2 outline-none focus-within:border-blue-500 hover:focus-within:border-blue-500 aria-invalid:border-red-500 aria-invalid:ring-red-500/20 dark:focus-within:border-blue-500';
+
+interface BaseInputProps extends React.ComponentProps<typeof BaseInput> {
+  iconLead?: React.ReactNode;
+}
+
+function InputWrapper({ className, children }: BaseInputProps) {
+  return (
+    <div
+      className={cn(
+        'placeholder:text-grey-400 text-black-800 bg-grey-100 typography-body-medium dark:placeholder:text-grey-400 dark:bg-grey-700 dark:text-white-1000 flex h-6 w-full min-w-0 items-center disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+function TextInput({ className, type, iconLead, ...props }: BaseInputProps) {
   return (
     <div
       className={cn(
@@ -38,7 +54,7 @@ function NumericInput({
   min,
   max,
   ...props
-}: React.ComponentProps<typeof BaseInput> & {
+}: BaseInputProps & {
   nudgeAmount?: number;
   min?: number | string;
   max?: number | string;
@@ -401,6 +417,120 @@ function NumericInput({
   );
 }
 
+function ColorChit({
+  color,
+  className,
+}: {
+  color: string;
+  className?: string;
+}) {
+  const swatch = React.useMemo(() => {
+    try {
+      if (chroma.valid(color)) return chroma(color).hex();
+    } catch {}
+    return null;
+  }, [color]);
+  return (
+    <div
+      className={cn('border-black-100 size-4 rounded-sm border', className)}
+      style={{ backgroundColor: swatch ?? 'transparent' }}
+    />
+  );
+}
+function ColorInput({
+  onChange,
+  onBlur,
+  onKeyDown,
+  value,
+  defaultValue,
+  ...props
+}: BaseInputProps) {
+  type BaseInputChangeEvent = Parameters<
+    NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
+  >[0];
+  type BaseInputBlurEvent = Parameters<
+    NonNullable<React.ComponentProps<typeof BaseInput>['onBlur']>
+  >[0];
+  type BaseInputKeyDownEvent = Parameters<
+    NonNullable<React.ComponentProps<typeof BaseInput>['onKeyDown']>
+  >[0];
+
+  const toStringValue = (v: unknown): string => {
+    if (typeof v === 'string') return v;
+    return '';
+  };
+
+  const normalizeForValidation = (s: string): string => {
+    if (/^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(s)) return `#${s}`;
+    return s;
+  };
+
+  const formatHexNoHashUpper = (s: string): string => {
+    return chroma(normalizeForValidation(s)).hex().slice(1).toUpperCase();
+  };
+
+  const initial = toStringValue(value ?? defaultValue ?? '');
+  const [inputValue, setInputValue] = React.useState<string>(initial);
+  const lastValidRef = React.useRef<string>(
+    chroma.valid(normalizeForValidation(initial))
+      ? formatHexNoHashUpper(initial)
+      : '000000',
+  );
+
+  React.useEffect(() => {
+    if (value !== undefined) {
+      const s = toStringValue(value);
+      setInputValue(s);
+      if (chroma.valid(normalizeForValidation(s)))
+        lastValidRef.current = formatHexNoHashUpper(s);
+    }
+  }, [value]);
+
+  const handleChange = (e: BaseInputChangeEvent) => {
+    const next = e.target.value;
+    setInputValue(next);
+    if (chroma.valid(normalizeForValidation(next))) {
+      lastValidRef.current = formatHexNoHashUpper(next);
+    }
+    onChange?.(e);
+  };
+
+  const commit = React.useCallback(() => {
+    if (chroma.valid(normalizeForValidation(inputValue))) {
+      const hexNoHashUpper = formatHexNoHashUpper(inputValue);
+      setInputValue(hexNoHashUpper);
+      lastValidRef.current = hexNoHashUpper;
+    } else {
+      setInputValue(lastValidRef.current);
+    }
+  }, [inputValue]);
+
+  const handleBlur = (e: BaseInputBlurEvent) => {
+    commit();
+    onBlur?.(e);
+  };
+
+  const handleKeyDown = (e: BaseInputKeyDownEvent) => {
+    if (e.key === 'Enter') {
+      commit();
+      e.currentTarget.blur();
+    }
+    onKeyDown?.(e);
+  };
+
+  return (
+    <TextInput
+      type='text'
+      {...props}
+      value={inputValue}
+      iconLead={<ColorChit color={`#${lastValidRef.current}`} />}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
+    />
+  );
+}
+
 const Input = TextInput;
 
-export { TextInput, NumericInput, Input };
+export { TextInput, NumericInput, Input, ColorInput, ColorChit };
