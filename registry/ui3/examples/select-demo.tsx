@@ -22,11 +22,7 @@ export function SelectDemo() {
   return (
     <div className='flex flex-col items-center justify-center gap-4'>
       <Select items={fonts}>
-        <SelectTrigger
-          className='w-40'
-          iconLeading={<RulerIcon />}
-          size='large'
-        >
+        <SelectTrigger className='w-40' iconLead={<RulerIcon />}>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -39,7 +35,7 @@ export function SelectDemo() {
       </Select>
 
       <Select items={fonts}>
-        <SelectTrigger className='w-32'>
+        <SelectTrigger className='w-32' iconLead='Aa'>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
