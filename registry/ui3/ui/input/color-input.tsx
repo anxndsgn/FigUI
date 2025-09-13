@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import chroma from 'chroma-js';
 import { TextInputPrimitive } from './text-input';
-import { InputRoot } from './input-utils';
+import { InputRoot, type BaseInputProps } from './input-utils';
 import { Input as BaseInput } from '@base-ui-components/react';
 
 function ColorChit({
@@ -13,6 +13,7 @@ function ColorChit({
   color: string;
   solidColor?: string;
   className?: string;
+  onClick?: () => void;
 }) {
   const swatch = React.useMemo(() => {
     const normalize = (s: string): string => {
@@ -27,6 +28,11 @@ function ColorChit({
     } catch {}
     return null;
   }, [color]);
+
+  const isValid = React.useMemo(() => {
+    return chroma.valid(color);
+  }, [color]);
+
   return (
     <div
       className={cn(
@@ -45,7 +51,9 @@ function ColorChit({
       <div
         className='w-1/2'
         style={{
-          backgroundColor: chroma(solidColor ?? color).hex(),
+          backgroundColor: isValid
+            ? chroma(solidColor ?? color).hex()
+            : 'transparent',
         }}
       />
     </div>
@@ -58,13 +66,9 @@ function ColorInputPrimitive({
   onKeyDown,
   value,
   defaultValue,
-  colorChit,
   className,
   ...props
-}: React.ComponentProps<typeof BaseInput> & {
-  opacity?: boolean;
-  colorChit?: React.ReactNode;
-}) {
+}: BaseInputProps) {
   type BaseInputChangeEvent = Parameters<
     NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
   >[0];
@@ -194,7 +198,6 @@ function ColorInputPrimitive({
       value={inputValue}
       onChange={handleChange}
       onBlur={handleBlur}
-      iconLead={<ColorChit color={previewColor} solidColor={previewHex} />}
       onKeyDown={handleKeyDown}
       className={cn('w-full flex-1 outline-none', className)}
     />
@@ -203,18 +206,11 @@ function ColorInputPrimitive({
 
 function ColorInput({
   className,
-  colorChit,
   ...props
-}: React.ComponentProps<typeof BaseInput> & {
-  colorChit?: React.ReactNode;
-}) {
+}: React.ComponentProps<typeof BaseInput>) {
   return (
-    <InputRoot className={cn('pr-0', colorChit ? 'pl-0' : '', className)}>
-      <ColorInputPrimitive
-        colorChit={colorChit ?? undefined}
-        className={className}
-        {...props}
-      />
+    <InputRoot className={cn(className)}>
+      <ColorInputPrimitive {...props} />
     </InputRoot>
   );
 }
