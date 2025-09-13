@@ -9,7 +9,7 @@ function TextInputPrimitive({
   ...props
 }: BaseInputProps) {
   return (
-    <div className='flex items-center pr-2 pl-2 has-data-[figui=input-icon-lead]:pl-0 has-data-[figui=input-icon-trail]:pr-0'>
+    <div className='flex h-full items-center pr-2 pl-2 has-data-[figui=input-icon-lead]:pl-0 has-data-[figui=input-icon-trail]:pr-0'>
       {iconLead && (
         <div
           className='flex aspect-square size-6 items-center justify-center'
@@ -19,7 +19,7 @@ function TextInputPrimitive({
         </div>
       )}
       <BaseInput
-        className={cn('h-6 w-full outline-none', className)}
+        className={cn('h-full w-full outline-none', className)}
         {...props}
       />
       {iconTrail && (
