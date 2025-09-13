@@ -11,6 +11,13 @@ import { Input as BaseInput } from '@base-ui-components/react';
 
 import React from 'react';
 
+interface NumericInputProps extends BaseInputProps {
+  nudgeAmount?: number;
+  min?: number | string;
+  max?: number | string;
+  onValueChange?: (next: string) => void;
+}
+
 function NumericInputPrimitive({
   onChange,
   onBlur,
@@ -21,14 +28,9 @@ function NumericInputPrimitive({
   min,
   max,
   className,
-  onImmediateValueChange,
+  onValueChange,
   ...props
-}: BaseInputProps & {
-  nudgeAmount?: number;
-  min?: number | string;
-  max?: number | string;
-  onImmediateValueChange?: (next: string) => void;
-}) {
+}: NumericInputProps) {
   type BaseInputChangeEvent = Parameters<
     NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
   >[0];
@@ -109,7 +111,7 @@ function NumericInputPrimitive({
     if (isValidNumber(next)) {
       lastValidRef.current = next;
     }
-    onImmediateValueChange?.(next);
+    onValueChange?.(next);
     onChange?.(e);
   };
 
@@ -283,7 +285,7 @@ function NumericInputPrimitive({
       const nextString = trimTrailingZeros(nextNumber.toFixed(decimals));
       setInputValue(nextString);
       lastValidRef.current = nextString;
-      onImmediateValueChange?.(nextString);
+      onValueChange?.(nextString);
     } else if (e.key === 'Enter') {
       // Apply the same logic as blur
       numericInputCommit();
@@ -335,7 +337,7 @@ function NumericInputPrimitive({
       );
       setInputValue(nextString);
       lastValidRef.current = nextString;
-      onImmediateValueChange?.(nextString);
+      onValueChange?.(nextString);
     };
 
     const endDrag = () => {
@@ -377,9 +379,9 @@ function NumericInputPrimitive({
   );
 }
 
-function NumericInput({ className, iconLead, ...props }: BaseInputProps) {
+function NumericInput({ className, iconLead, ...props }: NumericInputProps) {
   return (
-    <InputRoot className={cn(iconLead ? '' : 'pl-0', className)}>
+    <InputRoot className={className}>
       <NumericInputPrimitive iconLead={iconLead} {...props} />
     </InputRoot>
   );
