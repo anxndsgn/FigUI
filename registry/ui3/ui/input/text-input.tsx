@@ -16,7 +16,7 @@ function TextInputPrimitive({
           data-figui='input-icon-lead'
         >
           {typeof iconLead === 'string' ? (
-            <span className='text-black-600 dark:text-white-700'>
+            <span className='text-black-500 dark:text-white-500'>
               {iconLead}
             </span>
           ) : (
@@ -34,7 +34,7 @@ function TextInputPrimitive({
           data-figui='input-icon-trail'
         >
           {typeof iconTrail === 'string' ? (
-            <span className='text-black-600 dark:text-white-700'>
+            <span className='text-black-500 dark:text-white-500'>
               {iconTrail}
             </span>
           ) : (
