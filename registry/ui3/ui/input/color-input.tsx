@@ -5,25 +5,47 @@ import { TextInputPrimitive } from './text-input';
 import { InputRoot, type BaseInputProps } from './input-utils';
 import { Input as BaseInput } from '@base-ui-components/react';
 
-function ColorChit({
+const HEX_RE = /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+const HEX8_RE = /^#?[0-9a-fA-F]{8}$/;
+const RGBA_RE = /^rgba\(/i;
+const HSLA_RE = /^hsla\(/i;
+const COLOR_FUNC_RE = /^color\(/i;
+
+const normalizeHex = (s: string): string => {
+  const t = s.trim();
+  return HEX_RE.test(t) ? `#${t}` : t;
+};
+
+const toStringValue = (v: unknown): string => (typeof v === 'string' ? v : '');
+
+const formatHexNoHashUpper = (s: string): string => {
+  return chroma(normalizeHex(s)).hex().slice(1).toUpperCase();
+};
+
+const hasExplicitAlpha = (s: string): boolean => {
+  const t = s.trim();
+  return (
+    HEX8_RE.test(t) ||
+    RGBA_RE.test(t) ||
+    HSLA_RE.test(t) ||
+    COLOR_FUNC_RE.test(t)
+  );
+};
+
+const ColorChit = React.memo(function ColorChit({
   color,
   opacity,
   className,
+  onClick,
 }: {
   color: string;
   opacity?: string | number;
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }) {
   const swatch = React.useMemo(() => {
-    const normalize = (s: string): string => {
-      const t = s.trim();
-      if (/^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(t))
-        return `#${t}`;
-      return t;
-    };
     try {
-      const norm = normalize(color);
+      const norm = normalizeHex(color);
       if (chroma.valid(norm)) return chroma(norm).css();
     } catch {}
     return null;
@@ -33,6 +55,7 @@ function ColorChit({
     <div
       className={cn(
         'inset-ring-black-200 dark:inset-ring-white-200 flex size-4 shrink-0 justify-start overflow-hidden rounded-sm inset-ring',
+        onClick && 'cursor-pointer',
         className,
       )}
       style={{
@@ -42,6 +65,7 @@ function ColorChit({
         backgroundPosition: '0 0',
         backgroundRepeat: 'repeat',
       }}
+      onClick={onClick}
     >
       <div
         className='h-full w-1/2'
@@ -53,12 +77,12 @@ function ColorChit({
         className='h-full w-1/2'
         style={{
           backgroundColor: swatch ?? 'transparent',
-          opacity: Number(opacity) / 100,
+          opacity: opacity === undefined ? undefined : Number(opacity) / 100,
         }}
       />
     </div>
   );
-}
+});
 
 function ColorInputPrimitive({
   onChange,
@@ -79,41 +103,17 @@ function ColorInputPrimitive({
     NonNullable<React.ComponentProps<typeof BaseInput>['onKeyDown']>
   >[0];
 
-  const toStringValue = (v: unknown): string => {
-    if (typeof v === 'string') return v;
-    return '';
-  };
-
-  const normalizeForValidation = (s: string): string => {
-    if (/^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(s))
-      return `#${s}`;
-    return s;
-  };
-
-  const formatHexNoHashUpper = (s: string): string => {
-    return chroma(normalizeForValidation(s)).hex().slice(1).toUpperCase();
-  };
-
-  const hasExplicitAlpha = (s: string): boolean => {
-    const t = s.trim();
-    if (/^#?[0-9a-fA-F]{8}$/.test(t)) return true;
-    if (/^rgba\(/i.test(t)) return true;
-    if (/^hsla\(/i.test(t)) return true;
-    if (/^color\(/i.test(t)) return true;
-    return false;
-  };
-
   const initial = toStringValue(value ?? defaultValue ?? '');
   const [inputValue, setInputValue] = React.useState<string>(initial);
   const lastValidRef = React.useRef<string>(
-    chroma.valid(normalizeForValidation(initial))
+    chroma.valid(normalizeHex(initial))
       ? formatHexNoHashUpper(initial)
       : '000000',
   );
   const [opacityPercent, setOpacityPercent] = React.useState<number>(() => {
     try {
-      if (chroma.valid(normalizeForValidation(initial))) {
-        const a = chroma(normalizeForValidation(initial)).alpha();
+      if (chroma.valid(normalizeHex(initial))) {
+        const a = chroma(normalizeHex(initial)).alpha();
         return Math.round(a * 100);
       }
     } catch {}
@@ -124,11 +124,11 @@ function ColorInputPrimitive({
     if (value !== undefined) {
       const s = toStringValue(value);
       setInputValue(s);
-      if (chroma.valid(normalizeForValidation(s))) {
+      if (chroma.valid(normalizeHex(s))) {
         lastValidRef.current = formatHexNoHashUpper(s);
         if (hasExplicitAlpha(s)) {
           try {
-            const a = chroma(normalizeForValidation(s)).alpha();
+            const a = chroma(normalizeHex(s)).alpha();
             setOpacityPercent(Math.round(a * 100));
           } catch {}
         }
@@ -136,29 +136,32 @@ function ColorInputPrimitive({
     }
   }, [value]);
 
-  const handleChange = (e: BaseInputChangeEvent) => {
-    const next = e.target.value;
-    setInputValue(next);
-    if (chroma.valid(normalizeForValidation(next))) {
-      lastValidRef.current = formatHexNoHashUpper(next);
-      if (hasExplicitAlpha(next)) {
-        try {
-          const a = chroma(normalizeForValidation(next)).alpha();
-          setOpacityPercent(Math.round(a * 100));
-        } catch {}
+  const handleChange = React.useCallback(
+    (e: BaseInputChangeEvent) => {
+      const next = e.target.value;
+      setInputValue(next);
+      if (chroma.valid(normalizeHex(next))) {
+        lastValidRef.current = formatHexNoHashUpper(next);
+        if (hasExplicitAlpha(next)) {
+          try {
+            const a = chroma(normalizeHex(next)).alpha();
+            setOpacityPercent(Math.round(a * 100));
+          } catch {}
+        }
       }
-    }
-    onChange?.(e);
-  };
+      onChange?.(e);
+    },
+    [onChange],
+  );
 
   const commit = React.useCallback(() => {
-    if (chroma.valid(normalizeForValidation(inputValue))) {
+    if (chroma.valid(normalizeHex(inputValue))) {
       const hexNoHashUpper = formatHexNoHashUpper(inputValue);
       setInputValue(hexNoHashUpper);
       lastValidRef.current = hexNoHashUpper;
       if (hasExplicitAlpha(inputValue)) {
         try {
-          const a = chroma(normalizeForValidation(inputValue)).alpha();
+          const a = chroma(normalizeHex(inputValue)).alpha();
           setOpacityPercent(Math.round(a * 100));
         } catch {}
       }
@@ -167,18 +170,24 @@ function ColorInputPrimitive({
     }
   }, [inputValue]);
 
-  const handleBlur = (e: BaseInputBlurEvent) => {
-    commit();
-    onBlur?.(e);
-  };
-
-  const handleKeyDown = (e: BaseInputKeyDownEvent) => {
-    if (e.key === 'Enter') {
+  const handleBlur = React.useCallback(
+    (e: BaseInputBlurEvent) => {
       commit();
-      e.currentTarget.blur();
-    }
-    onKeyDown?.(e);
-  };
+      onBlur?.(e);
+    },
+    [commit, onBlur],
+  );
+
+  const handleKeyDown = React.useCallback(
+    (e: BaseInputKeyDownEvent) => {
+      if (e.key === 'Enter') {
+        commit();
+        e.currentTarget.blur();
+      }
+      onKeyDown?.(e);
+    },
+    [commit, onKeyDown],
+  );
 
   const previewHex = lastValidRef.current;
   const previewColor = React.useMemo(() => {
