@@ -1,4 +1,4 @@
 {
-  "pages": ["index", "get-started", "components"],
+  "pages": ["index", "get-started", "showcase", "components"],
   "root": true
 }
