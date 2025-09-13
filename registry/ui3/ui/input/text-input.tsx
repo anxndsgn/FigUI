@@ -4,7 +4,6 @@ import { StyledInputWrapper, type BaseInputProps } from './input-utils';
 
 function TextInputPrimitive({
   className,
-  type,
   iconLead,
   iconTrail,
   ...props
@@ -16,11 +15,7 @@ function TextInputPrimitive({
           {iconLead}
         </div>
       )}
-      <BaseInput
-        type={type}
-        {...props}
-        className={cn('w-full outline-none', className)}
-      />
+      <BaseInput className={cn('w-full outline-none', className)} {...props} />
       {iconTrail && (
         <div className='flex aspect-square size-6 items-center justify-center'>
           {iconTrail}
@@ -30,10 +25,10 @@ function TextInputPrimitive({
   );
 }
 
-function TextInput({ className, type, iconLead, ...props }: BaseInputProps) {
+function TextInput({ className, iconLead, ...props }: BaseInputProps) {
   return (
     <StyledInputWrapper className={cn(iconLead ? '' : 'pl-2', className)}>
-      <TextInputPrimitive type={type} iconLead={iconLead} {...props} />
+      <TextInputPrimitive iconLead={iconLead} {...props} />
     </StyledInputWrapper>
   );
 }
