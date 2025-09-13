@@ -4,7 +4,10 @@ import { type BaseInputProps } from './input-utils';
 import { Input as BaseInput } from '@base-ui-components/react';
 import { cn } from '@/lib/utils';
 import { TextInputPrimitive } from './text-input';
-import { StyledInputWrapper } from './input-utils';
+import {
+  StyledInputWrapper,
+  useStyledInputWrapperContext,
+} from './input-utils';
 import React from 'react';
 
 function NumericInputPrimitive({
@@ -83,8 +86,7 @@ function NumericInputPrimitive({
   const lastValidRef = React.useRef<string>(
     isValidNumber(initial) ? initial : '',
   );
-  const [isMiddleDragging, setIsMiddleDragging] =
-    React.useState<boolean>(false);
+  const { setIsMiddleButtonDragging } = useStyledInputWrapperContext();
   const dragActiveRef = React.useRef<boolean>(false);
   const dragStartXRef = React.useRef<number>(0);
   const dragBaseRef = React.useRef<number>(0);
@@ -306,7 +308,7 @@ function NumericInputPrimitive({
     }
 
     dragActiveRef.current = true;
-    setIsMiddleDragging(true);
+    setIsMiddleButtonDragging(true);
     dragStartXRef.current = (e as unknown as MouseEvent).clientX;
     dragBaseRef.current = base;
     dragStepRef.current = Number(nudgeAmount ?? 1);
@@ -338,7 +340,7 @@ function NumericInputPrimitive({
     const endDrag = () => {
       if (!dragActiveRef.current) return;
       dragActiveRef.current = false;
-      setIsMiddleDragging(false);
+      setIsMiddleButtonDragging(false);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
       document.body.style.cursor = '';
