@@ -10,23 +10,23 @@ interface BaseInputProps extends React.ComponentProps<typeof BaseInput> {
   iconTrail?: React.ReactNode;
 }
 
-type StyledInputWrapperContextType = {
+type InputRootContextType = {
   isMiddleButtonDragging: boolean;
   setIsMiddleButtonDragging: (isMiddleButtonDragging: boolean) => void;
 };
 
 // context
-const StyledInputWrapperContext = createContext<StyledInputWrapperContextType>({
+const InputRootContext = createContext<InputRootContextType>({
   isMiddleButtonDragging: false,
   setIsMiddleButtonDragging: () => {},
 });
 
 // component
-function StyledInputWrapper({ className, children }: BaseInputProps) {
+function InputRoot({ className, children }: BaseInputProps) {
   const [isMiddleButtonDragging, setIsMiddleButtonDragging] = useState(false);
 
   return (
-    <StyledInputWrapperContext.Provider
+    <InputRootContext.Provider
       value={{
         isMiddleButtonDragging,
         setIsMiddleButtonDragging,
@@ -42,26 +42,32 @@ function StyledInputWrapper({ className, children }: BaseInputProps) {
       >
         {children}
       </div>
-    </StyledInputWrapperContext.Provider>
+    </InputRootContext.Provider>
   );
 }
 
-function InputMultiWrapper({ children }: { children: React.ReactNode }) {
+function InputMultiRoot({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <StyledInputWrapper className='divide-white-1000 dark:divide-grey-800 flex divide-x [&>*:not(:last-child)]:pr-1'>
+    <InputRoot
+      className={cn(
+        'divide-white-1000 dark:divide-grey-800 flex divide-x [&>*:not(:last-child)]:pr-1',
+        className,
+      )}
+    >
       {children}
-    </StyledInputWrapper>
+    </InputRoot>
   );
 }
 
 // hook
-function useStyledInputWrapperContext(): StyledInputWrapperContextType {
-  return useContext(StyledInputWrapperContext);
+function useInputRootContext(): InputRootContextType {
+  return useContext(InputRootContext);
 }
 
-export {
-  StyledInputWrapper,
-  InputMultiWrapper,
-  type BaseInputProps,
-  useStyledInputWrapperContext,
-};
+export { InputRoot, InputMultiRoot, type BaseInputProps, useInputRootContext };

@@ -1,13 +1,14 @@
 'use client';
 
-import { type BaseInputProps } from './input-utils';
-import { Input as BaseInput } from '@base-ui-components/react';
+import {
+  InputRoot,
+  type BaseInputProps,
+  useInputRootContext,
+} from './input-utils';
 import { cn } from '@/lib/utils';
 import { TextInputPrimitive } from './text-input';
-import {
-  StyledInputWrapper,
-  useStyledInputWrapperContext,
-} from './input-utils';
+import { Input as BaseInput } from '@base-ui-components/react';
+
 import React from 'react';
 
 function NumericInputPrimitive({
@@ -86,7 +87,7 @@ function NumericInputPrimitive({
   const lastValidRef = React.useRef<string>(
     isValidNumber(initial) ? initial : '',
   );
-  const { setIsMiddleButtonDragging } = useStyledInputWrapperContext();
+  const { setIsMiddleButtonDragging } = useInputRootContext();
   const dragActiveRef = React.useRef<boolean>(false);
   const dragStartXRef = React.useRef<number>(0);
   const dragBaseRef = React.useRef<number>(0);
@@ -378,9 +379,9 @@ function NumericInputPrimitive({
 
 function NumericInput({ className, iconLead, ...props }: BaseInputProps) {
   return (
-    <StyledInputWrapper className={cn(iconLead ? '' : 'pl-0', className)}>
+    <InputRoot className={cn(iconLead ? '' : 'pl-0', className)}>
       <NumericInputPrimitive iconLead={iconLead} {...props} />
-    </StyledInputWrapper>
+    </InputRoot>
   );
 }
 

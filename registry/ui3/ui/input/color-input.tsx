@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import chroma from 'chroma-js';
 import { TextInputPrimitive } from './text-input';
-import { StyledInputWrapper } from './input-utils';
+import { InputRoot } from './input-utils';
 import { Input as BaseInput } from '@base-ui-components/react';
 
 function ColorChit({
@@ -209,15 +209,13 @@ function ColorInput({
   colorChit?: React.ReactNode;
 }) {
   return (
-    <StyledInputWrapper
-      className={cn('pr-0', colorChit ? 'pl-0' : '', className)}
-    >
+    <InputRoot className={cn('pr-0', colorChit ? 'pl-0' : '', className)}>
       <ColorInputPrimitive
         colorChit={colorChit ?? undefined}
         className={className}
         {...props}
       />
-    </StyledInputWrapper>
+    </InputRoot>
   );
 }
 

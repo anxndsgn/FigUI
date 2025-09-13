@@ -3,7 +3,7 @@
 import {
   ColorInput,
   ColorInputPrimitive,
-  InputMultiWrapper,
+  InputMultiRoot,
   NumericInputPrimitive,
 } from '@/registry/ui3/ui/input';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ export default function ColorInputDemo() {
         value={color}
         onChange={(e) => setColor(e.target.value)}
       />
-      <InputMultiWrapper>
+      <InputMultiRoot>
         <ColorInputPrimitive
           className='w-16'
           value={color}
@@ -25,7 +25,7 @@ export default function ColorInputDemo() {
           colorChit
         />
         <NumericInputPrimitive className='w-8' iconTrail={'%'} />
-      </InputMultiWrapper>
+      </InputMultiRoot>
       <div
         className='size-12 rounded-lg'
         style={{ backgroundColor: `#${color}` }}

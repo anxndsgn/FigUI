@@ -1,7 +1,7 @@
 import { TextInput, TextInputPrimitive } from './text-input';
 import { NumericInput, NumericInputPrimitive } from './numeric-input';
 import { ColorInput, ColorChit, ColorInputPrimitive } from './color-input';
-import { InputMultiWrapper, StyledInputWrapper } from './input-utils';
+import { InputMultiRoot, InputRoot } from './input-utils';
 
 const Input = TextInput;
 
@@ -14,6 +14,6 @@ export {
   ColorInputPrimitive,
   ColorChit,
   Input,
-  InputMultiWrapper,
-  StyledInputWrapper,
+  InputMultiRoot,
+  InputRoot,
 };

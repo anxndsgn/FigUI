@@ -1,6 +1,6 @@
 import { Input as BaseInput } from '@base-ui-components/react';
 import { cn } from '@/lib/utils';
-import { StyledInputWrapper, type BaseInputProps } from './input-utils';
+import { InputRoot, type BaseInputProps } from './input-utils';
 
 function TextInputPrimitive({
   className,
@@ -46,11 +46,11 @@ function TextInputPrimitive({
   );
 }
 
-function TextInput({ className, iconLead, ...props }: BaseInputProps) {
+function TextInput({ iconLead, className, ...props }: BaseInputProps) {
   return (
-    <StyledInputWrapper className={cn(className)}>
+    <InputRoot className={cn(className)}>
       <TextInputPrimitive iconLead={iconLead} {...props} />
-    </StyledInputWrapper>
+    </InputRoot>
   );
 }
 
