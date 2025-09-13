@@ -217,7 +217,7 @@ function NumericInputPrimitive({
     return stack[0];
   };
 
-  const commit = React.useCallback(() => {
+  const numericInputCommit = React.useCallback(() => {
     const containsOperators = /[+\-*/()]/.test(inputValue);
     if (containsOperators) {
       const result = evaluateExpression(inputValue);
@@ -254,7 +254,7 @@ function NumericInputPrimitive({
   }, [inputValue, lastValidRef, setInputValue]);
 
   const handleBlur = (e: BaseInputBlurEvent) => {
-    commit();
+    numericInputCommit();
     onBlur?.(e);
   };
 
@@ -285,7 +285,7 @@ function NumericInputPrimitive({
       onImmediateValueChange?.(nextString);
     } else if (e.key === 'Enter') {
       // Apply the same logic as blur
-      commit();
+      numericInputCommit();
       // Then lose focus
       e.currentTarget.blur();
     }

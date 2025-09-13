@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Input as BaseInput } from '@base-ui-components/react';
 import { createContext, useContext, useState } from 'react';
 
+// types
 interface BaseInputProps extends React.ComponentProps<typeof BaseInput> {
   iconLead?: React.ReactNode;
   iconTrail?: React.ReactNode;
@@ -14,11 +15,13 @@ type StyledInputWrapperContextType = {
   setIsMiddleButtonDragging: (isMiddleButtonDragging: boolean) => void;
 };
 
+// context
 const StyledInputWrapperContext = createContext<StyledInputWrapperContextType>({
   isMiddleButtonDragging: false,
   setIsMiddleButtonDragging: () => {},
 });
 
+// component
 function StyledInputWrapper({ className, children }: BaseInputProps) {
   const [isMiddleButtonDragging, setIsMiddleButtonDragging] = useState(false);
 
@@ -43,6 +46,7 @@ function StyledInputWrapper({ className, children }: BaseInputProps) {
   );
 }
 
+// hook
 function useStyledInputWrapperContext(): StyledInputWrapperContextType {
   return useContext(StyledInputWrapperContext);
 }
