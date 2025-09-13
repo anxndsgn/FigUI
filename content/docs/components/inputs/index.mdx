@@ -2,10 +2,52 @@
 title: Inputs
 ---
 
-# Inputs
+import { ComponentSource } from '@/components/component-source';
+
+Inputs are the most tricky components in figma. The complexity is behind the great user experience.
 
 There are some inputs in figui:
 
 - TextInput
 - ColorInput
 - NumericInput
+- and many combinations of them
+
+# Atanomy
+
+By default, we export the most common input components like `TextInput`, `ColorInput`, `NumericInput`.
+
+If you want to create a custom input component, you can use `InputMultiRoot` or `InputRoot` to wrap the primitive input components with `Primitive` suffix. Such as:
+
+```tsx
+<InputMultiRoot>
+  <TextInputPrimitive />
+  <NumericInputPrimitive />
+</InputMultiRoot>
+```
+
+```tsx
+<InputRoot>
+  <NumericInputPrimitive iconLead={'X'} />
+  <NumericInputPrimitive />
+  <NumericInputPrimitive />
+</InputRoot>
+```
+
+# InputRoot
+
+`InputRoot` is the root component of the input component. It is used to wrap the input components. It is basically a `div` with some default styles like `rounded-md` and `border`.
+
+# InputMultiRoot
+
+`InputMultiRoot` is the root component like `InputRoot`. It is used to create a multi-input component.
+
+# Manual Installation
+
+Make sure to copy the following files to your project:
+
+<ComponentSource
+  src='registry/ui3/ui/input/input-utils.tsx'
+  title='input/input-utils.tsx'
+  language='tsx'
+/>
