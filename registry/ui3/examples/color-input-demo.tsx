@@ -24,7 +24,7 @@ export default function ColorInputDemo() {
           onChange={(e) => setColor(e.target.value)}
           colorChit
         />
-        <NumericInputPrimitive className='w-8' />
+        <NumericInputPrimitive className='w-8' iconTrail={'%'} />
       </InputMultiWrapper>
       <div
         className='size-12 rounded-lg'

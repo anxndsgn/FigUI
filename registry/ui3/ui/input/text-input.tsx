@@ -12,10 +12,16 @@ function TextInputPrimitive({
     <div className='flex h-full items-center pr-2 pl-2 has-data-[figui=input-icon-lead]:pl-0 has-data-[figui=input-icon-trail]:pr-0'>
       {iconLead && (
         <div
-          className='flex aspect-square size-6 items-center justify-center'
+          className='flex aspect-square size-6 items-center justify-center select-none'
           data-figui='input-icon-lead'
         >
-          {iconLead}
+          {typeof iconLead === 'string' ? (
+            <span className='text-black-600 dark:text-white-700'>
+              {iconLead}
+            </span>
+          ) : (
+            iconLead
+          )}
         </div>
       )}
       <BaseInput
@@ -24,10 +30,16 @@ function TextInputPrimitive({
       />
       {iconTrail && (
         <div
-          className='flex aspect-square size-6 items-center justify-center'
+          className='flex aspect-square size-6 items-center justify-center select-none'
           data-figui='input-icon-trail'
         >
-          {iconTrail}
+          {typeof iconTrail === 'string' ? (
+            <span className='text-black-600 dark:text-white-700'>
+              {iconTrail}
+            </span>
+          ) : (
+            iconTrail
+          )}
         </div>
       )}
     </div>
