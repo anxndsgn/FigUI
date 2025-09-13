@@ -366,7 +366,6 @@ function NumericInputPrimitive({
       type='text'
       inputMode='decimal'
       className={className}
-      {...props}
       min={min as any}
       max={max as any}
       value={inputValue}
@@ -374,6 +373,7 @@ function NumericInputPrimitive({
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
       onMouseDown={handleMouseDown}
+      {...props}
     />
   );
 }

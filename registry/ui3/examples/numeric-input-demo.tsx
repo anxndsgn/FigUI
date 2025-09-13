@@ -13,13 +13,19 @@ export default function NumericInputDemo() {
         defaultValue={12}
         min={0}
         max={100}
-        iconLead={
-          <CornerIcon className='text-black-500 dark:text-white-500 size-6' />
-        }
+        iconLead={'X'}
       />
-      <InputMultiRoot className='w-32'>
-        <NumericInputPrimitive value={12} iconLead={'X'} />
-        <NumericInputPrimitive value={12} />
+      <InputMultiRoot>
+        <NumericInputPrimitive
+          value={12}
+          iconLead={
+            <CornerIcon className='text-black-500 dark:text-white-500 size-6' />
+          }
+          className={'w-6'}
+        />
+        <NumericInputPrimitive value={12} className={'w-6'} />
+        <NumericInputPrimitive value={12} className={'w-6'} />
+        <NumericInputPrimitive value={12} className={'w-6'} />
       </InputMultiRoot>
     </div>
   );
