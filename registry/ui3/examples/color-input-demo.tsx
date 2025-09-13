@@ -19,12 +19,12 @@ export default function ColorInputDemo() {
       />
       <InputMultiWrapper>
         <ColorInputPrimitive
-          className='w-32'
+          className='w-16'
           value={color}
           onChange={(e) => setColor(e.target.value)}
           colorChit
         />
-        <NumericInputPrimitive className='w-32' />
+        <NumericInputPrimitive className='w-8' />
       </InputMultiWrapper>
       <div
         className='size-12 rounded-lg'

@@ -197,7 +197,7 @@ function ColorInputPrimitive({
       onBlur={handleBlur}
       iconLead={<ColorChit color={previewColor} solidColor={previewHex} />}
       onKeyDown={handleKeyDown}
-      className='w-full min-w-16 flex-1 outline-none'
+      className={cn('w-full flex-1 outline-none', className)}
     />
   );
 }
