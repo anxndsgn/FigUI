@@ -21,7 +21,7 @@ export default function ColorInputDemo() {
           className='w-16'
           value={color}
           onChange={(e) => setColor(e.target.value)}
-          iconLead={<ColorChit color={color} />}
+          iconLead={<ColorChit color={color} opacity={opacity} />}
         />
         <NumericInputPrimitive
           className='w-8'

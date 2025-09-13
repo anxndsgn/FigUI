@@ -7,11 +7,11 @@ import { Input as BaseInput } from '@base-ui-components/react';
 
 function ColorChit({
   color,
-  solidColor,
+  opacity,
   className,
 }: {
   color: string;
-  solidColor?: string;
+  opacity?: string | number;
   className?: string;
   onClick?: () => void;
 }) {
@@ -29,31 +29,31 @@ function ColorChit({
     return null;
   }, [color]);
 
-  const isValid = React.useMemo(() => {
-    return chroma.valid(color);
-  }, [color]);
-
   return (
     <div
       className={cn(
-        'inset-ring-black-200 flex size-4 shrink-0 justify-start overflow-hidden rounded-sm inset-ring',
+        'inset-ring-black-200 dark:inset-ring-white-200 flex size-4 shrink-0 justify-start overflow-hidden rounded-sm inset-ring',
         className,
       )}
       style={{
-        backgroundImage: swatch
-          ? `linear-gradient(${swatch}, ${swatch}), conic-gradient(#eee 25%, #ccc 0 50%, #eee 0 75%, #ccc 0)`
-          : 'conic-gradient(#eee 25%, #ccc 0 50%, #eee 0 75%, #ccc 0)',
-        backgroundSize: swatch ? 'auto, 8px 8px' : '8px 8px',
-        backgroundPosition: swatch ? '0 0, 0 0' : '0 0',
+        backgroundImage:
+          'conic-gradient(#eee 25%, #ccc 0 50%, #eee 0 75%, #ccc 0)',
+        backgroundSize: '8px 8px',
+        backgroundPosition: '0 0',
         backgroundRepeat: 'repeat',
       }}
     >
       <div
-        className='w-1/2'
+        className='h-full w-1/2'
         style={{
-          backgroundColor: isValid
-            ? chroma(solidColor ?? color).hex()
-            : 'transparent',
+          backgroundColor: swatch ?? 'transparent',
+        }}
+      />
+      <div
+        className='h-full w-1/2'
+        style={{
+          backgroundColor: swatch ?? 'transparent',
+          opacity: Number(opacity) / 100,
         }}
       />
     </div>
