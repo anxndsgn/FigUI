@@ -1,6 +1,11 @@
 'use client';
 
-import { ColorInput } from '@/registry/ui3/ui/input';
+import {
+  ColorInput,
+  ColorInputPrimitive,
+  InputMultiWrapper,
+  NumericInputPrimitive,
+} from '@/registry/ui3/ui/input';
 import { useState } from 'react';
 
 export default function ColorInputDemo() {
@@ -11,14 +16,16 @@ export default function ColorInputDemo() {
         className='w-32'
         value={color}
         onChange={(e) => setColor(e.target.value)}
-        colorChit
       />
-      <ColorInput
-        value={color}
-        onChange={(e) => setColor(e.target.value)}
-        opacity
-        colorChit
-      />
+      <InputMultiWrapper>
+        <ColorInputPrimitive
+          className='w-32'
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+          colorChit
+        />
+        <NumericInputPrimitive className='w-32' />
+      </InputMultiWrapper>
       <div
         className='size-12 rounded-lg'
         style={{ backgroundColor: `#${color}` }}

@@ -52,7 +52,8 @@ function ColorChit({
     </div>
   );
 }
-function ColorInput({
+
+function ColorInputPrimitive({
   onChange,
   onBlur,
   onKeyDown,
@@ -60,7 +61,6 @@ function ColorInput({
   defaultValue,
   colorChit,
   className,
-  opacity = false,
   ...props
 }: React.ComponentProps<typeof BaseInput> & {
   opacity?: boolean;
@@ -189,71 +189,37 @@ function ColorInput({
   }, [previewHex, opacityPercent]);
 
   return (
+    <TextInputPrimitive
+      type='text'
+      {...props}
+      value={inputValue}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      iconLead={<ColorChit color={previewColor} solidColor={previewHex} />}
+      onKeyDown={handleKeyDown}
+      className='w-full min-w-16 flex-1 outline-none'
+    />
+  );
+}
+
+function ColorInput({
+  className,
+  colorChit,
+  ...props
+}: React.ComponentProps<typeof BaseInput> & {
+  colorChit?: React.ReactNode;
+}) {
+  return (
     <StyledInputWrapper
-      className={cn('w-40 pr-0', colorChit ? '' : 'pl-2', className)}
+      className={cn('pr-0', colorChit ? 'pl-0' : '', className)}
     >
-      {colorChit && (
-        <div className='flex aspect-square size-6 shrink-0 items-center justify-center'>
-          <ColorChit color={previewColor} solidColor={previewHex} />
-        </div>
-      )}
-      <TextInputPrimitive
-        type='text'
+      <ColorInputPrimitive
+        colorChit={colorChit ?? undefined}
+        className={className}
         {...props}
-        value={inputValue}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
-        className='w-full min-w-16 flex-1 outline-none'
       />
-      {opacity && (
-        <div className='flex w-full items-center justify-between'>
-          <NumericInputPrimitive
-            min={0}
-            max={100}
-            value={String(opacityPercent)}
-            onImmediateValueChange={(next) => {
-              const v = Number(next);
-              if (Number.isFinite(v)) {
-                const clamped = Math.max(0, Math.min(100, v));
-                setOpacityPercent(clamped);
-              }
-            }}
-            onChange={(e) => {
-              const v = Number((e.target as HTMLInputElement).value);
-              if (Number.isFinite(v)) {
-                const clamped = Math.max(0, Math.min(100, v));
-                setOpacityPercent(clamped);
-              }
-            }}
-            onBlur={(e) => {
-              const v = Number((e.target as HTMLInputElement).value);
-              const clamped = Number.isFinite(v)
-                ? Math.max(0, Math.min(100, v))
-                : opacityPercent;
-              setOpacityPercent(clamped);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                const el = e.currentTarget as unknown as HTMLInputElement;
-                const v = Number(el.value);
-                const clamped = Number.isFinite(v)
-                  ? Math.max(0, Math.min(100, v))
-                  : opacityPercent;
-                setOpacityPercent(clamped);
-              }
-            }}
-            className={
-              'border-white-1000 dark:border-grey-800 h-6 w-full border-l pl-2 outline-none'
-            }
-          />
-          <div className='flex aspect-square size-6 items-center justify-center'>
-            <span className='text-black-600 dark:text-white-600'>%</span>
-          </div>
-        </div>
-      )}
     </StyledInputWrapper>
   );
 }
 
-export { ColorInput, ColorChit };
+export { ColorInput, ColorChit, ColorInputPrimitive };

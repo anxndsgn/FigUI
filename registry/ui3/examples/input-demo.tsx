@@ -1,6 +1,11 @@
 'use client';
 
-import { TextInput, NumericInput } from '@/registry/ui3/ui/input';
+import {
+  TextInput,
+  NumericInput,
+  TextInputPrimitive,
+} from '@/registry/ui3/ui/input';
+import { InputMultiWrapper } from '../ui/input';
 
 function SearchIcon({ className }: { className: string }) {
   return (
@@ -41,6 +46,10 @@ export default function InputDemo() {
           <SearchIcon className='text-black-800 dark:text-white-800 size-6' />
         }
       />
+      <InputMultiWrapper>
+        <TextInputPrimitive placeholder='Input' className='w-32' />
+        <TextInputPrimitive placeholder='Input' className='w-16' />
+      </InputMultiWrapper>
     </div>
   );
 }

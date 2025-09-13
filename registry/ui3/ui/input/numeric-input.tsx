@@ -378,7 +378,7 @@ function NumericInputPrimitive({
 
 function NumericInput({ className, iconLead, ...props }: BaseInputProps) {
   return (
-    <StyledInputWrapper className={cn(iconLead ? '' : 'pl-2', className)}>
+    <StyledInputWrapper className={cn(iconLead ? '' : 'pl-0', className)}>
       <NumericInputPrimitive iconLead={iconLead} {...props} />
     </StyledInputWrapper>
   );
