@@ -10,7 +10,7 @@ import {
 import { useState } from 'react';
 
 export default function ColorInputDemo() {
-  const [color, setColor] = useState('000000');
+  const [color, setColor] = useState('FF24BD');
   const [opacity, setOpacity] = useState(100);
 
   return (
@@ -40,7 +40,6 @@ export default function ColorInputDemo() {
         className='size-12 rounded-lg'
         style={{ backgroundColor: `#${color}`, opacity: opacity / 100 }}
       />
-      <span className='text-sm text-gray-500'>{color}</span>
     </div>
   );
 }
