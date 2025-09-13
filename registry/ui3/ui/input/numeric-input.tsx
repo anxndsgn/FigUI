@@ -5,7 +5,6 @@ import {
   type BaseInputProps,
   useInputRootContext,
 } from './input-utils';
-import { cn } from '@/lib/utils';
 import { TextInputPrimitive } from './text-input';
 import { Input as BaseInput } from '@base-ui-components/react';
 
