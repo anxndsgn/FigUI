@@ -2,7 +2,6 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import chroma from 'chroma-js';
 import { TextInputPrimitive } from './text-input';
-import { NumericInputPrimitive } from './numeric-input';
 import { StyledInputWrapper } from './input-utils';
 import { Input as BaseInput } from '@base-ui-components/react';
 
