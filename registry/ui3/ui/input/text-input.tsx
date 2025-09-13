@@ -10,7 +10,7 @@ function TextInputPrimitive({
   ...props
 }: BaseInputProps) {
   return (
-    <div className='flex items-center'>
+    <>
       {iconLead && (
         <div className='flex aspect-square size-6 items-center justify-center'>
           {iconLead}
@@ -26,7 +26,7 @@ function TextInputPrimitive({
           {iconTrail}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
