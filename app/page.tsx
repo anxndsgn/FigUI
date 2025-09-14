@@ -95,7 +95,7 @@ export default function Home() {
             <h2 className='typography-body-large'>Input</h2>
             <Button
               render={
-                <Link href='/docs/components/input'>
+                <Link href='/docs/components/inputs'>
                   Docs <ArrowUpRightIcon />
                 </Link>
               }
@@ -153,16 +153,6 @@ export default function Home() {
           </div>
         </div>
 
-        <Button
-          variant='secondary'
-          render={
-            <Link href='https://www.figma.com/community/plugin/1518650987829710592'>
-              FigUI in real
-            </Link>
-          }
-          size={'large'}
-          className='col-span-full'
-        />
         <Button
           render={<Link href='/docs'>Find More</Link>}
           size={'large'}
