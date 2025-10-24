@@ -125,7 +125,7 @@ function ColorRangeSlider({
     >
       <BaseSlider.Control
         className={cn(
-          'inset-ring-black-100 flex w-32 touch-none items-center rounded-full px-2 inset-ring select-none',
+          'inset-ring-black-100 flex w-32 touch-none items-center rounded-full inset-ring select-none',
           '[background-image:linear-gradient(to_right,#FF0000_0%,#FFA800_13%,#FFFF00_22%,#00FF00_34%,#00FFFF_50%,#0000FF_66%,#FF00FF_82%,#FF0000_100%)]',
           className,
         )}

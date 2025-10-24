@@ -149,7 +149,7 @@ function SelectScrollUpArrow({
     <BaseSelect.ScrollUpArrow
       {...props}
       className={cn(
-        'bg-grey-900 z-10 flex hidden h-4 w-full cursor-default items-center justify-center rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:py-1 data-[side=none]:opacity-100',
+        'bg-grey-900 z-10 hidden h-4 w-full cursor-default rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:items-center data-[side=none]:justify-center data-[side=none]:py-1 data-[side=none]:opacity-100',
         className,
       )}
     >
@@ -166,7 +166,7 @@ function SelectScrollDownArrow({
     <BaseSelect.ScrollDownArrow
       {...props}
       className={cn(
-        'bg-grey-900 z-10 flex hidden h-4 w-full cursor-default items-center justify-center rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:py-1 data-[side=none]:opacity-100',
+        'bg-grey-900 z-10 hidden h-4 w-full cursor-default rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:items-center data-[side=none]:justify-center data-[side=none]:py-1 data-[side=none]:opacity-100',
         className,
       )}
     >
