@@ -54,19 +54,15 @@ interface ButtonProps
   extends useRender.ComponentProps<'button'>,
     VariantProps<typeof buttonVariants> {}
 
-function Button({
-  render = <button />,
-  variant,
-  size,
-  className,
-  ...props
-}: ButtonProps) {
-  return useRender({
+function Button({ variant, size, render, className, ...props }: ButtonProps) {
+  const buttonElement = useRender({
+    defaultTagName: 'button',
     render,
     props: mergeProps<'button'>(props, {
-      className: buttonVariants({ variant, size, className }),
+      className: cn(buttonVariants({ variant, size, className })),
     }),
   });
+  return buttonElement;
 }
 
 export { Button, buttonVariants };
