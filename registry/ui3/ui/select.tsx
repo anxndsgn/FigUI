@@ -64,7 +64,7 @@ function SelectContent({
       >
         <SelectScrollUpArrow />
         <BaseSelect.Popup className={'group max-h-(--available-height)] p-2'}>
-          {children}
+          <BaseSelect.List>{children}</BaseSelect.List>
         </BaseSelect.Popup>
         <SelectScrollDownArrow />
       </BaseSelect.Positioner>
@@ -149,7 +149,7 @@ function SelectScrollUpArrow({
     <BaseSelect.ScrollUpArrow
       {...props}
       className={cn(
-        'bg-grey-900 z-10 flex h-4 w-full cursor-default items-center justify-center rounded-lg py-1',
+        'bg-grey-900 z-10 flex hidden h-4 w-full cursor-default items-center justify-center rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:py-1 data-[side=none]:opacity-100',
         className,
       )}
     >
@@ -166,7 +166,7 @@ function SelectScrollDownArrow({
     <BaseSelect.ScrollDownArrow
       {...props}
       className={cn(
-        'bg-grey-900 z-10 flex h-4 w-full cursor-default items-center justify-center rounded-lg py-1',
+        'bg-grey-900 z-10 flex hidden h-4 w-full cursor-default items-center justify-center rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:py-1 data-[side=none]:opacity-100',
         className,
       )}
     >
