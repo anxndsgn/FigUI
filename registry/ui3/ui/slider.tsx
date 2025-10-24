@@ -15,10 +15,14 @@ function Slider({
     () =>
       Array.isArray(value)
         ? value
-        : Array.isArray(defaultValue)
-          ? defaultValue
-          : [min, max],
-    [value, defaultValue, min, max],
+        : typeof value === 'number'
+          ? [value]
+          : Array.isArray(defaultValue)
+            ? defaultValue
+            : typeof defaultValue === 'number'
+              ? [defaultValue]
+              : [min ?? 0],
+    [value, defaultValue, min],
   );
 
   return (
@@ -38,7 +42,10 @@ function Slider({
       >
         <BaseSlider.Track className={cn('h-4 w-full select-none')}>
           <BaseSlider.Indicator
-            className={cn('rounded-l-full bg-blue-500 select-none')}
+            className={cn(
+              'bg-blue-500 select-none',
+              _values.length === 1 ? 'rounded-l-full' : '',
+            )}
           />
           {Array.from({ length: _values.length }).map((_, index) => (
             <BaseSlider.Thumb
