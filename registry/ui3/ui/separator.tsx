@@ -1,10 +1,7 @@
 import { Separator as BaseSeparator } from '@base-ui-components/react/separator';
 import { cn } from '@/lib/utils';
 
-export function Separator({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseSeparator>) {
+export function Separator({ className, ...props }: BaseSeparator.Props) {
   return (
     <BaseSeparator
       className={cn(

@@ -12,7 +12,7 @@ function SelectTrigger({
   children,
   iconLead,
   ...props
-}: React.ComponentProps<typeof BaseSelect.Trigger> & {
+}: BaseSelect.Trigger.Props & {
   iconLead?: React.ReactNode;
 }) {
   return (
@@ -51,7 +51,7 @@ function SelectContent({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof BaseSelect.Positioner>) {
+}: BaseSelect.Positioner.Props) {
   return (
     <BaseSelect.Portal>
       <BaseSelect.Positioner
@@ -72,10 +72,7 @@ function SelectContent({
   );
 }
 
-function SelectValue({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseSelect.Value>) {
+function SelectValue({ className, ...props }: BaseSelect.Value.Props) {
   return (
     <BaseSelect.Value
       className={cn(
@@ -88,11 +85,7 @@ function SelectValue({
   );
 }
 
-function SelectItem({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof BaseSelect.Item>) {
+function SelectItem({ className, children, ...props }: BaseSelect.Item.Props) {
   return (
     <BaseSelect.Item
       className={cn(
@@ -111,40 +104,30 @@ function SelectItem({
   );
 }
 
-function SelectItemText({
-  ...props
-}: React.ComponentProps<typeof BaseSelect.ItemText>) {
+function SelectItemText({ ...props }: BaseSelect.ItemText.Props) {
   return <BaseSelect.ItemText {...props} />;
 }
 
-function SelectItemIndicator({
-  ...props
-}: React.ComponentProps<typeof BaseSelect.ItemIndicator>) {
+function SelectItemIndicator({ ...props }: BaseSelect.ItemIndicator.Props) {
   return <BaseSelect.ItemIndicator {...props} />;
 }
 
-function SelectSeparator({
-  ...props
-}: React.ComponentProps<typeof BaseSelect.Separator>) {
+function SelectSeparator({ ...props }: BaseSelect.Separator.Props) {
   return <BaseSelect.Separator {...props} />;
 }
 
-function SelectGroup({
-  ...props
-}: React.ComponentProps<typeof BaseSelect.Group>) {
+function SelectGroup({ ...props }: BaseSelect.Group.Props) {
   return <BaseSelect.Group {...props} />;
 }
 
-function SelectGroupLabel({
-  ...props
-}: React.ComponentProps<typeof BaseSelect.GroupLabel>) {
+function SelectGroupLabel({ ...props }: BaseSelect.GroupLabel.Props) {
   return <BaseSelect.GroupLabel {...props} />;
 }
 
 function SelectScrollUpArrow({
   className,
   ...props
-}: React.ComponentProps<typeof BaseSelect.ScrollUpArrow>) {
+}: BaseSelect.ScrollUpArrow.Props) {
   return (
     <BaseSelect.ScrollUpArrow
       {...props}
@@ -161,7 +144,7 @@ function SelectScrollUpArrow({
 function SelectScrollDownArrow({
   className,
   ...props
-}: React.ComponentProps<typeof BaseSelect.ScrollDownArrow>) {
+}: BaseSelect.ScrollDownArrow.Props) {
   return (
     <BaseSelect.ScrollDownArrow
       {...props}

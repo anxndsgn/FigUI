@@ -10,7 +10,7 @@ function Slider({
   min,
   max,
   ...props
-}: React.ComponentProps<typeof BaseSlider.Root>) {
+}: BaseSlider.Root.Props) {
   const _values = React.useMemo(
     () =>
       Array.isArray(value)
@@ -58,7 +58,7 @@ function Slider({
 
 interface ColorRangeSliderProps
   extends Omit<
-    React.ComponentProps<typeof BaseSlider.Root>,
+    BaseSlider.Root.Props,
     'value' | 'defaultValue' | 'min' | 'max' | 'onValueChange' | 'children'
   > {
   value?: number;
@@ -152,7 +152,7 @@ function ColorRangeSlider({
 
 interface OpacitySliderProps
   extends Omit<
-    React.ComponentProps<typeof BaseSlider.Root>,
+    BaseSlider.Root.Props,
     'value' | 'defaultValue' | 'min' | 'max' | 'onValueChange' | 'children'
   > {
   value?: number;

@@ -1,10 +1,7 @@
 import { Tabs as BaseTabs } from '@base-ui-components/react/tabs';
 import { cn } from '@/lib/utils';
 
-function Tabs({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseTabs.Root>) {
+function Tabs({ className, ...props }: BaseTabs.Root.Props) {
   return (
     <BaseTabs.Root
       {...props}
@@ -13,10 +10,7 @@ function Tabs({
   );
 }
 
-function TabsList({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseTabs.List>) {
+function TabsList({ className, ...props }: BaseTabs.List.Props) {
   return (
     <div
       className={cn(
@@ -38,10 +32,7 @@ function TabsList({
   );
 }
 
-function Tab({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseTabs.Tab>) {
+function Tab({ className, ...props }: BaseTabs.Tab.Props) {
   return (
     <BaseTabs.Tab
       {...props}
@@ -53,10 +44,7 @@ function Tab({
   );
 }
 
-function TabsPanel({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseTabs.Panel>) {
+function TabsPanel({ className, ...props }: BaseTabs.Panel.Props) {
   return (
     <BaseTabs.Panel {...props} className={cn('outline-none', className)} />
   );
