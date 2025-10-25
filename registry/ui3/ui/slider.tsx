@@ -10,15 +10,19 @@ function Slider({
   min,
   max,
   ...props
-}: React.ComponentProps<typeof BaseSlider.Root>) {
+}: BaseSlider.Root.Props) {
   const _values = React.useMemo(
     () =>
       Array.isArray(value)
         ? value
-        : Array.isArray(defaultValue)
-          ? defaultValue
-          : [min, max],
-    [value, defaultValue, min, max],
+        : typeof value === 'number'
+          ? [value]
+          : Array.isArray(defaultValue)
+            ? defaultValue
+            : typeof defaultValue === 'number'
+              ? [defaultValue]
+              : [min ?? 0],
+    [value, defaultValue, min],
   );
 
   return (
@@ -27,11 +31,12 @@ function Slider({
       value={value}
       min={min}
       max={max}
+      thumbAlignment='edge'
       {...props}
     >
       <BaseSlider.Control
         className={cn(
-          'bg-grey-100 dark:bg-grey-700 dark:inset-ring-grey-600 inset-ring-grey-200 flex w-32 touch-none items-center rounded-full px-2 inset-ring select-none',
+          'bg-grey-100 dark:bg-grey-700 dark:inset-ring-grey-600 inset-ring-grey-200 flex w-32 touch-none items-center rounded-full inset-ring select-none',
           className,
         )}
       >
@@ -39,17 +44,18 @@ function Slider({
           <BaseSlider.Indicator
             className={cn(
               'bg-blue-500 select-none',
-              'before:absolute before:top-0 before:bottom-0 before:left-0 before:w-2 before:-translate-x-full before:rounded-l-full before:bg-blue-500 before:content-[""]',
+              _values.length === 1 ? 'rounded-l-full' : '',
             )}
           />
           {Array.from({ length: _values.length }).map((_, index) => (
             <BaseSlider.Thumb
               key={index}
               className={cn(
-                'shadow-100 bg-white-1000 size-4 rounded-full select-none',
-                'before:border-black-100 before:absolute before:top-1/2 before:right-1/2 before:size-2 before:translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:bg-blue-500 before:content-[""]',
+                'shadow-100 bg-white-1000 size-4 rounded-full select-none before:hidden',
               )}
-            />
+            >
+              <span className='border-black-100 absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-blue-500' />
+            </BaseSlider.Thumb>
           ))}
         </BaseSlider.Track>
       </BaseSlider.Control>
@@ -59,7 +65,7 @@ function Slider({
 
 interface ColorRangeSliderProps
   extends Omit<
-    React.ComponentProps<typeof BaseSlider.Root>,
+    BaseSlider.Root.Props,
     'value' | 'defaultValue' | 'min' | 'max' | 'onValueChange' | 'children'
   > {
   value?: number;
@@ -98,12 +104,15 @@ function ColorRangeSlider({
   const handleValueChange = React.useCallback(
     (
       next: number | number[],
-      eventDetails: { event: Event },
-      activeThumbIndex: number,
+      eventDetails: BaseSlider.Root.ChangeEventDetails,
     ) => {
       const nextNumber = Array.isArray(next) ? (next[0] ?? 0) : next;
       if (!isControlled) setInternalValue(nextNumber);
-      onValueChange?.(nextNumber, eventDetails.event, activeThumbIndex);
+      onValueChange?.(
+        nextNumber,
+        eventDetails.event,
+        eventDetails.activeThumbIndex,
+      );
     },
     [isControlled, onValueChange],
   );
@@ -118,11 +127,12 @@ function ColorRangeSlider({
       max={max}
       step={step}
       onValueChange={handleValueChange}
+      thumbAlignment='edge'
       {...props}
     >
       <BaseSlider.Control
         className={cn(
-          'inset-ring-black-100 flex w-32 touch-none items-center rounded-full px-2 inset-ring select-none',
+          'inset-ring-black-100 flex w-32 touch-none items-center rounded-full inset-ring select-none',
           '[background-image:linear-gradient(to_right,#FF0000_0%,#FFA800_13%,#FFFF00_22%,#00FF00_34%,#00FFFF_50%,#0000FF_66%,#FF00FF_82%,#FF0000_100%)]',
           className,
         )}
@@ -133,15 +143,14 @@ function ColorRangeSlider({
           <BaseSlider.Thumb
             className={cn(
               'shadow-100 bg-white-1000 size-4 rounded-full select-none',
-              'before:border-black-100 before:absolute before:top-1/2 before:right-1/2 before:size-2 before:translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:content-[""]',
-              'before:[background-color:var(--thumb-color)]',
+              'before:hidden',
             )}
-            style={
-              {
-                '--thumb-color': `hsl(${hue}, 100%, 50%)`,
-              } as React.CSSProperties
-            }
-          />
+          >
+            <span
+              className='border-black-100 absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-blue-500'
+              style={{ backgroundColor: `hsl(${hue}, 100%, 50%)` }}
+            />
+          </BaseSlider.Thumb>
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>
@@ -150,7 +159,7 @@ function ColorRangeSlider({
 
 interface OpacitySliderProps
   extends Omit<
-    React.ComponentProps<typeof BaseSlider.Root>,
+    BaseSlider.Root.Props,
     'value' | 'defaultValue' | 'min' | 'max' | 'onValueChange' | 'children'
   > {
   value?: number;

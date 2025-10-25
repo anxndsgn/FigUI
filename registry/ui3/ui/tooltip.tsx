@@ -1,10 +1,7 @@
 import { Tooltip as BaseTooltip } from '@base-ui-components/react';
 import { cn } from '@/lib/utils';
 
-function Tooltip({
-  children,
-  ...props
-}: React.ComponentProps<typeof BaseTooltip.Root>) {
+function Tooltip({ children, ...props }: BaseTooltip.Root.Props) {
   return (
     <BaseTooltip.Provider delay={0}>
       <BaseTooltip.Root {...props}>{children}</BaseTooltip.Root>
@@ -15,7 +12,7 @@ function TooltipContent({
   children,
   className,
   ...props
-}: React.ComponentProps<typeof BaseTooltip.Positioner>) {
+}: BaseTooltip.Positioner.Props) {
   return (
     <BaseTooltip.Portal>
       <BaseTooltip.Positioner sideOffset={10} {...props}>

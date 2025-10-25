@@ -1,11 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Switch as BaseSwitch } from '@base-ui-components/react';
-import React from 'react';
 
-export function Switch({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseSwitch.Root>) {
+export function Switch({ className, ...props }: BaseSwitch.Root.Props) {
   return (
     <BaseSwitch.Root
       {...props}

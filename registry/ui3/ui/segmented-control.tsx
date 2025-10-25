@@ -3,10 +3,7 @@ import { Radio } from '@base-ui-components/react/radio';
 import { RadioGroup } from '@base-ui-components/react/radio-group';
 import { cn } from '@/lib/utils';
 
-function SegmentedControl({
-  className,
-  ...props
-}: React.ComponentProps<typeof RadioGroup>) {
+function SegmentedControl({ className, ...props }: RadioGroup.Props) {
   return (
     <RadioGroup
       className={cn(
@@ -24,7 +21,7 @@ function SegmentedControlItem({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof Radio.Root>) {
+}: Radio.Root.Props) {
   return (
     <Radio.Root
       className={cn(

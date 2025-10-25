@@ -1,11 +1,7 @@
 import { RadioGroup, Radio as BaseRadio } from '@base-ui-components/react';
-import React from 'react';
 import { cn } from '@/lib/utils';
 
-function Radio({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseRadio.Root>) {
+function Radio({ className, ...props }: BaseRadio.Root.Props) {
   return (
     <BaseRadio.Root
       className={cn(
