@@ -34,7 +34,7 @@
       "description": "A input component",
       "files": [
         {
-          "path": "registry/ui3/ui/input.tsx",
+          "path": "registry/ui3/ui/input/index.tsx",
           "type": "registry:component"
         }
       ]
