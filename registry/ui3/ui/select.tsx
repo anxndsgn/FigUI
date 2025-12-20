@@ -77,7 +77,7 @@ function SelectValue({ className, ...props }: BaseSelect.Value.Props) {
     <BaseSelect.Value
       className={cn(
         'typography-body-medium text-black-1000 dark:text-white-1000 flex-1 truncate',
-        'group-data-disabled:text-black-400 dark:group-data-disabled:text-white-400',
+        'group-data-disabled:text-black-400 dark:group-data-disabled:text-white-400 text-start',
         className,
       )}
       {...props}
