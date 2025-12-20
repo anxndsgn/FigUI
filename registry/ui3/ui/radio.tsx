@@ -10,7 +10,7 @@ function Radio({ className, ...props }: BaseRadio.Root.Props) {
       )}
       {...props}
     >
-      <BaseRadio.Indicator className='flex items-center justify-center'>
+      <BaseRadio.Indicator className='flex items-center justify-center w-full h-full'>
         <div className='bg-black-800 dark:bg-white-1000 size-2 rounded-full' />
       </BaseRadio.Indicator>
     </BaseRadio.Root>
