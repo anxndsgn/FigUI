@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './index.css';
 import { ThemeProvider } from '@/components/theme-provider';
-import { RootProvider } from 'fumadocs-ui/provider';
+import { RootProvider } from 'fumadocs-ui/provider/next';
 import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 
