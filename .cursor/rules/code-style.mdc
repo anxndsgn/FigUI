@@ -43,7 +43,7 @@ interface ComponentProps extends React.ComponentProps<typeof BaseUIComponent> {
 import * as React from 'react';
 
 // 2. Third-party imports
-import { BaseComponent } from '@base-ui-components/react/BaseComponent';
+import { BaseComponent } from '@base-ui/react/BaseComponent';
 
 // 3. Internal imports
 import { cn } from '@/lib/utils';

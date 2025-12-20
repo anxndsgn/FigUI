@@ -32,7 +32,7 @@ Each component in **[public/r/](mdc:public/r/)** follows this structure:
       "type": "registry:ui"
     }
   ],
-  "dependencies": ["@base-ui-components/react"],
+  "dependencies": ["@base-ui/react"],
   "devDependencies": [],
   "tailwind": {
     "config": {

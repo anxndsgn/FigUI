@@ -11,7 +11,7 @@ All UI components in **[registry/ui3/ui/](mdc:registry/ui3/ui/)** should follow 
 
 ### Component Architecture
 
-- Use **@base-ui-components/react** for unstyled primitives when available
+- Use **@base-ui/react** for unstyled primitives when available
 - Follow compound component patterns for complex components
 - Use `forwardRef` for components that need DOM refs
 - Export component with proper TypeScript interfaces
@@ -20,7 +20,7 @@ All UI components in **[registry/ui3/ui/](mdc:registry/ui3/ui/)** should follow 
 
 ```tsx
 import * as React from 'react';
-import { BaseComponent } from '@base-ui-components/react/BaseComponent';
+import { BaseComponent } from '@base-ui/react/BaseComponent';
 import { cn } from '@/lib/utils';
 
 interface ComponentProps extends React.ComponentProps<typeof BaseComponent> {

@@ -32,7 +32,7 @@ This is a Next.js-based UI component library with documentation, similar to shad
 - **TypeScript** for type safety
 - **Tailwind CSS 4** for styling
 - **Fumadocs** for documentation
-- **Base UI Components** (@base-ui-components/react) for unstyled primitives
+- **Base UI Components** (@base-ui/react) for unstyled primitives
 - **MDX** for documentation content
 - **Prettier** with Tailwind plugin for formatting
 
