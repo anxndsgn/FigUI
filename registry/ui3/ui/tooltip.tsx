@@ -1,4 +1,4 @@
-import { Tooltip as BaseTooltip } from '@base-ui-components/react';
+import { Tooltip as BaseTooltip } from '@base-ui/react';
 import { cn } from '@/lib/utils';
 
 function Tooltip({ children, ...props }: BaseTooltip.Root.Props) {

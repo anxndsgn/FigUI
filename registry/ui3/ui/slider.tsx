@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { Slider as BaseSlider } from '@base-ui-components/react';
+import { Slider as BaseSlider } from '@base-ui/react';
 import React from 'react';
 import chroma from 'chroma-js';
 

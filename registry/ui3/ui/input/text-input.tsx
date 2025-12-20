@@ -1,4 +1,4 @@
-import { Input as BaseInput } from '@base-ui-components/react';
+import { Input as BaseInput } from '@base-ui/react';
 import { cn } from '@/lib/utils';
 import { InputRoot, type BaseInputProps } from './input-utils';
 

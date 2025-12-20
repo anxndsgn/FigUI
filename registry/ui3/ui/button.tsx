@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { useRender, mergeProps } from '@base-ui-components/react';
+import { useRender, mergeProps } from '@base-ui/react';
 
 const solidFocusRing =
   'focus-visible:inset-ring-2 focus-visible:inset-ring-white-1000 focus-visible:border-blue-500';

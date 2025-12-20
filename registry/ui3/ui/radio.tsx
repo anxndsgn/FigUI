@@ -1,4 +1,4 @@
-import { RadioGroup, Radio as BaseRadio } from '@base-ui-components/react';
+import { RadioGroup, Radio as BaseRadio } from '@base-ui/react';
 import { cn } from '@/lib/utils';
 
 function Radio({ className, ...props }: BaseRadio.Root.Props) {

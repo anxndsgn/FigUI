@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Input as BaseInput } from '@base-ui-components/react';
+import { Input as BaseInput } from '@base-ui/react';
 import { createContext, useContext, useState } from 'react';
 
 // types

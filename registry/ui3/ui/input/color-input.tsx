@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import chroma from 'chroma-js';
 import { TextInputPrimitive } from './text-input';
 import { InputRoot, type BaseInputProps } from './input-utils';
-import { Input as BaseInput } from '@base-ui-components/react';
+import { Input as BaseInput } from '@base-ui/react';
 
 const HEX_RE = /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
 const HEX8_RE = /^#?[0-9a-fA-F]{8}$/;

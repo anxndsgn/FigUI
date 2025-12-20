@@ -3,7 +3,7 @@
 import {
   Checkbox as BaseCheckbox,
   CheckboxGroup,
-} from '@base-ui-components/react';
+} from '@base-ui/react';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { CheckIcon, MinusIcon } from 'lucide-react';
