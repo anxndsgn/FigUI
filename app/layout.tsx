@@ -19,14 +19,9 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <Analytics />
       <Script
-        src='https://plausiblean.zeabur.app/js/script.js'
-        data-domain='figui.dev'
-        defer
-      />
-      <Script
         defer
         src='https://umami.anxndsgn.com/script.js'
-        data-website-id='2c114b7f-6888-41fe-a72f-9d97e9f3b3f2'
+        data-website-id='b2d1a0d8-2447-4e52-8c53-77f386f5a8b5'
       />
       <body className={`font-(--font-family-default) antialiased`}>
         <ThemeProvider
