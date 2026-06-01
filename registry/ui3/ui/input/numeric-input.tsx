@@ -1,16 +1,11 @@
 'use client';
 
-import {
-  InputRoot,
-  type BaseInputProps,
-  useInputRootContext,
-} from './input-utils';
-import { TextInputPrimitive } from './text-input';
-import { Input as BaseInput } from '@base-ui/react';
+import { InputRoot, type BaseInputProps } from './input-utils';
+import { NumberField } from '@base-ui/react/number-field';
+import { cn } from '@/lib/utils';
 
 import React from 'react';
 
-const NUMBER_REGEX = /^-?\d+(\.\d+)?$/;
 const OPERATORS_REGEX = /[+\-*/()]/;
 const PREC: Record<string, number> = {
   'u-': 3,
@@ -21,18 +16,14 @@ const PREC: Record<string, number> = {
 };
 const RIGHT_ASSOC = new Set(['u-']);
 
-const toStringValue = (v: unknown): string => {
-  if (typeof v === 'number') return String(v);
-  if (typeof v === 'string') return v;
-  return '';
-};
-
-const isValidNumber = (v: string): boolean => NUMBER_REGEX.test(v);
-
-const getDecimalPlaces = (n: number): number => {
-  const s = String(n);
-  const i = s.indexOf('.');
-  return i >= 0 ? s.length - i - 1 : 0;
+const toNullableNumber = (v: unknown): number | null => {
+  if (v === '' || v === undefined || v === null) return null;
+  if (typeof v === 'number') return Number.isFinite(v) ? v : null;
+  if (typeof v === 'string') {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
 };
 
 const trimTrailingZeros = (s: string): string => {
@@ -144,52 +135,37 @@ const clampNumber = (num: number, minNum?: number, maxNum?: number): number => {
   return result;
 };
 
-interface NumericInputProps extends BaseInputProps {
+interface NumericInputProps
+  extends Omit<
+    BaseInputProps,
+    'value' | 'defaultValue' | 'onChange' | 'onBlur' | 'onKeyDown'
+  > {
+  value?: number | string;
+  defaultValue?: number | string;
   nudgeAmount?: number;
   min?: number | string;
   max?: number | string;
   onValueChange?: (next: string) => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
 function NumericInputPrimitive({
-  onChange,
-  onBlur,
-  onKeyDown,
   value,
   defaultValue,
   nudgeAmount = 1,
   min,
   max,
   className,
+  iconLead,
+  iconTrail,
   onValueChange,
+  onChange,
+  onBlur,
+  onKeyDown,
   ...props
 }: NumericInputProps) {
-  type BaseInputChangeEvent = Parameters<
-    NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
-  >[0];
-  type BaseInputBlurEvent = Parameters<
-    NonNullable<React.ComponentProps<typeof BaseInput>['onBlur']>
-  >[0];
-  type BaseInputKeyDownEvent = Parameters<
-    NonNullable<React.ComponentProps<typeof BaseInput>['onKeyDown']>
-  >[0];
-  type BaseInputMouseDownEvent = Parameters<
-    NonNullable<React.ComponentProps<typeof BaseInput>['onMouseDown']>
-  >[0];
-
-  const initial = toStringValue(value ?? defaultValue ?? '');
-  const [inputValue, setInputValue] = React.useState<string>(initial);
-  const lastValidRef = React.useRef<string>(
-    isValidNumber(initial) ? initial : '',
-  );
-  const { setIsMiddleButtonDragging } = useInputRootContext();
-  const dragActiveRef = React.useRef<boolean>(false);
-  const dragStartXRef = React.useRef<number>(0);
-  const dragBaseRef = React.useRef<number>(0);
-  const dragStepRef = React.useRef<number>(Number(nudgeAmount ?? 1));
-  const dragDecimalsRef = React.useRef<number>(0);
-  const dragLastStepsRef = React.useRef<number>(0);
-
   const minNumber = React.useMemo(
     () => (typeof min === 'string' ? Number(min) : min),
     [min],
@@ -199,218 +175,150 @@ function NumericInputPrimitive({
     [max],
   );
 
-  React.useEffect(() => {
-    if (value !== undefined) {
-      const s = toStringValue(value);
-      setInputValue(s);
-      if (isValidNumber(s)) lastValidRef.current = s;
-    }
-  }, [value]);
+  const isControlled = value !== undefined;
+  const [internalValue, setInternalValue] = React.useState<number | null>(
+    () => toNullableNumber(value ?? defaultValue),
+  );
+  const rootValue = isControlled ? toNullableNumber(value) : internalValue;
 
-  const handleChange = React.useCallback(
-    (e: BaseInputChangeEvent) => {
-      const next = e.target.value;
-      setInputValue(next);
-      if (isValidNumber(next)) {
-        lastValidRef.current = next;
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
+
+  const emit = React.useCallback(
+    (n: number | null) => {
+      if (n === null) {
+        onValueChange?.('');
+      } else {
+        onValueChange?.(trimTrailingZeros(String(n)));
       }
-      onValueChange?.(next);
-      onChange?.(e);
     },
-    [onChange, onValueChange],
+    [onValueChange],
   );
 
-  // Basic arithmetic expression evaluator: supports + - * / and parentheses, with unary minus
-  const numericInputCommit = React.useCallback(() => {
-    let next = inputValue;
-    const containsOperators = OPERATORS_REGEX.test(inputValue);
-    if (containsOperators) {
-      const result = evaluateExpression(inputValue);
-      if (result !== null) {
-        const clamped = clampNumber(result, minNumber, maxNumber);
-        next = String(clamped);
-      } else if (isValidNumber(lastValidRef.current)) {
-        const clamped = clampNumber(
-          Number(lastValidRef.current),
-          minNumber,
-          maxNumber,
-        );
-        next = String(clamped);
-      } else {
-        next = lastValidRef.current;
-      }
-    } else if (!isValidNumber(inputValue)) {
-      if (isValidNumber(lastValidRef.current)) {
-        const clamped = clampNumber(
-          Number(lastValidRef.current),
-          minNumber,
-          maxNumber,
-        );
-        next = String(clamped);
-      } else {
-        next = lastValidRef.current;
-      }
-    } else {
-      const clamped = clampNumber(Number(inputValue), minNumber, maxNumber);
-      next = String(clamped);
+  const handleValueChange = React.useCallback(
+    (next: number | null) => {
+      if (!isControlled) setInternalValue(next);
+      emit(next);
+    },
+    [emit, isControlled],
+  );
+
+  const tryEvaluateExpression = React.useCallback((): boolean => {
+    const raw = inputRef.current?.value ?? '';
+    if (!OPERATORS_REGEX.test(raw)) return false;
+    const r = evaluateExpression(raw);
+    if (r === null) return false;
+    const clamped = clampNumber(r, minNumber, maxNumber);
+    if (!isControlled) setInternalValue(clamped);
+    if (inputRef.current) {
+      inputRef.current.value = trimTrailingZeros(String(clamped));
     }
-    setInputValue(next);
-    lastValidRef.current = next;
-    onValueChange?.(next);
-  }, [inputValue, minNumber, maxNumber, onValueChange]);
+    emit(clamped);
+    return true;
+  }, [emit, isControlled, maxNumber, minNumber]);
+
+  type InputBlurEvent = Parameters<
+    NonNullable<React.ComponentProps<typeof NumberField.Input>['onBlur']>
+  >[0];
+  type InputKeyDownEvent = Parameters<
+    NonNullable<React.ComponentProps<typeof NumberField.Input>['onKeyDown']>
+  >[0];
 
   const handleBlur = React.useCallback(
-    (e: BaseInputBlurEvent) => {
-      numericInputCommit();
+    (e: InputBlurEvent) => {
+      tryEvaluateExpression();
       onBlur?.(e);
     },
-    [numericInputCommit, onBlur],
+    [onBlur, tryEvaluateExpression],
   );
 
   const handleKeyDown = React.useCallback(
-    (e: BaseInputKeyDownEvent) => {
-      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        const direction = e.key === 'ArrowUp' ? 1 : -1;
-        const containsOperators = OPERATORS_REGEX.test(inputValue);
-        let base: number | null = null;
-        if (containsOperators) base = evaluateExpression(inputValue);
-        if (base === null) {
-          if (isValidNumber(inputValue)) base = Number(inputValue);
-          else if (isValidNumber(lastValidRef.current))
-            base = Number(lastValidRef.current);
-          else base = 0;
+    (e: InputKeyDownEvent) => {
+      if (e.key === 'Enter') {
+        if (tryEvaluateExpression()) {
+          e.preventDefault();
+          (e.currentTarget as HTMLInputElement).blur();
         }
-        const step = Number(nudgeAmount ?? 1);
-        const decimals = Math.max(
-          getDecimalPlaces(base),
-          getDecimalPlaces(step),
-          typeof minNumber === 'number' ? getDecimalPlaces(minNumber) : 0,
-          typeof maxNumber === 'number' ? getDecimalPlaces(maxNumber) : 0,
-        );
-        const nextNumber = clampNumber(
-          base + direction * step,
-          minNumber,
-          maxNumber,
-        );
-        const nextString = trimTrailingZeros(nextNumber.toFixed(decimals));
-        setInputValue(nextString);
-        lastValidRef.current = nextString;
-        onValueChange?.(nextString);
-      } else if (e.key === 'Enter') {
-        numericInputCommit();
-        e.currentTarget.blur();
       }
       onKeyDown?.(e);
     },
-    [
-      inputValue,
-      maxNumber,
-      minNumber,
-      nudgeAmount,
-      numericInputCommit,
-      onKeyDown,
-      onValueChange,
-    ],
+    [onKeyDown, tryEvaluateExpression],
   );
 
-  const handleMouseDown = React.useCallback(
-    (e: BaseInputMouseDownEvent) => {
-      if (e.button !== 1) return;
-      e.preventDefault();
-      const inputEl = (e.currentTarget as unknown as HTMLElement) ?? null;
-      const containsOperators = OPERATORS_REGEX.test(inputValue);
-      let base: number | null = null;
-      if (containsOperators) base = evaluateExpression(inputValue);
-      if (base === null) {
-        if (isValidNumber(inputValue)) base = Number(inputValue);
-        else if (isValidNumber(lastValidRef.current))
-          base = Number(lastValidRef.current);
-        else base = 0;
-      }
-
-      dragActiveRef.current = true;
-      setIsMiddleButtonDragging(true);
-      dragStartXRef.current = (e as unknown as MouseEvent).clientX;
-      dragBaseRef.current = base;
-      dragStepRef.current = Number(nudgeAmount ?? 1);
-      dragDecimalsRef.current = Math.max(
-        getDecimalPlaces(base),
-        getDecimalPlaces(dragStepRef.current),
-      );
-      dragLastStepsRef.current = 0;
-
-      const pixelsPerStep = 8;
-
-      const onMove = (ev: MouseEvent) => {
-        if (!dragActiveRef.current) return;
-        const dx = ev.clientX - dragStartXRef.current;
-        const steps = Math.trunc(dx / pixelsPerStep);
-        if (steps === dragLastStepsRef.current) return;
-        dragLastStepsRef.current = steps;
-        const nextNumber = clampNumber(
-          dragBaseRef.current + steps * dragStepRef.current,
-          minNumber,
-          maxNumber,
-        );
-        const nextString = trimTrailingZeros(
-          nextNumber.toFixed(dragDecimalsRef.current),
-        );
-        setInputValue(nextString);
-        lastValidRef.current = nextString;
-        onValueChange?.(nextString);
-      };
-
-      const endDrag = () => {
-        if (!dragActiveRef.current) return;
-        dragActiveRef.current = false;
-        setIsMiddleButtonDragging(false);
-        window.removeEventListener('mousemove', onMove);
-        window.removeEventListener('mouseup', onUp);
-        document.body.style.cursor = '';
-        if (inputEl) inputEl.style.cursor = '';
-      };
-
-      const onUp = () => {
-        endDrag();
-      };
-
-      window.addEventListener('mousemove', onMove);
-      window.addEventListener('mouseup', onUp, { once: true });
-      document.body.style.cursor = 'ew-resize';
-      if (inputEl) inputEl.style.cursor = 'ew-resize';
-    },
-    [
-      inputValue,
-      maxNumber,
-      minNumber,
-      nudgeAmount,
-      onValueChange,
-      setIsMiddleButtonDragging,
-    ],
-  );
+  const step = Number(nudgeAmount ?? 1);
 
   return (
-    <TextInputPrimitive
-      type='text'
-      inputMode='decimal'
-      className={className}
-      min={min as any}
-      max={max as any}
-      value={inputValue}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      onKeyDown={handleKeyDown}
-      onMouseDown={handleMouseDown}
-      {...props}
-    />
+    <NumberField.Root
+      value={rootValue}
+      onValueChange={handleValueChange}
+      min={minNumber}
+      max={maxNumber}
+      step={Number.isFinite(step) && step > 0 ? step : 1}
+      className='flex h-full w-full items-center'
+    >
+      {iconLead != null && (
+        <NumberField.ScrubArea
+          direction='horizontal'
+          pixelSensitivity={8}
+          className='flex aspect-square size-6 cursor-ew-resize items-center justify-center select-none'
+          data-figui='input-icon-lead'
+        >
+          {typeof iconLead === 'string' ? (
+            <span className='text-black-500 dark:text-white-500'>
+              {iconLead}
+            </span>
+          ) : (
+            iconLead
+          )}
+          <NumberField.ScrubAreaCursor className='pointer-events-none z-50'>
+            <svg
+              width='26'
+              height='14'
+              viewBox='0 0 24 14'
+              fill='black'
+              stroke='white'
+              style={{ display: 'block' }}
+            >
+              <path d='M19.5 5.5L6.49737 5.51844V2L1 6.9999L6.5 12L6.49737 8.5L19.5 8.5V12L25 6.9999L19.5 2V5.5Z' />
+            </svg>
+          </NumberField.ScrubAreaCursor>
+        </NumberField.ScrubArea>
+      )}
+      <div className='flex h-full flex-1 items-center pr-2 pl-2 has-data-[figui=input-icon-lead]:pl-0 has-data-[figui=input-icon-trail]:pr-0'>
+        <NumberField.Input
+          {...(props as React.ComponentProps<typeof NumberField.Input>)}
+          ref={inputRef}
+          className={cn('h-full w-full bg-transparent outline-none', className)}
+          onChange={onChange as React.ComponentProps<typeof NumberField.Input>['onChange']}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+      {iconTrail != null && (
+        <div
+          className='flex aspect-square size-6 items-center justify-center select-none'
+          data-figui='input-icon-trail'
+        >
+          {typeof iconTrail === 'string' ? (
+            <span className='text-black-500 dark:text-white-500'>
+              {iconTrail}
+            </span>
+          ) : (
+            iconTrail
+          )}
+        </div>
+      )}
+    </NumberField.Root>
   );
 }
 
-function NumericInput({ className, iconLead, ...props }: NumericInputProps) {
+function NumericInput({ className, iconLead, iconTrail, ...props }: NumericInputProps) {
   return (
     <InputRoot className={className}>
-      <NumericInputPrimitive iconLead={iconLead} {...props} />
+      <NumericInputPrimitive
+        iconLead={iconLead}
+        iconTrail={iconTrail}
+        {...props}
+      />
     </InputRoot>
   );
 }
