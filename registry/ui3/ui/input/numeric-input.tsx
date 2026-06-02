@@ -1,11 +1,11 @@
 'use client';
 
-import { InputRoot, type BaseInputProps } from './input-utils';
+import React from 'react';
 import { NumberField } from '@base-ui/react/number-field';
 import { cn } from '@/lib/utils';
+import { INPUT_BASE_CLASS } from './text-input';
 
-import React from 'react';
-
+// ----- pure helpers -----
 const OPERATORS_REGEX = /[+\-*/()]/;
 const PREC: Record<string, number> = {
   'u-': 3,
@@ -135,37 +135,42 @@ const clampNumber = (num: number, minNum?: number, maxNum?: number): number => {
   return result;
 };
 
-interface NumericInputProps
-  extends Omit<
-    BaseInputProps,
-    'value' | 'defaultValue' | 'onChange' | 'onBlur' | 'onKeyDown'
-  > {
-  value?: number | string;
-  defaultValue?: number | string;
-  nudgeAmount?: number;
-  min?: number | string;
-  max?: number | string;
-  onValueChange?: (next: string) => void;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+// ----- internal context: lets <NumericInput/> reach Root state for expression eval -----
+interface NumericContextValue {
+  inputRef: React.MutableRefObject<HTMLInputElement | null>;
+  minNumber?: number;
+  maxNumber?: number;
+  isControlled: boolean;
+  setInternalValue: (n: number | null) => void;
+  emit: (n: number | null) => void;
 }
 
-function NumericInputPrimitive({
+const NumericContext = React.createContext<NumericContextValue | null>(null);
+
+// ----- Root -----
+interface NumericInputRootProps extends Omit<
+  React.ComponentProps<typeof NumberField.Root>,
+  'value' | 'defaultValue' | 'min' | 'max' | 'step' | 'onValueChange'
+> {
+  value?: number | string;
+  defaultValue?: number | string;
+  min?: number | string;
+  max?: number | string;
+  nudgeAmount?: number;
+  onValueChange?: (next: string) => void;
+}
+
+function NumericInputRoot({
   value,
   defaultValue,
-  nudgeAmount = 1,
   min,
   max,
-  className,
-  iconLead,
-  iconTrail,
+  nudgeAmount = 1,
   onValueChange,
-  onChange,
-  onBlur,
-  onKeyDown,
+  className,
+  children,
   ...props
-}: NumericInputProps) {
+}: NumericInputRootProps) {
   const minNumber = React.useMemo(
     () => (typeof min === 'string' ? Number(min) : min),
     [min],
@@ -176,8 +181,8 @@ function NumericInputPrimitive({
   );
 
   const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = React.useState<number | null>(
-    () => toNullableNumber(value ?? defaultValue),
+  const [internalValue, setInternalValue] = React.useState<number | null>(() =>
+    toNullableNumber(value ?? defaultValue),
   );
   const rootValue = isControlled ? toNullableNumber(value) : internalValue;
 
@@ -202,125 +207,132 @@ function NumericInputPrimitive({
     [emit, isControlled],
   );
 
+  const step = Number(nudgeAmount ?? 1);
+
+  const ctx = React.useMemo<NumericContextValue>(
+    () => ({
+      inputRef,
+      minNumber,
+      maxNumber,
+      isControlled,
+      setInternalValue,
+      emit,
+    }),
+    [minNumber, maxNumber, isControlled, emit],
+  );
+
+  return (
+    <NumericContext.Provider value={ctx}>
+      <NumberField.Root
+        value={rootValue}
+        onValueChange={handleValueChange}
+        min={minNumber}
+        max={maxNumber}
+        step={Number.isFinite(step) && step > 0 ? step : 1}
+        className={cn(
+          'inline-flex h-6 items-center rounded-md',
+          'has-data-scrubbing:cursor-ew-resize has-data-scrubbing:ring-blue-600! dark:has-data-scrubbing:ring-blue-400!',
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </NumberField.Root>
+    </NumericContext.Provider>
+  );
+}
+
+// ----- Input -----
+type NumberFieldInputProps = React.ComponentProps<typeof NumberField.Input>;
+
+function NumericInput({
+  className,
+  onBlur,
+  onKeyDown,
+  ...props
+}: NumberFieldInputProps) {
+  const ctx = React.useContext(NumericContext);
+
   const tryEvaluateExpression = React.useCallback((): boolean => {
-    const raw = inputRef.current?.value ?? '';
+    if (!ctx) return false;
+    const raw = ctx.inputRef.current?.value ?? '';
     if (!OPERATORS_REGEX.test(raw)) return false;
     const r = evaluateExpression(raw);
     if (r === null) return false;
-    const clamped = clampNumber(r, minNumber, maxNumber);
-    if (!isControlled) setInternalValue(clamped);
-    if (inputRef.current) {
-      inputRef.current.value = trimTrailingZeros(String(clamped));
+    const clamped = clampNumber(r, ctx.minNumber, ctx.maxNumber);
+    if (!ctx.isControlled) ctx.setInternalValue(clamped);
+    if (ctx.inputRef.current) {
+      ctx.inputRef.current.value = trimTrailingZeros(String(clamped));
     }
-    emit(clamped);
+    ctx.emit(clamped);
     return true;
-  }, [emit, isControlled, maxNumber, minNumber]);
+  }, [ctx]);
 
-  type InputBlurEvent = Parameters<
-    NonNullable<React.ComponentProps<typeof NumberField.Input>['onBlur']>
-  >[0];
-  type InputKeyDownEvent = Parameters<
-    NonNullable<React.ComponentProps<typeof NumberField.Input>['onKeyDown']>
-  >[0];
+  const handleBlur: NumberFieldInputProps['onBlur'] = (e) => {
+    tryEvaluateExpression();
+    onBlur?.(e);
+  };
 
-  const handleBlur = React.useCallback(
-    (e: InputBlurEvent) => {
-      tryEvaluateExpression();
-      onBlur?.(e);
-    },
-    [onBlur, tryEvaluateExpression],
-  );
-
-  const handleKeyDown = React.useCallback(
-    (e: InputKeyDownEvent) => {
-      if (e.key === 'Enter') {
-        if (tryEvaluateExpression()) {
-          e.preventDefault();
-          (e.currentTarget as HTMLInputElement).blur();
-        }
+  const handleKeyDown: NumberFieldInputProps['onKeyDown'] = (e) => {
+    if (e.key === 'Enter') {
+      if (tryEvaluateExpression()) {
+        e.preventDefault();
+        (e.currentTarget as HTMLInputElement).blur();
       }
-      onKeyDown?.(e);
-    },
-    [onKeyDown, tryEvaluateExpression],
-  );
-
-  const step = Number(nudgeAmount ?? 1);
+    }
+    onKeyDown?.(e);
+  };
 
   return (
-    <NumberField.Root
-      value={rootValue}
-      onValueChange={handleValueChange}
-      min={minNumber}
-      max={maxNumber}
-      step={Number.isFinite(step) && step > 0 ? step : 1}
-      className='flex h-full w-full items-center'
+    <NumberField.Input
+      {...props}
+      ref={ctx?.inputRef}
+      className={cn(INPUT_BASE_CLASS, 'flex-1', className)}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
+    />
+  );
+}
+
+// ----- ScrubArea -----
+function ScrubAreaCursorIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      width='26'
+      height='14'
+      viewBox='0 0 24 14'
+      fill='black'
+      stroke='white'
+      style={{ display: 'block' }}
+      className={className}
     >
-      {iconLead != null && (
-        <NumberField.ScrubArea
-          direction='horizontal'
-          pixelSensitivity={8}
-          className='flex aspect-square size-6 cursor-ew-resize items-center justify-center select-none'
-          data-figui='input-icon-lead'
-        >
-          {typeof iconLead === 'string' ? (
-            <span className='text-black-500 dark:text-white-500'>
-              {iconLead}
-            </span>
-          ) : (
-            iconLead
-          )}
-          <NumberField.ScrubAreaCursor className='pointer-events-none z-50'>
-            <svg
-              width='26'
-              height='14'
-              viewBox='0 0 24 14'
-              fill='black'
-              stroke='white'
-              style={{ display: 'block' }}
-            >
-              <path d='M19.5 5.5L6.49737 5.51844V2L1 6.9999L6.5 12L6.49737 8.5L19.5 8.5V12L25 6.9999L19.5 2V5.5Z' />
-            </svg>
-          </NumberField.ScrubAreaCursor>
-        </NumberField.ScrubArea>
-      )}
-      <div className='flex h-full flex-1 items-center pr-2 pl-2 has-data-[figui=input-icon-lead]:pl-0 has-data-[figui=input-icon-trail]:pr-0'>
-        <NumberField.Input
-          {...(props as React.ComponentProps<typeof NumberField.Input>)}
-          ref={inputRef}
-          className={cn('h-full w-full bg-transparent outline-none', className)}
-          onChange={onChange as React.ComponentProps<typeof NumberField.Input>['onChange']}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyDown}
-        />
-      </div>
-      {iconTrail != null && (
-        <div
-          className='flex aspect-square size-6 items-center justify-center select-none'
-          data-figui='input-icon-trail'
-        >
-          {typeof iconTrail === 'string' ? (
-            <span className='text-black-500 dark:text-white-500'>
-              {iconTrail}
-            </span>
-          ) : (
-            iconTrail
-          )}
-        </div>
-      )}
-    </NumberField.Root>
+      <path d='M19.5 5.5L6.49737 5.51844V2L1 6.9999L6.5 12L6.49737 8.5L19.5 8.5V12L25 6.9999L19.5 2V5.5Z' />
+    </svg>
   );
 }
 
-function NumericInput({ className, iconLead, iconTrail, ...props }: NumericInputProps) {
+// A sizeless wrapper. The consumer decides the size, padding, and visual
+// content via className + children. The cursor + horizontal scrub behavior
+// are baked in.
+function NumericScrubArea({
+  className,
+  children,
+}: {
+  className?: string;
+  children?: React.ReactNode;
+}) {
   return (
-    <InputRoot className={className}>
-      <NumericInputPrimitive
-        iconLead={iconLead}
-        iconTrail={iconTrail}
-        {...props}
-      />
-    </InputRoot>
+    <NumberField.ScrubArea
+      direction='horizontal'
+      pixelSensitivity={8}
+      className={cn('cursor-ew-resize select-none', className)}
+    >
+      {children}
+      <NumberField.ScrubAreaCursor className='pointer-events-none z-50'>
+        <ScrubAreaCursorIcon />
+      </NumberField.ScrubAreaCursor>
+    </NumberField.ScrubArea>
   );
 }
 
-export { NumericInput, NumericInputPrimitive };
+export { NumericInputRoot, NumericScrubArea, NumericInput };

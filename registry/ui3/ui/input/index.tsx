@@ -1,19 +1,7 @@
-import { TextInput, TextInputPrimitive } from './text-input';
-import { NumericInput, NumericInputPrimitive } from './numeric-input';
-import { ColorInput, ColorChit, ColorInputPrimitive } from './color-input';
-import { InputMultiRoot, InputRoot } from './input-utils';
-
-const Input = TextInput;
-
+export { TextInput } from './text-input';
 export {
-  TextInput,
-  TextInputPrimitive,
+  NumericInputRoot,
+  NumericScrubArea,
   NumericInput,
-  NumericInputPrimitive,
-  ColorInput,
-  ColorInputPrimitive,
-  ColorChit,
-  Input,
-  InputMultiRoot,
-  InputRoot,
-};
+} from './numeric-input';
+export { ColorInput } from './color-input';
