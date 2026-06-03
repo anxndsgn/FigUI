@@ -4,7 +4,6 @@ import React from 'react';
 import { NumberField } from '@base-ui/react/number-field';
 import { cn } from '@/lib/utils';
 import { INPUT_BASE_CLASS } from './text-input';
-import { useInputGroup, GROUPED_INPUT_OVERRIDE, GROUPED_ROOT_OVERRIDE } from './input-group';
 
 // ----- pure helpers -----
 const OPERATORS_REGEX = /[+\-*/()]/;
@@ -138,7 +137,8 @@ const clampNumber = (num: number, minNum?: number, maxNum?: number): number => {
 
 // ----- internal context: lets <NumericInput/> reach Root state for expression eval -----
 interface NumericContextValue {
-  inputRef: React.MutableRefObject<HTMLInputElement | null>;
+  getInputElement: () => HTMLInputElement | null;
+  setInputElement: (node: HTMLInputElement | null) => void;
   minNumber?: number;
   maxNumber?: number;
   isControlled: boolean;
@@ -147,6 +147,14 @@ interface NumericContextValue {
 }
 
 const NumericContext = React.createContext<NumericContextValue | null>(null);
+
+function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
+  if (typeof ref === 'function') {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
+}
 
 // ----- Root -----
 interface NumericInputRootProps extends Omit<
@@ -172,8 +180,6 @@ function NumericInputRoot({
   children,
   ...props
 }: NumericInputRootProps) {
-  const { inGroup } = useInputGroup();
-
   const minNumber = React.useMemo(
     () => (typeof min === 'string' ? Number(min) : min),
     [min],
@@ -190,6 +196,10 @@ function NumericInputRoot({
   const rootValue = isControlled ? toNullableNumber(value) : internalValue;
 
   const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const getInputElement = React.useCallback(() => inputRef.current, []);
+  const setInputElement = React.useCallback((node: HTMLInputElement | null) => {
+    inputRef.current = node;
+  }, []);
 
   const emit = React.useCallback(
     (n: number | null) => {
@@ -214,32 +224,39 @@ function NumericInputRoot({
 
   const ctx = React.useMemo<NumericContextValue>(
     () => ({
-      inputRef,
+      getInputElement,
+      setInputElement,
       minNumber,
       maxNumber,
       isControlled,
       setInternalValue,
       emit,
     }),
-    [minNumber, maxNumber, isControlled, emit],
+    [
+      getInputElement,
+      setInputElement,
+      minNumber,
+      maxNumber,
+      isControlled,
+      emit,
+    ],
   );
 
   return (
     <NumericContext.Provider value={ctx}>
       <NumberField.Root
-        {...(inGroup && { 'data-slot': 'section' })}
+        {...props}
         value={rootValue}
         onValueChange={handleValueChange}
         min={minNumber}
         max={maxNumber}
         step={Number.isFinite(step) && step > 0 ? step : 1}
+        data-slot='section'
         className={cn(
           'inline-flex h-6 items-center rounded-md',
           'has-data-scrubbing:cursor-ew-resize has-data-scrubbing:ring-blue-600! dark:has-data-scrubbing:ring-blue-400!',
-          inGroup && GROUPED_ROOT_OVERRIDE,
           className,
         )}
-        {...props}
       >
         {children}
       </NumberField.Root>
@@ -254,22 +271,26 @@ function NumericInput({
   className,
   onBlur,
   onKeyDown,
+  ref,
   ...props
-}: NumberFieldInputProps) {
+}: NumberFieldInputProps & { ref?: React.Ref<HTMLInputElement> }) {
   const ctx = React.useContext(NumericContext);
-  const { inGroup } = useInputGroup();
+  const inputRef = React.useCallback(
+    (node: HTMLInputElement | null) => {
+      ctx?.setInputElement(node);
+      assignRef(ref, node);
+    },
+    [ctx, ref],
+  );
 
   const tryEvaluateExpression = React.useCallback((): boolean => {
     if (!ctx) return false;
-    const raw = ctx.inputRef.current?.value ?? '';
+    const raw = ctx.getInputElement()?.value ?? '';
     if (!OPERATORS_REGEX.test(raw)) return false;
     const r = evaluateExpression(raw);
     if (r === null) return false;
     const clamped = clampNumber(r, ctx.minNumber, ctx.maxNumber);
     if (!ctx.isControlled) ctx.setInternalValue(clamped);
-    if (ctx.inputRef.current) {
-      ctx.inputRef.current.value = trimTrailingZeros(String(clamped));
-    }
     ctx.emit(clamped);
     return true;
   }, [ctx]);
@@ -291,15 +312,10 @@ function NumericInput({
 
   return (
     <NumberField.Input
-      {...(inGroup && { 'data-slot': 'input' })}
       {...props}
-      ref={ctx?.inputRef}
-      className={cn(
-        INPUT_BASE_CLASS,
-        'flex-1',
-        inGroup && GROUPED_INPUT_OVERRIDE,
-        className,
-      )}
+      data-slot='input'
+      ref={inputRef}
+      className={cn(INPUT_BASE_CLASS, 'flex-1', className)}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
     />

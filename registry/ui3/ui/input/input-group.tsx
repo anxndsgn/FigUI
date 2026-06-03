@@ -1,21 +1,7 @@
 'use client';
 
-import React from 'react';
+import type * as React from 'react';
 import { cn } from '@/lib/utils';
-
-// ─── Context ────────────────────────────────────────────────────────────────
-
-interface InputGroupContextValue {
-  inGroup: boolean;
-}
-
-const InputGroupContext = React.createContext<InputGroupContextValue>({
-  inGroup: false,
-});
-
-function useInputGroup() {
-  return React.useContext(InputGroupContext);
-}
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
@@ -27,6 +13,7 @@ const INPUT_GROUP_CLASS = [
   'ring ring-transparent hover:ring-grey-200 dark:hover:ring-grey-600',
   'focus-within:ring-blue-500! dark:focus-within:ring-blue-500!',
   'has-data-scrubbing:ring-blue-600! dark:has-data-scrubbing:ring-blue-400!',
+  'has-[[aria-invalid=true]]:ring-red-500/20! dark:has-[[aria-invalid=true]]:ring-red-500/30!',
   // Hide phantom inputs rendered by base-ui NumberField.Root
   '[&>input[aria-hidden=true]]:!hidden',
   // ─── Spacing rules via data-slot sibling selectors ───
@@ -34,22 +21,30 @@ const INPUT_GROUP_CLASS = [
   // Dividers only need added margin when the neighboring visible content is an input.
   '[&>[data-slot=input]+[data-slot=divider]]:ml-1',
   '[&>[data-slot=section]:has(>[data-slot=input]:last-child)+[data-slot=divider]]:ml-1',
+  '[&>[data-slot=section]:has(>[data-slot=input]:last-child)+input[aria-hidden=true]+[data-slot=divider]]:ml-1',
   '[&>[data-slot=divider]+[data-slot=input]]:ml-1',
   '[&>[data-slot=divider]+[data-slot=section]:has(>[data-slot=input]:first-child)]:ml-1',
+  // Group-owned input resets. The inputs expose stable slots, but do not import
+  // group internals.
+  '[&_[data-slot=input]]:h-full',
+  '[&_[data-slot=input]]:rounded-none!',
+  '[&_[data-slot=input]]:bg-transparent!',
+  '[&_[data-slot=input]]:px-0!',
+  '[&_[data-slot=input]]:ring-0!',
+  '[&_[data-slot=input]]:ring-transparent!',
+  '[&_[data-slot=input]]:hover:ring-transparent!',
+  '[&_[data-slot=input]]:focus:ring-transparent!',
+  'dark:[&_[data-slot=input]]:bg-transparent!',
+  '[&>[data-slot=section]]:h-full',
+  '[&>[data-slot=section]]:rounded-none!',
+  '[&>[data-slot=section]]:ring-transparent!',
+  '[&>[data-slot=section]]:hover:ring-transparent!',
   // First/last child input → padding from container edge
-  '[&>[data-slot=input]:first-child]:pl-1.5',
-  '[&>[data-slot=input]:last-child]:pr-1.5',
-  '[&>[data-slot=section]:first-child>[data-slot=input]:first-child]:pl-1.5',
-  '[&>[data-slot=section]:last-child>[data-slot=input]:last-child]:pr-1.5',
+  '[&>[data-slot=input]:first-child]:pl-1.5!',
+  '[&>[data-slot=input]:last-child]:pr-1.5!',
+  '[&>[data-slot=section]:first-child>[data-slot=input]:first-child]:pl-1.5!',
+  '[&>[data-slot=section]>[data-slot=input]:last-child]:pr-1.5!',
 ].join(' ');
-
-/** Override classes merged into child inputs when inside an InputGroup. */
-const GROUPED_INPUT_OVERRIDE =
-  'ring-0! ring-transparent! hover:ring-transparent! focus:ring-transparent! rounded-none! bg-transparent! dark:bg-transparent! h-full px-0!';
-
-/** Override classes for NumericInputRoot when it's a child inside an InputGroup. */
-const GROUPED_ROOT_OVERRIDE =
-  'h-full rounded-none! ring-transparent! hover:ring-transparent!';
 
 // ─── InputGroup ─────────────────────────────────────────────────────────────
 
@@ -58,17 +53,10 @@ interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 function InputGroup({ className, children, ...props }: InputGroupProps) {
-  const ctx = React.useMemo<InputGroupContextValue>(
-    () => ({ inGroup: true }),
-    [],
-  );
-
   return (
-    <InputGroupContext.Provider value={ctx}>
-      <div className={cn(INPUT_GROUP_CLASS, className)} {...props}>
-        {children}
-      </div>
-    </InputGroupContext.Provider>
+    <div className={cn(INPUT_GROUP_CLASS, className)} {...props}>
+      {children}
+    </div>
   );
 }
 
@@ -123,11 +111,4 @@ function InputGroupDivider({ className }: InputGroupDividerProps) {
 
 // ─── Exports ────────────────────────────────────────────────────────────────
 
-export {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupDivider,
-  useInputGroup,
-  GROUPED_INPUT_OVERRIDE,
-  GROUPED_ROOT_OVERRIDE,
-};
+export { InputGroup, InputGroupAddon, InputGroupDivider };
