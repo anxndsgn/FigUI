@@ -5,3 +5,8 @@ export {
   NumericInput,
 } from './numeric-input';
 export { ColorInput } from './color-input';
+export {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupDivider,
+} from './input-group';

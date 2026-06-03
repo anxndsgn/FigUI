@@ -5,6 +5,7 @@ import chroma from 'chroma-js';
 import { Input as BaseInput } from '@base-ui/react';
 import { cn } from '@/lib/utils';
 import { INPUT_BASE_CLASS } from './text-input';
+import { useInputGroup, GROUPED_INPUT_OVERRIDE } from './input-group';
 
 const HEX_RE = /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
 
@@ -38,6 +39,7 @@ function ColorInput({
   className,
   ...props
 }: ColorInputProps) {
+  const { inGroup } = useInputGroup();
   type BaseInputChangeEvent = Parameters<
     NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
   >[0];
@@ -100,12 +102,17 @@ function ColorInput({
   return (
     <BaseInput
       type='text'
+      {...(inGroup && { 'data-slot': 'input' })}
       {...props}
       value={inputValue}
       onChange={handleChange}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
-      className={cn(INPUT_BASE_CLASS, className)}
+      className={cn(
+        INPUT_BASE_CLASS,
+        inGroup && GROUPED_INPUT_OVERRIDE,
+        className,
+      )}
     />
   );
 }

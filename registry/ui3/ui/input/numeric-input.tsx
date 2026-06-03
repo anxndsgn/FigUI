@@ -4,6 +4,7 @@ import React from 'react';
 import { NumberField } from '@base-ui/react/number-field';
 import { cn } from '@/lib/utils';
 import { INPUT_BASE_CLASS } from './text-input';
+import { useInputGroup, GROUPED_INPUT_OVERRIDE, GROUPED_ROOT_OVERRIDE } from './input-group';
 
 // ----- pure helpers -----
 const OPERATORS_REGEX = /[+\-*/()]/;
@@ -171,6 +172,8 @@ function NumericInputRoot({
   children,
   ...props
 }: NumericInputRootProps) {
+  const { inGroup } = useInputGroup();
+
   const minNumber = React.useMemo(
     () => (typeof min === 'string' ? Number(min) : min),
     [min],
@@ -224,6 +227,7 @@ function NumericInputRoot({
   return (
     <NumericContext.Provider value={ctx}>
       <NumberField.Root
+        {...(inGroup && { 'data-slot': 'section' })}
         value={rootValue}
         onValueChange={handleValueChange}
         min={minNumber}
@@ -232,6 +236,7 @@ function NumericInputRoot({
         className={cn(
           'inline-flex h-6 items-center rounded-md',
           'has-data-scrubbing:cursor-ew-resize has-data-scrubbing:ring-blue-600! dark:has-data-scrubbing:ring-blue-400!',
+          inGroup && GROUPED_ROOT_OVERRIDE,
           className,
         )}
         {...props}
@@ -252,6 +257,7 @@ function NumericInput({
   ...props
 }: NumberFieldInputProps) {
   const ctx = React.useContext(NumericContext);
+  const { inGroup } = useInputGroup();
 
   const tryEvaluateExpression = React.useCallback((): boolean => {
     if (!ctx) return false;
@@ -285,9 +291,15 @@ function NumericInput({
 
   return (
     <NumberField.Input
+      {...(inGroup && { 'data-slot': 'input' })}
       {...props}
       ref={ctx?.inputRef}
-      className={cn(INPUT_BASE_CLASS, 'flex-1', className)}
+      className={cn(
+        INPUT_BASE_CLASS,
+        'flex-1',
+        inGroup && GROUPED_INPUT_OVERRIDE,
+        className,
+      )}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
     />
