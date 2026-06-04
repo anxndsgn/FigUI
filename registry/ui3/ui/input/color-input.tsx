@@ -28,7 +28,7 @@ type BaseInputProps = Omit<React.ComponentProps<typeof BaseInput>, 'onChange'>;
 interface ColorInputProps extends BaseInputProps {
   /**
    * Called with the normalized hex string (uppercase, no leading `#`)
-   * whenever the user types a valid color, and on commit (blur / Enter).
+   * when the user commits the value (blur / Enter).
    */
   onValueChange?: (next: string) => void;
 }
@@ -66,6 +66,7 @@ function ColorInput({
   const lastValidRef = React.useRef<string>(
     getFormattedHexNoHashUpper(initial) ?? '000000',
   );
+  const skipNextBlurCommitRef = React.useRef(false);
 
   if (isControlled && controlledValue !== lastControlledValue) {
     setLastControlledValue(controlledValue);
@@ -81,18 +82,13 @@ function ColorInput({
   }
 
   const handleChange = (e: BaseInputChangeEvent) => {
-    const next = e.target.value;
-    setInputValue(next);
-    if (chroma.valid(normalizeHex(next))) {
-      const hex = formatHexNoHashUpper(next);
-      lastValidRef.current = hex;
-      onValueChange?.(hex);
-    }
+    setInputValue(e.target.value);
   };
 
-  const commit = () => {
-    if (chroma.valid(normalizeHex(inputValue))) {
-      const hex = formatHexNoHashUpper(inputValue);
+  const commit = (nextValue = inputValue) => {
+    const hex = getFormattedHexNoHashUpper(nextValue);
+
+    if (hex !== null) {
       setInputValue(hex);
       lastValidRef.current = hex;
       onValueChange?.(hex);
@@ -104,13 +100,18 @@ function ColorInput({
   };
 
   const handleBlur = (e: BaseInputBlurEvent) => {
-    commit();
+    if (skipNextBlurCommitRef.current) {
+      skipNextBlurCommitRef.current = false;
+    } else {
+      commit(e.currentTarget.value);
+    }
     onBlur?.(e);
   };
 
   const handleKeyDown = (e: BaseInputKeyDownEvent) => {
     if (e.key === 'Enter') {
-      commit();
+      commit(e.currentTarget.value);
+      skipNextBlurCommitRef.current = true;
       e.currentTarget.blur();
     }
     onKeyDown?.(e);
