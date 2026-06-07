@@ -72,7 +72,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       </head>
       <body>
         <DocsSidebarProvider>
-          <div className="root h-dvh min-h-0">
+          <div className="root h-dvh min-h-0 overflow-auto">
             {children}
           </div>
         </DocsSidebarProvider>
