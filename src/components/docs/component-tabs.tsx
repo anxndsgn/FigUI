@@ -1,5 +1,6 @@
-import { Tabs } from "@base-ui/react/tabs";
 import { Children, isValidElement, useMemo, type ReactElement, type ReactNode } from "react";
+import { Separator } from "registry/ui3/ui/separator";
+import { Tab, Tabs, TabsList, TabsPanel } from "registry/ui3/ui/tabs";
 import { ComponentSource } from "./component-source";
 
 type TabValue = "preview" | "source";
@@ -18,38 +19,22 @@ export function ComponentTabs({
   const slots = useMemo(() => resolveSlots(children, preview, source), [children, preview, source]);
 
   return (
-    <Tabs.Root
-      className="relative flex flex-col gap-1.5 overflow-hidden"
-      defaultValue={defaultValue}
-    >
-      <Tabs.List
-        className="inline-flex w-fit max-w-full gap-0.5 self-start rounded-md bg-muted p-0.5"
-        aria-label="Component view"
-      >
-        <Tabs.Tab
-          value="preview"
-          className={
-            "min-h-8 w-fit rounded-sm bg-transparent px-3 text-xs text-foreground/65 hover:bg-transparent hover:text-foreground data-active:bg-background data-active:font-semibold data-active:text-foreground data-active:shadow-sm"
-          }
-        >
-          Preview
-        </Tabs.Tab>
-        <Tabs.Tab
-          value="source"
-          className={
-            "min-h-8 w-fit rounded-sm bg-transparent px-3 text-xs text-foreground/65 hover:bg-transparent hover:text-foreground data-active:bg-background data-active:font-semibold data-active:text-foreground data-active:shadow-sm"
-          }
-        >
-          Source
-        </Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel value="preview" className="block min-h-65 data-hidden:hidden">
+    <Tabs className="w-full rounded-lg border" defaultValue={defaultValue}>
+      <TabsList aria-label="Component view" className="p-2">
+        <Tab value="preview">Preview</Tab>
+        <Tab value="source">Source</Tab>
+      </TabsList>
+      <Separator />
+      <TabsPanel value="preview" className="min-h-65 data-hidden:hidden">
         {slots.preview}
-      </Tabs.Panel>
-      <Tabs.Panel value="source" className="min-h-65 data-hidden:hidden [&>figure]:border-0">
+      </TabsPanel>
+      <TabsPanel
+        value="source"
+        className="min-h-65 data-hidden:hidden [&>figure]:rounded-none [&>figure]:border-0"
+      >
         {slots.source}
-      </Tabs.Panel>
-    </Tabs.Root>
+      </TabsPanel>
+    </Tabs>
   );
 }
 
