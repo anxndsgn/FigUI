@@ -1,5 +1,8 @@
-import { Tabs } from "@base-ui/react/tabs";
 import { Children, isValidElement, useMemo, type ReactElement, type ReactNode } from "react";
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+} from "registry/ui3/ui/segmented-control";
 import { defaultPackageManager, useUiStore } from "../../lib/ui-store";
 import { cn } from "../../lib/utils";
 import { highlightCodeToHtml } from "./code-block";
@@ -48,41 +51,30 @@ function CodeSnippetRoot({
   }
 
   return (
-    <Tabs.Root
-      value={activeValue}
-      onValueChange={(value) => {
-        if (typeof value === "string") {
-          setPackageManager(value);
-        }
-      }}
+    <span
       className={cn(
-        "flex w-full items-center gap-1.5 text-foreground max-md:justify-between",
-        "flex-col items-stretch justify-start gap-1.5 rounded-lg max-md:justify-start",
+        "flex w-full flex-col items-stretch justify-start gap-1.5 text-foreground max-md:justify-start",
         className,
       )}
     >
-      <Tabs.List
-        className="inline-flex w-fit max-w-full gap-0.5 self-start rounded-md bg-muted p-0.5"
+      <SegmentedControl
+        value={activeValue}
+        onValueChange={(value) => {
+          if (typeof value === "string") {
+            setPackageManager(value);
+          }
+        }}
         aria-label="Package manager"
+        className="self-start"
       >
         {slots.map((slot) => (
-          <Tabs.Tab
-            key={slot.value}
-            value={slot.value}
-            className={
-              "min-h-8 w-fit rounded-sm bg-transparent px-3 text-xs text-foreground/65 hover:bg-transparent hover:text-foreground data-active:bg-background data-active:font-semibold data-active:text-foreground data-active:shadow-sm"
-            }
-          >
+          <SegmentedControlItem key={slot.value} value={slot.value}>
             {slot.value}
-          </Tabs.Tab>
+          </SegmentedControlItem>
         ))}
-      </Tabs.List>
-      {slots.map((slot) => (
-        <Tabs.Panel key={slot.value} value={slot.value} className="min-h-10 data-hidden:hidden">
-          <CodeSnippetCommandLine command={slot.command} hasTabs />
-        </Tabs.Panel>
-      ))}
-    </Tabs.Root>
+      </SegmentedControl>
+      <CodeSnippetCommandLine command={activeCommand} hasTabs />
+    </span>
   );
 }
 
