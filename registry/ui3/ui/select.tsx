@@ -18,7 +18,7 @@ function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        'group border-grey-300 flex cursor-default items-center justify-between rounded-md border outline-none focus-visible:border-blue-500',
+        'group border-grey-300 flex cursor-default items-center gap-1 rounded-md border outline-none focus-visible:border-blue-500',
         'dark:border-grey-700 pl-2 dark:focus-visible:border-blue-500',
         'has-data-[figui=select-icon-lead]:pl-0',
         className,
@@ -27,7 +27,7 @@ function SelectTrigger({
     >
       {iconLead && (
         <span
-          className='[&_svg]:text-black-500 dark:[&_svg]:text-white-500 flex aspect-square h-full items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0'
+          className='[&_svg]:text-black-500 dark:[&_svg]:text-white-500 flex size-6 shrink-0 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0'
           data-figui='select-icon-lead'
         >
           {typeof iconLead === 'string' ? (
