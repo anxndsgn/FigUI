@@ -31,9 +31,5 @@ export const Route = createFileRoute("/docs/")({
 function DocsIndexPage() {
   const data = Route.useLoaderData();
 
-  return (
-    <DocsShell navTree={data.navTree} currentUrl={data.url} toc={data.toc}>
-      {docsClientLoader.useContent(data.path)}
-    </DocsShell>
-  );
+  return <DocsShell>{docsClientLoader.useContent(data.path)}</DocsShell>;
 }
