@@ -1,8 +1,0 @@
-// .source folder will be generated when you run `next dev`
-import { docs } from 'fumadocs-mdx:collections/server';
-import { loader } from 'fumadocs-core/source';
-
-export const source = loader({
-  baseUrl: '/docs',
-  source: docs.toFumadocsSource(),
-});

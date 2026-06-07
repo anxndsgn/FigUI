@@ -2,12 +2,22 @@
 title: Separator
 ---
 
-import { ComponentSource } from '@/components/component-source';
+import separatorSource from 'registry/ui3/ui/separator.tsx?raw';
 
-## Manual Installation
+## Installation
 
-<ComponentSource
-  src='registry/ui3/ui/separator.tsx'
-  title='Separator'
-  language='tsx'
-/>
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/separator.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/separator.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/separator.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={separatorSource} language='tsx' title='separator.tsx' />

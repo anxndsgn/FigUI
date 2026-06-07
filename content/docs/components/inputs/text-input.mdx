@@ -2,23 +2,33 @@
 title: Text Input
 ---
 
-import InputDemo from '@/registry/ui3/examples/input-demo';
-import { TextInput } from '@/registry/ui3/ui/input';
-import { ComponentSource } from '@/components/component-source';
+import InputDemo from 'registry/ui3/examples/input-demo';
+import inputDemoSource from 'registry/ui3/examples/input-demo.tsx?raw';
+import textInputSource from 'registry/ui3/ui/input/text-input.tsx?raw';
 
 A simple text input.
 
-<ComponentPreview
-  name='input'
-  src='registry/ui3/examples/input-demo.tsx'
-  component={<InputDemo />}
-  description='A primary input'
-/>
+<ComponentTabs>
+  <ComponentPreview name='input-demo'>
+    <InputDemo />
+  </ComponentPreview>
+  <ComponentSource code={inputDemoSource} language='tsx' title='input-demo.tsx' />
+</ComponentTabs>
 
-## Manual Installation
+## Installation
 
-<ComponentSource
-  src='registry/ui3/ui/input/text-input.tsx'
-  title='input/text-input.tsx'
-  language='tsx'
-/>
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={textInputSource} language='tsx' title='input/text-input.tsx' />

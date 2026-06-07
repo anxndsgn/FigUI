@@ -2,7 +2,7 @@
 title: Get Started
 ---
 
-import { ComponentSource } from '@/components/component-source';
+import globalCss from 'registry/ui3/styles/global.css?raw';
 
 ## Installation
 
@@ -29,6 +29,28 @@ export function cn(...inputs: ClassValue[]) {
 
 Third, add css to your project, you can paste the following code to your `globals.css` file or create a new one and import it in your `globals.css` file.
 
-Note that if you are using figui in the figma plugin, you need to change the `@custom-variant dark (&:is(.dark *));` to `@custom-variant dark (&:is(.figma-dark *));` in your `globals.css` file for dark mode to work properly.
+Note that if you are using figui in the figma plugin, you need to change the `@custom-variant dark (&:is(.dark *, [data-theme="dark"] *));` to `@custom-variant dark (&:is(.figma-dark *));` in your `globals.css` file for dark mode to work properly.
 
-<ComponentSource src='app/global.css' title='Globals.css' language='css' />
+<ComponentSource code={globalCss} title='globals.css' language='css' />
+
+Fourth, set up portals so Base UI popups such as Select, Dialog, and Tooltip render above your page content. Wrap your application layout in a `.root` element and add the following styles to your global CSS. See the [Base UI quick start](https://base-ui.com/react/overview/quick-start) for details.
+
+```tsx
+<body>
+  <div className="root">
+    {children}
+  </div>
+</body>
+```
+
+```css
+body {
+  position: relative;
+}
+
+.root {
+  isolation: isolate;
+}
+```
+
+`isolation: isolate` keeps your app's `z-index` values from interfering with portaled popups. `position: relative` on `body` ensures dialog backdrops cover the full viewport on iOS 26+ Safari.

@@ -3,20 +3,31 @@ title: Switch
 description: A simple switch component for toggling states.
 ---
 
-import SwitchDemo from '@/registry/ui3/examples/switch-demo';
-import { ComponentSource } from '@/components/component-source';
+import SwitchDemo from 'registry/ui3/examples/switch-demo';
+import switchDemoSource from 'registry/ui3/examples/switch-demo.tsx?raw';
+import switchSource from 'registry/ui3/ui/switch.tsx?raw';
 
-<ComponentPreview
-  name='switch'
-  src='registry/ui3/examples/switch-demo.tsx'
-  component={<SwitchDemo />}
-  description='A simple switch component for toggling states.'
-/>
+<ComponentTabs>
+  <ComponentPreview name='switch-demo'>
+    <SwitchDemo />
+  </ComponentPreview>
+  <ComponentSource code={switchDemoSource} language='tsx' title='switch-demo.tsx' />
+</ComponentTabs>
 
-## Manual Installation
+## Installation
 
-<ComponentSource
-  src='registry/ui3/ui/switch.tsx'
-  title='Switch'
-  language='tsx'
-/>
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/switch.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/switch.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/switch.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={switchSource} language='tsx' title='switch.tsx' />

@@ -2,21 +2,31 @@
 title: Select
 ---
 
-import { SelectDemo } from '@/registry/ui3/examples/select-demo';
-import { ComponentSource } from '@/components/component-source';
+import { SelectDemo } from 'registry/ui3/examples/select-demo';
+import selectDemoSource from 'registry/ui3/examples/select-demo.tsx?raw';
+import selectSource from 'registry/ui3/ui/select.tsx?raw';
 
-<ComponentPreview
-  name='select'
-  src='registry/ui3/examples/select-demo.tsx'
-  component={<SelectDemo />}
-  description='A select component'
-/>
+<ComponentTabs>
+  <ComponentPreview name='select-demo'>
+    <SelectDemo />
+  </ComponentPreview>
+  <ComponentSource code={selectDemoSource} language='tsx' title='select-demo.tsx' />
+</ComponentTabs>
 
-## Manual Installation
+## Installation
 
-<ComponentSource
-  src='registry/ui3/ui/select.tsx'
-  title='Select Component Source'
-  description='The source code for the Select component.'
-  language='tsx'
-/>
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/select.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/select.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/select.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={selectSource} language='tsx' title='select.tsx' />

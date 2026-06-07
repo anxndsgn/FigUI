@@ -51,6 +51,10 @@
           "type": "registry:component"
         },
         {
+          "path": "registry/ui3/ui/input/color-chit.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "registry/ui3/ui/input/input-group.tsx",
           "type": "registry:component"
         }

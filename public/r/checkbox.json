@@ -3,10 +3,6 @@
   "name": "checkbox",
   "title": "Checkbox",
   "description": "A checkbox component",
-  "dependencies": [
-    "@base-ui/react",
-    "lucide-react"
-  ],
   "files": [
     {
       "path": "registry/ui3/ui/checkbox.tsx",

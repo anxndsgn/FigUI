@@ -2,20 +2,17 @@
 title: Tooltip
 ---
 
-import { TooltipDemo } from '@/registry/ui3/examples/tooltip-demo';
-import { ComponentSource } from '@/components/component-source';
+import { TooltipDemo } from 'registry/ui3/examples/tooltip-demo';
+import tooltipDemoSource from 'registry/ui3/examples/tooltip-demo.tsx?raw';
+import tooltipSource from 'registry/ui3/ui/tooltip.tsx?raw';
 
-<ComponentPreview
-  name='tooltip'
-  src='registry/ui3/examples/tooltip-demo.tsx'
-  component={<TooltipDemo />}
-  description='A tooltip'
-/>
+<ComponentTabs>
+  <ComponentPreview name='tooltip-demo'>
+    <TooltipDemo />
+  </ComponentPreview>
+  <ComponentSource code={tooltipDemoSource} language='tsx' title='tooltip-demo.tsx' />
+</ComponentTabs>
 
-## Manual Installation
+## Source
 
-<ComponentSource
-  src='registry/ui3/ui/tooltip.tsx'
-  title='Tooltip.tsx'
-  language='tsx'
-/>
+<ComponentSource code={tooltipSource} language='tsx' title='tooltip.tsx' />

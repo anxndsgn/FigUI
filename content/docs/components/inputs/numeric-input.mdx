@@ -2,22 +2,18 @@
 title: Numeric Input
 ---
 
-import NumericInputDemo from '@/registry/ui3/examples/numeric-input-demo';
-import {
-  NumericInputRoot,
-  NumericInput,
-  NumericScrubArea,
-} from '@/registry/ui3/ui/input';
-import { ComponentSource } from '@/components/component-source';
+import NumericInputDemo from 'registry/ui3/examples/numeric-input-demo';
+import numericInputDemoSource from 'registry/ui3/examples/numeric-input-demo.tsx?raw';
+import numericInputSource from 'registry/ui3/ui/input/numeric-input.tsx?raw';
 
 A numeric input with math expression evaluation, min/max clamping and an optional scrub-to-change handle.
 
-<ComponentPreview
-  name='numeric-input'
-  src='registry/ui3/examples/numeric-input-demo.tsx'
-  component={<NumericInputDemo />}
-  description='A numeric input'
-/>
+<ComponentTabs>
+  <ComponentPreview name='numeric-input-demo'>
+    <NumericInputDemo />
+  </ComponentPreview>
+  <ComponentSource code={numericInputDemoSource} language='tsx' title='numeric-input-demo.tsx' />
+</ComponentTabs>
 
 The numeric input is split into three flat parts. `NumericInputRoot` is required (it owns the value and the min/max/step state). `NumericInput` is the input element. `NumericScrubArea` is an optional drag handle that updates the value when the user drags horizontally.
 
@@ -53,10 +49,6 @@ The text input. Reads the active `NumericInputRoot` context to commit expression
 
 Optional. A **sizeless** wrapper that turns horizontal drag into value change, with a custom bidirectional-arrow cursor baked in. The consumer decides the size, padding, and visual content via `className` and `children`. Place it as a sibling of `NumericInput` inside `NumericInputRoot`.
 
-## Manual Installation
+## Source
 
-<ComponentSource
-  src='registry/ui3/ui/input/numeric-input.tsx'
-  title='input/numeric-input.tsx'
-  language='tsx'
-/>
+<ComponentSource code={numericInputSource} language='tsx' title='input/numeric-input.tsx' />

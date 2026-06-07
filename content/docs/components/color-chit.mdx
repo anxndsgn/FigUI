@@ -2,18 +2,18 @@
 title: Color Chit
 ---
 
-import ColorChitDemo from '@/registry/ui3/examples/color-chit-demo';
-import { ColorChit } from '@/registry/ui3/ui/input';
-import { ComponentSource } from '@/components/component-source';
+import ColorChitDemo from 'registry/ui3/examples/color-chit-demo';
+import colorChitDemoSource from 'registry/ui3/examples/color-chit-demo.tsx?raw';
+import colorChitSource from 'registry/ui3/ui/input/color-chit.tsx?raw';
 
 A compact color swatch for input groups. The left half shows the solid color; the right half previews opacity against a checkerboard background.
 
-<ComponentPreview
-  name='color-chit'
-  src='registry/ui3/examples/color-chit-demo.tsx'
-  component={<ColorChitDemo />}
-  description='A color chit swatch'
-/>
+<ComponentTabs>
+  <ComponentPreview name='color-chit-demo'>
+    <ColorChitDemo />
+  </ComponentPreview>
+  <ComponentSource code={colorChitDemoSource} language='tsx' title='color-chit-demo.tsx' />
+</ComponentTabs>
 
 ## Usage
 
@@ -44,12 +44,8 @@ Inside an input group, place it in `InputGroupAddon` beside a `ColorInput`:
 | `className` | `string` | Additional classes for the root element |
 | `onClick` | `MouseEventHandler` | Optional click handler; adds `cursor-pointer` when set |
 
-## Manual Installation
+## Source
 
 Make sure to install `chroma-js`.
 
-<ComponentSource
-  src='registry/ui3/ui/input/color-chit.tsx'
-  title='input/color-chit.tsx'
-  language='tsx'
-/>
+<ComponentSource code={colorChitSource} language='tsx' title='input/color-chit.tsx' />

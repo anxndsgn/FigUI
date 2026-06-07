@@ -1,18 +1,33 @@
 ---
 title: Tabs
-description: Tabstrips allow users to navigate between two or more related views. They’re a helpful way of letting users quickly switch between related information.
+description: Tabstrips allow users to navigate between two or more related views. They're a helpful way of letting users quickly switch between related information.
 ---
 
-import TabsDemo from '@/registry/ui3/examples/tabs-demo';
-import { ComponentSource } from '@/components/component-source';
+import TabsDemo from 'registry/ui3/examples/tabs-demo';
+import tabsDemoSource from 'registry/ui3/examples/tabs-demo.tsx?raw';
+import tabsSource from 'registry/ui3/ui/tabs.tsx?raw';
 
-<ComponentPreview
-  name='tabs'
-  src='registry/ui3/examples/tabs-demo.tsx'
-  component={<TabsDemo />}
-  description='A tabs component'
-/>
+<ComponentTabs>
+  <ComponentPreview name='tabs-demo'>
+    <TabsDemo />
+  </ComponentPreview>
+  <ComponentSource code={tabsDemoSource} language='tsx' title='tabs-demo.tsx' />
+</ComponentTabs>
 
-## Manual Installation
+## Installation
 
-<ComponentSource src='registry/ui3/ui/tabs.tsx' title='Tabs' language='tsx' />
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/tabs.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/tabs.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/tabs.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={tabsSource} language='tsx' title='tabs.tsx' />
