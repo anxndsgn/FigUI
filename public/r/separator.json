@@ -3,9 +3,6 @@
   "name": "separator",
   "title": "Separator",
   "description": "A separator component",
-  "dependencies": [
-    "@base-ui/react"
-  ],
   "files": [
     {
       "path": "registry/ui3/ui/separator.tsx",

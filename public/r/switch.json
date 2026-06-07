@@ -3,9 +3,6 @@
   "name": "switch",
   "title": "Switch",
   "description": "A switch component",
-  "dependencies": [
-    "@base-ui/react"
-  ],
   "files": [
     {
       "path": "registry/ui3/ui/switch.tsx",

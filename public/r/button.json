@@ -3,10 +3,6 @@
   "name": "button",
   "title": "Button",
   "description": "A simple button component",
-  "dependencies": [
-    "class-variance-authority",
-    "@base-ui/react"
-  ],
   "files": [
     {
       "path": "registry/ui3/ui/button.tsx",
