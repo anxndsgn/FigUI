@@ -41,7 +41,10 @@ export const Route = createRootRoute({
         content: "Figma UI3 components for your Figma plugins.",
       },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico" },
+    ],
   }),
   component: RootComponent,
   notFoundComponent: NotFound,
@@ -61,6 +64,11 @@ function RootDocument({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          defer
+          src="https://umami.anxndsgn.com/script.js"
+          data-website-id="b2d1a0d8-2447-4e52-8c53-77f386f5a8b5"
+        />
       </head>
       <body>
         <DocsSidebarProvider>
