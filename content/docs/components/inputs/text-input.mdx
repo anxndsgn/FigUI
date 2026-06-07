@@ -1,12 +1,11 @@
 ---
 title: Text Input
+description: A styled text input built on Base UI Input.
 ---
 
 import InputDemo from 'registry/ui3/examples/input-demo';
 import inputDemoSource from 'registry/ui3/examples/input-demo.tsx?raw';
 import textInputSource from 'registry/ui3/ui/input/text-input.tsx?raw';
-
-A simple text input.
 
 <ComponentTabs>
   <ComponentPreview name='input-demo'>
@@ -16,6 +15,8 @@ A simple text input.
 </ComponentTabs>
 
 ## Installation
+
+Install the input package, which includes `TextInput`:
 
 <CodeSnippet>
   <CodeSnippet.Command value='pnpm'>
@@ -32,3 +33,13 @@ A simple text input.
 ## Source
 
 <ComponentSource code={textInputSource} language='tsx' title='input/text-input.tsx' />
+
+## Usage
+
+```tsx
+import { TextInput } from '@/components/ui/text-input';
+
+<TextInput placeholder='Search...' />
+```
+
+When placed inside an `InputGroup`, the input automatically strips its individual ring, background, and rounding to inherit the group shell.

@@ -1,6 +1,6 @@
 ---
 title: Switch
-description: A simple switch component for toggling states.
+description: A switch for toggling between on and off states.
 ---
 
 import SwitchDemo from 'registry/ui3/examples/switch-demo';
@@ -31,3 +31,11 @@ import switchSource from 'registry/ui3/ui/switch.tsx?raw';
 ## Source
 
 <ComponentSource code={switchSource} language='tsx' title='switch.tsx' />
+
+## Usage
+
+```tsx
+import { Switch } from '@/components/ui/switch';
+
+<Switch checked={enabled} onCheckedChange={setEnabled} />
+```

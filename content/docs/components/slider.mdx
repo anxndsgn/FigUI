@@ -1,6 +1,6 @@
 ---
 title: Slider
-description: Slider is a component that allows the user to select a value from a range of values.
+description: Sliders for selecting numeric values, including default, color range (hue), and opacity variants.
 ---
 
 import SliderDemo from 'registry/ui3/examples/slider-demo';
@@ -18,23 +18,39 @@ import sliderSource from 'registry/ui3/ui/slider.tsx?raw';
   <ComponentSource code={sliderDemoSource} language='tsx' title='slider-demo.tsx' />
 </ComponentTabs>
 
-## Example
+## Installation
 
-Up to now, we have three types of sliders:
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/slider.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/slider.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/slider.json
+  </CodeSnippet.Command>
+</CodeSnippet>
 
-- Default Slider
-- Color Range Slider
-- Opacity Slider
-
-You need to install `chroma-js` to use the color range slider:
+Install `chroma-js` for the color range and opacity sliders:
 
 ```bash
 pnpm add chroma-js
 ```
 
-### Color Range Slider
+## Source
 
-Color range slider is a slider that allows the user to select a color (hue value of HSL color space, more specifically) from a range of colors. The slider value is a number between `0` and `360`.
+<ComponentSource code={sliderSource} language='tsx' title='slider.tsx' />
+
+## Usage
+
+FigUI provides three slider variants:
+
+- `Slider` — default numeric slider
+- `ColorRangeSlider` — hue picker (0–360)
+- `OpacitySlider` — opacity picker (0–1) with a color preview
+
+### Color Range Slider
 
 <ComponentTabs>
   <ComponentPreview name='color-range-slider-demo'>
@@ -45,8 +61,6 @@ Color range slider is a slider that allows the user to select a color (hue value
 
 ### Opacity Slider
 
-Opacity slider is a slider that allows the user to select a value between `0` and `1`. And accept a `color` string as a prop.
-
 <ComponentTabs>
   <ComponentPreview name='opacity-slider-demo'>
     <OpacitySliderDemo />
@@ -54,6 +68,10 @@ Opacity slider is a slider that allows the user to select a value between `0` an
   <ComponentSource code={opacitySliderDemoSource} language='tsx' title='opacity-slider-demo.tsx' />
 </ComponentTabs>
 
-## Source
+## Props
 
-<ComponentSource code={sliderSource} language='tsx' title='slider.tsx' />
+### OpacitySlider
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `color` | `string` | `'black'` | Base color used for the opacity gradient preview |

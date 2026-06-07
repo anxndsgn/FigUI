@@ -1,5 +1,6 @@
 ---
 title: Select
+description: A styled select dropdown built on Base UI Select. Compose a trigger, value, content, and items.
 ---
 
 import { SelectDemo } from 'registry/ui3/examples/select-demo';
@@ -30,3 +31,32 @@ import selectSource from 'registry/ui3/ui/select.tsx?raw';
 ## Source
 
 <ComponentSource code={selectSource} language='tsx' title='select.tsx' />
+
+## Anatomy
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+<Select items={items}>
+  <SelectTrigger iconLead={<RulerIcon />}>
+    <SelectValue />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value='arial'>Arial</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Props
+
+### SelectTrigger
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `iconLead` | `React.ReactNode` | Optional leading icon or label shown before the value |

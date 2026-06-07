@@ -1,12 +1,11 @@
 ---
 title: Color Chit
+description: A compact color swatch for input groups. The left half shows the solid color; the right half previews opacity against a checkerboard background.
 ---
 
 import ColorChitDemo from 'registry/ui3/examples/color-chit-demo';
 import colorChitDemoSource from 'registry/ui3/examples/color-chit-demo.tsx?raw';
 import colorChitSource from 'registry/ui3/ui/input/color-chit.tsx?raw';
-
-A compact color swatch for input groups. The left half shows the solid color; the right half previews opacity against a checkerboard background.
 
 <ComponentTabs>
   <ComponentPreview name='color-chit-demo'>
@@ -15,13 +14,39 @@ A compact color swatch for input groups. The left half shows the solid color; th
   <ComponentSource code={colorChitDemoSource} language='tsx' title='color-chit-demo.tsx' />
 </ComponentTabs>
 
+## Installation
+
+Install the input package, which includes `ColorChit`:
+
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+Also install `chroma-js`:
+
+```bash
+pnpm add chroma-js
+```
+
+## Source
+
+<ComponentSource code={colorChitSource} language='tsx' title='input/color-chit.tsx' />
+
 ## Usage
 
 `color` accepts a hex string without a leading `#`. Pass `opacity` as a 0–100 percentage to split the preview between solid and translucent halves.
 
 ```tsx
-<ColorChit color="FF24BD" />
-<ColorChit color="FF24BD" opacity={72} />
+<ColorChit color='FF24BD' />
+<ColorChit color='FF24BD' opacity={72} />
 ```
 
 Inside an input group, place it in `InputGroupAddon` beside a `ColorInput`:
@@ -41,11 +66,3 @@ Inside an input group, place it in `InputGroupAddon` beside a `ColorInput`:
 | ---- | ---- | ----------- |
 | `color` | `string` | Hex color without `#` (3, 6, or 8 digits) |
 | `opacity` | `string \| number` | Optional opacity percentage (0–100) for the right half |
-| `className` | `string` | Additional classes for the root element |
-| `onClick` | `MouseEventHandler` | Optional click handler; adds `cursor-pointer` when set |
-
-## Source
-
-Make sure to install `chroma-js`.
-
-<ComponentSource code={colorChitSource} language='tsx' title='input/color-chit.tsx' />

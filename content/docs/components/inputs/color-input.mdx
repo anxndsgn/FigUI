@@ -1,12 +1,11 @@
 ---
 title: Color Input
+description: A text input that validates hex colors. Invalid input falls back to the last valid value on blur or Enter, and valid input is normalized to uppercase 6-digit hex without a leading `#`.
 ---
 
 import ColorInputDemo from 'registry/ui3/examples/color-input-demo';
 import colorInputDemoSource from 'registry/ui3/examples/color-input-demo.tsx?raw';
 import colorInputSource from 'registry/ui3/ui/input/color-input.tsx?raw';
-
-A text input that validates hex colors. Invalid input falls back to the last valid value on blur / Enter, and valid input is normalized to uppercase 6-digit hex (no leading `#`).
 
 <ComponentTabs>
   <ComponentPreview name='color-input-demo'>
@@ -15,8 +14,44 @@ A text input that validates hex colors. Invalid input falls back to the last val
   <ComponentSource code={colorInputDemoSource} language='tsx' title='color-input-demo.tsx' />
 </ComponentTabs>
 
+## Installation
+
+Install the input package, which includes `ColorInput`:
+
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+Also install `chroma-js`:
+
+```bash
+pnpm add chroma-js
+```
+
 ## Source
 
-Make sure to install `chroma-js`.
-
 <ComponentSource code={colorInputSource} language='tsx' title='input/color-input.tsx' />
+
+## Usage
+
+```tsx
+import { ColorInput } from '@/components/ui/color-input';
+
+<ColorInput value={color} onValueChange={setColor} />
+```
+
+Values are normalized to uppercase hex without a leading `#` when committed (blur or Enter).
+
+## Props
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `onValueChange` | `(next: string) => void` | Called with the normalized hex string (uppercase, no leading `#`) when the user commits the value |

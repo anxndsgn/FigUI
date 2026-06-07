@@ -1,6 +1,6 @@
 ---
 title: Segmented Control
-description: A “segmented control” which uses icons to choose between a set of independent states. FigUI uses RadioGroup under the hood.
+description: A segmented control for choosing between a set of independent states. Built on Base UI RadioGroup under the hood.
 ---
 
 import SegmentedControlDemo from 'registry/ui3/examples/segmented-control-demo';
@@ -14,6 +14,47 @@ import segmentedControlSource from 'registry/ui3/ui/segmented-control.tsx?raw';
   <ComponentSource code={segmentedControlDemoSource} language='tsx' title='segmented-control-demo.tsx' />
 </ComponentTabs>
 
+## Installation
+
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/segmented-control.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/segmented-control.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/segmented-control.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
 ## Source
 
 <ComponentSource code={segmentedControlSource} language='tsx' title='segmented-control.tsx' />
+
+## Anatomy
+
+```tsx
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+} from '@/components/ui/segmented-control';
+
+<SegmentedControl defaultValue='list'>
+  <SegmentedControlItem value='list'>List</SegmentedControlItem>
+  <SegmentedControlItem value='code'>Code</SegmentedControlItem>
+</SegmentedControl>
+```
+
+Use icons instead of labels by placing them inside `SegmentedControlItem`:
+
+```tsx
+<SegmentedControl>
+  <SegmentedControlItem value='left'>
+    <AlignLeft className='size-3.5' />
+  </SegmentedControlItem>
+  <SegmentedControlItem value='center'>
+    <AlignCenter className='size-3.5' />
+  </SegmentedControlItem>
+</SegmentedControl>
+```

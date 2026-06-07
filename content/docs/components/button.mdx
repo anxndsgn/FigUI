@@ -1,5 +1,6 @@
 ---
 title: Button
+description: A styled button with multiple variants and sizes. Supports rendering as other elements via the Base UI `render` prop.
 ---
 
 import ButtonDemo from 'registry/ui3/examples/button-demo';
@@ -12,16 +13,6 @@ import buttonSource from 'registry/ui3/ui/button.tsx?raw';
   </ComponentPreview>
   <ComponentSource code={buttonDemoSource} language='tsx' title='button-demo.tsx' />
 </ComponentTabs>
-
-## Render a Link Button
-
-use the `render` prop to render a link button:
-
-```tsx
-import { Button } from '@/components/ui/button';
-
-<Button render={<a href='/'>Home</a>} />;
-```
 
 ## Installation
 
@@ -40,3 +31,25 @@ import { Button } from '@/components/ui/button';
 ## Source
 
 <ComponentSource code={buttonSource} language='tsx' title='button.tsx' />
+
+## Usage
+
+```tsx
+import { Button } from '@/components/ui/button';
+
+<Button>Button</Button>
+<Button variant='secondary' size='large'>Large</Button>
+```
+
+Use the `render` prop to render a link button:
+
+```tsx
+<Button render={<a href='/'>Home</a>} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `variant` | `'primary' \| 'secondary' \| 'destructive' \| 'secondaryDestruct' \| 'inverse' \| 'success' \| 'link' \| 'linkDanger' \| 'ghost'` | `'primary'` | Visual style variant |
+| `size` | `'default' \| 'large' \| 'icon'` | `'default'` | Button size |

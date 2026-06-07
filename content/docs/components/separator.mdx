@@ -1,8 +1,18 @@
 ---
 title: Separator
+description: Visually or semantically separates content. Supports horizontal and vertical orientations.
 ---
 
+import SeparatorDemo from 'registry/ui3/examples/separator-demo';
+import separatorDemoSource from 'registry/ui3/examples/separator-demo.tsx?raw';
 import separatorSource from 'registry/ui3/ui/separator.tsx?raw';
+
+<ComponentTabs>
+  <ComponentPreview name='separator-demo'>
+    <SeparatorDemo />
+  </ComponentPreview>
+  <ComponentSource code={separatorDemoSource} language='tsx' title='separator-demo.tsx' />
+</ComponentTabs>
 
 ## Installation
 
@@ -21,3 +31,12 @@ import separatorSource from 'registry/ui3/ui/separator.tsx?raw';
 ## Source
 
 <ComponentSource code={separatorSource} language='tsx' title='separator.tsx' />
+
+## Usage
+
+```tsx
+import { Separator } from '@/components/ui/separator';
+
+<Separator orientation='horizontal' />
+<Separator orientation='vertical' className='h-full' />
+```

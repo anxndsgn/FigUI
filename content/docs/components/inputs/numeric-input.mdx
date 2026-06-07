@@ -1,12 +1,11 @@
 ---
 title: Numeric Input
+description: A numeric input with math expression evaluation, min/max clamping, and an optional scrub-to-change handle.
 ---
 
 import NumericInputDemo from 'registry/ui3/examples/numeric-input-demo';
 import numericInputDemoSource from 'registry/ui3/examples/numeric-input-demo.tsx?raw';
 import numericInputSource from 'registry/ui3/ui/input/numeric-input.tsx?raw';
-
-A numeric input with math expression evaluation, min/max clamping and an optional scrub-to-change handle.
 
 <ComponentTabs>
   <ComponentPreview name='numeric-input-demo'>
@@ -14,6 +13,28 @@ A numeric input with math expression evaluation, min/max clamping and an optiona
   </ComponentPreview>
   <ComponentSource code={numericInputDemoSource} language='tsx' title='numeric-input-demo.tsx' />
 </ComponentTabs>
+
+## Installation
+
+Install the input package, which includes the numeric input components:
+
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/input.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={numericInputSource} language='tsx' title='input/numeric-input.tsx' />
+
+## Anatomy
 
 The numeric input is split into three flat parts. `NumericInputRoot` is required (it owns the value and the min/max/step state). `NumericInput` is the input element. `NumericScrubArea` is an optional drag handle that updates the value when the user drags horizontally.
 
@@ -32,23 +53,23 @@ The numeric input is split into three flat parts. `NumericInputRoot` is required
 </NumericInputRoot>
 ```
 
-## NumericInputRoot
+### NumericInputRoot
 
-The state container. Wraps Base UI's `NumberField.Root` and adds:
+The state container. Wraps Base UI's `NumberField.Root` and adds expression evaluation on blur / Enter (e.g. `100*2` → `200`), min / max clamping after evaluation, and controlled / uncontrolled modes.
 
-- expression evaluation on blur / Enter (e.g. `100*2` → `200`)
-- min / max clamping after evaluation
-- controlled (`value`) and uncontrolled (`defaultValue`) modes
-- `nudgeAmount` for the keyboard / scrub step
-
-## NumericInput
+### NumericInput
 
 The text input. Reads the active `NumericInputRoot` context to commit expressions and clamp values.
 
-## NumericScrubArea
+### NumericScrubArea
 
-Optional. A **sizeless** wrapper that turns horizontal drag into value change, with a custom bidirectional-arrow cursor baked in. The consumer decides the size, padding, and visual content via `className` and `children`. Place it as a sibling of `NumericInput` inside `NumericInputRoot`.
+Optional. A sizeless wrapper that turns horizontal drag into value change, with a custom bidirectional-arrow cursor baked in. The consumer decides the size, padding, and visual content via `className` and `children`.
 
-## Source
+## Props
 
-<ComponentSource code={numericInputSource} language='tsx' title='input/numeric-input.tsx' />
+### NumericInputRoot
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `nudgeAmount` | `number` | `1` | Step amount for keyboard nudging and scrubbing |
+| `onValueChange` | `(next: string) => void` | — | Called with the stringified value after evaluation and clamping |

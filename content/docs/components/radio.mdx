@@ -31,3 +31,20 @@ import radioSource from 'registry/ui3/ui/radio.tsx?raw';
 ## Source
 
 <ComponentSource code={radioSource} language='tsx' title='radio.tsx' />
+
+## Usage
+
+```tsx
+import { Radio, RadioGroup } from '@/components/ui/radio';
+
+<RadioGroup value={value} onValueChange={setValue}>
+  <label className='flex items-center gap-2'>
+    <Radio value='1' />
+    Option 1
+  </label>
+  <label className='flex items-center gap-2'>
+    <Radio value='2' />
+    Option 2
+  </label>
+</RadioGroup>
+```
