@@ -119,6 +119,45 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:component",
+      "title": "Slider",
+      "description": "A slider component with color range and opacity variants",
+      "dependencies": ["@base-ui/react", "chroma-js"],
+      "files": [
+        {
+          "path": "registry/ui3/ui/slider.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:component",
+      "title": "Tooltip",
+      "description": "A tooltip component",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/ui3/ui/tooltip.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:component",
+      "title": "Segmented Control",
+      "description": "A segmented control component",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/ui3/ui/segmented-control.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
