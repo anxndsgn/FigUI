@@ -7,6 +7,8 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupDivider,
+  ColorChit,
+  ColorInput,
 } from '@/registry/ui3/ui/input';
 import { ComponentSource } from '@/components/component-source';
 
@@ -33,7 +35,7 @@ The input group is split into three parts. `InputGroup` is the required containe
 // Color chit + ColorInput
 <InputGroup>
   <InputGroupAddon>
-    <div className="size-3 rounded-sm" style={{ backgroundColor: `#${color}` }} />
+    <ColorChit color={color} />
   </InputGroupAddon>
   <ColorInput value={color} onValueChange={setColor} />
 </InputGroup>
@@ -58,7 +60,7 @@ Combine multiple input types in one group, separated by dividers:
 ```tsx
 // Color + opacity
 <InputGroup>
-  <InputGroupAddon><ColorChit /></InputGroupAddon>
+  <InputGroupAddon><ColorChit color={color} /></InputGroupAddon>
   <ColorInput value={color} onValueChange={setColor} />
   <InputGroupDivider />
   <NumericInputRoot defaultValue={100} min={0} max={100}>

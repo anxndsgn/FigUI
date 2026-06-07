@@ -7,6 +7,7 @@ import {
   NumericScrubArea,
   NumericInput,
   ColorInput,
+  ColorChit,
   InputGroup,
   InputGroupAddon,
   InputGroupDivider,
@@ -34,6 +35,7 @@ function SearchIcon({ className }: { className?: string }) {
 
 export default function InputGroupDemo() {
   const [color, setColor] = useState('FF24BD');
+  const [opacity, setOpacity] = useState(100);
 
   return (
     <div className='flex flex-col gap-4'>
@@ -57,10 +59,7 @@ export default function InputGroupDemo() {
         </span>
         <InputGroup className='w-36'>
           <InputGroupAddon>
-            <div
-              className='size-3 rounded-sm'
-              style={{ backgroundColor: `#${color}` }}
-            />
+            <ColorChit color={color} />
           </InputGroupAddon>
           <ColorInput value={color} onValueChange={setColor} />
         </InputGroup>
@@ -90,14 +89,16 @@ export default function InputGroupDemo() {
         </span>
         <InputGroup className='w-52'>
           <InputGroupAddon>
-            <div
-              className='size-3 rounded-sm'
-              style={{ backgroundColor: `#${color}` }}
-            />
+            <ColorChit color={color} opacity={opacity} />
           </InputGroupAddon>
           <ColorInput value={color} onValueChange={setColor} />
           <InputGroupDivider />
-          <NumericInputRoot defaultValue={100} min={0} max={100}>
+          <NumericInputRoot
+            value={opacity}
+            min={0}
+            max={100}
+            onValueChange={(next) => setOpacity(Number(next) || 0)}
+          >
             <NumericInput className='w-10' />
             <InputGroupAddon className='text-grey-500 typography-body-medium text-xs'>
               <NumericScrubArea>%</NumericScrubArea>

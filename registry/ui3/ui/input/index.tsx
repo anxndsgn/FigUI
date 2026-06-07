@@ -5,6 +5,7 @@ export {
   NumericInput,
 } from './numeric-input';
 export { ColorInput } from './color-input';
+export { ColorChit } from './color-chit';
 export {
   InputGroup,
   InputGroupAddon,
