@@ -116,10 +116,15 @@
   }
 
   body {
+    position: relative;
     margin: 0;
     color: var(--foreground);
     background: var(--background);
     font-family: var(--font-sans);
+  }
+
+  .root {
+    isolation: isolate;
   }
 
   button,
