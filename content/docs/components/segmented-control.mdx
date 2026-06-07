@@ -3,21 +3,17 @@ title: Segmented Control
 description: A “segmented control” which uses icons to choose between a set of independent states. FigUI uses RadioGroup under the hood.
 ---
 
-import SegmentedControlDemo from '@/registry/ui3/examples/segmented-control-demo';
-import { SegmentedControl } from '@/registry/ui3/ui/segmented-control';
-import { ComponentSource } from '@/components/component-source';
+import SegmentedControlDemo from 'registry/ui3/examples/segmented-control-demo';
+import segmentedControlDemoSource from 'registry/ui3/examples/segmented-control-demo.tsx?raw';
+import segmentedControlSource from 'registry/ui3/ui/segmented-control.tsx?raw';
 
-<ComponentPreview
-  name='segmented-control'
-  src='registry/ui3/examples/segmented-control-demo.tsx'
-  component={<SegmentedControlDemo />}
-  description='A segmented control component for selecting between options.'
-/>
+<ComponentTabs>
+  <ComponentPreview name='segmented-control-demo'>
+    <SegmentedControlDemo />
+  </ComponentPreview>
+  <ComponentSource code={segmentedControlDemoSource} language='tsx' title='segmented-control-demo.tsx' />
+</ComponentTabs>
 
-## Manual Installation
+## Source
 
-<ComponentSource
-  src='registry/ui3/ui/segmented-control.tsx'
-  title='Segmented Control'
-  language='tsx'
-/>
+<ComponentSource code={segmentedControlSource} language='tsx' title='segmented-control.tsx' />

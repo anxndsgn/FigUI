@@ -3,31 +3,20 @@ title: Slider
 description: Slider is a component that allows the user to select a value from a range of values.
 ---
 
-import SliderDemo from '@/registry/ui3/examples/slider-demo';
-import ColorRangeSliderDemo from '@/registry/ui3/examples/color-range-slider-demo';
-import OpacitySliderDemo from '@/registry/ui3/examples/opacity-slider-demo';
-import { ComponentSource } from '@/components/component-source';
+import SliderDemo from 'registry/ui3/examples/slider-demo';
+import ColorRangeSliderDemo from 'registry/ui3/examples/color-range-slider-demo';
+import OpacitySliderDemo from 'registry/ui3/examples/opacity-slider-demo';
+import sliderDemoSource from 'registry/ui3/examples/slider-demo.tsx?raw';
+import colorRangeSliderDemoSource from 'registry/ui3/examples/color-range-slider-demo.tsx?raw';
+import opacitySliderDemoSource from 'registry/ui3/examples/opacity-slider-demo.tsx?raw';
+import sliderSource from 'registry/ui3/ui/slider.tsx?raw';
 
-<ComponentPreview
-  name='slider'
-  src='registry/ui3/examples/slider-demo.tsx'
-  component={<SliderDemo />}
-  description='A slider component'
-/>
-
-## Manual Installation
-
-you need to install `chroma-js` to use the color range slider:
-
-```bash
-pnpm add chroma-js
-```
-
-<ComponentSource
-  src='registry/ui3/ui/slider.tsx'
-  title='Slider'
-  language='tsx'
-/>
+<ComponentTabs>
+  <ComponentPreview name='slider-demo'>
+    <SliderDemo />
+  </ComponentPreview>
+  <ComponentSource code={sliderDemoSource} language='tsx' title='slider-demo.tsx' />
+</ComponentTabs>
 
 ## Example
 
@@ -37,24 +26,34 @@ Up to now, we have three types of sliders:
 - Color Range Slider
 - Opacity Slider
 
+You need to install `chroma-js` to use the color range slider:
+
+```bash
+pnpm add chroma-js
+```
+
 ### Color Range Slider
 
 Color range slider is a slider that allows the user to select a color (hue value of HSL color space, more specifically) from a range of colors. The slider value is a number between `0` and `360`.
 
-<ComponentPreview
-  name='color-range-slider'
-  src='registry/ui3/examples/color-range-slider-demo.tsx'
-  component={<ColorRangeSliderDemo />}
-  description='A color range slider component'
-/>
+<ComponentTabs>
+  <ComponentPreview name='color-range-slider-demo'>
+    <ColorRangeSliderDemo />
+  </ComponentPreview>
+  <ComponentSource code={colorRangeSliderDemoSource} language='tsx' title='color-range-slider-demo.tsx' />
+</ComponentTabs>
 
 ### Opacity Slider
 
 Opacity slider is a slider that allows the user to select a value between `0` and `1`. And accept a `color` string as a prop.
 
-<ComponentPreview
-  name='opacity-slider'
-  src='registry/ui3/examples/opacity-slider-demo.tsx'
-  component={<OpacitySliderDemo />}
-  description='A opacity slider component'
-/>
+<ComponentTabs>
+  <ComponentPreview name='opacity-slider-demo'>
+    <OpacitySliderDemo />
+  </ComponentPreview>
+  <ComponentSource code={opacitySliderDemoSource} language='tsx' title='opacity-slider-demo.tsx' />
+</ComponentTabs>
+
+## Source
+
+<ComponentSource code={sliderSource} language='tsx' title='slider.tsx' />

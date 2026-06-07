@@ -2,16 +2,16 @@
 title: Button
 ---
 
-import ButtonDemo from '@/registry/ui3/examples/button-demo';
-import { Button } from '@/registry/ui3/ui/button';
-import { ComponentSource } from '@/components/component-source';
+import ButtonDemo from 'registry/ui3/examples/button-demo';
+import buttonDemoSource from 'registry/ui3/examples/button-demo.tsx?raw';
+import buttonSource from 'registry/ui3/ui/button.tsx?raw';
 
-<ComponentPreview
-  name='button'
-  src='registry/ui3/examples/button-demo.tsx'
-  component={<ButtonDemo />}
-  description='A primary button'
-/>
+<ComponentTabs>
+  <ComponentPreview name='button-demo'>
+    <ButtonDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonDemoSource} language='tsx' title='button-demo.tsx' />
+</ComponentTabs>
 
 ## Render a Link Button
 
@@ -23,10 +23,20 @@ import { Button } from '@/components/ui/button';
 <Button render={<a href='/'>Home</a>} />;
 ```
 
-## Manual Installation
+## Installation
 
-<ComponentSource
-  src='registry/ui3/ui/button.tsx'
-  title='Button'
-  language='tsx'
-/>
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/button.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/button.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/button.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={buttonSource} language='tsx' title='button.tsx' />

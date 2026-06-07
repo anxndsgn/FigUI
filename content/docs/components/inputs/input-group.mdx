@@ -2,24 +2,18 @@
 title: Input Group
 ---
 
-import InputGroupDemo from '@/registry/ui3/examples/input-group-demo';
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupDivider,
-  ColorChit,
-  ColorInput,
-} from '@/registry/ui3/ui/input';
-import { ComponentSource } from '@/components/component-source';
+import InputGroupDemo from 'registry/ui3/examples/input-group-demo';
+import inputGroupDemoSource from 'registry/ui3/examples/input-group-demo.tsx?raw';
+import inputGroupSource from 'registry/ui3/ui/input/input-group.tsx?raw';
 
 A container that composes multiple inputs, icons, color chits, and scrub-areas into a single visually-unified row with a shared border, background, and focus ring.
 
-<ComponentPreview
-  name='input-group'
-  src='registry/ui3/examples/input-group-demo.tsx'
-  component={<InputGroupDemo />}
-  description='Input group compositions'
-/>
+<ComponentTabs>
+  <ComponentPreview name='input-group-demo'>
+    <InputGroupDemo />
+  </ComponentPreview>
+  <ComponentSource code={inputGroupDemoSource} language='tsx' title='input-group-demo.tsx' />
+</ComponentTabs>
 
 ## Usage
 
@@ -115,10 +109,6 @@ Two patterns depending on whether the group contains one or multiple numeric fie
 
 `NumericInputRoot` automatically strips its own ring/background when it detects it's inside an `InputGroup`.
 
-## Manual Installation
+## Source
 
-<ComponentSource
-  src='registry/ui3/ui/input/input-group.tsx'
-  title='input/input-group.tsx'
-  language='tsx'
-/>
+<ComponentSource code={inputGroupSource} language='tsx' title='input/input-group.tsx' />

@@ -2,30 +2,42 @@
 title: Checkbox
 ---
 
-import { CheckboxDemo } from '@/registry/ui3/examples/checkbox-demo';
-import { CheckboxGroupDemo } from '@/registry/ui3/examples/checkbox-group-demo';
-import { ComponentSource } from '@/components/component-source';
+import { CheckboxDemo } from 'registry/ui3/examples/checkbox-demo';
+import { CheckboxGroupDemo } from 'registry/ui3/examples/checkbox-group-demo';
+import checkboxDemoSource from 'registry/ui3/examples/checkbox-demo.tsx?raw';
+import checkboxGroupDemoSource from 'registry/ui3/examples/checkbox-group-demo.tsx?raw';
+import checkboxSource from 'registry/ui3/ui/checkbox.tsx?raw';
 
-<ComponentPreview
-  name='checkbox'
-  src='registry/ui3/examples/checkbox-demo.tsx'
-  component={<CheckboxDemo />}
-  description='A checkbox component'
-/>
+<ComponentTabs>
+  <ComponentPreview name='checkbox-demo'>
+    <CheckboxDemo />
+  </ComponentPreview>
+  <ComponentSource code={checkboxDemoSource} language='tsx' title='checkbox-demo.tsx' />
+</ComponentTabs>
 
 ## Checkbox Group
 
-<ComponentPreview
-  name='checkbox-group'
-  src='registry/ui3/examples/checkbox-group-demo.tsx'
-  component={<CheckboxGroupDemo />}
-  description='A group of checkboxes that can be used together.'
-/>
+<ComponentTabs>
+  <ComponentPreview name='checkbox-group-demo'>
+    <CheckboxGroupDemo />
+  </ComponentPreview>
+  <ComponentSource code={checkboxGroupDemoSource} language='tsx' title='checkbox-group-demo.tsx' />
+</ComponentTabs>
 
-## Manual Installation
+## Installation
 
-<ComponentSource
-  src='registry/ui3/ui/checkbox.tsx'
-  title='Checkbox'
-  language='tsx'
-/>
+<CodeSnippet>
+  <CodeSnippet.Command value='pnpm'>
+    pnpm dlx shadcn@latest add http://localhost:3000/r/checkbox.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='npm'>
+    npx shadcn@latest add http://localhost:3000/r/checkbox.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value='bun'>
+    bunx shadcn@latest add http://localhost:3000/r/checkbox.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={checkboxSource} language='tsx' title='checkbox.tsx' />
