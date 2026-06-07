@@ -62,7 +62,7 @@ function HomePage() {
         <Button render={<Link to='/docs'>Docs</Link>} />
       </div>
       <main className='grid flex-1 grid-cols-1 gap-8 md:grid-cols-2'>
-        <div className='relative col-span-1 row-span-2 flex min-h-[450px] flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-2 flex min-h-[450px] flex-col gap-4 rounded-lg border border-grey-200 p-4 dark:border-grey-600'>
           <div className='flex items-center justify-between'>
             <h2 className='typography-body-large'>Button</h2>
             <Button
@@ -92,7 +92,7 @@ function HomePage() {
             </Button>
           </div>
         </div>
-        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border border-grey-200 p-4 dark:border-grey-600'>
           <div className='flex items-center justify-between'>
             <h2 className='typography-body-large'>Checkbox</h2>
             <Button
@@ -114,7 +114,7 @@ function HomePage() {
             </label>
           </div>
         </div>
-        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border border-grey-200 p-4 dark:border-grey-600'>
           <div className='flex items-center justify-between'>
             <h2 className='typography-body-large'>Input</h2>
             <Button
@@ -133,7 +133,7 @@ function HomePage() {
             <TextInput id='input' placeholder='Input' className='max-w-32' />
           </div>
         </div>
-        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border border-grey-200 p-4 dark:border-grey-600'>
           <div className='flex items-center justify-between'>
             <h2 className='typography-body-large'>Slider</h2>
             <Button
@@ -152,7 +152,7 @@ function HomePage() {
             <Slider />
           </div>
         </div>
-        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border p-4'>
+        <div className='relative col-span-1 row-span-1 flex min-h-24 flex-col gap-4 rounded-lg border border-grey-200 p-4 dark:border-grey-600'>
           <div className='flex items-center justify-between'>
             <h2 className='typography-body-large'>Select</h2>
           </div>
