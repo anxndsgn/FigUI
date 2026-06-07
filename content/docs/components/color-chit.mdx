@@ -1,0 +1,55 @@
+---
+title: Color Chit
+---
+
+import ColorChitDemo from '@/registry/ui3/examples/color-chit-demo';
+import { ColorChit } from '@/registry/ui3/ui/input';
+import { ComponentSource } from '@/components/component-source';
+
+A compact color swatch for input groups. The left half shows the solid color; the right half previews opacity against a checkerboard background.
+
+<ComponentPreview
+  name='color-chit'
+  src='registry/ui3/examples/color-chit-demo.tsx'
+  component={<ColorChitDemo />}
+  description='A color chit swatch'
+/>
+
+## Usage
+
+`color` accepts a hex string without a leading `#`. Pass `opacity` as a 0–100 percentage to split the preview between solid and translucent halves.
+
+```tsx
+<ColorChit color="FF24BD" />
+<ColorChit color="FF24BD" opacity={72} />
+```
+
+Inside an input group, place it in `InputGroupAddon` beside a `ColorInput`:
+
+```tsx
+<InputGroup>
+  <InputGroupAddon>
+    <ColorChit color={color} opacity={opacity} />
+  </InputGroupAddon>
+  <ColorInput value={color} onValueChange={setColor} />
+</InputGroup>
+```
+
+## Props
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `color` | `string` | Hex color without `#` (3, 6, or 8 digits) |
+| `opacity` | `string \| number` | Optional opacity percentage (0–100) for the right half |
+| `className` | `string` | Additional classes for the root element |
+| `onClick` | `MouseEventHandler` | Optional click handler; adds `cursor-pointer` when set |
+
+## Manual Installation
+
+Make sure to install `chroma-js`.
+
+<ComponentSource
+  src='registry/ui3/ui/input/color-chit.tsx'
+  title='input/color-chit.tsx'
+  language='tsx'
+/>

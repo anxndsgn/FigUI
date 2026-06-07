@@ -3,8 +3,14 @@ title: Numeric Input
 ---
 
 import NumericInputDemo from '@/registry/ui3/examples/numeric-input-demo';
-import { NumericInput } from '@/registry/ui3/ui/input';
+import {
+  NumericInputRoot,
+  NumericInput,
+  NumericScrubArea,
+} from '@/registry/ui3/ui/input';
 import { ComponentSource } from '@/components/component-source';
+
+A numeric input with math expression evaluation, min/max clamping and an optional scrub-to-change handle.
 
 <ComponentPreview
   name='numeric-input'
@@ -13,9 +19,41 @@ import { ComponentSource } from '@/components/component-source';
   description='A numeric input'
 />
 
-## Manual Installation
+The numeric input is split into three flat parts. `NumericInputRoot` is required (it owns the value and the min/max/step state). `NumericInput` is the input element. `NumericScrubArea` is an optional drag handle that updates the value when the user drags horizontally.
 
-Make sure to add `input-utils.tsx` and `text-input.tsx` to your project.
+```tsx
+// Plain input
+<NumericInputRoot defaultValue={12} min={0} max={100}>
+  <NumericInput />
+</NumericInputRoot>
+
+// Input with a drag handle (consumer decides the size + content)
+<NumericInputRoot defaultValue={12} min={0} max={100}>
+  <NumericScrubArea className='flex size-6 items-center justify-center'>
+    X
+  </NumericScrubArea>
+  <NumericInput />
+</NumericInputRoot>
+```
+
+## NumericInputRoot
+
+The state container. Wraps Base UI's `NumberField.Root` and adds:
+
+- expression evaluation on blur / Enter (e.g. `100*2` → `200`)
+- min / max clamping after evaluation
+- controlled (`value`) and uncontrolled (`defaultValue`) modes
+- `nudgeAmount` for the keyboard / scrub step
+
+## NumericInput
+
+The text input. Reads the active `NumericInputRoot` context to commit expressions and clamp values.
+
+## NumericScrubArea
+
+Optional. A **sizeless** wrapper that turns horizontal drag into value change, with a custom bidirectional-arrow cursor baked in. The consumer decides the size, padding, and visual content via `className` and `children`. Place it as a sibling of `NumericInput` inside `NumericInputRoot`.
+
+## Manual Installation
 
 <ComponentSource
   src='registry/ui3/ui/input/numeric-input.tsx'

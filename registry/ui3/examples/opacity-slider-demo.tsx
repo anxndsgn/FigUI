@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from '@/registry/ui3/ui/input';
+import { TextInput } from '@/registry/ui3/ui/input';
 import { OpacitySlider } from '@/registry/ui3/ui/slider';
 import { useState } from 'react';
 
@@ -10,7 +10,7 @@ export default function OpacitySliderDemo() {
 
   return (
     <div className='flex flex-col gap-6'>
-      <Input value={color} onChange={(e) => setColor(e.target.value)} />
+      <TextInput value={color} onChange={(e) => setColor(e.target.value)} />
       <OpacitySlider
         value={opacity}
         onValueChange={setOpacity}

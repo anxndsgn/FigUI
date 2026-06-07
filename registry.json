@@ -32,9 +32,30 @@
       "type": "registry:component",
       "title": "Input",
       "description": "A input component",
+      "dependencies": ["@base-ui/react", "chroma-js"],
       "files": [
         {
           "path": "registry/ui3/ui/input/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/ui3/ui/input/text-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/ui3/ui/input/numeric-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/ui3/ui/input/color-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/ui3/ui/input/color-chit.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/ui3/ui/input/input-group.tsx",
           "type": "registry:component"
         }
       ]

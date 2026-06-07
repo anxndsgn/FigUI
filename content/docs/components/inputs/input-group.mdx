@@ -1,0 +1,124 @@
+---
+title: Input Group
+---
+
+import InputGroupDemo from '@/registry/ui3/examples/input-group-demo';
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupDivider,
+  ColorChit,
+  ColorInput,
+} from '@/registry/ui3/ui/input';
+import { ComponentSource } from '@/components/component-source';
+
+A container that composes multiple inputs, icons, color chits, and scrub-areas into a single visually-unified row with a shared border, background, and focus ring.
+
+<ComponentPreview
+  name='input-group'
+  src='registry/ui3/examples/input-group-demo.tsx'
+  component={<InputGroupDemo />}
+  description='Input group compositions'
+/>
+
+## Usage
+
+The input group is split into three parts. `InputGroup` is the required container (it provides the shared visual shell). `InputGroupAddon` is a fixed-size slot for non-input content. `InputGroupDivider` is an optional vertical separator between logical sections.
+
+```tsx
+// Icon + TextInput
+<InputGroup>
+  <InputGroupAddon><SearchIcon /></InputGroupAddon>
+  <TextInput placeholder="Search..." />
+</InputGroup>
+
+// Color chit + ColorInput
+<InputGroup>
+  <InputGroupAddon>
+    <ColorChit color={color} />
+  </InputGroupAddon>
+  <ColorInput value={color} onValueChange={setColor} />
+</InputGroup>
+
+// ScrubArea + NumericInput (Root wraps Group)
+<NumericInputRoot defaultValue={50} min={0} max={100}>
+  <InputGroup>
+    <InputGroupAddon>
+      <NumericScrubArea className="text-grey-500 flex size-6 items-center justify-center">
+        X
+      </NumericScrubArea>
+    </InputGroupAddon>
+    <NumericInput />
+  </InputGroup>
+</NumericInputRoot>
+```
+
+## Multi-input Groups
+
+Combine multiple input types in one group, separated by dividers:
+
+```tsx
+// Color + opacity
+<InputGroup>
+  <InputGroupAddon><ColorChit color={color} /></InputGroupAddon>
+  <ColorInput value={color} onValueChange={setColor} />
+  <InputGroupDivider />
+  <NumericInputRoot defaultValue={100} min={0} max={100}>
+    <NumericInput />
+  </NumericInputRoot>
+  <InputGroupAddon>%</InputGroupAddon>
+</InputGroup>
+
+// XYZ multi-numeric
+<InputGroup>
+  <NumericInputRoot defaultValue={0}>
+    <InputGroupAddon>
+      <NumericScrubArea className="...">X</NumericScrubArea>
+    </InputGroupAddon>
+    <NumericInput />
+  </NumericInputRoot>
+  <InputGroupDivider />
+  <NumericInputRoot defaultValue={0}>
+    <InputGroupAddon>
+      <NumericScrubArea className="...">Y</NumericScrubArea>
+    </InputGroupAddon>
+    <NumericInput />
+  </NumericInputRoot>
+  <InputGroupDivider />
+  <NumericInputRoot defaultValue={0}>
+    <InputGroupAddon>
+      <NumericScrubArea className="...">Z</NumericScrubArea>
+    </InputGroupAddon>
+    <NumericInput />
+  </NumericInputRoot>
+</InputGroup>
+```
+
+## InputGroup
+
+The visual container. Provides a shared background, hover ring, and `focus-within` ring so the entire group highlights when any child input is focused. Child inputs (`TextInput`, `NumericInput`, `ColorInput`) automatically detect they are inside a group and strip their individual ring/background/rounding.
+
+## InputGroupAddon
+
+A 24x24 centered flex container for icons, color swatches, text labels, or scrub-areas. Override size via `className`.
+
+## InputGroupDivider
+
+A decorative 1px vertical separator (`aria-hidden`). Place between logical sections within a group.
+
+## Integration with NumericInputRoot
+
+Two patterns depending on whether the group contains one or multiple numeric fields:
+
+- **Single numeric**: `NumericInputRoot` wraps `InputGroup` from outside
+- **Multi numeric**: Each `NumericInputRoot` sits inside `InputGroup` as a child
+
+`NumericInputRoot` automatically strips its own ring/background when it detects it's inside an `InputGroup`.
+
+## Manual Installation
+
+<ComponentSource
+  src='registry/ui3/ui/input/input-group.tsx'
+  title='input/input-group.tsx'
+  language='tsx'
+/>

@@ -6,7 +6,7 @@ import ColorInputDemo from '@/registry/ui3/examples/color-input-demo';
 import { ColorInput } from '@/registry/ui3/ui/input';
 import { ComponentSource } from '@/components/component-source';
 
-Color input is still under development.
+A text input that validates hex colors. Invalid input falls back to the last valid value on blur / Enter, and valid input is normalized to uppercase 6-digit hex (no leading `#`).
 
 <ComponentPreview
   name='color-input'
@@ -17,7 +17,7 @@ Color input is still under development.
 
 ## Manual Installation
 
-Make sure to install `chroma-js` and add `input-utils.tsx` and `text-input.tsx` to your project.
+Make sure to install `chroma-js`.
 
 <ComponentSource
   src='registry/ui3/ui/input/color-input.tsx'

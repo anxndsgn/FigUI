@@ -1,57 +1,20 @@
 import { Input as BaseInput } from '@base-ui/react';
 import { cn } from '@/lib/utils';
-import { InputRoot, type BaseInputProps } from './input-utils';
 
-function TextInputPrimitive({
+const INPUT_BASE_CLASS =
+  'placeholder:text-grey-400 text-black-800 bg-grey-100 typography-body-medium hover:ring-grey-200 dark:placeholder:text-grey-400 dark:bg-grey-700 dark:text-white-1000 dark:hover:ring-grey-600 flex h-6 w-full min-w-0 items-center rounded-md px-2 ring ring-transparent outline-none selection:bg-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-red-500 aria-invalid:ring-red-500/20 dark:focus:ring-blue-500';
+
+function TextInput({
   className,
-  iconLead,
-  iconTrail,
   ...props
-}: BaseInputProps) {
+}: React.ComponentProps<typeof BaseInput>) {
   return (
-    <div className='flex h-full items-center pr-2 pl-2 has-data-[figui=input-icon-lead]:pl-0 has-data-[figui=input-icon-trail]:pr-0'>
-      {iconLead && (
-        <div
-          className='flex aspect-square size-6 items-center justify-center select-none'
-          data-figui='input-icon-lead'
-        >
-          {typeof iconLead === 'string' ? (
-            <span className='text-black-500 dark:text-white-500'>
-              {iconLead}
-            </span>
-          ) : (
-            iconLead
-          )}
-        </div>
-      )}
-      <BaseInput
-        className={cn('h-full w-full outline-none', className)}
-        {...props}
-      />
-      {iconTrail && (
-        <div
-          className='flex aspect-square size-6 items-center justify-center select-none'
-          data-figui='input-icon-trail'
-        >
-          {typeof iconTrail === 'string' ? (
-            <span className='text-black-500 dark:text-white-500'>
-              {iconTrail}
-            </span>
-          ) : (
-            iconTrail
-          )}
-        </div>
-      )}
-    </div>
+    <BaseInput
+      {...props}
+      data-slot='input'
+      className={cn(INPUT_BASE_CLASS, className)}
+    />
   );
 }
 
-function TextInput({ iconLead, className, ...props }: BaseInputProps) {
-  return (
-    <InputRoot className={cn(className)}>
-      <TextInputPrimitive iconLead={iconLead} {...props} />
-    </InputRoot>
-  );
-}
-
-export { TextInput, TextInputPrimitive };
+export { TextInput, INPUT_BASE_CLASS };
