@@ -1,0 +1,157 @@
+@import '../../registry/ui3/styles/global.css';
+
+@source '../../content/**/*.{md,mdx}';
+@source '../../registry/**/*.{ts,tsx}';
+
+@custom-variant dark (&:is(.dark *, [data-theme='dark'] *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --code-token-comment: #6a737d;
+  --code-token-keyword: #d73a49;
+  --code-token-name: #6f42c1;
+  --code-token-number: #005cc5;
+  --code-token-property: #22863a;
+  --code-token-punctuation: #24292e;
+  --code-token-string: #032f62;
+  --code-token-tag: #22863a;
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --radius: 0.3125rem;
+    --background: #ffffff;
+    --foreground: #1e1e1e;
+    --card: #ffffff;
+    --card-foreground: #1e1e1e;
+    --popover: #ffffff;
+    --popover-foreground: #1e1e1e;
+    --primary: #0c8ce9;
+    --primary-foreground: #ffffff;
+    --secondary: #f5f5f5;
+    --secondary-foreground: #1e1e1e;
+    --muted: #f5f5f5;
+    --muted-foreground: #757575;
+    --accent: #f0f0f0;
+    --accent-foreground: #1e1e1e;
+    --destructive: #f24822;
+    --border: #e6e6e6;
+    --input: #e6e6e6;
+    --ring: #0c8ce9;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --background: #2c2c2c;
+    --foreground: #ffffff;
+    --card: #383838;
+    --card-foreground: #ffffff;
+    --popover: #383838;
+    --popover-foreground: #ffffff;
+    --primary: #0c8ce9;
+    --primary-foreground: #ffffff;
+    --secondary: #444444;
+    --secondary-foreground: #ffffff;
+    --muted: #444444;
+    --muted-foreground: #b3b3b3;
+    --accent: #4a4a4a;
+    --accent-foreground: #ffffff;
+    --destructive: #f24822;
+    --border: #4a4a4a;
+    --input: #4a4a4a;
+    --ring: #0c8ce9;
+    --code-token-comment: #8b949e;
+    --code-token-keyword: #ff7b72;
+    --code-token-name: #d2a8ff;
+    --code-token-number: #79c0ff;
+    --code-token-property: #7ee787;
+    --code-token-punctuation: #c9d1d9;
+    --code-token-string: #a5d6ff;
+    --code-token-tag: #7ee787;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --code-token-comment: #8b949e;
+      --code-token-keyword: #ff7b72;
+      --code-token-name: #d2a8ff;
+      --code-token-number: #79c0ff;
+      --code-token-property: #7ee787;
+      --code-token-punctuation: #c9d1d9;
+      --code-token-string: #a5d6ff;
+      --code-token-tag: #7ee787;
+    }
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  html {
+    min-width: 320px;
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: var(--font-sans);
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+  }
+}
+
+@layer components {
+  .shiki-code span {
+    color: var(--shiki-light, inherit);
+  }
+
+  :root[data-theme='dark'] .shiki-code span {
+    color: var(--shiki-dark, var(--shiki-light, inherit));
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .shiki-code span {
+      color: var(--shiki-dark, var(--shiki-light, inherit));
+    }
+  }
+}
