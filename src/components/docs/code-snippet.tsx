@@ -87,7 +87,7 @@ function CodeSnippetCommandLine({
   return (
     <span
       className={cn(
-        "flex w-full min-w-0 items-center gap-1.5 rounded-md bg-muted p-2",
+        "flex w-full min-w-0 items-center gap-1.5 rounded-md border border-border p-2",
         hasTabs && "min-h-10",
       )}
     >

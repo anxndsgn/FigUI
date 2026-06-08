@@ -46,7 +46,7 @@ export function CodeBlock({ code, language, title, children, style, tabIndex }: 
   const collapsed = isCollapsible && !expanded;
 
   return (
-    <figure className="m-0 overflow-hidden rounded-lg bg-muted text-foreground">
+    <figure className="m-0 overflow-hidden rounded-md border border-border text-foreground">
       <figcaption className="flex items-center justify-between border-b border-border p-2 pl-4 text-xs font-bold text-muted-foreground">
         <span>{title ?? displayLanguage}</span>
         <CopyButton value={source} label="Copy code" />
@@ -79,11 +79,11 @@ export function CodeBlock({ code, language, title, children, style, tabIndex }: 
         {collapsed ? (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-10 h-20 bg-linear-to-t from-muted via-muted/80 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-10 h-20 bg-linear-to-t from-background via-background/80 to-transparent"
           />
         ) : null}
         {isCollapsible ? (
-          <div className="absolute inset-x-0 bottom-0 flex justify-center border-t border-border bg-muted p-2">
+          <div className="absolute inset-x-0 bottom-0 flex justify-center border-t border-border bg-background p-2">
             <button
               type="button"
               className="inline-flex items-center gap-1 rounded-sm px-2 py-1 text-xs text-muted-foreground hover:text-foreground"
