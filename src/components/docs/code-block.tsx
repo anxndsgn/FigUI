@@ -46,7 +46,7 @@ export function CodeBlock({ code, language, title, children, style, tabIndex }: 
   const collapsed = isCollapsible && !expanded;
 
   return (
-    <figure className="m-0 overflow-hidden rounded-md border border-border text-foreground">
+    <figure className="m-0 overflow-hidden rounded-lg border border-border text-foreground">
       <figcaption className="flex items-center justify-between border-b border-border p-2 pl-4 text-xs font-bold text-muted-foreground">
         <span>{title ?? displayLanguage}</span>
         <CopyButton value={source} label="Copy code" />
