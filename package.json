@@ -49,11 +49,5 @@
     "vite": "^8.0.16",
     "wrangler": "^4.97.0"
   },
-  "packageManager": "pnpm@11.0.1",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "workerd"
-    ]
-  }
+  "packageManager": "pnpm@11.0.1"
 }
