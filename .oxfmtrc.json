@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [".source", "public/r", "src/routeTree.gen.ts"],
+  "ignorePatterns": [".source", "public/r", "src/routeTree.gen.ts", "pnpm-lock.yaml"],
   "sortTailwindcss": {
     "attributes": ["class", "className"],
     "functions": ["clsx", "cn", "cva", "tw"],
