@@ -116,7 +116,7 @@ function DocsSidebarNode({
 }) {
   if (node.type === "separator") {
     return node.title ? (
-      <p className="m-0 px-2.5 text-xs font-bold text-muted-foreground uppercase">{node.title}</p>
+      <p className="m-0 px-2 text-xs font-bold text-muted-foreground uppercase">{node.title}</p>
     ) : (
       <div className="h-px bg-border" aria-hidden="true" />
     );
@@ -130,7 +130,7 @@ function DocsSidebarNode({
     <DocsSidebarLink
       url={node.url}
       currentUrl={currentUrl}
-      className="flex min-h-9 items-center rounded-md px-2.5 text-sm font-medium text-muted-foreground hover:bg-accent data-[active=true]:bg-accent data-[active=true]:font-semibold data-[active=true]:text-foreground"
+      className="typography-body-medium flex items-center rounded-md px-2 py-1 text-muted-foreground hover:bg-accent data-[active=true]:bg-accent data-[active=true]:font-semibold data-[active=true]:text-foreground"
       onNavigate={onNavigate}
     >
       {node.title}
@@ -152,12 +152,12 @@ function DocsSidebarFolder({
   const toggleFolder = () => setCollapsed((value) => !value);
 
   const title = node.url ? (
-    <div className="flex min-h-9 items-center gap-1">
+    <div className="flex items-center gap-1">
       <DocsSidebarLink
         url={node.url}
         currentUrl={currentUrl}
         isActiveEnabled={false}
-        className="flex min-h-9 min-w-0 flex-1 items-center rounded-md px-2.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:font-semibold data-[active=true]:text-foreground"
+        className="typography-body-medium flex items-center rounded-md px-2 py-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:font-semibold data-[active=true]:text-foreground"
         onNavigate={onNavigate}
       >
         <span className="truncate">{node.title}</span>
@@ -180,7 +180,7 @@ function DocsSidebarFolder({
   ) : (
     <button
       type="button"
-      className="flex min-h-9 w-full items-center justify-between gap-2 rounded-md px-2.5 text-left text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+      className="typography-body-medium flex w-full items-center justify-between gap-2 rounded-md px-2 py-1 text-left font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground"
       aria-expanded={isExpanded}
       onClick={toggleFolder}
     >
