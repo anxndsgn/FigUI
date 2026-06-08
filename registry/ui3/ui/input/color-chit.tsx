@@ -1,6 +1,6 @@
-import React from 'react';
-import chroma from 'chroma-js';
-import { cn } from '@/lib/utils';
+import React from "react";
+import chroma from "chroma-js";
+import { cn } from "@/lib/utils";
 
 const HEX_RE = /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
 
@@ -33,29 +33,28 @@ const ColorChit = React.memo(function ColorChit({
   return (
     <div
       className={cn(
-        'inset-ring-black-200 dark:inset-ring-white-200 flex size-4 shrink-0 justify-start overflow-hidden rounded-sm inset-ring',
-        onClick && 'cursor-pointer',
+        "flex size-4 shrink-0 justify-start overflow-hidden rounded-sm inset-ring inset-ring-black-200 dark:inset-ring-white-200",
+        onClick && "cursor-pointer",
         className,
       )}
       style={{
-        backgroundImage:
-          'conic-gradient(#eee 25%, #ccc 0 50%, #eee 0 75%, #ccc 0)',
-        backgroundSize: '8px 8px',
-        backgroundPosition: '0 0',
-        backgroundRepeat: 'repeat',
+        backgroundImage: "conic-gradient(#eee 25%, #ccc 0 50%, #eee 0 75%, #ccc 0)",
+        backgroundSize: "8px 8px",
+        backgroundPosition: "0 0",
+        backgroundRepeat: "repeat",
       }}
       onClick={onClick}
     >
       <div
-        className='h-full w-1/2'
+        className="h-full w-1/2"
         style={{
-          backgroundColor: swatch ?? 'transparent',
+          backgroundColor: swatch ?? "transparent",
         }}
       />
       <div
-        className='h-full w-1/2'
+        className="h-full w-1/2"
         style={{
-          backgroundColor: swatch ?? 'transparent',
+          backgroundColor: swatch ?? "transparent",
           opacity: opacity === undefined ? undefined : Number(opacity) / 100,
         }}
       />

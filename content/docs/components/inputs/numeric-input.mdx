@@ -3,15 +3,15 @@ title: Numeric Input
 description: A numeric input with math expression evaluation, min/max clamping, and an optional scrub-to-change handle.
 ---
 
-import NumericInputDemo from 'registry/ui3/examples/numeric-input-demo';
-import numericInputDemoSource from 'registry/ui3/examples/numeric-input-demo.tsx?raw';
-import numericInputSource from 'registry/ui3/ui/input/numeric-input.tsx?raw';
+import NumericInputDemo from "registry/ui3/examples/numeric-input-demo";
+import numericInputDemoSource from "registry/ui3/examples/numeric-input-demo.tsx?raw";
+import numericInputSource from "registry/ui3/ui/input/numeric-input.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='numeric-input-demo'>
+  <ComponentPreview name="numeric-input-demo">
     <NumericInputDemo />
   </ComponentPreview>
-  <ComponentSource code={numericInputDemoSource} language='tsx' title='numeric-input-demo.tsx' />
+  <ComponentSource code={numericInputDemoSource} language="tsx" title="numeric-input-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
@@ -19,20 +19,20 @@ import numericInputSource from 'registry/ui3/ui/input/numeric-input.tsx?raw';
 Install the input package, which includes the numeric input components:
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={numericInputSource} language='tsx' title='input/numeric-input.tsx' />
+<ComponentSource code={numericInputSource} language="tsx" title="input/numeric-input.tsx" />
 
 ## Anatomy
 
@@ -69,7 +69,7 @@ Optional. A sizeless wrapper that turns horizontal drag into value change, with 
 
 ### NumericInputRoot
 
-| Prop | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
-| `nudgeAmount` | `number` | `1` | Step amount for keyboard nudging and scrubbing |
-| `onValueChange` | `(next: string) => void` | — | Called with the stringified value after evaluation and clamping |
+| Prop            | Type                     | Default | Description                                                     |
+| --------------- | ------------------------ | ------- | --------------------------------------------------------------- |
+| `nudgeAmount`   | `number`                 | `1`     | Step amount for keyboard nudging and scrubbing                  |
+| `onValueChange` | `(next: string) => void` | —       | Called with the stringified value after evaluation and clamping |

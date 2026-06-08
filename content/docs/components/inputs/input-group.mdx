@@ -3,15 +3,15 @@ title: Input Group
 description: A container that composes multiple inputs, icons, color chits, and scrub-areas into a single visually unified row with a shared border, background, and focus ring.
 ---
 
-import InputGroupDemo from 'registry/ui3/examples/input-group-demo';
-import inputGroupDemoSource from 'registry/ui3/examples/input-group-demo.tsx?raw';
-import inputGroupSource from 'registry/ui3/ui/input/input-group.tsx?raw';
+import InputGroupDemo from "registry/ui3/examples/input-group-demo";
+import inputGroupDemoSource from "registry/ui3/examples/input-group-demo.tsx?raw";
+import inputGroupSource from "registry/ui3/ui/input/input-group.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='input-group-demo'>
+  <ComponentPreview name="input-group-demo">
     <InputGroupDemo />
   </ComponentPreview>
-  <ComponentSource code={inputGroupDemoSource} language='tsx' title='input-group-demo.tsx' />
+  <ComponentSource code={inputGroupDemoSource} language="tsx" title="input-group-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
@@ -19,20 +19,20 @@ import inputGroupSource from 'registry/ui3/ui/input/input-group.tsx?raw';
 Install the input package, which includes `InputGroup`:
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={inputGroupSource} language='tsx' title='input/input-group.tsx' />
+<ComponentSource code={inputGroupSource} language="tsx" title="input/input-group.tsx" />
 
 ## Anatomy
 
@@ -73,7 +73,9 @@ Combine multiple input types in one group, separated by dividers:
 ```tsx
 // Color + opacity
 <InputGroup>
-  <InputGroupAddon><ColorChit color={color} /></InputGroupAddon>
+  <InputGroupAddon>
+    <ColorChit color={color} />
+  </InputGroupAddon>
   <ColorInput value={color} onValueChange={setColor} />
   <InputGroupDivider />
   <NumericInputRoot defaultValue={100} min={0} max={100}>

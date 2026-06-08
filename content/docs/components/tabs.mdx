@@ -3,46 +3,46 @@ title: Tabs
 description: Tabstrips allow users to navigate between two or more related views. They're a helpful way of letting users quickly switch between related information.
 ---
 
-import TabsDemo from 'registry/ui3/examples/tabs-demo';
-import tabsDemoSource from 'registry/ui3/examples/tabs-demo.tsx?raw';
-import tabsSource from 'registry/ui3/ui/tabs.tsx?raw';
+import TabsDemo from "registry/ui3/examples/tabs-demo";
+import tabsDemoSource from "registry/ui3/examples/tabs-demo.tsx?raw";
+import tabsSource from "registry/ui3/ui/tabs.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='tabs-demo'>
+  <ComponentPreview name="tabs-demo">
     <TabsDemo />
   </ComponentPreview>
-  <ComponentSource code={tabsDemoSource} language='tsx' title='tabs-demo.tsx' />
+  <ComponentSource code={tabsDemoSource} language="tsx" title="tabs-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/tabs.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/tabs.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/tabs.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={tabsSource} language='tsx' title='tabs.tsx' />
+<ComponentSource code={tabsSource} language="tsx" title="tabs.tsx" />
 
 ## Anatomy
 
 ```tsx
-import { Tabs, Tab, TabsList, TabsPanel } from '@/components/ui/tabs';
+import { Tabs, Tab, TabsList, TabsPanel } from "@/components/ui/tabs";
 
-<Tabs defaultValue='tab1'>
+<Tabs defaultValue="tab1">
   <TabsList>
-    <Tab value='tab1'>Tab 1</Tab>
-    <Tab value='tab2'>Tab 2</Tab>
+    <Tab value="tab1">Tab 1</Tab>
+    <Tab value="tab2">Tab 2</Tab>
   </TabsList>
-  <TabsPanel value='tab1'>Content for Tab 1</TabsPanel>
-  <TabsPanel value='tab2'>Content for Tab 2</TabsPanel>
-</Tabs>
+  <TabsPanel value="tab1">Content for Tab 1</TabsPanel>
+  <TabsPanel value="tab2">Content for Tab 2</TabsPanel>
+</Tabs>;
 ```

@@ -3,15 +3,15 @@ title: Color Input
 description: A text input that validates hex colors. Invalid input falls back to the last valid value on blur or Enter, and valid input is normalized to uppercase 6-digit hex without a leading `#`.
 ---
 
-import ColorInputDemo from 'registry/ui3/examples/color-input-demo';
-import colorInputDemoSource from 'registry/ui3/examples/color-input-demo.tsx?raw';
-import colorInputSource from 'registry/ui3/ui/input/color-input.tsx?raw';
+import ColorInputDemo from "registry/ui3/examples/color-input-demo";
+import colorInputDemoSource from "registry/ui3/examples/color-input-demo.tsx?raw";
+import colorInputSource from "registry/ui3/ui/input/color-input.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='color-input-demo'>
+  <ComponentPreview name="color-input-demo">
     <ColorInputDemo />
   </ComponentPreview>
-  <ComponentSource code={colorInputDemoSource} language='tsx' title='color-input-demo.tsx' />
+  <ComponentSource code={colorInputDemoSource} language="tsx" title="color-input-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
@@ -19,13 +19,13 @@ import colorInputSource from 'registry/ui3/ui/input/color-input.tsx?raw';
 Install the input package, which includes `ColorInput`:
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
 </CodeSnippet>
@@ -38,20 +38,20 @@ pnpm add chroma-js
 
 ## Source
 
-<ComponentSource code={colorInputSource} language='tsx' title='input/color-input.tsx' />
+<ComponentSource code={colorInputSource} language="tsx" title="input/color-input.tsx" />
 
 ## Usage
 
 ```tsx
-import { ColorInput } from '@/components/ui/color-input';
+import { ColorInput } from "@/components/ui/color-input";
 
-<ColorInput value={color} onValueChange={setColor} />
+<ColorInput value={color} onValueChange={setColor} />;
 ```
 
 Values are normalized to uppercase hex without a leading `#` when committed (blur or Enter).
 
 ## Props
 
-| Prop | Type | Description |
-| ---- | ---- | ----------- |
+| Prop            | Type                     | Description                                                                                       |
+| --------------- | ------------------------ | ------------------------------------------------------------------------------------------------- |
 | `onValueChange` | `(next: string) => void` | Called with the normalized hex string (uppercase, no leading `#`) when the user commits the value |

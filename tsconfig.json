@@ -24,12 +24,5 @@
     },
     "types": ["vite/client"]
   },
-  "include": [
-    "src",
-    "content",
-    "registry",
-    "source.config.ts",
-    "vite.config.ts",
-    ".source"
-  ]
+  "include": ["src", "content", "registry", "source.config.ts", "vite.config.ts", ".source"]
 }

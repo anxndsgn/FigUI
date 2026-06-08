@@ -3,39 +3,39 @@ title: Switch
 description: A switch for toggling between on and off states.
 ---
 
-import SwitchDemo from 'registry/ui3/examples/switch-demo';
-import switchDemoSource from 'registry/ui3/examples/switch-demo.tsx?raw';
-import switchSource from 'registry/ui3/ui/switch.tsx?raw';
+import SwitchDemo from "registry/ui3/examples/switch-demo";
+import switchDemoSource from "registry/ui3/examples/switch-demo.tsx?raw";
+import switchSource from "registry/ui3/ui/switch.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='switch-demo'>
+  <ComponentPreview name="switch-demo">
     <SwitchDemo />
   </ComponentPreview>
-  <ComponentSource code={switchDemoSource} language='tsx' title='switch-demo.tsx' />
+  <ComponentSource code={switchDemoSource} language="tsx" title="switch-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/switch.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/switch.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/switch.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={switchSource} language='tsx' title='switch.tsx' />
+<ComponentSource code={switchSource} language="tsx" title="switch.tsx" />
 
 ## Usage
 
 ```tsx
-import { Switch } from '@/components/ui/switch';
+import { Switch } from "@/components/ui/switch";
 
-<Switch checked={enabled} onCheckedChange={setEnabled} />
+<Switch checked={enabled} onCheckedChange={setEnabled} />;
 ```

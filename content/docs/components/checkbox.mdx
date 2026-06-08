@@ -3,46 +3,46 @@ title: Checkbox
 description: A checkbox for toggling a boolean value, with support for indeterminate and grouped selection via Base UI CheckboxGroup.
 ---
 
-import { CheckboxDemo } from 'registry/ui3/examples/checkbox-demo';
-import { CheckboxGroupDemo } from 'registry/ui3/examples/checkbox-group-demo';
-import checkboxDemoSource from 'registry/ui3/examples/checkbox-demo.tsx?raw';
-import checkboxGroupDemoSource from 'registry/ui3/examples/checkbox-group-demo.tsx?raw';
-import checkboxSource from 'registry/ui3/ui/checkbox.tsx?raw';
+import { CheckboxDemo } from "registry/ui3/examples/checkbox-demo";
+import { CheckboxGroupDemo } from "registry/ui3/examples/checkbox-group-demo";
+import checkboxDemoSource from "registry/ui3/examples/checkbox-demo.tsx?raw";
+import checkboxGroupDemoSource from "registry/ui3/examples/checkbox-group-demo.tsx?raw";
+import checkboxSource from "registry/ui3/ui/checkbox.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='checkbox-demo'>
+  <ComponentPreview name="checkbox-demo">
     <CheckboxDemo />
   </ComponentPreview>
-  <ComponentSource code={checkboxDemoSource} language='tsx' title='checkbox-demo.tsx' />
+  <ComponentSource code={checkboxDemoSource} language="tsx" title="checkbox-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/checkbox.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/checkbox.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/checkbox.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={checkboxSource} language='tsx' title='checkbox.tsx' />
+<ComponentSource code={checkboxSource} language="tsx" title="checkbox.tsx" />
 
 ## Usage
 
 ```tsx
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from "@/components/ui/checkbox";
 
-<label className='flex items-center gap-2'>
+<label className="flex items-center gap-2">
   <Checkbox checked={checked} onCheckedChange={setChecked} />
   Checkbox
-</label>
+</label>;
 ```
 
 ### Checkbox Group
@@ -50,8 +50,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 Use `CheckboxGroup` from the same module for parent/child selection:
 
 <ComponentTabs>
-  <ComponentPreview name='checkbox-group-demo'>
+  <ComponentPreview name="checkbox-group-demo">
     <CheckboxGroupDemo />
   </ComponentPreview>
-  <ComponentSource code={checkboxGroupDemoSource} language='tsx' title='checkbox-group-demo.tsx' />
+  <ComponentSource code={checkboxGroupDemoSource} language="tsx" title="checkbox-group-demo.tsx" />
 </ComponentTabs>

@@ -3,31 +3,31 @@ title: Slider
 description: Sliders for selecting numeric values, including default, color range (hue), and opacity variants.
 ---
 
-import SliderDemo from 'registry/ui3/examples/slider-demo';
-import ColorRangeSliderDemo from 'registry/ui3/examples/color-range-slider-demo';
-import OpacitySliderDemo from 'registry/ui3/examples/opacity-slider-demo';
-import sliderDemoSource from 'registry/ui3/examples/slider-demo.tsx?raw';
-import colorRangeSliderDemoSource from 'registry/ui3/examples/color-range-slider-demo.tsx?raw';
-import opacitySliderDemoSource from 'registry/ui3/examples/opacity-slider-demo.tsx?raw';
-import sliderSource from 'registry/ui3/ui/slider.tsx?raw';
+import SliderDemo from "registry/ui3/examples/slider-demo";
+import ColorRangeSliderDemo from "registry/ui3/examples/color-range-slider-demo";
+import OpacitySliderDemo from "registry/ui3/examples/opacity-slider-demo";
+import sliderDemoSource from "registry/ui3/examples/slider-demo.tsx?raw";
+import colorRangeSliderDemoSource from "registry/ui3/examples/color-range-slider-demo.tsx?raw";
+import opacitySliderDemoSource from "registry/ui3/examples/opacity-slider-demo.tsx?raw";
+import sliderSource from "registry/ui3/ui/slider.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='slider-demo'>
+  <ComponentPreview name="slider-demo">
     <SliderDemo />
   </ComponentPreview>
-  <ComponentSource code={sliderDemoSource} language='tsx' title='slider-demo.tsx' />
+  <ComponentSource code={sliderDemoSource} language="tsx" title="slider-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/slider.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/slider.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/slider.json
   </CodeSnippet.Command>
 </CodeSnippet>
@@ -40,7 +40,7 @@ pnpm add chroma-js
 
 ## Source
 
-<ComponentSource code={sliderSource} language='tsx' title='slider.tsx' />
+<ComponentSource code={sliderSource} language="tsx" title="slider.tsx" />
 
 ## Usage
 
@@ -53,25 +53,29 @@ FigUI provides three slider variants:
 ### Color Range Slider
 
 <ComponentTabs>
-  <ComponentPreview name='color-range-slider-demo'>
+  <ComponentPreview name="color-range-slider-demo">
     <ColorRangeSliderDemo />
   </ComponentPreview>
-  <ComponentSource code={colorRangeSliderDemoSource} language='tsx' title='color-range-slider-demo.tsx' />
+  <ComponentSource
+    code={colorRangeSliderDemoSource}
+    language="tsx"
+    title="color-range-slider-demo.tsx"
+  />
 </ComponentTabs>
 
 ### Opacity Slider
 
 <ComponentTabs>
-  <ComponentPreview name='opacity-slider-demo'>
+  <ComponentPreview name="opacity-slider-demo">
     <OpacitySliderDemo />
   </ComponentPreview>
-  <ComponentSource code={opacitySliderDemoSource} language='tsx' title='opacity-slider-demo.tsx' />
+  <ComponentSource code={opacitySliderDemoSource} language="tsx" title="opacity-slider-demo.tsx" />
 </ComponentTabs>
 
 ## Props
 
 ### OpacitySlider
 
-| Prop | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
+| Prop    | Type     | Default   | Description                                      |
+| ------- | -------- | --------- | ------------------------------------------------ |
 | `color` | `string` | `'black'` | Base color used for the opacity gradient preview |

@@ -3,58 +3,59 @@ title: Segmented Control
 description: A segmented control for choosing between a set of independent states. Built on Base UI RadioGroup under the hood.
 ---
 
-import SegmentedControlDemo from 'registry/ui3/examples/segmented-control-demo';
-import segmentedControlDemoSource from 'registry/ui3/examples/segmented-control-demo.tsx?raw';
-import segmentedControlSource from 'registry/ui3/ui/segmented-control.tsx?raw';
+import SegmentedControlDemo from "registry/ui3/examples/segmented-control-demo";
+import segmentedControlDemoSource from "registry/ui3/examples/segmented-control-demo.tsx?raw";
+import segmentedControlSource from "registry/ui3/ui/segmented-control.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='segmented-control-demo'>
+  <ComponentPreview name="segmented-control-demo">
     <SegmentedControlDemo />
   </ComponentPreview>
-  <ComponentSource code={segmentedControlDemoSource} language='tsx' title='segmented-control-demo.tsx' />
+  <ComponentSource
+    code={segmentedControlDemoSource}
+    language="tsx"
+    title="segmented-control-demo.tsx"
+  />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/segmented-control.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/segmented-control.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/segmented-control.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={segmentedControlSource} language='tsx' title='segmented-control.tsx' />
+<ComponentSource code={segmentedControlSource} language="tsx" title="segmented-control.tsx" />
 
 ## Anatomy
 
 ```tsx
-import {
-  SegmentedControl,
-  SegmentedControlItem,
-} from '@/components/ui/segmented-control';
+import { SegmentedControl, SegmentedControlItem } from "@/components/ui/segmented-control";
 
-<SegmentedControl defaultValue='list'>
-  <SegmentedControlItem value='list'>List</SegmentedControlItem>
-  <SegmentedControlItem value='code'>Code</SegmentedControlItem>
-</SegmentedControl>
+<SegmentedControl defaultValue="list">
+  <SegmentedControlItem value="list">List</SegmentedControlItem>
+  <SegmentedControlItem value="code">Code</SegmentedControlItem>
+</SegmentedControl>;
 ```
 
 Use icons instead of labels by placing them inside `SegmentedControlItem`:
 
 ```tsx
 <SegmentedControl>
-  <SegmentedControlItem value='left'>
-    <AlignLeft className='size-3.5' />
+  <SegmentedControlItem value="left">
+    <AlignLeft className="size-3.5" />
   </SegmentedControlItem>
-  <SegmentedControlItem value='center'>
-    <AlignCenter className='size-3.5' />
+  <SegmentedControlItem value="center">
+    <AlignCenter className="size-3.5" />
   </SegmentedControlItem>
 </SegmentedControl>
 ```

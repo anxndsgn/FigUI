@@ -3,34 +3,34 @@ title: Select
 description: A styled select dropdown built on Base UI Select. Compose a trigger, value, content, and items.
 ---
 
-import { SelectDemo } from 'registry/ui3/examples/select-demo';
-import selectDemoSource from 'registry/ui3/examples/select-demo.tsx?raw';
-import selectSource from 'registry/ui3/ui/select.tsx?raw';
+import { SelectDemo } from "registry/ui3/examples/select-demo";
+import selectDemoSource from "registry/ui3/examples/select-demo.tsx?raw";
+import selectSource from "registry/ui3/ui/select.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='select-demo'>
+  <ComponentPreview name="select-demo">
     <SelectDemo />
   </ComponentPreview>
-  <ComponentSource code={selectDemoSource} language='tsx' title='select-demo.tsx' />
+  <ComponentSource code={selectDemoSource} language="tsx" title="select-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/select.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/select.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/select.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={selectSource} language='tsx' title='select.tsx' />
+<ComponentSource code={selectSource} language="tsx" title="select.tsx" />
 
 ## Anatomy
 
@@ -41,22 +41,22 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from "@/components/ui/select";
 
 <Select items={items}>
   <SelectTrigger iconLead={<RulerIcon />}>
     <SelectValue />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value='arial'>Arial</SelectItem>
+    <SelectItem value="arial">Arial</SelectItem>
   </SelectContent>
-</Select>
+</Select>;
 ```
 
 ## Props
 
 ### SelectTrigger
 
-| Prop | Type | Description |
-| ---- | ---- | ----------- |
+| Prop       | Type              | Description                                           |
+| ---------- | ----------------- | ----------------------------------------------------- |
 | `iconLead` | `React.ReactNode` | Optional leading icon or label shown before the value |

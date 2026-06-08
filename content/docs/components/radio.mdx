@@ -3,48 +3,48 @@ title: Radio
 description: Used to represent a list of choices where a user can only choose one option.
 ---
 
-import RadioDemo from 'registry/ui3/examples/radio-demo';
-import radioDemoSource from 'registry/ui3/examples/radio-demo.tsx?raw';
-import radioSource from 'registry/ui3/ui/radio.tsx?raw';
+import RadioDemo from "registry/ui3/examples/radio-demo";
+import radioDemoSource from "registry/ui3/examples/radio-demo.tsx?raw";
+import radioSource from "registry/ui3/ui/radio.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='radio-demo'>
+  <ComponentPreview name="radio-demo">
     <RadioDemo />
   </ComponentPreview>
-  <ComponentSource code={radioDemoSource} language='tsx' title='radio-demo.tsx' />
+  <ComponentSource code={radioDemoSource} language="tsx" title="radio-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/radio.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/radio.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/radio.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={radioSource} language='tsx' title='radio.tsx' />
+<ComponentSource code={radioSource} language="tsx" title="radio.tsx" />
 
 ## Usage
 
 ```tsx
-import { Radio, RadioGroup } from '@/components/ui/radio';
+import { Radio, RadioGroup } from "@/components/ui/radio";
 
 <RadioGroup value={value} onValueChange={setValue}>
-  <label className='flex items-center gap-2'>
-    <Radio value='1' />
+  <label className="flex items-center gap-2">
+    <Radio value="1" />
     Option 1
   </label>
-  <label className='flex items-center gap-2'>
-    <Radio value='2' />
+  <label className="flex items-center gap-2">
+    <Radio value="2" />
     Option 2
   </label>
-</RadioGroup>
+</RadioGroup>;
 ```

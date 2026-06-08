@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { NumberField } from '@base-ui/react/number-field';
-import { cn } from '@/lib/utils';
-import { INPUT_BASE_CLASS } from './text-input';
+import React from "react";
+import { NumberField } from "@base-ui/react/number-field";
+import { cn } from "@/lib/utils";
+import { INPUT_BASE_CLASS } from "./text-input";
 
 // ----- pure helpers -----
 const OPERATORS_REGEX = /[+\-*/()]/;
 const PREC: Record<string, number> = {
-  'u-': 3,
-  '*': 2,
-  '/': 2,
-  '+': 1,
-  '-': 1,
+  "u-": 3,
+  "*": 2,
+  "/": 2,
+  "+": 1,
+  "-": 1,
 };
-const RIGHT_ASSOC = new Set(['u-']);
+const RIGHT_ASSOC = new Set(["u-"]);
 
 const toNullableNumber = (v: unknown): number | null => {
-  if (v === '' || v === undefined || v === null) return null;
-  if (typeof v === 'number') return Number.isFinite(v) ? v : null;
-  if (typeof v === 'string') {
+  if (v === "" || v === undefined || v === null) return null;
+  if (typeof v === "number") return Number.isFinite(v) ? v : null;
+  if (typeof v === "string") {
     const n = Number(v);
     return Number.isFinite(n) ? n : null;
   }
@@ -27,44 +27,33 @@ const toNullableNumber = (v: unknown): number | null => {
 };
 
 const trimTrailingZeros = (s: string): string => {
-  if (!s.includes('.')) return s;
-  return s.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+  if (!s.includes(".")) return s;
+  return s.replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1");
 };
 
 const evaluateExpression = (expr: string): number | null => {
   const tokens: (number | string)[] = [];
-  const src = expr.replace(/\s+/g, '');
+  const src = expr.replace(/\s+/g, "");
   let i = 0;
   const isDigit = (c: string) => /[0-9]/.test(c);
   while (i < src.length) {
     const c = src[i];
-    if (isDigit(c) || c === '.') {
+    if (isDigit(c) || c === ".") {
       let j = i + 1;
-      while (j < src.length && (isDigit(src[j]) || src[j] === '.')) j++;
+      while (j < src.length && (isDigit(src[j]) || src[j] === ".")) j++;
       const n = Number(src.slice(i, j));
       if (!Number.isFinite(n)) return null;
       tokens.push(n);
       i = j;
-    } else if (
-      c === '+' ||
-      c === '-' ||
-      c === '*' ||
-      c === '/' ||
-      c === '(' ||
-      c === ')'
-    ) {
+    } else if (c === "+" || c === "-" || c === "*" || c === "/" || c === "(" || c === ")") {
       const prev = tokens[tokens.length - 1];
       if (
-        c === '-' &&
+        c === "-" &&
         (prev === undefined ||
-          (typeof prev === 'string' &&
-            (prev === '+' ||
-              prev === '-' ||
-              prev === '*' ||
-              prev === '/' ||
-              prev === '(')))
+          (typeof prev === "string" &&
+            (prev === "+" || prev === "-" || prev === "*" || prev === "/" || prev === "(")))
       ) {
-        tokens.push('u-');
+        tokens.push("u-");
         i++;
       } else {
         tokens.push(c);
@@ -77,18 +66,17 @@ const evaluateExpression = (expr: string): number | null => {
   const output: (number | string)[] = [];
   const ops: string[] = [];
   for (const t of tokens) {
-    if (typeof t === 'number') {
+    if (typeof t === "number") {
       output.push(t);
-    } else if (t === '(') {
+    } else if (t === "(") {
       ops.push(t);
-    } else if (t === ')') {
-      while (ops.length && ops[ops.length - 1] !== '(')
-        output.push(ops.pop() as string);
-      if (ops.pop() !== '(') return null;
+    } else if (t === ")") {
+      while (ops.length && ops[ops.length - 1] !== "(") output.push(ops.pop() as string);
+      if (ops.pop() !== "(") return null;
     } else {
       while (
         ops.length &&
-        ops[ops.length - 1] !== '(' &&
+        ops[ops.length - 1] !== "(" &&
         ((RIGHT_ASSOC.has(t) && PREC[t] < PREC[ops[ops.length - 1]]) ||
           (!RIGHT_ASSOC.has(t) && PREC[t] <= PREC[ops[ops.length - 1]]))
       )
@@ -98,13 +86,13 @@ const evaluateExpression = (expr: string): number | null => {
   }
   while (ops.length) {
     const op = ops.pop() as string;
-    if (op === '(') return null;
+    if (op === "(") return null;
     output.push(op);
   }
   const stack: number[] = [];
   for (const t of output) {
-    if (typeof t === 'number') stack.push(t);
-    else if (t === 'u-') {
+    if (typeof t === "number") stack.push(t);
+    else if (t === "u-") {
       const a = stack.pop();
       if (a === undefined) return null;
       stack.push(-a);
@@ -113,10 +101,10 @@ const evaluateExpression = (expr: string): number | null => {
       const a = stack.pop();
       if (a === undefined || b === undefined) return null;
       let r: number;
-      if (t === '+') r = a + b;
-      else if (t === '-') r = a - b;
-      else if (t === '*') r = a * b;
-      else if (t === '/') r = a / b;
+      if (t === "+") r = a + b;
+      else if (t === "-") r = a - b;
+      else if (t === "*") r = a * b;
+      else if (t === "/") r = a / b;
       else return null;
       if (!Number.isFinite(r)) return null;
       stack.push(r);
@@ -128,10 +116,8 @@ const evaluateExpression = (expr: string): number | null => {
 
 const clampNumber = (num: number, minNum?: number, maxNum?: number): number => {
   let result = num;
-  if (minNum !== undefined && Number.isFinite(minNum) && result < minNum)
-    result = minNum;
-  if (maxNum !== undefined && Number.isFinite(maxNum) && result > maxNum)
-    result = maxNum;
+  if (minNum !== undefined && Number.isFinite(minNum) && result < minNum) result = minNum;
+  if (maxNum !== undefined && Number.isFinite(maxNum) && result > maxNum) result = maxNum;
   return result;
 };
 
@@ -149,7 +135,7 @@ interface NumericContextValue {
 const NumericContext = React.createContext<NumericContextValue | null>(null);
 
 function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
-  if (typeof ref === 'function') {
+  if (typeof ref === "function") {
     ref(value);
   } else if (ref) {
     ref.current = value;
@@ -159,7 +145,7 @@ function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
 // ----- Root -----
 interface NumericInputRootProps extends Omit<
   NumberField.Root.Props,
-  'value' | 'defaultValue' | 'min' | 'max' | 'step' | 'onValueChange'
+  "value" | "defaultValue" | "min" | "max" | "step" | "onValueChange"
 > {
   value?: number | string;
   defaultValue?: number | string;
@@ -180,14 +166,8 @@ function NumericInputRoot({
   children,
   ...props
 }: NumericInputRootProps) {
-  const minNumber = React.useMemo(
-    () => (typeof min === 'string' ? Number(min) : min),
-    [min],
-  );
-  const maxNumber = React.useMemo(
-    () => (typeof max === 'string' ? Number(max) : max),
-    [max],
-  );
+  const minNumber = React.useMemo(() => (typeof min === "string" ? Number(min) : min), [min]);
+  const maxNumber = React.useMemo(() => (typeof max === "string" ? Number(max) : max), [max]);
 
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState<number | null>(() =>
@@ -204,7 +184,7 @@ function NumericInputRoot({
   const emit = React.useCallback(
     (n: number | null) => {
       if (n === null) {
-        onValueChange?.('');
+        onValueChange?.("");
       } else {
         onValueChange?.(trimTrailingZeros(String(n)));
       }
@@ -232,14 +212,7 @@ function NumericInputRoot({
       setInternalValue,
       emit,
     }),
-    [
-      getInputElement,
-      setInputElement,
-      minNumber,
-      maxNumber,
-      isControlled,
-      emit,
-    ],
+    [getInputElement, setInputElement, minNumber, maxNumber, isControlled, emit],
   );
 
   return (
@@ -251,10 +224,10 @@ function NumericInputRoot({
         min={minNumber}
         max={maxNumber}
         step={Number.isFinite(step) && step > 0 ? step : 1}
-        data-slot='section'
+        data-slot="section"
         className={cn(
-          'inline-flex h-6 items-center rounded-md',
-          'has-data-scrubbing:cursor-ew-resize has-data-scrubbing:ring-blue-600! dark:has-data-scrubbing:ring-blue-400!',
+          "inline-flex h-6 items-center rounded-md",
+          "has-data-scrubbing:cursor-ew-resize has-data-scrubbing:ring-blue-600! dark:has-data-scrubbing:ring-blue-400!",
           className,
         )}
       >
@@ -285,7 +258,7 @@ function NumericInput({
 
   const tryEvaluateExpression = React.useCallback((): boolean => {
     if (!ctx) return false;
-    const raw = ctx.getInputElement()?.value ?? '';
+    const raw = ctx.getInputElement()?.value ?? "";
     if (!OPERATORS_REGEX.test(raw)) return false;
     const r = evaluateExpression(raw);
     if (r === null) return false;
@@ -295,13 +268,13 @@ function NumericInput({
     return true;
   }, [ctx]);
 
-  const handleBlur: NumberFieldInputProps['onBlur'] = (e) => {
+  const handleBlur: NumberFieldInputProps["onBlur"] = (e) => {
     tryEvaluateExpression();
     onBlur?.(e);
   };
 
-  const handleKeyDown: NumberFieldInputProps['onKeyDown'] = (e) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown: NumberFieldInputProps["onKeyDown"] = (e) => {
+    if (e.key === "Enter") {
       if (tryEvaluateExpression()) {
         e.preventDefault();
         (e.currentTarget as HTMLInputElement).blur();
@@ -313,9 +286,9 @@ function NumericInput({
   return (
     <NumberField.Input
       {...props}
-      data-slot='input'
+      data-slot="input"
       ref={inputRef}
-      className={cn(INPUT_BASE_CLASS, 'flex-1', className)}
+      className={cn(INPUT_BASE_CLASS, "flex-1", className)}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
     />
@@ -326,15 +299,15 @@ function NumericInput({
 function ScrubAreaCursorIcon({ className }: { className?: string }) {
   return (
     <svg
-      width='26'
-      height='14'
-      viewBox='0 0 24 14'
-      fill='black'
-      stroke='white'
-      style={{ display: 'block' }}
+      width="26"
+      height="14"
+      viewBox="0 0 24 14"
+      fill="black"
+      stroke="white"
+      style={{ display: "block" }}
       className={className}
     >
-      <path d='M19.5 5.5L6.49737 5.51844V2L1 6.9999L6.5 12L6.49737 8.5L19.5 8.5V12L25 6.9999L19.5 2V5.5Z' />
+      <path d="M19.5 5.5L6.49737 5.51844V2L1 6.9999L6.5 12L6.49737 8.5L19.5 8.5V12L25 6.9999L19.5 2V5.5Z" />
     </svg>
   );
 }
@@ -351,12 +324,12 @@ function NumericScrubArea({
 }) {
   return (
     <NumberField.ScrubArea
-      direction='horizontal'
+      direction="horizontal"
       pixelSensitivity={8}
-      className={cn('cursor-ew-resize select-none', className)}
+      className={cn("cursor-ew-resize select-none", className)}
     >
       {children}
-      <NumberField.ScrubAreaCursor className='pointer-events-none z-50'>
+      <NumberField.ScrubAreaCursor className="pointer-events-none z-50">
         <ScrubAreaCursorIcon />
       </NumberField.ScrubAreaCursor>
     </NumberField.ScrubArea>

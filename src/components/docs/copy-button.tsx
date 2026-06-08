@@ -27,7 +27,7 @@ export function CopyButton({
       type="button"
       variant="ghost"
       size="icon"
-      className="relative rounded-sm text-foreground/50 hover:bg-black/5"
+      className="hover:bg-black/5 relative rounded-sm text-foreground/50"
       aria-label={label}
       onClick={async () => {
         await navigator.clipboard.writeText(value);

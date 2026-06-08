@@ -3,34 +3,34 @@ title: Button
 description: A styled button with multiple variants and sizes. Supports rendering as other elements via the Base UI `render` prop.
 ---
 
-import ButtonDemo from 'registry/ui3/examples/button-demo';
-import buttonDemoSource from 'registry/ui3/examples/button-demo.tsx?raw';
-import buttonSource from 'registry/ui3/ui/button.tsx?raw';
+import ButtonDemo from "registry/ui3/examples/button-demo";
+import buttonDemoSource from "registry/ui3/examples/button-demo.tsx?raw";
+import buttonSource from "registry/ui3/ui/button.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='button-demo'>
+  <ComponentPreview name="button-demo">
     <ButtonDemo />
   </ComponentPreview>
-  <ComponentSource code={buttonDemoSource} language='tsx' title='button-demo.tsx' />
+  <ComponentSource code={buttonDemoSource} language="tsx" title="button-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/button.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/button.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/button.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={buttonSource} language='tsx' title='button.tsx' />
+<ComponentSource code={buttonSource} language="tsx" title="button.tsx" />
 
 ## Usage
 
@@ -44,12 +44,12 @@ import { Button } from '@/components/ui/button';
 Use the `render` prop to render a link button:
 
 ```tsx
-<Button render={<a href='/'>Home</a>} />
+<Button render={<a href="/">Home</a>} />
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
+| Prop      | Type                                                                                                                              | Default     | Description          |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------------- |
 | `variant` | `'primary' \| 'secondary' \| 'destructive' \| 'secondaryDestruct' \| 'inverse' \| 'success' \| 'link' \| 'linkDanger' \| 'ghost'` | `'primary'` | Visual style variant |
-| `size` | `'default' \| 'large' \| 'icon'` | `'default'` | Button size |
+| `size`    | `'default' \| 'large' \| 'icon'`                                                                                                  | `'default'` | Button size          |

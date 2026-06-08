@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import {
   ColorChit,
   ColorInput,
@@ -10,21 +10,21 @@ import {
   NumericInputRoot,
   NumericInput,
   NumericScrubArea,
-} from '@/registry/ui3/ui/input';
+} from "@/registry/ui3/ui/input";
 
 export default function ColorChitDemo() {
-  const [color, setColor] = useState('FF24BD');
+  const [color, setColor] = useState("FF24BD");
   const [opacity, setOpacity] = useState(72);
 
   return (
-    <div className='flex flex-col gap-6'>
-      <div className='flex items-center gap-3'>
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center gap-3">
         <ColorChit color={color} />
         <ColorChit color={color} opacity={opacity} />
         <ColorChit color={color} opacity={100} />
       </div>
 
-      <InputGroup className='w-52'>
+      <InputGroup className="w-52">
         <InputGroupAddon>
           <ColorChit color={color} opacity={opacity} />
         </InputGroupAddon>
@@ -36,8 +36,8 @@ export default function ColorChitDemo() {
           max={100}
           onValueChange={(next) => setOpacity(Number(next) || 0)}
         >
-          <NumericInput className='w-10' />
-          <InputGroupAddon className='text-grey-500 typography-body-medium text-xs'>
+          <NumericInput className="w-10" />
+          <InputGroupAddon className="typography-body-medium text-xs text-grey-500">
             <NumericScrubArea>%</NumericScrubArea>
           </InputGroupAddon>
         </NumericInputRoot>

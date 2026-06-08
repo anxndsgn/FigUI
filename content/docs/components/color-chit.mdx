@@ -3,15 +3,15 @@ title: Color Chit
 description: A compact color swatch for input groups. The left half shows the solid color; the right half previews opacity against a checkerboard background.
 ---
 
-import ColorChitDemo from 'registry/ui3/examples/color-chit-demo';
-import colorChitDemoSource from 'registry/ui3/examples/color-chit-demo.tsx?raw';
-import colorChitSource from 'registry/ui3/ui/input/color-chit.tsx?raw';
+import ColorChitDemo from "registry/ui3/examples/color-chit-demo";
+import colorChitDemoSource from "registry/ui3/examples/color-chit-demo.tsx?raw";
+import colorChitSource from "registry/ui3/ui/input/color-chit.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='color-chit-demo'>
+  <ComponentPreview name="color-chit-demo">
     <ColorChitDemo />
   </ComponentPreview>
-  <ComponentSource code={colorChitDemoSource} language='tsx' title='color-chit-demo.tsx' />
+  <ComponentSource code={colorChitDemoSource} language="tsx" title="color-chit-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
@@ -19,13 +19,13 @@ import colorChitSource from 'registry/ui3/ui/input/color-chit.tsx?raw';
 Install the input package, which includes `ColorChit`:
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/input.json
   </CodeSnippet.Command>
 </CodeSnippet>
@@ -38,7 +38,7 @@ pnpm add chroma-js
 
 ## Source
 
-<ComponentSource code={colorChitSource} language='tsx' title='input/color-chit.tsx' />
+<ComponentSource code={colorChitSource} language="tsx" title="input/color-chit.tsx" />
 
 ## Usage
 
@@ -62,7 +62,7 @@ Inside an input group, place it in `InputGroupAddon` beside a `ColorInput`:
 
 ## Props
 
-| Prop | Type | Description |
-| ---- | ---- | ----------- |
-| `color` | `string` | Hex color without `#` (3, 6, or 8 digits) |
+| Prop      | Type               | Description                                            |
+| --------- | ------------------ | ------------------------------------------------------ |
+| `color`   | `string`           | Hex color without `#` (3, 6, or 8 digits)              |
 | `opacity` | `string \| number` | Optional opacity percentage (0–100) for the right half |

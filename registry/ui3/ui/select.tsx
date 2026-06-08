@@ -16,8 +16,8 @@ function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        "group border-grey-300 flex cursor-default items-center gap-1 rounded-md border outline-none focus-visible:border-blue-500",
-        "dark:border-grey-700 pl-2 dark:focus-visible:border-blue-500",
+        "group flex cursor-default items-center gap-1 rounded-md border border-grey-300 outline-none focus-visible:border-blue-500",
+        "pl-2 dark:border-grey-700 dark:focus-visible:border-blue-500",
         "has-data-[figui=select-icon-lead]:pl-0",
         className,
       )}
@@ -25,11 +25,11 @@ function SelectTrigger({
     >
       {iconLead && (
         <span
-          className="[&_svg]:text-black-500 dark:[&_svg]:text-white-500 flex size-6 shrink-0 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0"
+          className="flex size-6 shrink-0 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-500 dark:[&_svg]:text-white-500"
           data-figui="select-icon-lead"
         >
           {typeof iconLead === "string" ? (
-            <span className="text-black-500 dark:text-white-500 typography-body-medium">
+            <span className="typography-body-medium text-black-500 dark:text-white-500">
               {iconLead}
             </span>
           ) : (
@@ -38,23 +38,19 @@ function SelectTrigger({
         </span>
       )}
       {children}
-      <BaseSelect.Icon className="[&_svg]:text-black-800 dark:[&_svg]:text-white-800 group-data-disabled:[&_svg]:text-black-400 dark:group-data-disabled:[&_svg]:text-white-400 flex size-6 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0">
+      <BaseSelect.Icon className="flex size-6 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 group-data-disabled:[&_svg]:text-black-400 dark:[&_svg]:text-white-800 dark:group-data-disabled:[&_svg]:text-white-400">
         <ChevronDown />
       </BaseSelect.Icon>
     </BaseSelect.Trigger>
   );
 }
 
-function SelectContent({
-  className,
-  children,
-  ...props
-}: BaseSelect.Positioner.Props) {
+function SelectContent({ className, children, ...props }: BaseSelect.Positioner.Props) {
   return (
     <BaseSelect.Portal>
       <BaseSelect.Positioner
         className={cn(
-          "bg-grey-900 shadow-400 dark:inset-shadow-white-100 overflow-hidden rounded-lg dark:inset-shadow-2xs",
+          "overflow-hidden rounded-lg bg-grey-900 shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100",
           className,
         )}
         sideOffset={4}
@@ -74,8 +70,8 @@ function SelectValue({ className, ...props }: BaseSelect.Value.Props) {
   return (
     <BaseSelect.Value
       className={cn(
-        "typography-body-medium text-black-1000 dark:text-white-1000 flex-1 truncate",
-        "group-data-disabled:text-black-400 dark:group-data-disabled:text-white-400 text-start",
+        "typography-body-medium flex-1 truncate text-black-1000 dark:text-white-1000",
+        "text-start group-data-disabled:text-black-400 dark:group-data-disabled:text-white-400",
         className,
       )}
       {...props}
@@ -87,7 +83,7 @@ function SelectItem({ className, children, ...props }: BaseSelect.Item.Props) {
   return (
     <BaseSelect.Item
       className={cn(
-        "typography-body-medium text-white-1000 grid min-w-(--anchor-width) cursor-default grid-cols-[0.75rem_1fr] gap-2 rounded-md px-2 py-1 data-highlighted:bg-blue-500",
+        "typography-body-medium grid min-w-(--anchor-width) cursor-default grid-cols-[0.75rem_1fr] gap-2 rounded-md px-2 py-1 text-white-1000 data-highlighted:bg-blue-500",
         className,
       )}
       {...props}
@@ -95,9 +91,7 @@ function SelectItem({ className, children, ...props }: BaseSelect.Item.Props) {
       <BaseSelect.ItemIndicator className="col-start-1 flex items-center justify-center">
         <CheckIcon className="size-3" />
       </BaseSelect.ItemIndicator>
-      <BaseSelect.ItemText className="col-start-2">
-        {children}
-      </BaseSelect.ItemText>
+      <BaseSelect.ItemText className="col-start-2">{children}</BaseSelect.ItemText>
     </BaseSelect.Item>
   );
 }
@@ -122,36 +116,30 @@ function SelectGroupLabel({ ...props }: BaseSelect.GroupLabel.Props) {
   return <BaseSelect.GroupLabel {...props} />;
 }
 
-function SelectScrollUpArrow({
-  className,
-  ...props
-}: BaseSelect.ScrollUpArrow.Props) {
+function SelectScrollUpArrow({ className, ...props }: BaseSelect.ScrollUpArrow.Props) {
   return (
     <BaseSelect.ScrollUpArrow
       {...props}
       className={cn(
-        "bg-grey-900 z-10 hidden h-4 w-full cursor-default rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:items-center data-[side=none]:justify-center data-[side=none]:py-1 data-[side=none]:opacity-100",
+        "z-10 hidden h-4 w-full cursor-default rounded-lg bg-grey-900 py-1 opacity-0 data-[side=none]:flex data-[side=none]:items-center data-[side=none]:justify-center data-[side=none]:py-1 data-[side=none]:opacity-100",
         className,
       )}
     >
-      <ChevronUp className="text-black-1000 dark:text-white-1000 size-3" />
+      <ChevronUp className="size-3 text-black-1000 dark:text-white-1000" />
     </BaseSelect.ScrollUpArrow>
   );
 }
 
-function SelectScrollDownArrow({
-  className,
-  ...props
-}: BaseSelect.ScrollDownArrow.Props) {
+function SelectScrollDownArrow({ className, ...props }: BaseSelect.ScrollDownArrow.Props) {
   return (
     <BaseSelect.ScrollDownArrow
       {...props}
       className={cn(
-        "bg-grey-900 z-10 hidden h-4 w-full cursor-default rounded-lg py-1 opacity-0 data-[side=none]:flex data-[side=none]:items-center data-[side=none]:justify-center data-[side=none]:py-1 data-[side=none]:opacity-100",
+        "z-10 hidden h-4 w-full cursor-default rounded-lg bg-grey-900 py-1 opacity-0 data-[side=none]:flex data-[side=none]:items-center data-[side=none]:justify-center data-[side=none]:py-1 data-[side=none]:opacity-100",
         className,
       )}
     >
-      <ChevronDown className="text-black-1000 dark:text-white-1000 size-3" />
+      <ChevronDown className="size-3 text-black-1000 dark:text-white-1000" />
     </BaseSelect.ScrollDownArrow>
   );
 }

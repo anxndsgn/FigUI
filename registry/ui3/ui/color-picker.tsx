@@ -1,4 +1,4 @@
-import { OpacitySlider, ColorRangeSlider } from './slider';
+import { OpacitySlider, ColorRangeSlider } from "./slider";
 
 function ColorThumb() {}
 

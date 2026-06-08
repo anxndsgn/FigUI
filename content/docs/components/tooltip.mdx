@@ -3,46 +3,42 @@ title: Tooltip
 description: A tooltip that displays supplementary information on hover or focus. Wraps Base UI Tooltip with a zero-delay provider.
 ---
 
-import { TooltipDemo } from 'registry/ui3/examples/tooltip-demo';
-import tooltipDemoSource from 'registry/ui3/examples/tooltip-demo.tsx?raw';
-import tooltipSource from 'registry/ui3/ui/tooltip.tsx?raw';
+import { TooltipDemo } from "registry/ui3/examples/tooltip-demo";
+import tooltipDemoSource from "registry/ui3/examples/tooltip-demo.tsx?raw";
+import tooltipSource from "registry/ui3/ui/tooltip.tsx?raw";
 
 <ComponentTabs>
-  <ComponentPreview name='tooltip-demo'>
+  <ComponentPreview name="tooltip-demo">
     <TooltipDemo />
   </ComponentPreview>
-  <ComponentSource code={tooltipDemoSource} language='tsx' title='tooltip-demo.tsx' />
+  <ComponentSource code={tooltipDemoSource} language="tsx" title="tooltip-demo.tsx" />
 </ComponentTabs>
 
 ## Installation
 
 <CodeSnippet>
-  <CodeSnippet.Command value='pnpm'>
+  <CodeSnippet.Command value="pnpm">
     pnpm dlx shadcn@latest add https://figui.dev/r/tooltip.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='npm'>
+  <CodeSnippet.Command value="npm">
     npx shadcn@latest add https://figui.dev/r/tooltip.json
   </CodeSnippet.Command>
-  <CodeSnippet.Command value='bun'>
+  <CodeSnippet.Command value="bun">
     bunx shadcn@latest add https://figui.dev/r/tooltip.json
   </CodeSnippet.Command>
 </CodeSnippet>
 
 ## Source
 
-<ComponentSource code={tooltipSource} language='tsx' title='tooltip.tsx' />
+<ComponentSource code={tooltipSource} language="tsx" title="tooltip.tsx" />
 
 ## Anatomy
 
 ```tsx
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/ui/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 <Tooltip>
-  <TooltipTrigger render={<Button variant='secondary'>Hover</Button>} />
-  <TooltipContent side='bottom'>Tooltip text</TooltipContent>
-</Tooltip>
+  <TooltipTrigger render={<Button variant="secondary">Hover</Button>} />
+  <TooltipContent side="bottom">Tooltip text</TooltipContent>
+</Tooltip>;
 ```

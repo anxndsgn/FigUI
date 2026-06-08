@@ -1,5 +1,5 @@
-import { Tooltip as BaseTooltip } from '@base-ui/react';
-import { cn } from '@/lib/utils';
+import { Tooltip as BaseTooltip } from "@base-ui/react";
+import { cn } from "@/lib/utils";
 
 function Tooltip({ children, ...props }: BaseTooltip.Root.Props) {
   return (
@@ -8,22 +8,18 @@ function Tooltip({ children, ...props }: BaseTooltip.Root.Props) {
     </BaseTooltip.Provider>
   );
 }
-function TooltipContent({
-  children,
-  className,
-  ...props
-}: BaseTooltip.Positioner.Props) {
+function TooltipContent({ children, className, ...props }: BaseTooltip.Positioner.Props) {
   return (
     <BaseTooltip.Portal>
       <BaseTooltip.Positioner sideOffset={10} {...props}>
         <BaseTooltip.Popup
           className={cn(
-            'bg-grey-900 typography-body-medium text-white-1000 shadow-300 flex flex-col rounded-md px-2 py-1',
+            "typography-body-medium flex flex-col rounded-md bg-grey-900 px-2 py-1 text-white-1000 shadow-300",
             className,
           )}
         >
-          <BaseTooltip.Arrow className='data-[side=bottom]:top-[-6px] data-[side=left]:right-[-13px] data-[side=left]:rotate-90 data-[side=right]:left-[-13px] data-[side=right]:-rotate-90 data-[side=top]:bottom-[-6px] data-[side=top]:rotate-180'>
-            <ArrowSvg className='text-grey-900' />
+          <BaseTooltip.Arrow className="data-[side=bottom]:top-[-6px] data-[side=left]:right-[-13px] data-[side=left]:rotate-90 data-[side=right]:left-[-13px] data-[side=right]:-rotate-90 data-[side=top]:bottom-[-6px] data-[side=top]:rotate-180">
+            <ArrowSvg className="text-grey-900" />
           </BaseTooltip.Arrow>
           {children}
         </BaseTooltip.Popup>
@@ -32,20 +28,17 @@ function TooltipContent({
   );
 }
 
-function ArrowSvg({ className, ...props }: React.ComponentProps<'svg'>) {
+function ArrowSvg({ className, ...props }: React.ComponentProps<"svg">) {
   return (
     <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='12'
-      height='6'
-      viewBox='0 0 12 6'
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="6"
+      viewBox="0 0 12 6"
       className={className}
       {...props}
     >
-      <path
-        d='M6 5.24537e-07L5.24537e-07 6L12 6L6 5.24537e-07Z'
-        fill='currentColor'
-      />
+      <path d="M6 5.24537e-07L5.24537e-07 6L12 6L6 5.24537e-07Z" fill="currentColor" />
     </svg>
   );
 }
@@ -54,10 +47,4 @@ const TooltipTrigger = BaseTooltip.Trigger;
 const TooltipProvider = BaseTooltip.Provider;
 const TooltipRoot = BaseTooltip.Root;
 
-export {
-  Tooltip,
-  TooltipTrigger,
-  TooltipProvider,
-  TooltipRoot,
-  TooltipContent,
-};
+export { Tooltip, TooltipTrigger, TooltipProvider, TooltipRoot, TooltipContent };

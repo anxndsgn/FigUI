@@ -1,22 +1,20 @@
-export const uiStorageKey = 'figui-ui';
-export const legacyThemeStorageKey = 'figui-theme';
+export const uiStorageKey = "figui-ui";
+export const legacyThemeStorageKey = "figui-theme";
 
-export type ResolvedTheme = 'light' | 'dark';
+export type ResolvedTheme = "light" | "dark";
 
 export function isResolvedTheme(value: unknown): value is ResolvedTheme {
-  return value === 'light' || value === 'dark';
+  return value === "light" || value === "dark";
 }
 
 export function getSystemTheme(): ResolvedTheme {
-  if (typeof window === 'undefined') return 'light';
+  if (typeof window === "undefined") return "light";
 
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export function getAppliedTheme(): ResolvedTheme | null {
-  if (typeof document === 'undefined') return null;
+  if (typeof document === "undefined") return null;
 
   const theme = document.documentElement.dataset.theme;
 
@@ -24,13 +22,13 @@ export function getAppliedTheme(): ResolvedTheme | null {
 }
 
 export function applyTheme(theme: ResolvedTheme) {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
 
   document.documentElement.dataset.theme = theme;
 }
 
 export function readStoredTheme(): ResolvedTheme | null {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === "undefined") return null;
 
   try {
     const storedUi = window.localStorage.getItem(uiStorageKey);

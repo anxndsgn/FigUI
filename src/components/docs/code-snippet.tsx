@@ -1,8 +1,5 @@
 import { Children, isValidElement, useMemo, type ReactElement, type ReactNode } from "react";
-import {
-  SegmentedControl,
-  SegmentedControlItem,
-} from "registry/ui3/ui/segmented-control";
+import { SegmentedControl, SegmentedControlItem } from "registry/ui3/ui/segmented-control";
 import { defaultPackageManager, useUiStore } from "../../lib/ui-store";
 import { cn } from "../../lib/utils";
 import { highlightCodeToHtml } from "./code-block";

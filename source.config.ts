@@ -1,9 +1,9 @@
-import { metaSchema, pageSchema } from 'fumadocs-core/source/schema';
-import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
-import { z } from 'zod';
+import { metaSchema, pageSchema } from "fumadocs-core/source/schema";
+import { defineConfig, defineDocs } from "fumadocs-mdx/config";
+import { z } from "zod";
 
 export const docs = defineDocs({
-  dir: 'content/docs',
+  dir: "content/docs",
   docs: {
     schema: pageSchema.extend({
       description: z.string().optional(),
@@ -20,8 +20,8 @@ export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
       themes: {
-        light: 'github-light',
-        dark: 'github-dark',
+        light: "github-light",
+        dark: "github-dark",
       },
       addLanguageClass: true,
     },
