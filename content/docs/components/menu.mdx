@@ -1,0 +1,55 @@
+---
+title: Menu
+description: A menu for actions and settings. Built on Base UI Menu with a compound component structure.
+---
+
+import { MenuDemo } from "registry/ui3/examples/menu-demo";
+import menuDemoSource from "registry/ui3/examples/menu-demo.tsx?raw";
+import menuSource from "registry/ui3/ui/menu.tsx?raw";
+
+<ComponentTabs>
+  <ComponentPreview name="menu-demo">
+    <MenuDemo />
+  </ComponentPreview>
+  <ComponentSource code={menuDemoSource} language="tsx" title="menu-demo.tsx" />
+</ComponentTabs>
+
+## Installation
+
+<CodeSnippet>
+  <CodeSnippet.Command value="pnpm">
+    pnpm dlx shadcn@latest add https://figui.dev/r/menu.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value="npm">
+    npx shadcn@latest add https://figui.dev/r/menu.json
+  </CodeSnippet.Command>
+  <CodeSnippet.Command value="bun">
+    bunx shadcn@latest add https://figui.dev/r/menu.json
+  </CodeSnippet.Command>
+</CodeSnippet>
+
+## Source
+
+<ComponentSource code={menuSource} language="tsx" title="menu.tsx" />
+
+## Anatomy
+
+```tsx
+import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/menu";
+
+<Menu>
+  <MenuTrigger render={<Button variant="secondary">Open</Button>} />
+  <MenuContent>
+    <MenuItem>Profile</MenuItem>
+    <MenuItem>Settings</MenuItem>
+  </MenuContent>
+</Menu>;
+```
+
+## Props
+
+### MenuItem
+
+| Prop    | Type      | Description                                    |
+| ------- | --------- | ---------------------------------------------- |
+| `inset` | `boolean` | Adds left padding to align with checkbox items |

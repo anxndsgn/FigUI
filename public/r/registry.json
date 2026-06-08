@@ -158,6 +158,19 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:component",
+      "title": "Menu",
+      "description": "A menu component for actions and settings",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/ui3/ui/menu.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
