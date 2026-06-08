@@ -5,6 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/ui3/ui/select";
+import { InputGroup, InputGroupAddon, TextInput } from "@/registry/ui3/ui/input";
 
 import { RulerIcon } from "lucide-react";
 
@@ -18,6 +19,11 @@ export function SelectDemo() {
     { label: "Serif", value: "serif" },
     { label: "Monospace", value: "mono" },
     { label: "Cursive", value: "cursive" },
+  ];
+  const heightModes = [
+    { label: "Fixed", value: "fixed" },
+    { label: "Hug contents", value: "hug" },
+    { label: "Fill container", value: "fill" },
   ];
   return (
     <div className="flex flex-col items-center justify-center gap-4">
@@ -46,6 +52,25 @@ export function SelectDemo() {
           ))}
         </SelectContent>
       </Select>
+
+      <InputGroup className="w-48">
+        <InputGroupAddon className="typography-body-medium text-grey-500">H</InputGroupAddon>
+        <TextInput defaultValue="1374" />
+        <InputGroupAddon>
+          <Select items={heightModes} defaultValue="fixed">
+            <SelectTrigger addon>
+              <SelectValue className="sr-only" />
+            </SelectTrigger>
+            <SelectContent>
+              {heightModes.map((mode) => (
+                <SelectItem key={mode.value} value={mode.value}>
+                  {mode.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </InputGroupAddon>
+      </InputGroup>
     </div>
   );
 }

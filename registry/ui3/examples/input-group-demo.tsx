@@ -12,6 +12,13 @@ import {
   InputGroupAddon,
   InputGroupDivider,
 } from "@/registry/ui3/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/registry/ui3/ui/select";
 
 function SearchIcon({ className }: { className?: string }) {
   return (
@@ -32,6 +39,12 @@ function SearchIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+const heightModes = [
+  { label: "Fixed", value: "fixed" },
+  { label: "Hug contents", value: "hug" },
+  { label: "Fill container", value: "fill" },
+];
 
 export default function InputGroupDemo() {
   const [color, setColor] = useState("FF24BD");
@@ -99,7 +112,30 @@ export default function InputGroupDemo() {
         </InputGroup>
       </div>
 
-      {/* 5. XYZ multi-numeric (each Root is a child) */}
+      {/* 5. Label + input + preset select */}
+      <div className="flex flex-col gap-1">
+        <span className="typography-body-medium text-grey-500">Label + Input + Preset Menu</span>
+        <InputGroup className="w-48">
+          <InputGroupAddon className="typography-body-medium text-grey-500">H</InputGroupAddon>
+          <TextInput defaultValue="1374" />
+          <InputGroupAddon>
+            <Select items={heightModes} defaultValue="fixed">
+              <SelectTrigger addon>
+                <SelectValue className="sr-only" />
+              </SelectTrigger>
+              <SelectContent>
+                {heightModes.map((mode) => (
+                  <SelectItem key={mode.value} value={mode.value}>
+                    {mode.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </InputGroupAddon>
+        </InputGroup>
+      </div>
+
+      {/* 6. XYZ multi-numeric (each Root is a child) */}
       <div className="flex flex-col gap-1">
         <span className="typography-body-medium text-grey-500">XYZ Multi-Numeric</span>
         <InputGroup className="w-64">

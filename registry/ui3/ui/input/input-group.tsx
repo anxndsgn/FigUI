@@ -35,6 +35,17 @@ const INPUT_GROUP_CLASS = [
   "[&_[data-slot=input]]:hover:ring-transparent!",
   "[&_[data-slot=input]]:focus:ring-transparent!",
   "dark:[&_[data-slot=input]]:bg-transparent!",
+  // Compact select triggers used as trailing group sections (e.g. value | unit)
+  "[&_[data-slot=inline-select]]:h-full",
+  "[&_[data-slot=inline-select]]:border-0!",
+  "[&_[data-slot=inline-select]]:bg-transparent!",
+  "[&_[data-slot=inline-select]]:focus-visible:border-transparent!",
+  // Chevron-only select in trailing addon slot (e.g. label + input + preset menu)
+  "[&>[data-slot=addon]:has([data-slot=addon-select])]:p-0",
+  "[&_[data-slot=addon-select]]:h-full",
+  "[&_[data-slot=addon-select]]:border-0!",
+  "[&_[data-slot=addon-select]]:bg-transparent!",
+  "[&_[data-slot=addon-select]]:focus-visible:border-transparent!",
   "[&>[data-slot=section]]:h-full",
   "[&>[data-slot=section]]:rounded-none!",
   "[&>[data-slot=section]]:ring-transparent!",
