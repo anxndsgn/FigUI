@@ -51,6 +51,9 @@
   },
   "packageManager": "pnpm@11.0.1",
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "workerd"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "workerd"
+    ]
   }
 }
