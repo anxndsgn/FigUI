@@ -158,7 +158,7 @@ function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
 
 // ----- Root -----
 interface NumericInputRootProps extends Omit<
-  React.ComponentProps<typeof NumberField.Root>,
+  NumberField.Root.Props,
   'value' | 'defaultValue' | 'min' | 'max' | 'step' | 'onValueChange'
 > {
   value?: number | string;
@@ -265,7 +265,7 @@ function NumericInputRoot({
 }
 
 // ----- Input -----
-type NumberFieldInputProps = React.ComponentProps<typeof NumberField.Input>;
+type NumberFieldInputProps = NumberField.Input.Props;
 
 function NumericInput({
   className,

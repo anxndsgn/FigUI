@@ -7,7 +7,7 @@ const INPUT_BASE_CLASS =
 function TextInput({
   className,
   ...props
-}: React.ComponentProps<typeof BaseInput>) {
+}: BaseInput.Props) {
   return (
     <BaseInput
       {...props}

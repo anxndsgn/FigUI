@@ -23,7 +23,7 @@ const getFormattedHexNoHashUpper = (s: string): string | null => {
   return chroma.valid(normalizeHex(s)) ? formatHexNoHashUpper(s) : null;
 };
 
-type BaseInputProps = Omit<React.ComponentProps<typeof BaseInput>, 'onChange'>;
+type BaseInputProps = Omit<BaseInput.Props, 'onChange'>;
 
 interface ColorInputProps extends BaseInputProps {
   /**
@@ -43,7 +43,7 @@ function ColorInput({
   ...props
 }: ColorInputProps) {
   type BaseInputChangeEvent = Parameters<
-    NonNullable<React.ComponentProps<typeof BaseInput>['onChange']>
+    NonNullable<BaseInput.Props['onChange']>
   >[0];
   type BaseInputBlurEvent = Parameters<
     NonNullable<BaseInputProps['onBlur']>
