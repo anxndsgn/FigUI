@@ -44,3 +44,5 @@ next-env.d.ts
 
 # Source build artifacts
 .source/
+
+.pnpm-store
