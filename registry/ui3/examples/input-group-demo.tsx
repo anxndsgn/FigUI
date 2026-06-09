@@ -10,15 +10,11 @@ import {
   ColorChit,
   InputGroup,
   InputGroupAddon,
+  InputGroupButton,
   InputGroupDivider,
 } from "@/registry/ui3/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/registry/ui3/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/registry/ui3/ui/select";
+import { ChevronDownIcon } from "lucide-react";
 
 function SearchIcon({ className }: { className?: string }) {
   return (
@@ -120,9 +116,14 @@ export default function InputGroupDemo() {
           <TextInput defaultValue="1374" />
           <InputGroupAddon>
             <Select items={heightModes} defaultValue="fixed">
-              <SelectTrigger addon>
-                <SelectValue className="sr-only" />
-              </SelectTrigger>
+              <SelectTrigger
+                render={
+                  <InputGroupButton aria-label="Select height mode">
+                    <ChevronDownIcon />
+                  </InputGroupButton>
+                }
+              />
+
               <SelectContent>
                 {heightModes.map((mode) => (
                   <SelectItem key={mode.value} value={mode.value}>

@@ -5,9 +5,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/ui3/ui/select";
-import { InputGroup, InputGroupAddon, TextInput } from "@/registry/ui3/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupButton, TextInput } from "@/registry/ui3/ui/input";
 
-import { RulerIcon } from "lucide-react";
+import { ChevronDownIcon, RulerIcon } from "lucide-react";
 
 export function SelectDemo() {
   const fonts = [
@@ -58,9 +58,14 @@ export function SelectDemo() {
         <TextInput defaultValue="1374" />
         <InputGroupAddon>
           <Select items={heightModes} defaultValue="fixed">
-            <SelectTrigger addon>
-              <SelectValue className="sr-only" />
-            </SelectTrigger>
+            <SelectTrigger
+              render={
+                <InputGroupButton aria-label="Select height mode">
+                  <ChevronDownIcon />
+                </InputGroupButton>
+              }
+            />
+
             <SelectContent>
               {heightModes.map((mode) => (
                 <SelectItem key={mode.value} value={mode.value}>

@@ -9,27 +9,14 @@ function SelectTrigger({
   className,
   children,
   iconLead,
-  inline,
-  addon,
   ...props
 }: BaseSelect.Trigger.Props & {
   iconLead?: React.ReactNode;
-  /** Borderless compact trigger for use inside `InputGroup` (e.g. after a divider). */
-  inline?: boolean;
-  /** Chevron-only trigger for the trailing `InputGroupAddon` slot. */
-  addon?: boolean;
 }) {
   return (
     <BaseSelect.Trigger
-      data-slot={addon ? "addon-select" : inline ? "inline-select" : undefined}
       className={cn(
-        "group flex h-6 cursor-default items-center rounded-md outline-none",
-        addon
-          ? "size-6 shrink-0 justify-center border-0 bg-transparent p-0"
-          : inline
-            ? "w-auto shrink-0 gap-0.5 border-0 bg-transparent pl-1 pr-1.5"
-            : "min-w-0 flex-1 gap-1 border border-grey-300 pl-2 focus-visible:border-blue-500 dark:border-grey-700 dark:focus-visible:border-blue-500",
-        "has-data-[figui=select-icon-lead]:pl-0",
+        "group flex h-6 cursor-default items-center rounded-md border border-grey-300 outline-none focus-visible:border-blue-500 has-data-[figui=select-icon-lead]:pl-0 dark:border-grey-600 dark:focus-visible:border-blue-500",
         className,
       )}
       {...props}
@@ -51,8 +38,7 @@ function SelectTrigger({
       {children}
       <BaseSelect.Icon
         className={cn(
-          "flex items-center justify-center [&_svg]:shrink-0 [&_svg]:text-black-800 group-data-disabled:[&_svg]:text-black-400 dark:[&_svg]:text-white-800 dark:group-data-disabled:[&_svg]:text-white-400",
-          addon || !inline ? "size-6 [&_svg]:size-3" : "size-4 [&_svg]:size-2.5",
+          "flex size-6 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 group-data-disabled:[&_svg]:text-black-400 dark:[&_svg]:text-white-800 dark:group-data-disabled:[&_svg]:text-white-400",
         )}
       >
         <ChevronDown />

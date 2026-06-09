@@ -1,6 +1,7 @@
 "use client";
 
 import type * as React from "react";
+import { Button as BaseButton } from "@base-ui/react/button";
 import { cn } from "@/lib/utils";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
@@ -96,6 +97,27 @@ function InputGroupAddon({ className, children, ...props }: InputGroupAddonProps
   );
 }
 
+// ─── InputGroupButton ────────────────────────────────────────────────────────
+
+interface InputGroupButtonProps extends BaseButton.Props {}
+
+function InputGroupButton({ className, type = "button", ...props }: InputGroupButtonProps) {
+  return (
+    <BaseButton
+      {...props}
+      data-slot="input-group-button"
+      type={type}
+      className={cn(
+        "inline-flex size-6 shrink-0 items-center justify-center rounded-sm border-0! text-black-800 outline-none",
+        "focus-visible:inset-ring focus-visible:inset-ring-blue-500",
+        "disabled:pointer-events-none disabled:opacity-50",
+        "dark:text-white-800 [&_svg]:pointer-events-none [&_svg]:size-3 [&_svg]:shrink-0",
+        className,
+      )}
+    />
+  );
+}
+
 // ─── InputGroupDivider ──────────────────────────────────────────────────────
 
 interface InputGroupDividerProps {
@@ -115,4 +137,4 @@ function InputGroupDivider({ className }: InputGroupDividerProps) {
 
 // ─── Exports ────────────────────────────────────────────────────────────────
 
-export { InputGroup, InputGroupAddon, InputGroupDivider };
+export { InputGroup, InputGroupAddon, InputGroupButton, InputGroupDivider };
