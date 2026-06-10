@@ -4,7 +4,9 @@ description: A text input that validates hex colors. Invalid input falls back to
 ---
 
 import ColorInputDemo from "registry/ui3/examples/color-input-demo";
+import ColorInputGroupDemo from "registry/ui3/examples/color-input-group-demo";
 import colorInputDemoSource from "registry/ui3/examples/color-input-demo.tsx?raw";
+import colorInputGroupDemoSource from "registry/ui3/examples/color-input-group-demo.tsx?raw";
 import colorInputSource from "registry/ui3/ui/input/color-input.tsx?raw";
 
 <ComponentTabs>
@@ -49,6 +51,17 @@ import { ColorInput } from "@/components/ui/color-input";
 ```
 
 Values are normalized to uppercase hex without a leading `#` when committed (blur or Enter).
+
+## Examples
+
+### In Input Group
+
+<ComponentTabs>
+  <ComponentPreview name="color-input-group-demo">
+    <ColorInputGroupDemo />
+  </ComponentPreview>
+  <ComponentSource code={colorInputGroupDemoSource} language="tsx" title="color-input-group-demo.tsx" />
+</ComponentTabs>
 
 ## Props
 

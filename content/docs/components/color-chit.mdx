@@ -4,7 +4,9 @@ description: A compact color swatch for input groups. The left half shows the so
 ---
 
 import ColorChitDemo from "registry/ui3/examples/color-chit-demo";
+import ColorChitOpacityDemo from "registry/ui3/examples/color-chit-opacity-demo";
 import colorChitDemoSource from "registry/ui3/examples/color-chit-demo.tsx?raw";
+import colorChitOpacityDemoSource from "registry/ui3/examples/color-chit-opacity-demo.tsx?raw";
 import colorChitSource from "registry/ui3/ui/input/color-chit.tsx?raw";
 
 <ComponentTabs>
@@ -59,6 +61,17 @@ Inside an input group, place it in `InputGroupAddon` beside a `ColorInput`:
   <ColorInput value={color} onValueChange={setColor} />
 </InputGroup>
 ```
+
+## Examples
+
+### With Opacity
+
+<ComponentTabs>
+  <ComponentPreview name="color-chit-opacity-demo">
+    <ColorChitOpacityDemo />
+  </ComponentPreview>
+  <ComponentSource code={colorChitOpacityDemoSource} language="tsx" title="color-chit-opacity-demo.tsx" />
+</ComponentTabs>
 
 ## Props
 

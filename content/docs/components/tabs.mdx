@@ -4,7 +4,9 @@ description: Tabstrips allow users to navigate between two or more related views
 ---
 
 import TabsDemo from "registry/ui3/examples/tabs-demo";
+import TabsInlineDemo from "registry/ui3/examples/tabs-inline-demo";
 import tabsDemoSource from "registry/ui3/examples/tabs-demo.tsx?raw";
+import tabsInlineDemoSource from "registry/ui3/examples/tabs-inline-demo.tsx?raw";
 import tabsSource from "registry/ui3/ui/tabs.tsx?raw";
 
 <ComponentTabs>
@@ -46,3 +48,14 @@ import { Tabs, Tab, TabsList, TabsPanel } from "@/components/ui/tabs";
   <TabsPanel value="tab2">Content for Tab 2</TabsPanel>
 </Tabs>;
 ```
+
+## Examples
+
+### Inline
+
+<ComponentTabs>
+  <ComponentPreview name="tabs-inline-demo">
+    <TabsInlineDemo />
+  </ComponentPreview>
+  <ComponentSource code={tabsInlineDemoSource} language="tsx" title="tabs-inline-demo.tsx" />
+</ComponentTabs>

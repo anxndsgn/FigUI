@@ -6,11 +6,5 @@ import { useState } from "react";
 export default function ColorInputDemo() {
   const [color, setColor] = useState("FF24BD");
 
-  return (
-    <div className="flex flex-col gap-2">
-      <ColorInput className="w-32" value={color} onValueChange={setColor} />
-      <span className="text-gray-500 text-sm">{`#${color}`}</span>
-      <div className="size-12 rounded-lg" style={{ backgroundColor: `#${color}` }} />
-    </div>
-  );
+  return <ColorInput className="w-32" value={color} onValueChange={setColor} />;
 }

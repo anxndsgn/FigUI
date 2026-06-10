@@ -4,7 +4,15 @@ description: A menu for actions and settings. Built on Base UI Menu with a compo
 ---
 
 import { MenuDemo } from "registry/ui3/examples/menu-demo";
+import MenuSubmenuDemo from "registry/ui3/examples/menu-submenu-demo";
+import MenuCheckboxDemo from "registry/ui3/examples/menu-checkbox-demo";
+import MenuRadioDemo from "registry/ui3/examples/menu-radio-demo";
+import MenuShortcutDemo from "registry/ui3/examples/menu-shortcut-demo";
 import menuDemoSource from "registry/ui3/examples/menu-demo.tsx?raw";
+import menuSubmenuDemoSource from "registry/ui3/examples/menu-submenu-demo.tsx?raw";
+import menuCheckboxDemoSource from "registry/ui3/examples/menu-checkbox-demo.tsx?raw";
+import menuRadioDemoSource from "registry/ui3/examples/menu-radio-demo.tsx?raw";
+import menuShortcutDemoSource from "registry/ui3/examples/menu-shortcut-demo.tsx?raw";
 import menuSource from "registry/ui3/ui/menu.tsx?raw";
 
 <ComponentTabs>
@@ -45,6 +53,44 @@ import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/menu";
   </MenuContent>
 </Menu>;
 ```
+
+## Examples
+
+### Submenu
+
+<ComponentTabs>
+  <ComponentPreview name="menu-submenu-demo">
+    <MenuSubmenuDemo />
+  </ComponentPreview>
+  <ComponentSource code={menuSubmenuDemoSource} language="tsx" title="menu-submenu-demo.tsx" />
+</ComponentTabs>
+
+### Checkbox Items
+
+<ComponentTabs>
+  <ComponentPreview name="menu-checkbox-demo">
+    <MenuCheckboxDemo />
+  </ComponentPreview>
+  <ComponentSource code={menuCheckboxDemoSource} language="tsx" title="menu-checkbox-demo.tsx" />
+</ComponentTabs>
+
+### Radio Items
+
+<ComponentTabs>
+  <ComponentPreview name="menu-radio-demo">
+    <MenuRadioDemo />
+  </ComponentPreview>
+  <ComponentSource code={menuRadioDemoSource} language="tsx" title="menu-radio-demo.tsx" />
+</ComponentTabs>
+
+### Shortcuts
+
+<ComponentTabs>
+  <ComponentPreview name="menu-shortcut-demo">
+    <MenuShortcutDemo />
+  </ComponentPreview>
+  <ComponentSource code={menuShortcutDemoSource} language="tsx" title="menu-shortcut-demo.tsx" />
+</ComponentTabs>
 
 ## Props
 

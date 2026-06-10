@@ -4,7 +4,11 @@ description: A styled text input built on Base UI Input.
 ---
 
 import InputDemo from "registry/ui3/examples/input-demo";
+import TextInputLargeDemo from "registry/ui3/examples/text-input-large-demo";
+import TextInputDisabledDemo from "registry/ui3/examples/text-input-disabled-demo";
 import inputDemoSource from "registry/ui3/examples/input-demo.tsx?raw";
+import textInputLargeDemoSource from "registry/ui3/examples/text-input-large-demo.tsx?raw";
+import textInputDisabledDemoSource from "registry/ui3/examples/text-input-disabled-demo.tsx?raw";
 import textInputSource from "registry/ui3/ui/input/text-input.tsx?raw";
 
 <ComponentTabs>
@@ -43,3 +47,23 @@ import { TextInput } from "@/components/ui/text-input";
 ```
 
 When placed inside an `InputGroup`, the input automatically strips its individual ring, background, and rounding to inherit the group shell.
+
+## Examples
+
+### Large
+
+<ComponentTabs>
+  <ComponentPreview name="text-input-large-demo">
+    <TextInputLargeDemo />
+  </ComponentPreview>
+  <ComponentSource code={textInputLargeDemoSource} language="tsx" title="text-input-large-demo.tsx" />
+</ComponentTabs>
+
+### Disabled
+
+<ComponentTabs>
+  <ComponentPreview name="text-input-disabled-demo">
+    <TextInputDisabledDemo />
+  </ComponentPreview>
+  <ComponentSource code={textInputDisabledDemoSource} language="tsx" title="text-input-disabled-demo.tsx" />
+</ComponentTabs>

@@ -4,7 +4,11 @@ description: A styled select dropdown built on Base UI Select. Compose a trigger
 ---
 
 import { SelectDemo } from "registry/ui3/examples/select-demo";
+import SelectTextLeadDemo from "registry/ui3/examples/select-text-lead-demo";
+import SelectInputGroupDemo from "registry/ui3/examples/select-input-group-demo";
 import selectDemoSource from "registry/ui3/examples/select-demo.tsx?raw";
+import selectTextLeadDemoSource from "registry/ui3/examples/select-text-lead-demo.tsx?raw";
+import selectInputGroupDemoSource from "registry/ui3/examples/select-input-group-demo.tsx?raw";
 import selectSource from "registry/ui3/ui/select.tsx?raw";
 
 <ComponentTabs>
@@ -52,6 +56,26 @@ import {
   </SelectContent>
 </Select>;
 ```
+
+## Examples
+
+### Text Lead
+
+<ComponentTabs>
+  <ComponentPreview name="select-text-lead-demo">
+    <SelectTextLeadDemo />
+  </ComponentPreview>
+  <ComponentSource code={selectTextLeadDemoSource} language="tsx" title="select-text-lead-demo.tsx" />
+</ComponentTabs>
+
+### In Input Group
+
+<ComponentTabs>
+  <ComponentPreview name="select-input-group-demo">
+    <SelectInputGroupDemo />
+  </ComponentPreview>
+  <ComponentSource code={selectInputGroupDemoSource} language="tsx" title="select-input-group-demo.tsx" />
+</ComponentTabs>
 
 ## Props
 

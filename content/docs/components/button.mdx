@@ -4,7 +4,27 @@ description: A styled button with multiple variants and sizes. Supports renderin
 ---
 
 import ButtonDemo from "registry/ui3/examples/button-demo";
+import ButtonSecondaryDemo from "registry/ui3/examples/button-secondary-demo";
+import ButtonDestructiveDemo from "registry/ui3/examples/button-destructive-demo";
+import ButtonSecondaryDestructDemo from "registry/ui3/examples/button-secondary-destruct-demo";
+import ButtonInverseDemo from "registry/ui3/examples/button-inverse-demo";
+import ButtonSuccessDemo from "registry/ui3/examples/button-success-demo";
+import ButtonLinkDemo from "registry/ui3/examples/button-link-demo";
+import ButtonLinkDangerDemo from "registry/ui3/examples/button-link-danger-demo";
+import ButtonGhostDemo from "registry/ui3/examples/button-ghost-demo";
+import ButtonLargeDemo from "registry/ui3/examples/button-large-demo";
+import ButtonIconDemo from "registry/ui3/examples/button-icon-demo";
 import buttonDemoSource from "registry/ui3/examples/button-demo.tsx?raw";
+import buttonSecondaryDemoSource from "registry/ui3/examples/button-secondary-demo.tsx?raw";
+import buttonDestructiveDemoSource from "registry/ui3/examples/button-destructive-demo.tsx?raw";
+import buttonSecondaryDestructDemoSource from "registry/ui3/examples/button-secondary-destruct-demo.tsx?raw";
+import buttonInverseDemoSource from "registry/ui3/examples/button-inverse-demo.tsx?raw";
+import buttonSuccessDemoSource from "registry/ui3/examples/button-success-demo.tsx?raw";
+import buttonLinkDemoSource from "registry/ui3/examples/button-link-demo.tsx?raw";
+import buttonLinkDangerDemoSource from "registry/ui3/examples/button-link-danger-demo.tsx?raw";
+import buttonGhostDemoSource from "registry/ui3/examples/button-ghost-demo.tsx?raw";
+import buttonLargeDemoSource from "registry/ui3/examples/button-large-demo.tsx?raw";
+import buttonIconDemoSource from "registry/ui3/examples/button-icon-demo.tsx?raw";
 import buttonSource from "registry/ui3/ui/button.tsx?raw";
 
 <ComponentTabs>
@@ -38,7 +58,6 @@ import buttonSource from "registry/ui3/ui/button.tsx?raw";
 import { Button } from '@/components/ui/button';
 
 <Button>Button</Button>
-<Button variant='secondary' size='large'>Large</Button>
 ```
 
 Use the `render` prop to render a link button:
@@ -46,6 +65,98 @@ Use the `render` prop to render a link button:
 ```tsx
 <Button render={<a href="/">Home</a>} />
 ```
+
+## Examples
+
+### Secondary
+
+<ComponentTabs>
+  <ComponentPreview name="button-secondary-demo">
+    <ButtonSecondaryDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonSecondaryDemoSource} language="tsx" title="button-secondary-demo.tsx" />
+</ComponentTabs>
+
+### Destructive
+
+<ComponentTabs>
+  <ComponentPreview name="button-destructive-demo">
+    <ButtonDestructiveDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonDestructiveDemoSource} language="tsx" title="button-destructive-demo.tsx" />
+</ComponentTabs>
+
+### Secondary Destructive
+
+<ComponentTabs>
+  <ComponentPreview name="button-secondary-destruct-demo">
+    <ButtonSecondaryDestructDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonSecondaryDestructDemoSource} language="tsx" title="button-secondary-destruct-demo.tsx" />
+</ComponentTabs>
+
+### Inverse
+
+<ComponentTabs>
+  <ComponentPreview name="button-inverse-demo">
+    <ButtonInverseDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonInverseDemoSource} language="tsx" title="button-inverse-demo.tsx" />
+</ComponentTabs>
+
+### Success
+
+<ComponentTabs>
+  <ComponentPreview name="button-success-demo">
+    <ButtonSuccessDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonSuccessDemoSource} language="tsx" title="button-success-demo.tsx" />
+</ComponentTabs>
+
+### Link
+
+<ComponentTabs>
+  <ComponentPreview name="button-link-demo">
+    <ButtonLinkDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonLinkDemoSource} language="tsx" title="button-link-demo.tsx" />
+</ComponentTabs>
+
+### Link Danger
+
+<ComponentTabs>
+  <ComponentPreview name="button-link-danger-demo">
+    <ButtonLinkDangerDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonLinkDangerDemoSource} language="tsx" title="button-link-danger-demo.tsx" />
+</ComponentTabs>
+
+### Ghost
+
+<ComponentTabs>
+  <ComponentPreview name="button-ghost-demo">
+    <ButtonGhostDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonGhostDemoSource} language="tsx" title="button-ghost-demo.tsx" />
+</ComponentTabs>
+
+### Large
+
+<ComponentTabs>
+  <ComponentPreview name="button-large-demo">
+    <ButtonLargeDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonLargeDemoSource} language="tsx" title="button-large-demo.tsx" />
+</ComponentTabs>
+
+### Icon
+
+<ComponentTabs>
+  <ComponentPreview name="button-icon-demo">
+    <ButtonIconDemo />
+  </ComponentPreview>
+  <ComponentSource code={buttonIconDemoSource} language="tsx" title="button-icon-demo.tsx" />
+</ComponentTabs>
 
 ## Props
 

@@ -4,7 +4,9 @@ description: A segmented control for choosing between a set of independent state
 ---
 
 import SegmentedControlDemo from "registry/ui3/examples/segmented-control-demo";
+import SegmentedControlIconDemo from "registry/ui3/examples/segmented-control-icon-demo";
 import segmentedControlDemoSource from "registry/ui3/examples/segmented-control-demo.tsx?raw";
+import segmentedControlIconDemoSource from "registry/ui3/examples/segmented-control-icon-demo.tsx?raw";
 import segmentedControlSource from "registry/ui3/ui/segmented-control.tsx?raw";
 
 <ComponentTabs>
@@ -59,3 +61,18 @@ Use icons instead of labels by placing them inside `SegmentedControlItem`:
   </SegmentedControlItem>
 </SegmentedControl>
 ```
+
+## Examples
+
+### Icons
+
+<ComponentTabs>
+  <ComponentPreview name="segmented-control-icon-demo">
+    <SegmentedControlIconDemo />
+  </ComponentPreview>
+  <ComponentSource
+    code={segmentedControlIconDemoSource}
+    language="tsx"
+    title="segmented-control-icon-demo.tsx"
+  />
+</ComponentTabs>

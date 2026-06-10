@@ -4,7 +4,17 @@ description: A container that composes multiple inputs, icons, color chits, and 
 ---
 
 import InputGroupDemo from "registry/ui3/examples/input-group-demo";
+import InputGroupColorDemo from "registry/ui3/examples/input-group-color-demo";
+import InputGroupScrubNumericDemo from "registry/ui3/examples/input-group-scrub-numeric-demo";
+import InputGroupColorOpacityDemo from "registry/ui3/examples/input-group-color-opacity-demo";
+import InputGroupPresetSelectDemo from "registry/ui3/examples/input-group-preset-select-demo";
+import InputGroupXyzDemo from "registry/ui3/examples/input-group-xyz-demo";
 import inputGroupDemoSource from "registry/ui3/examples/input-group-demo.tsx?raw";
+import inputGroupColorDemoSource from "registry/ui3/examples/input-group-color-demo.tsx?raw";
+import inputGroupScrubNumericDemoSource from "registry/ui3/examples/input-group-scrub-numeric-demo.tsx?raw";
+import inputGroupColorOpacityDemoSource from "registry/ui3/examples/input-group-color-opacity-demo.tsx?raw";
+import inputGroupPresetSelectDemoSource from "registry/ui3/examples/input-group-preset-select-demo.tsx?raw";
+import inputGroupXyzDemoSource from "registry/ui3/examples/input-group-xyz-demo.tsx?raw";
 import inputGroupSource from "registry/ui3/ui/input/input-group.tsx?raw";
 
 <ComponentTabs>
@@ -66,25 +76,6 @@ The input group is split into three parts. `InputGroup` is the required containe
 </NumericInputRoot>
 ```
 
-### Multi-input Groups
-
-Combine multiple input types in one group, separated by dividers:
-
-```tsx
-// Color + opacity
-<InputGroup>
-  <InputGroupAddon>
-    <ColorChit color={color} />
-  </InputGroupAddon>
-  <ColorInput value={color} onValueChange={setColor} />
-  <InputGroupDivider />
-  <NumericInputRoot defaultValue={100} min={0} max={100}>
-    <NumericInput />
-  </NumericInputRoot>
-  <InputGroupAddon>%</InputGroupAddon>
-</InputGroup>
-```
-
 ### Integration with NumericInputRoot
 
 Two patterns depending on whether the group contains one or multiple numeric fields:
@@ -93,3 +84,50 @@ Two patterns depending on whether the group contains one or multiple numeric fie
 - **Multi numeric**: Each `NumericInputRoot` sits inside `InputGroup` as a child
 
 `NumericInputRoot` automatically strips its own ring/background when it detects it's inside an `InputGroup`.
+
+## Examples
+
+### Color Chit + Color Input
+
+<ComponentTabs>
+  <ComponentPreview name="input-group-color-demo">
+    <InputGroupColorDemo />
+  </ComponentPreview>
+  <ComponentSource code={inputGroupColorDemoSource} language="tsx" title="input-group-color-demo.tsx" />
+</ComponentTabs>
+
+### Scrub Area + Numeric Input
+
+<ComponentTabs>
+  <ComponentPreview name="input-group-scrub-numeric-demo">
+    <InputGroupScrubNumericDemo />
+  </ComponentPreview>
+  <ComponentSource code={inputGroupScrubNumericDemoSource} language="tsx" title="input-group-scrub-numeric-demo.tsx" />
+</ComponentTabs>
+
+### Color + Opacity
+
+<ComponentTabs>
+  <ComponentPreview name="input-group-color-opacity-demo">
+    <InputGroupColorOpacityDemo />
+  </ComponentPreview>
+  <ComponentSource code={inputGroupColorOpacityDemoSource} language="tsx" title="input-group-color-opacity-demo.tsx" />
+</ComponentTabs>
+
+### Label + Input + Preset Menu
+
+<ComponentTabs>
+  <ComponentPreview name="input-group-preset-select-demo">
+    <InputGroupPresetSelectDemo />
+  </ComponentPreview>
+  <ComponentSource code={inputGroupPresetSelectDemoSource} language="tsx" title="input-group-preset-select-demo.tsx" />
+</ComponentTabs>
+
+### XYZ Multi-Numeric
+
+<ComponentTabs>
+  <ComponentPreview name="input-group-xyz-demo">
+    <InputGroupXyzDemo />
+  </ComponentPreview>
+  <ComponentSource code={inputGroupXyzDemoSource} language="tsx" title="input-group-xyz-demo.tsx" />
+</ComponentTabs>

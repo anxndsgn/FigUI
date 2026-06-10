@@ -4,9 +4,11 @@ description: Sliders for selecting numeric values, including default, color rang
 ---
 
 import SliderDemo from "registry/ui3/examples/slider-demo";
+import SliderRangeDemo from "registry/ui3/examples/slider-range-demo";
 import ColorRangeSliderDemo from "registry/ui3/examples/color-range-slider-demo";
 import OpacitySliderDemo from "registry/ui3/examples/opacity-slider-demo";
 import sliderDemoSource from "registry/ui3/examples/slider-demo.tsx?raw";
+import sliderRangeDemoSource from "registry/ui3/examples/slider-range-demo.tsx?raw";
 import colorRangeSliderDemoSource from "registry/ui3/examples/color-range-slider-demo.tsx?raw";
 import opacitySliderDemoSource from "registry/ui3/examples/opacity-slider-demo.tsx?raw";
 import sliderSource from "registry/ui3/ui/slider.tsx?raw";
@@ -49,6 +51,17 @@ FigUI provides three slider variants:
 - `Slider` — default numeric slider
 - `ColorRangeSlider` — hue picker (0–360)
 - `OpacitySlider` — opacity picker (0–1) with a color preview
+
+## Examples
+
+### Range
+
+<ComponentTabs>
+  <ComponentPreview name="slider-range-demo">
+    <SliderRangeDemo />
+  </ComponentPreview>
+  <ComponentSource code={sliderRangeDemoSource} language="tsx" title="slider-range-demo.tsx" />
+</ComponentTabs>
 
 ### Color Range Slider
 

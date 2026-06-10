@@ -4,7 +4,9 @@ description: A numeric input with math expression evaluation, min/max clamping, 
 ---
 
 import NumericInputDemo from "registry/ui3/examples/numeric-input-demo";
+import NumericInputScrubDemo from "registry/ui3/examples/numeric-input-scrub-demo";
 import numericInputDemoSource from "registry/ui3/examples/numeric-input-demo.tsx?raw";
+import numericInputScrubDemoSource from "registry/ui3/examples/numeric-input-scrub-demo.tsx?raw";
 import numericInputSource from "registry/ui3/ui/input/numeric-input.tsx?raw";
 
 <ComponentTabs>
@@ -64,6 +66,17 @@ The text input. Reads the active `NumericInputRoot` context to commit expression
 ### NumericScrubArea
 
 Optional. A sizeless wrapper that turns horizontal drag into value change, with a custom bidirectional-arrow cursor baked in. The consumer decides the size, padding, and visual content via `className` and `children`.
+
+## Examples
+
+### Scrub Area
+
+<ComponentTabs>
+  <ComponentPreview name="numeric-input-scrub-demo">
+    <NumericInputScrubDemo />
+  </ComponentPreview>
+  <ComponentSource code={numericInputScrubDemoSource} language="tsx" title="numeric-input-scrub-demo.tsx" />
+</ComponentTabs>
 
 ## Props
 

@@ -4,7 +4,9 @@ description: A switch for toggling between on and off states.
 ---
 
 import SwitchDemo from "registry/ui3/examples/switch-demo";
+import SwitchDisabledDemo from "registry/ui3/examples/switch-disabled-demo";
 import switchDemoSource from "registry/ui3/examples/switch-demo.tsx?raw";
+import switchDisabledDemoSource from "registry/ui3/examples/switch-disabled-demo.tsx?raw";
 import switchSource from "registry/ui3/ui/switch.tsx?raw";
 
 <ComponentTabs>
@@ -39,3 +41,14 @@ import { Switch } from "@/components/ui/switch";
 
 <Switch checked={enabled} onCheckedChange={setEnabled} />;
 ```
+
+## Examples
+
+### Disabled
+
+<ComponentTabs>
+  <ComponentPreview name="switch-disabled-demo">
+    <SwitchDisabledDemo />
+  </ComponentPreview>
+  <ComponentSource code={switchDisabledDemoSource} language="tsx" title="switch-disabled-demo.tsx" />
+</ComponentTabs>

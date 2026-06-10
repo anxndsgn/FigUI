@@ -5,8 +5,10 @@ description: A checkbox for toggling a boolean value, with support for indetermi
 
 import { CheckboxDemo } from "registry/ui3/examples/checkbox-demo";
 import { CheckboxGroupDemo } from "registry/ui3/examples/checkbox-group-demo";
+import CheckboxIndeterminateDemo from "registry/ui3/examples/checkbox-indeterminate-demo";
 import checkboxDemoSource from "registry/ui3/examples/checkbox-demo.tsx?raw";
 import checkboxGroupDemoSource from "registry/ui3/examples/checkbox-group-demo.tsx?raw";
+import checkboxIndeterminateDemoSource from "registry/ui3/examples/checkbox-indeterminate-demo.tsx?raw";
 import checkboxSource from "registry/ui3/ui/checkbox.tsx?raw";
 
 <ComponentTabs>
@@ -44,6 +46,17 @@ import { Checkbox } from "@/components/ui/checkbox";
   Checkbox
 </label>;
 ```
+
+## Examples
+
+### Indeterminate
+
+<ComponentTabs>
+  <ComponentPreview name="checkbox-indeterminate-demo">
+    <CheckboxIndeterminateDemo />
+  </ComponentPreview>
+  <ComponentSource code={checkboxIndeterminateDemoSource} language="tsx" title="checkbox-indeterminate-demo.tsx" />
+</ComponentTabs>
 
 ### Checkbox Group
 

@@ -4,7 +4,9 @@ description: A tooltip that displays supplementary information on hover or focus
 ---
 
 import { TooltipDemo } from "registry/ui3/examples/tooltip-demo";
+import TooltipBottomDemo from "registry/ui3/examples/tooltip-bottom-demo";
 import tooltipDemoSource from "registry/ui3/examples/tooltip-demo.tsx?raw";
+import tooltipBottomDemoSource from "registry/ui3/examples/tooltip-bottom-demo.tsx?raw";
 import tooltipSource from "registry/ui3/ui/tooltip.tsx?raw";
 
 <ComponentTabs>
@@ -42,3 +44,14 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip
   <TooltipContent side="bottom">Tooltip text</TooltipContent>
 </Tooltip>;
 ```
+
+## Examples
+
+### Bottom
+
+<ComponentTabs>
+  <ComponentPreview name="tooltip-bottom-demo">
+    <TooltipBottomDemo />
+  </ComponentPreview>
+  <ComponentSource code={tooltipBottomDemoSource} language="tsx" title="tooltip-bottom-demo.tsx" />
+</ComponentTabs>

@@ -4,7 +4,9 @@ description: Used to represent a list of choices where a user can only choose on
 ---
 
 import RadioDemo from "registry/ui3/examples/radio-demo";
+import RadioHorizontalDemo from "registry/ui3/examples/radio-horizontal-demo";
 import radioDemoSource from "registry/ui3/examples/radio-demo.tsx?raw";
+import radioHorizontalDemoSource from "registry/ui3/examples/radio-horizontal-demo.tsx?raw";
 import radioSource from "registry/ui3/ui/radio.tsx?raw";
 
 <ComponentTabs>
@@ -48,3 +50,14 @@ import { Radio, RadioGroup } from "@/components/ui/radio";
   </label>
 </RadioGroup>;
 ```
+
+## Examples
+
+### Horizontal
+
+<ComponentTabs>
+  <ComponentPreview name="radio-horizontal-demo">
+    <RadioHorizontalDemo />
+  </ComponentPreview>
+  <ComponentSource code={radioHorizontalDemoSource} language="tsx" title="radio-horizontal-demo.tsx" />
+</ComponentTabs>
