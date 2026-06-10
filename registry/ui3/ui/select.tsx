@@ -16,7 +16,7 @@ function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        "group flex h-6 cursor-default items-center rounded-md border border-grey-300 outline-none focus-visible:border-blue-500 has-data-[figui=select-icon-lead]:pl-0 dark:border-grey-600 dark:focus-visible:border-blue-500",
+        "group flex h-6 cursor-default items-center rounded-md border border-grey-300 pl-2 outline-none focus-visible:border-blue-500 has-data-[figui=select-icon-lead]:pl-0 dark:border-grey-600 dark:focus-visible:border-blue-500",
         className,
       )}
       {...props}

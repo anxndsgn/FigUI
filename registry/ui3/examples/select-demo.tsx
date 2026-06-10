@@ -5,7 +5,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/ui3/ui/select";
-import { RulerIcon } from "lucide-react";
 
 const fonts = [
   { label: "Select font", value: null },
@@ -21,7 +20,7 @@ const fonts = [
 export function SelectDemo() {
   return (
     <Select items={fonts}>
-      <SelectTrigger className="w-40" iconLead={<RulerIcon />}>
+      <SelectTrigger className="w-40">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
