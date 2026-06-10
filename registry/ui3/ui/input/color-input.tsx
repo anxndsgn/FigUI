@@ -26,10 +26,6 @@ const getFormattedHexNoHashUpper = (s: string): string | null => {
 type BaseInputProps = Omit<BaseInput.Props, "onChange">;
 
 interface ColorInputProps extends BaseInputProps {
-  /**
-   * Called with the normalized hex string (uppercase, no leading `#`)
-   * when the user commits the value (blur / Enter).
-   */
   onValueChange?: (next: string) => void;
 }
 

@@ -5,7 +5,6 @@ import { NumberField } from "@base-ui/react/number-field";
 import { cn } from "@/lib/utils";
 import { INPUT_BASE_CLASS } from "./text-input";
 
-// ----- pure helpers -----
 const OPERATORS_REGEX = /[+\-*/()]/;
 const PREC: Record<string, number> = {
   "u-": 3,
@@ -121,7 +120,6 @@ const clampNumber = (num: number, minNum?: number, maxNum?: number): number => {
   return result;
 };
 
-// ----- internal context: lets <NumericInput/> reach Root state for expression eval -----
 interface NumericContextValue {
   getInputElement: () => HTMLInputElement | null;
   setInputElement: (node: HTMLInputElement | null) => void;
@@ -142,7 +140,6 @@ function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
   }
 }
 
-// ----- Root -----
 interface NumericInputRootProps extends Omit<
   NumberField.Root.Props,
   "value" | "defaultValue" | "min" | "max" | "step" | "onValueChange"
@@ -237,7 +234,6 @@ function NumericInputRoot({
   );
 }
 
-// ----- Input -----
 type NumberFieldInputProps = NumberField.Input.Props;
 
 function NumericInput({
@@ -295,7 +291,6 @@ function NumericInput({
   );
 }
 
-// ----- ScrubArea -----
 function ScrubAreaCursorIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -312,9 +307,6 @@ function ScrubAreaCursorIcon({ className }: { className?: string }) {
   );
 }
 
-// A sizeless wrapper. The consumer decides the size, padding, and visual
-// content via className + children. The cursor + horizontal scrub behavior
-// are baked in.
 function NumericScrubArea({
   className,
   children,
