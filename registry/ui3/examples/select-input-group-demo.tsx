@@ -1,9 +1,4 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/registry/ui3/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/registry/ui3/ui/select";
 import { InputGroup, InputGroupAddon, InputGroupButton, TextInput } from "@/registry/ui3/ui/input";
 import { ChevronDownIcon } from "lucide-react";
 
@@ -27,7 +22,7 @@ export default function SelectInputGroupDemo() {
               </InputGroupButton>
             }
           />
-          <SelectContent>
+          <SelectContent alignItemWithTrigger={false} align="end">
             {heightModes.map((mode) => (
               <SelectItem key={mode.value} value={mode.value}>
                 {mode.label}

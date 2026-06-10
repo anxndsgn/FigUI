@@ -29,7 +29,7 @@ export default function InputGroupPresetSelectDemo() {
               </InputGroupButton>
             }
           />
-          <SelectContent>
+          <SelectContent alignItemWithTrigger={false} align="end">
             {heightModes.map((mode) => (
               <SelectItem key={mode.value} value={mode.value}>
                 {mode.label}
