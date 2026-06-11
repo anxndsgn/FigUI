@@ -16,7 +16,7 @@ function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        "group flex h-6 cursor-default items-center rounded-md border border-grey-300 pl-2 outline-none focus-visible:border-blue-500 has-data-[figui=select-icon-lead]:pl-0 dark:border-grey-600 dark:focus-visible:border-blue-500",
+        "group flex h-6 cursor-default items-center rounded-md border border-grey-300 p-2 outline-none focus-visible:border-blue-500 has-data-[slot=icon-lead]:pl-0 has-data-[slot=icon-trailing]:pr-0 dark:border-grey-600 dark:focus-visible:border-blue-500",
         className,
       )}
       {...props}
@@ -24,7 +24,7 @@ function SelectTrigger({
       {iconLead && (
         <span
           className="flex size-6 shrink-0 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-500 dark:[&_svg]:text-white-500"
-          data-figui="select-icon-lead"
+          data-slot="icon-lead"
         >
           {typeof iconLead === "string" ? (
             <span className="typography-body-medium text-black-500 dark:text-white-500">
@@ -37,6 +37,7 @@ function SelectTrigger({
       )}
       {children}
       <BaseSelect.Icon
+        data-slot="icon-trailing"
         className={cn(
           "flex size-6 items-center justify-center [&_svg]:size-3 [&_svg]:shrink-0 [&_svg]:text-black-800 group-data-disabled:[&_svg]:text-black-400 dark:[&_svg]:text-white-800 dark:group-data-disabled:[&_svg]:text-white-400",
         )}
@@ -52,7 +53,7 @@ function SelectContent({ className, children, ...props }: BaseSelect.Positioner.
     <BaseSelect.Portal>
       <BaseSelect.Positioner
         className={cn(
-          "overflow-hidden rounded-lg bg-grey-900 shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100",
+          "overflow-hidden rounded-lg bg-grey-900 shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-200",
           className,
         )}
         sideOffset={4}

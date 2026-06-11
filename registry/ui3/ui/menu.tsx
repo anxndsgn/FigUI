@@ -15,17 +15,12 @@ const MenuRadioGroup = BaseMenu.RadioGroup;
 
 const MenuSub = BaseMenu.SubmenuRoot;
 
-function MenuContent({
-  className,
-  sideOffset = 4,
-  children,
-  ...props
-}: BaseMenu.Positioner.Props) {
+function MenuContent({ className, sideOffset = 4, children, ...props }: BaseMenu.Positioner.Props) {
   return (
     <BaseMenu.Portal>
       <BaseMenu.Positioner
         className={cn(
-          "overflow-hidden rounded-lg bg-grey-900 shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100",
+          "overflow-hidden rounded-lg bg-grey-900 shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-200",
           className,
         )}
         sideOffset={sideOffset}
@@ -40,6 +35,7 @@ function MenuContent({
 function MenuSubContent({
   className,
   sideOffset = 12,
+  alignOffset = -8,
   children,
   ...props
 }: BaseMenu.Positioner.Props) {
@@ -47,10 +43,11 @@ function MenuSubContent({
     <BaseMenu.Portal>
       <BaseMenu.Positioner
         className={cn(
-          "overflow-hidden rounded-lg bg-grey-900 shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-100",
+          "overflow-hidden rounded-lg bg-grey-900 shadow-400 dark:inset-shadow-2xs dark:inset-shadow-white-200",
           className,
         )}
         sideOffset={sideOffset}
+        alignOffset={alignOffset}
         {...props}
       >
         <BaseMenu.Popup className="min-w-(--anchor-width) p-2">{children}</BaseMenu.Popup>
@@ -69,7 +66,7 @@ function MenuItem({
   return (
     <BaseMenu.Item
       className={cn(
-        "typography-body-medium flex cursor-default items-center gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-highlighted:bg-blue-500 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "typography-body-medium flex cursor-default items-center gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-blue-500",
         inset && "pl-8",
         className,
       )}
@@ -78,16 +75,11 @@ function MenuItem({
   );
 }
 
-function MenuCheckboxItem({
-  className,
-  children,
-  checked,
-  ...props
-}: BaseMenu.CheckboxItem.Props) {
+function MenuCheckboxItem({ className, children, checked, ...props }: BaseMenu.CheckboxItem.Props) {
   return (
     <BaseMenu.CheckboxItem
       className={cn(
-        "typography-body-medium grid cursor-default grid-cols-[0.75rem_1fr] gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-highlighted:bg-blue-500 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "typography-body-medium grid cursor-default grid-cols-[0.75rem_1fr] gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-blue-500",
         className,
       )}
       checked={checked}
@@ -105,7 +97,7 @@ function MenuRadioItem({ className, children, ...props }: BaseMenu.RadioItem.Pro
   return (
     <BaseMenu.RadioItem
       className={cn(
-        "typography-body-medium grid cursor-default grid-cols-[0.75rem_1fr] gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-highlighted:bg-blue-500 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "typography-body-medium grid cursor-default grid-cols-[0.75rem_1fr] gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-blue-500",
         className,
       )}
       {...props}
@@ -127,31 +119,19 @@ function MenuLabel({
 }) {
   return (
     <BaseMenu.GroupLabel
-      className={cn(
-        "typography-body-medium px-2 py-1 text-white-500",
-        inset && "pl-8",
-        className,
-      )}
+      className={cn("typography-body-medium px-2 py-1 text-white-500", inset && "pl-8", className)}
       {...props}
     />
   );
 }
 
 function MenuSeparator({ className, ...props }: BaseMenu.Separator.Props) {
-  return (
-    <BaseMenu.Separator
-      className={cn("bg-grey-700 -mx-2 my-1 h-px", className)}
-      {...props}
-    />
-  );
+  return <BaseMenu.Separator className={cn("-mx-2 my-1 h-px bg-grey-700", className)} {...props} />;
 }
 
 function MenuShortcut({ className, ...props }: React.ComponentProps<"span">) {
   return (
-    <span
-      className={cn("typography-body-medium ml-auto text-white-500", className)}
-      {...props}
-    />
+    <span className={cn("typography-body-medium ml-auto text-white-500", className)} {...props} />
   );
 }
 
@@ -166,7 +146,7 @@ function MenuSubTrigger({
   return (
     <BaseMenu.SubmenuTrigger
       className={cn(
-        "typography-body-medium flex cursor-default items-center gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-highlighted:bg-blue-500 data-popup-open:bg-blue-500 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "typography-body-medium flex cursor-default items-center gap-2 rounded-md px-2 py-1 text-white-1000 outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-blue-500 data-popup-open:bg-blue-500",
         inset && "pl-8",
         className,
       )}
